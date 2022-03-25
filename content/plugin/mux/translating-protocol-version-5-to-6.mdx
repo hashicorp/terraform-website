@@ -6,20 +6,20 @@ description: >-
 
 # Translating Protocol Version 5 to 6
 
-The [`tf5to6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server) package enables translating a [protocol version 5](../how-terraform-works#protocol-version-5)  provider server into a [protocol version 6](../how-terraform-works#protocol-version-6)  provider server.
+The [`tf5to6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server) package enables translating a [protocol version 5](/plugin/how-terraform-works#protocol-version-5)  provider server into a [protocol version 6](/plugin/how-terraform-works#protocol-version-6)  provider server.
 
 Use this package to:
 
-* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time, while using protocol version 6 features in terraform-plugin-framework.
-* Develop with [terraform-plugin-sdk/v2](../sdkv2/sdk-intro), but require Terraform CLI 1.0 or later.
+* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](/plugin/sdkv2/sdk-intro) to [terraform-plugin-framework](/plugin/framework) over time, while using protocol version 6 features in terraform-plugin-framework.
+* Develop with [terraform-plugin-sdk/v2](/plugin/sdkv2/sdk-intro), but require Terraform CLI 1.0 or later.
 
 ## Compatibility
 
-Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later. Terraform CLI 1.1.5 and later is required to upgrade [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro).
+Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later. Terraform CLI 1.1.5 and later is required to upgrade [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro).
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro): Develop Terraform providers with a higher-level SDK.
+* [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro): Develop Terraform providers with a higher-level SDK.
 * [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): Develop Terraform providers for advanced use cases with a lower-level SDK.
 
 ## Requirements
@@ -30,7 +30,7 @@ If publishing to the [Terraform Registry](/registry), set `metadata.protocol_ver
 
 ## Code Implementation
 
-Use the [`tf5to6server.UpgradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server#UpgradeServer) function to wrap a provider server. For most providers, this is either in the provider `main()` function of the root directory `main.go` file or where [`tf6muxserver`](./combining-protocol-version-6-providers) is implemented in the codebase.
+Use the [`tf5to6server.UpgradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server#UpgradeServer) function to wrap a provider server. For most providers, this is either in the provider `main()` function of the root directory `main.go` file or where [`tf6muxserver`](/plugin/mux/combining-protocol-version-6-providers) is implemented in the codebase.
 
 The following example upgrades a terraform-plugin-sdk/v2 provider.
 
@@ -50,7 +50,7 @@ err = tf6server.Serve(
 )
 ```
 
-The following example uses [`tf6muxserver`](./combining-protocol-version-6-providers) to serve the upgraded provider while it is combined with others.
+The following example uses [`tf6muxserver`](/plugin/mux/combining-protocol-version-6-providers) to serve the upgraded provider while it is combined with others.
 
 ```go
 providers := []func() tfprotov6.ProviderServer{
@@ -65,11 +65,11 @@ providers := []func() tfprotov6.ProviderServer{
 muxServer, err := tf6muxserver.NewMuxServer(ctx, providers...)
 ```
 
-Refer to the [`tf6muxserver`](./combining-protocol-version-6-providers) documentation for more details about how to serve the combined provider.
+Refer to the [`tf6muxserver`](/plugin/mux/combining-protocol-version-6-providers) documentation for more details about how to serve the combined provider.
 
 ## Testing Implementation
 
-You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV6ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories) field of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource).
+You can test the original provider using the same [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV6ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories) field of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource).
 
 The following example creates a test for a combined provider.
 
@@ -94,4 +94,4 @@ resource.Test(t, resource.TestCase{
 })
 ```
 
-Refer to the [acceptance tests](../sdkv2/testing/acceptance-tests) documentation for more details.
+Refer to the [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) documentation for more details.

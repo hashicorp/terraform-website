@@ -6,12 +6,12 @@ description: >-
 
 # Combining Protocol Version 5 Providers
 
-The [`tf5muxserver`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5muxserver) package enables combining any number of [protocol version 5 provider servers](../how-terraform-works#protocol-version-5) into a single server.
+The [`tf5muxserver`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5muxserver) package enables combining any number of [protocol version 5 provider servers](/plugin/how-terraform-works#protocol-version-5) into a single server.
 
 Use this package to:
 
 * Support multiple development teams across separate codebases.
-* Support multiple provider SDK implementations. For example, you could downgrade an existing [terraform-plugin-framework](../framework) provider to protocol version 5 and then combine it with one or more providers built with [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro).
+* Support multiple provider SDK implementations. For example, you could downgrade an existing [terraform-plugin-framework](/plugin/framework) provider to protocol version 5 and then combine it with one or more providers built with [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro).
 
 ## Compatibility
 
@@ -19,9 +19,9 @@ Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and l
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro): Develop Terraform providers with a higher-level SDK.
+* [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro): Develop Terraform providers with a higher-level SDK.
 * [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): Develop Terraform providers for advanced use cases with a lower-level SDK.
-* [tf6to5server](./translating-protocol-version-6-to-5): Translate protocol version 6 providers into protocol version 5.
+* [tf6to5server](/plugin/mux/translating-protocol-version-6-to-5): Translate protocol version 6 providers into protocol version 5.
 
 ## Requirements
 
@@ -96,7 +96,7 @@ func main() {
 
 ## Testing Implementation
 
-You can test individual providers using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). 
+You can test individual providers using the same [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). 
 
 The following example uses the acceptance testing framework to create a test for two providers.
 
@@ -124,4 +124,4 @@ resource.Test(t, resource.TestCase{
 })
 ```
 
-Refer to the [acceptance tests](../sdkv2/testing/acceptance-tests) documentation for more details.
+Refer to the [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) documentation for more details.

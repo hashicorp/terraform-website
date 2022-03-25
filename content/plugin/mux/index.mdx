@@ -6,29 +6,29 @@ description: >-
 
 # Combining and Translating Providers
 
-The [terraform-plugin-mux](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) Go module is a collection of Go packages for combining (multiplexing) and translating provider servers. It helps minimize provider code changes by wrapping existing provider servers. This functionality is based on the [Terraform Plugin Protocol](../how-terraform-works#terraform-plugin-protocol) and [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) provider servers.
+The [terraform-plugin-mux](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) Go module is a collection of Go packages for combining (multiplexing) and translating provider servers. It helps minimize provider code changes by wrapping existing provider servers. This functionality is based on the [Terraform Plugin Protocol](/plugin/how-terraform-works#terraform-plugin-protocol) and [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) provider servers.
 
 ## Use Cases
 
 The `terraform-plugin-mux` Go module enables flexibility when you develop and maintain Terraform providers. It is especially useful when you need to upgrade an existing provider to use the plugin framework SDK or the latest version of the plugin protocol. We recommend using `terraform-plugin-mux` for the following use cases:
 
 * Combine providers to reduce maintenance burden while still supporting varying Terraform requirements or multiple provider SDK implementations. 
-* Migrate resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time.
-* Develop with [terraform-plugin-sdk/v2](../sdkv2/sdk-intro), but require Terraform CLI 1.0 or later.
-* Develop with [terraform-plugin-framework](../framework), but support Terraform CLI 0.12 or later.
+* Migrate resources and data sources from [terraform-plugin-sdk/v2](/plugin/sdkv2/sdk-intro) to [terraform-plugin-framework](/plugin/framework) over time.
+* Develop with [terraform-plugin-sdk/v2](/plugin/sdkv2/sdk-intro), but require Terraform CLI 1.0 or later.
+* Develop with [terraform-plugin-framework](/plugin/framework), but support Terraform CLI 0.12 or later.
 
 ## Combine Protocol 6 Providers
 
-Use the [tf6muxserver](./combining-protocol-version-6-providers) package to combine any number of [protocol version 6 provider servers](../how-terraform-works#protocol-version-6) into a single server.
+Use the [tf6muxserver](/plugin/mux/combining-protocol-version-6-providers) package to combine any number of [protocol version 6 provider servers](/plugin/how-terraform-works#protocol-version-6) into a single server.
 
 ## Combine Protocol 5 Providers
 
-Use the [tf5muxserver](./combining-protocol-version-5-providers) package to combine any number of [protocol version 5 provider servers](../how-terraform-works#protocol-version-5) into a single server.
+Use the [tf5muxserver](/plugin/mux/combining-protocol-version-5-providers) package to combine any number of [protocol version 5 provider servers](/plugin/how-terraform-works#protocol-version-5) into a single server.
 
 ## Translate Protocol 5 Providers to Protocol 6
 
-Use the [tf5to6server](./translating-protocol-version-5-to-6) package to translate a [protocol version 5 provider server](../how-terraform-works#protocol-version-5) into a [protocol version 6 provider server](../how-terraform-works#protocol-version-6).
+Use the [tf5to6server](/plugin/mux/translating-protocol-version-5-to-6) package to translate a [protocol version 5 provider server](/plugin/how-terraform-works#protocol-version-5) into a [protocol version 6 provider server](/plugin/how-terraform-works#protocol-version-6).
 
 ## Translate Protocol 6 Providers to Protocol 5
 
-Use the [tf6to5server](./translating-protocol-version-6-to-5) package to translate a [protocol version 6 provider server](../how-terraform-works#protocol-version-6) into a [protocol version 5 provider server](../how-terraform-works#protocol-version-5).
+Use the [tf6to5server](/plugin/mux/translating-protocol-version-6-to-5) package to translate a [protocol version 6 provider server](/plugin/how-terraform-works#protocol-version-6) into a [protocol version 5 provider server](/plugin/how-terraform-works#protocol-version-5).

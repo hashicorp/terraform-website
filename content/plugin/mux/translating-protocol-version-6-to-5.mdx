@@ -6,12 +6,12 @@ description: >-
 
 # Translating Protocol Version 6 to 5
 
-The [`tf6to5server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf6to5server) package enables translating a [protocol version 6](../how-terraform-works#protocol-version-6)  provider server into a [protocol version 5](../how-terraform-works#protocol-version-5) provider server.
+The [`tf6to5server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf6to5server) package enables translating a [protocol version 6](/plugin/how-terraform-works#protocol-version-6)  provider server into a [protocol version 5](/plugin/how-terraform-works#protocol-version-5) provider server.
 
 Use this package to:
 
-* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time, while maintaining Terraform CLI 0.12 and later compatibility.
-* Develop with [terraform-plugin-framework](../framework), but support Terraform CLI 0.12 and later.
+* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](/plugin/sdkv2/sdk-intro) to [terraform-plugin-framework](/plugin/framework) over time, while maintaining Terraform CLI 0.12 and later compatibility.
+* Develop with [terraform-plugin-framework](/plugin/framework), but support Terraform CLI 0.12 and later.
 
 ## Compatibility
 
@@ -19,18 +19,18 @@ Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and l
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-framework](../framework): Develop Terraform providers with a higher-level SDK.
+* [terraform-plugin-framework](/plugin/framework): Develop Terraform providers with a higher-level SDK.
 * [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server): Develop Terraform providers for advanced use cases with a lower-level SDK.
 
 ## Requirements
 
-Downgrading provider servers from protocol version 6 to protocol version 5 will return an error if there are protocol version 6 features that are in use that are not available in protocol version 5. Refer to the [protocol version 6](../how-terraform-works#protocol-version-6) documentation for more information.
+Downgrading provider servers from protocol version 6 to protocol version 5 will return an error if there are protocol version 6 features that are in use that are not available in protocol version 5. Refer to the [protocol version 6](/plugin/how-terraform-works#protocol-version-6) documentation for more information.
 
 If publishing to the [Terraform Registry](/registry), set `metadata.protocol_versions` to `["5.0"]` in the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file).
 
 ## Code Implementation
 
-Use the [`tf6to5server.DowngradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf6to5server#DowngradeServer) function to wrap a provider server. For most providers, this is in the provider `main()` function of the root directory `main.go` file or where [`tf5muxserver`](./combining-protocol-version-5-providers) is implemented in the codebase, if applicable.
+Use the [`tf6to5server.DowngradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf6to5server#DowngradeServer) function to wrap a provider server. For most providers, this is in the provider `main()` function of the root directory `main.go` file or where [`tf5muxserver`](/plugin/mux/combining-protocol-version-5-providers) is implemented in the codebase, if applicable.
 
 The following example downgrades a `terraform-plugin-framework` provider.
 
@@ -52,7 +52,7 @@ err = tf5server.Serve(
 )
 ```
 
-The following example uses [`tf5muxserver`](./combining-protocol-version-5-providers) to serve the downgraded provider while it is combined with other providers.
+The following example uses [`tf5muxserver`](/plugin/mux/combining-protocol-version-5-providers) to serve the downgraded provider while it is combined with other providers.
 
 ```go
 providers := []func() tfprotov5.ProviderServer{
@@ -65,11 +65,11 @@ providers := []func() tfprotov5.ProviderServer{
 muxServer, err := tf5muxserver.NewMuxServer(ctx, providers...)
 ```
 
-Refer to the [`tf5muxserver`](./combining-protocol-version-5-providers) documentation for more details about how to serve the combined provider.
+Refer to the [`tf5muxserver`](/plugin/mux/combining-protocol-version-5-providers) documentation for more details about how to serve the combined provider.
 
 ## Testing Implementation
 
-You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) field of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource).
+You can test the original provider using the same [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) field of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource).
 
 The following example creates a test case for a downgraded provider.
 
@@ -96,4 +96,4 @@ resource.Test(t, resource.TestCase{
 })
 ```
 
-Refer to the [acceptance tests](../sdkv2/testing/acceptance-tests) documentation for more details.
+Refer to the [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) documentation for more details.
