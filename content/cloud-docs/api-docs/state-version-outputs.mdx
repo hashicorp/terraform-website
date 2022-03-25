@@ -153,3 +153,65 @@ curl \
   }
 }
 ```
+
+## Show Current State Version Outputs for a Workspace
+
+This endpoint allows organization users, who do not have permissions to read state versions, to fetch the latest [output values](/language/values/outputs) for a workspace. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+
+-> **Note:** Sensitive values are not revealed and will be returned as `null`. To fetch an output including sensitive values see [Show a State Version Output](/cloud-docs/api-docs/state-version-outputs#show-a-state-version-output).
+
+`GET /workspaces/:workspace_id/current-state-version-outputs`
+
+| Parameter       | Description                                  |
+| --------------- | -------------------------------------------- |
+| `:workspace_id` | The ID of the workspace to read outputs from.|
+
+| Status  | Response                                                | Reason                                                           |
+| ------- | ------------------------------------------------------- | ---------------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "state-version-outputs"`) | Successfully returned a list of outputs for the given workspace. |
+| [404][] | [JSON API error object][]                               | State version outputs not found or user not authorized.          |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/workspaces/ws-G4zM299PFbfc10E5/current-state-version-outputs
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "wsout-J2zM24JPFbfc7bE5",
+      "type": "state-version-outputs",
+      "attributes": {
+        "name": "flavor",
+        "sensitive": false,
+        "type": "string",
+        "value": "Peanut Butter"
+      },
+      "links": {
+        "self": "/api/v2/state-version-outputs/wsout-J2zM24JPFbfc7bE5"
+      }
+    },
+    {
+      "id": "wsout-FLzM23Gcd5f37bE5",
+      "type": "state-version-outputs",
+      "attributes": {
+        "name": "recipe",
+        "sensitive": true,
+        "type": "string",
+        "value": null 
+      },
+      "links": {
+        "self": "/api/v2/state-version-outputs/wsout-FLzM23Gcd5f37bE5"
+      }
+    }
+  ]
+}
+```
+
