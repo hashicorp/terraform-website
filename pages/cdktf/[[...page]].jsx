@@ -46,8 +46,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           // container.
           //
           // This is subject to change.
-          // filepath = filepath.replace('cdk/', '')
-          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
+          filepath = filepath.replace('preview/', '')
+          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
         },
         remarkPlugins: (params) => [
           () => {
