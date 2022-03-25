@@ -2,11 +2,7 @@ import { productName, productSlug } from 'data/metadata'
 import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
-import {
-  // generateStaticPaths,
-  // generateStaticProps,
-  getStaticGenerationFunctions,
-} from '@hashicorp/react-docs-page/server'
+import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import visit from 'unist-util-visit'
 import path from 'path'
 
@@ -30,7 +26,6 @@ export default function CDKLayout(props) {
   )
 }
 
-// TODO: fix edit this page link
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW
     ? {
@@ -40,12 +35,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         navDataFile: NAV_DATA,
         product: PRODUCT.slug,
         githubFileUrl(filepath) {
-          // this path rewriting is meant for `terraform-cdk`.
-          // This is dependent on where the `terraform-website` is cloned, and where
-          // the `terraform-cdk` files get mounted to the `terraform-website` Docker
-          // container.
-          //
-          // This is subject to change.
+          // This path rewriting is meant for local preview from `terraform-cdk`.
           filepath = filepath.replace('preview/', '')
           return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
         },
@@ -84,43 +74,3 @@ If this is a net-new asset, it may not be available in the preview yet.`)
 )
 
 export { getStaticPaths, getStaticProps }
-
-// export async function getStaticPaths() {
-//   const paths = await generateStaticPaths({
-//     navDataFile: NAV_DATA,
-//     localContentDir: CONTENT_DIR,
-//   })
-//   return { paths, fallback: false }
-// }
-
-// export async function getStaticProps({ params }) {
-//   const props = await generateStaticProps({
-//     navDataFile: NAV_DATA,
-//     localContentDir: CONTENT_DIR,
-//     params,
-//     product: PRODUCT,
-//     remarkPlugins: [
-//       () => {
-//         const product = 'terraform-cdk'
-//         const version = 'main'
-//         return function transform(tree) {
-//           visit(tree, 'image', (node) => {
-//             const assetPath = params.page
-//               ? path.posix.join(
-//                   ...params.page,
-//                   node.url.startsWith('.') ? `.${node.url}` : `../${node.url}`
-//                 )
-//               : node.url
-//             const asset = path.posix.join('website/docs/cdktf', assetPath)
-//             node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
-//           })
-//         }
-//       },
-//     ],
-//     githubFileUrl(path) {
-//       const filepath = path.replace('content/', '')
-//       return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
-//     },
-//   })
-//   return { props }
-// }
