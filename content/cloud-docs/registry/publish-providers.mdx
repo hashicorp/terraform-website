@@ -40,6 +40,8 @@ To publish a new provider through the Terraform Cloud API:
     ```json
     "key-id": "32966F3FB5AC1129"
     ```
+1. Use the [Create a Provider endpoint](/cloud-docs/api-docs/private-registry/providers#create-a-provider) to create the provider in Terraform Cloud. 
+
 1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-version) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
 
     ```json
