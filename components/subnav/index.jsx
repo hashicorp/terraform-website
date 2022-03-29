@@ -1,8 +1,8 @@
 import Subnav from '@hashicorp/react-subnav'
 import Link from 'next/link'
-import navMenuItems from 'data/primary-navigation.js'
+// import navMenuItems from 'data/primary-navigation.js'
 
-export default function DefaultSubnav() {
+export default function DefaultSubnav({ menuItems }) {
   return (
     <Subnav
       titleLink={{ text: 'HashiCorp Terraform', url: '/' }}
@@ -16,7 +16,7 @@ export default function DefaultSubnav() {
           },
         },
       ]}
-      menuItems={navMenuItems}
+      menuItems={menuItems}
       menuItemsAlign="right"
       constrainWidth
       Link={Link}

@@ -1,5 +1,5 @@
 query UseCasesQuery {
-  useCaseNavItems: allConsulUseCases {
+  useCaseNavItems: allTerraformUseCases {
     url: slug
     text: heroHeading
   }
