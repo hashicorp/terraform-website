@@ -1,6 +1,5 @@
 import Subnav from '@hashicorp/react-subnav'
 import Link from 'next/link'
-// import navMenuItems from 'data/primary-navigation.js'
 
 export default function DefaultSubnav({ menuItems }) {
   return (
