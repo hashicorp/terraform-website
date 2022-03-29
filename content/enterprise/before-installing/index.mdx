@@ -132,7 +132,9 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
 
 1. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
 1. Docker Engine 20.10.x with `libseccomp` 2.4.4 or greater.
-1. Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
+1. 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a [modified `libseccomp` profile](https://www.terraform.io/enterprise/before-installing#option-2-docker-engine-with-a-compatible-libseccomp-version).
+
+If you are installing on RHEL7, you also have the option of Docker Engine 1.13.1 from the Extras Repo, with a [modified `libseccomp` profile](https://www.terraform.io/enterprise/before-installing#option-2-docker-engine-with-a-compatible-libseccomp-version).
 
 Refer to the sections below for instructions on how to verify your Docker Engine configuration.
 
