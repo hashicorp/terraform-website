@@ -66,12 +66,12 @@ A root volume with 200 GB of storage can sustain a capacity well over 100 concur
 Because of the amount of churn caused by container creation as well as Terraform state management,
 highly concurrent setups will begin pushing hard on disk I/O. In cloud environments like AWS that limit disk
 I/O to IOPS that are credited per disk, it's important to provision a minimum number to prevent I/O related
-stalls.
+stalls. Low disk I/O can create significant performance issues. 
 
 This resource is harder to predict than memory or CPU usage because it varies per Terraform module,
-but in general we suggest 35 IOPS per concurrent Terraform run. So if an instance is configured for
-20 concurrent runs, the disk should have 700 IOPS allocated. For reference, on AWS, an EBS volume
+but in general we suggest a minimum of 50 IOPS per concurrent Terraform run. So if an instance is configured for
+10 concurrent runs, the disk should have 500 IOPS allocated. For reference, on AWS, an EBS volume
 with an allocated size of 250 GB comes with a steady state of 750 IOPS.
 
-It is recommended to use a disk with a minimum of 500 IOPS or 100+MB/s throughput, whichever is the smaller and these are provisioned values.
+It is recommended to use a disk with a minimum of 500 IOPS, but high load systems should consider increasing this significantly. A production instance, with a consistantly high level of utilization, and a concurrency of 10, should have a disk with around 3,000 IOPS, ideally. 
 
