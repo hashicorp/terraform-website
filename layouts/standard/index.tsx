@@ -94,10 +94,6 @@ export default function StandardLayout(props: Props): React.ReactElement {
             text: 'Community',
             url: '/community',
           },
-          {
-            text: 'GitHub',
-            url: 'https://github.com/hashicorp/terraform',
-          },
         ]}
       />
       {props.children}

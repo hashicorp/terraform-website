@@ -5,12 +5,17 @@ import Link from 'next/link'
 export default function DefaultSubnav({ menuItems }) {
   return (
     <Subnav
+      hideGithubStars={true}
       titleLink={{ text: 'HashiCorp Terraform', url: '/' }}
       ctaLinks={[
-        { text: 'Download CLI', url: '/downloads' },
+        { text: 'GitHub', url: 'https://github.com/hashicorp/terraform' },
         {
           text: 'Terraform Cloud',
           url: 'https://cloud.hashicorp.com/products/terraform',
+        },
+        {
+          text: 'Download',
+          url: '/downloads',
           theme: {
             brand: 'terraform',
           },
