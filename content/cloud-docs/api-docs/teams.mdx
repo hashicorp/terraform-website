@@ -38,8 +38,6 @@ page_title: Teams - API Docs - Terraform Cloud and Terraform Enterprise
 
 -> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Single sign-on is also a paid feature, available as part of the **Business** upgrade package. Refer to [Terraform Cloud pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
--> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
-
 The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](/cloud-docs/api-docs/team-members) is used to add or remove users from a team. Use the [Team Access API](/cloud-docs/api-docs/team-access) to associate a team with privileges on an individual workspace.
 
 Any member of an organization can view visible teams and any secret teams they are a member of. Only organization owners can modify teams or view the full set of secret teams. The organization token and the owners team token can act as an owner on these endpoints. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
@@ -78,6 +76,8 @@ $ curl \
 ```
 
 ### Sample Response
+
+_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
 
 ```json
 {
@@ -180,6 +180,8 @@ $ curl \
 
 ### Sample Response
 
+_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
+
 ```json
 {
   "data": {
@@ -240,6 +242,8 @@ $ curl \
 ```
 
 ### Sample Response
+
+_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
 
 ```json
 {
@@ -340,6 +344,8 @@ $ curl \
 ```
 
 ### Sample Response
+
+_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
 
 ```json
 {

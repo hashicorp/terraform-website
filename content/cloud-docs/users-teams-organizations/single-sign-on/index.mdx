@@ -67,7 +67,7 @@ Terraform Cloud can automatically add users to teams based on their SAML asserti
 
 If the SAML assertion includes a `MemberOf` attribute, users logging in via SSO are automatically added to the teams included in their assertion and removed from any teams that _aren't_ included in their assertion. This overrides any manually set team memberships; whenever the user logs in, their team membership is adjusted to match their SAML assertion.
 
-Any team names that don't match existing teams are ignored; Terraform Cloud will not automatically create new teams. Terraform Cloud expects the team names in the `MemberOf` SAML attribute to exactly match its own team names. This match is case sensitive. It is not possible to assign users to the `owners` team through this attribute.
+Any team names that don't match existing teams are ignored; Terraform Cloud will not automatically create new teams. Terraform Cloud expects the team names in the `MemberOf` SAML attribute to exactly match its own team names or SSO team IDs. This match is case sensitive. It is not possible to assign users to the `owners` team through this attribute.
 
 If the `MemberOf` attribute is not provided, users are assigned to a default team named `sso` and are not removed from any existing teams.
 
