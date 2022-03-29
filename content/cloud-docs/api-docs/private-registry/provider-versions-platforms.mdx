@@ -77,7 +77,9 @@ Properties without a default value are required.
 | `data.type`                 | string |         | Must be `"registry-provider-versions"`.                           |
 | `data.attributes.version`   | string |         | A valid semver version string.                                    |
 | `data.attributes.key-id`    | string |         | A valid gpg-key string.                                           |
-| `data.attributes.protocols` | array  |         | Must be one or all of the following values `["4.0","5.0","6.0"]`. |
+| `data.attributes.protocols` | array  |         | An array of Terraform provider API versions that this version supports. Must be one or all of the following values `["4.0","5.0","6.0"]`. |
+
+**Note:** Only Terraform 0.13 and later support third-party provider registries and that Terraform version requires provider API version 5.0 or later, so in practice it isn't useful to list major versions 4 or earlier in the `protocols` attribute.
 
 ### Sample Payload
 
