@@ -27,7 +27,7 @@ the [application settings JSON file when using the automated install procedure](
 
 ## Increasing Concurrency
 
-To increase the number of concurrent runs, adjust the `capacity_concurrency` setting. Note that this setting is not limited by
+To increase the number of concurrent runs, adjust the `capacity_concurrency` setting. This setting is not limited by
 system checks; it depends on the operator to provide enough memory to the system to accommodate the requested
 concurrent capacity. For instance, if `capacity_concurrency` is set to `100`, the instance would require, at a minimum,
 52 GB of memory just for Terraform runs, if the worker memory was set to 512. The rest of the TFE application requires 4 GB of memory at a minimum, on top of the Operating System requirements.
@@ -38,10 +38,6 @@ The default memory limit of 512 MB per Terraform run is also configurable. Note 
 system checks; it depends on the operator to provide enough memory to the system to accommodate the requested limits.
 If the memory limit is adjusted to 1024 MB with the default capacity of 10, the instance would require, at a minimum,
 10 GB of memory reserved for Terraform runs.
-
-## Limiting CPU cores
-
-The default setting of `0` allows a Terraform run to utilize all available CPU cores on the TFE instance. You can adjust this setting by inputting a specific limit to the number of CPU cores the Terraform runs will have access to. 
 
 ### Downward Adjustment
 
