@@ -29,8 +29,7 @@ the [application settings JSON file when using the automated install procedure](
 
 To increase the number of concurrent runs, adjust the `capacity_concurrency` setting. This setting is not limited by
 system checks; it depends on the operator to provide enough memory to the system to accommodate the requested
-concurrent capacity. For instance, if `capacity_concurrency` is set to `100`, the instance would require, at a minimum,
-52 GB of memory just for Terraform runs, if the worker memory was set to 512. The rest of the TFE application requires 4 GB of memory at a minimum, on top of the Operating System requirements.
+concurrent capacity. For example, if `capacity_concurrency` is set to `100` and the worker memory is set to 512, the instance would require a minimum of 52 GB of memory just for Terraform runs. The rest of the TFE application requires a minimum of 4 GB of memory in addition to the Operating System requirements.
 
 ## Adjusting Memory
 
