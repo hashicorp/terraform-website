@@ -77,7 +77,9 @@ Properties without a default value are required.
 | `data.type`                 | string |         | Must be `"registry-provider-versions"`.                           |
 | `data.attributes.version`   | string |         | A valid semver version string.                                    |
 | `data.attributes.key-id`    | string |         | A valid gpg-key string.                                           |
-| `data.attributes.protocols` | array  |         | Must be one or all of the following values `["4.0","5.0","6.0"]`. |
+| `data.attributes.protocols` | array  |         | An array of Terraform provider API versions that this version supports. Must be one or all of the following values `["4.0","5.0","6.0"]`. |
+
+-> **Note:** Only Terraform 0.13 and later support third-party provider registries, and that Terraform version requires provider API version 5.0 or later. So you do not need to list major versions 4.0 or earlier in the `protocols` attribute.
 
 ### Sample Payload
 
@@ -88,7 +90,7 @@ Properties without a default value are required.
     "attributes": {
       "version": "3.1.1",
       "key-id": "32966F3FB5AC1129",
-      "protocols": ["4.0"]
+      "protocols": ["5.0"]
     }
   }
 }
@@ -117,7 +119,7 @@ curl \
       "created-at": "2022-02-11T19:16:59.876Z",
       "updated-at": "2022-02-11T19:16:59.876Z",
       "key-id": "32966F3FB5AC1129",
-      "protocols": ["4.0"],
+      "protocols": ["5.0"],
       "permissions": {
         "can-delete": true,
         "can-upload-asset": true
@@ -190,7 +192,7 @@ curl \
         "created-at": "2022-02-11T19:16:59.876Z",
         "updated-at": "2022-02-11T19:16:59.876Z",
         "key-id": "32966F3FB5AC1129",
-        "protocols": ["4.0"],
+        "protocols": ["5.0"],
         "permissions": {
           "can-delete": true,
           "can-upload-asset": true
@@ -303,7 +305,7 @@ curl \
       "created-at": "2022-02-11T19:16:59.876Z",
       "updated-at": "2022-02-11T19:16:59.876Z",
       "key-id": "32966F3FB5AC1129",
-      "protocols": ["4.0"],
+      "protocols": ["5.0"],
       "permissions": {
         "can-delete": true,
         "can-upload-asset": true
