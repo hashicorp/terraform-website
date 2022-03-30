@@ -77,7 +77,7 @@ $ curl \
 
 ### Sample Response
 
-_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
+The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier.
 
 ```json
 {
@@ -180,7 +180,7 @@ $ curl \
 
 ### Sample Response
 
-_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
+The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier.
 
 ```json
 {
@@ -243,7 +243,7 @@ $ curl \
 
 ### Sample Response
 
-_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
+The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier.
 
 ```json
 {
@@ -312,7 +312,7 @@ Properties without a default value are required.
 | --------------------------------------- | ------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `data.type`                             | string |                  | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
-| `data.attributes.sso-team-id`           | string | (previous value) | The unique identifier of the team from the SAML `MemberOf` attribute.  Only available if the team belongs to an organization in the paid Terraform Cloud Business Tier.                                                                                                                                                   |
+| `data.attributes.sso-team-id`           | string | (previous value) | The unique identifier of the team from the SAML `MemberOf` attribute. Only available if the team belongs to an organization in the paid Terraform Cloud Business tier.                                                                                                                                                   |
 | `data.attributes.organization-access`   | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
@@ -345,7 +345,7 @@ $ curl \
 
 ### Sample Response
 
-_The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier._
+The `sso-team-id` attribute is only returned if this team's organization is in the Terraform Cloud Business tier.
 
 ```json
 {

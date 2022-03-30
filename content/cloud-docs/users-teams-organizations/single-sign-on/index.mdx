@@ -63,13 +63,29 @@ If an organization's owners disable SSO (or downgrade the organization's account
 
 ## Managing Team Membership Through SSO
 
-Terraform Cloud can automatically add users to teams based on their SAML assertion, so you can manage team membership in your directory service. To do this, you must specify the `MemberOf` SAML attribute, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items in the correct format (i.e., comma-separated list of team names or SSO team IDs).
+Terraform Cloud can automatically add users to teams based on their SAML assertion, so you can manage team membership in your directory service.
 
-If the SAML assertion includes a `MemberOf` attribute, users logging in via SSO are automatically added to the teams included in their assertion and removed from any teams that _aren't_ included in their assertion. This overrides any manually set team memberships; whenever the user logs in, their team membership is adjusted to match their SAML assertion.
+To enable team membership mapping:
 
-Any team names that don't match existing teams are ignored; Terraform Cloud will not automatically create new teams. Terraform Cloud expects the team names in the `MemberOf` SAML attribute to exactly match its own team names or SSO team IDs. This match is case sensitive. It is not possible to assign users to the `owners` team through this attribute.
+1. Click **Settings** in the navigation bar and then click **SSO** in the sidebar. The SSO configuration page appears.
+1. Toggle the **Enable team management to customize your team attribute**.
 
-If the `MemberOf` attribute is not provided, users are assigned to a default team named `sso` and are not removed from any existing teams.
+![Screenshot: the Terraform Cloud SAML team membership toggle](/img/docs/saml-team-membership-cloud.png)
+
+When team management is enabled, you can configure which SAML attribute in the SAMLResponse will control team membership. This defaults to the `MemberOf` attribute. The expected format of the corresponding `AttributeValue` in the SAMLResponse is a either a string containing a comma-separated list of teams, or separate `AttributeValue` items specifying teams.
+
+When users log in through SAML, Terraform automatically adds them to the teams included in their assertion and automatically removes them from teams that are not included in their assertion. This automatic mapping overrides any manually set team memberships. Each time the user logs in, their team membership is adjusted to match their SAML assertion. 
+
+Terraform Cloud ignores team names that do not exactly match existing teams and will not create new teams from those listed in the assertion. If the chosen SAML attribute is not provided in the SAMLResponse, Terraform assigns users to a default team named `sso` and does not remove them from any existing teams.
+
+It is not possible to assign users to the `owners` team through this attribute.
+
+
+## Team Names and SSO Team IDs
+
+Terraform Cloud expects the team names in the team membership SAML attribute to exactly match its own team names or its configured SSO Team IDs. This match is case sensitive.
+
+You can configure SSO Team IDs in the organization's **Teams** page. If an SSO Team ID is configured, Terraform Cloud will attempt to match the chosen SAML attribute against both the team name and the SSO Team ID when mapping users to teams. You may want to create an SSO Team ID if the team membership SAML attribute is not human readable and is not used as the team's name in Terraform Cloud.
 
 ## NameID Format
 
