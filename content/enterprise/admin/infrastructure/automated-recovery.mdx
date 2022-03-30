@@ -25,8 +25,7 @@ have two types of data on it:
   to configure Terraform Enterprise itself such as installation type, database
   connection settings, hostname. This data rarely changes.
 
-In _Demo_ mode, both application data and installer data are
-stored on the Terraform Enterprise instance. In _Mounted Disk_ and _External Services_ modes, only
+In _Mounted Disk_ and _External Services_ modes, only
 installer data is stored on the instance. Application data
 is stored in the mounted disk or in an external PostgreSQL instance.
 
@@ -34,13 +33,11 @@ Automated snapshots are more effective when using _Mounted Disk_ or
 _External Services_ as the amount of backed up data is smaller and
 less risky.
 
-Snapshots are configured in the dashboard under `Console Settings`,
-in the `Snapshot & Restore` section. We suggest you select
-`Enable Automatic Scheduled Snapshots`. For the interval, it depends
-on the mode of operation you're using. If you're in _Demo_ mode,
-one hour is recommended as that will minimize the data loss to one
-hour only. For _Mounted Disk_ or _External Services_, Daily is recommended
-as the snapshots contain only configuration data, not application data.
+Snapshots are configured in the dashboard under `Console Settings`, in the
+`Snapshot & Restore` section. We suggest you select `Enable Automatic Scheduled
+Snapshots`. For the interval, it depends on the mode of operation you're using.
+For _Mounted Disk_ or _External Services_, Daily is recommended as the
+snapshots contain only configuration data, not application data.
 
 ## Restore a snapshot in a new Terraform Enterprise instance
 

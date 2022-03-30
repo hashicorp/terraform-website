@@ -34,10 +34,10 @@ architecture.
 ## Infrastructure Requirements
 
 Depending on the chosen [operational
-mode](/enterprise/before-installing/#operational-mode-decision),
-the infrastructure requirements for Terraform Enterprise range from a single virtual machine
-for demo or proof of concept installations, to multiple virtual machines
-hosting the Terraform Cloud application, PostgreSQL, Redis, and external Vault servers for
+mode](/enterprise/before-installing/#operational-mode-decision), the
+infrastructure requirements for Terraform Enterprise range from a single
+virtual machine for mounted disk,  to multiple virtual machines hosting the
+Terraform Cloud application, PostgreSQL, Redis, and external Vault servers for
 a stateless production installation.
 
 ## Standalone/Mounted Disk
@@ -286,7 +286,6 @@ and is not covered in this document. We do recommend regular database snapshots.
 
 | Type       | CPU Sockets | Total Cores | Memory       | Storage |
 | ---------- | ----------- | ----------- | ------------ | ------- |
-| Demo       | 2           | 2 core      | 8 GB RAM     | 50GB    |
 | Production | 2           | 4-8 core    | 16-32 GB RAM | 50GB    |
 
 ### Active/Active - Redis Server
