@@ -71,5 +71,5 @@ This resource is harder to predict than memory or CPU usage because it varies pe
 but in general we recommend a minimum of 50 IOPS per concurrent Terraform run. So if an instance is configured for 10 concurrent runs, the disk should have 500 IOPS allocated. For reference, on AWS, an EBS volume
 with an allocated size of 250 GB comes with a steady state of 750 IOPS.
 
-It is recommended to use a disk with a minimum of 500 IOPS, but high load systems should consider increasing this significantly. A production instance, with a consistantly high level of utilization, and a concurrency of 10, should have a disk with around 3,000 IOPS, ideally. Internal testing has shown performance increases with additional IOPs up to 8,000. Scaling the disk beyond 8,000 IOPs does not significantly improve performance.
+We recommend using a disk with a minimum of 500 IOPS, but high load systems should consider increasing this significantly. For example, a production instance with a consistently high level of utilization and a concurrency of 10 should ideally have a disk with about 3,000 IOPS. Internal testing has shown performance increases with additional IOPs up to 8,000. Scaling the disk beyond 8,000 IOPs does not significantly improve performance.
 
