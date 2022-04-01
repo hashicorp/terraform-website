@@ -10,23 +10,23 @@ page_title: Run Tasks Integration - API Docs - Terraform Cloud and Terraform Ent
 
 # Run Tasks Integration API
 
--> Note: Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
+-> Note: Run tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
 
 [Run tasks](/cloud-docs/workspaces/settings/run-tasks) allow Terraform Cloud to interact with external systems at specific points in the Terraform Cloud run lifecycle.
 This page lists the API endpoints used to trigger a run task and the expected response from the integration.
 
-Refer to [Run Tasks](/cloud-docs/api-docs/run-tasks) for the API endpoints to create and manage Run Tasks within Terraform Cloud.
+Refer to [run tasks](/cloud-docs/api-docs/run-tasks) for the API endpoints to create and manage run tasks within Terraform Cloud.
 
 ## Run Task Request
 
-When a run reaches the appropriate phase and a run task is triggered, Terraform Cloud will send a request to the Run Task's URL.
+When a run reaches the appropriate phase and a run task is triggered, Terraform Cloud will send a request to the run task's URL.
 The service receiving the run task request should respond with `200 OK`, or Terraform Cloud will retry to trigger the run task.
 
 `POST :url`
 
 | Parameter | Description                                             |
 |-----------|---------------------------------------------------------|
-| `:url`    | The URL configured in the Run Task to send requests to. |
+| `:url`    | The URL configured in the run task to send requests to. |
 
 | Status  | Response | Reason                            |
 |---------|----------|-----------------------------------|
@@ -106,7 +106,7 @@ Once a run task request has been fulfilled by the external integration, the inte
 
 |    Parameter    |                           Description                            |
 | --------------- | ---------------------------------------------------------------- |
-| `:callback_url` | The `task_result_callback_url` specified in the Run Task request. Typically `/task-results/:guid/callback`. |
+| `:callback_url` | The `task_result_callback_url` specified in the run task request. Typically `/task-results/:guid/callback`. |
 
 | Status  |         Response          |                  Reason                  |
 | ------- | ------------------------- | ---------------------------------------- |
