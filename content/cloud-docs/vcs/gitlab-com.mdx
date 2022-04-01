@@ -73,6 +73,8 @@ Leave the page open in a browser tab. In the next step you will copy values from
    | Expire access tokens (checkbox) | ✘ (disabled)                                                                             |
    | Scopes (all checkboxes) | api                                                                                              |
 
+   -> **Note:** If the `Expire access tokens` checkbox is not disabled Giltab will mark OAuth tokens for the application as expired 2 hours after they are issued. Currently, Terraform Cloud will refresh tokens if they are older than 6 hours. Because of this a gap of 4 hours would exist where Teraform Cloud will attempt to use a token which is marked as expired on Gitlab's side.
+
 1. Click the "Save application" button, which creates the application and takes you to its page.
 
 1. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Application ID** and **Secret.**
