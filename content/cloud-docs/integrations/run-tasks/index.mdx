@@ -21,7 +21,7 @@ This feature relies heavily on the proper parsing of [plan JSON output](/interna
 
 When a run reaches the appropriate phase and a run task is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the run task should respond `200 OK`, or Terraform will retry to trigger the run task.
 
-See the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) for the exact payload specification.
+Refer to the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) for the exact payload specification.
 
 ```json
 {
@@ -51,7 +51,7 @@ See the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) f
 
 Once your server receives this payload, Terraform Cloud expects you to callback to the supplied `task_result_callback_url` using the `access_token` as an [Authentication Header](/cloud-docs/api-docs/#authentication) with a [jsonapi](/cloud-docs/api-docs/#json-api-formatting) payload of the form:
 
-See the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) for the exact callback specification.
+Refer to the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) for the exact callback specification.
 
 ```json
 {
