@@ -70,7 +70,10 @@ Leave the page open in a browser tab. In the next step you will copy values from
    | Name                    | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)                                                     |
    | Redirect URI            | `https://app.terraform.io/<YOUR CALLBACK URL>`, the redirect URI you copied from Terraform Cloud |
    | Confidential (checkbox) | ✔️ (enabled)                                                                                     |
+   | Expire access tokens (checkbox) | ✘ (disabled)                                                                             |
    | Scopes (all checkboxes) | api                                                                                              |
+
+   -> **Note:**    -> **Note:** Terraform Cloud refreshes tokens if they are older than 6 hours, but GitLab marks OAuth tokens as expired 2 hours after they are issued. Disabling the `Expire access tokens` checkbox prevents Terraform Cloud from attempting to use expired tokens. 
 
 1. Click the "Save application" button, which creates the application and takes you to its page.
 
