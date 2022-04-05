@@ -86,7 +86,7 @@ Instead of cherry-picking your commits to a specific version branch, you can add
 
 Currently, HashiCorp uses Vercel to deploy the [terraform.io](https://terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
-New commits in `hashicorp/terraform` and `hashicorp/terraform-cdk` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
+New commits in `hashicorp/terraform` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
 
 <!-- BEGIN: local-development -->
 <!-- Generated text, do not edit directly -->
