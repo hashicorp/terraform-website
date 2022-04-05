@@ -21,7 +21,7 @@
     "@hashicorp/react-code-block": "^4.4.0",
     "@hashicorp/react-command-line-terminal": "^2.0.4",
     "@hashicorp/react-consent-manager": "^7.1.0",
-    "@hashicorp/react-docs-page": "^14.13.0",
+    "@hashicorp/react-docs-page": "^14.15.0",
     "@hashicorp/react-hashi-stack-menu": "^2.1.2",
     "@hashicorp/react-head": "^3.1.2",
     "@hashicorp/react-hero": "8.0.3",
@@ -66,6 +66,7 @@
   "main": "index.js",
   "scripts": {
     "build": "next build",
+    "build:deploy-preview": "npx ts-node --transpile-only ./scripts/content-repo-preview/build.ts",
     "update-submodules": "git submodule update --init --recursive",
     "cypress": "cypress open",
     "format": "next-hashicorp format",

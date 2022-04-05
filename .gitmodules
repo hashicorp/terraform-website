@@ -2,7 +2,3 @@
 	path = ext/terraform
 	url = https://github.com/hashicorp/terraform
 	branch = stable-website
-[submodule "ext/terraform-cdk"]
-	path = ext/terraform-cdk
-	url = https://github.com/hashicorp/terraform-cdk
-	branch = stable-website
