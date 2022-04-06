@@ -21,8 +21,13 @@ module.exports = withHashicorp({
     BUGSNAG_CLIENT_KEY: 'eab8d5350ab3b12d77b7498b23f9a89a',
     BUGSNAG_SERVER_KEY: '1f55a49019f70f94a17dd6d93210f09d',
     IS_CONTENT_PREVIEW: process.env.IS_CONTENT_PREVIEW || false,
+    PREVIEW_FROM_REPO: process.env.PREVIEW_FROM_REPO,
+    // for terraform-cdk
     NAV_DATA_PATH: process.env.NAV_DATA_PATH,
     CONTENT_DIR: process.env.CONTENT_DIR,
+    // for terraform
+    NAV_DATA_DIRNAME: process.env.NAV_DATA_DIRNAME,
+    CONTENT_DIRNAME: process.env.CONTENT_DIRNAME,
   },
   images: {
     domains: ['www.datocms-assets.com'],

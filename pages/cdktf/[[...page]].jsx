@@ -27,7 +27,7 @@ export default function CDKLayout(props) {
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
-  process.env.IS_CONTENT_PREVIEW
+  process.env.IS_CONTENT_PREVIEW && process.env.PREVIEW_FROM_REPO === 'terraform-cdk'
     ? {
         strategy: 'fs',
         basePath: BASE_ROUTE,

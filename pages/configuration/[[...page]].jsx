@@ -8,8 +8,8 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'configuration'
-const NAV_DATA = process.env.NAV_DATA_PATH || '../data/configuration-nav-data.json'
-const CONTENT_DIR = process.env.CONTENT_DIR || '../content/configuration'
+const NAV_DATA = path.join(process.env.NAV_DATA_DIRNAME, BASE_ROUTE + '-nav-data.json')
+const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug }
 
 export default function ConfigurationLayout(props) {
@@ -19,7 +19,7 @@ export default function ConfigurationLayout(props) {
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
-  process.env.IS_CONTENT_PREVIEW
+  process.env.IS_CONTENT_PREVIEW && process.env.PREVIEW_FROM_REPO === 'terraform'
     ? {
         strategy: 'fs',
         basePath: BASE_ROUTE,

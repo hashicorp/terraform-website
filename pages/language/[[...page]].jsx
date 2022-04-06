@@ -9,8 +9,8 @@ import path from 'path'
 
 //  Configure the path
 const BASE_ROUTE = 'language'
-const NAV_DATA = process.env.NAV_DATA_PATH || '../data/language-nav-data.json'
-const CONTENT_DIR = process.env.CONTENT_DIR || '../content/language'
+const NAV_DATA = path.join(process.env.NAV_DATA_DIRNAME, BASE_ROUTE + '-nav-data.json')
+const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug }
 
 export default function LanguageLayout(props) {
@@ -29,7 +29,7 @@ export default function LanguageLayout(props) {
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
-  process.env.IS_CONTENT_PREVIEW
+  process.env.IS_CONTENT_PREVIEW && process.env.PREVIEW_FROM_REPO === 'terraform'
     ? {
         strategy: 'fs',
         basePath: BASE_ROUTE,
