@@ -8,8 +8,8 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cdktf'
-const NAV_DATA = process.env.NAV_DATA_PATH || '../data/cdktf-nav-data.json'
-const CONTENT_DIR = process.env.CONTENT_DIR || '../docs/cdktf'
+const NAV_DATA = path.join(process.env.NAV_DATA_DIRNAME, BASE_ROUTE + '-nav-data.json')
+const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform-cdk' }
 
 export default function CDKLayout(props) {
