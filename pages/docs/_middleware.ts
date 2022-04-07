@@ -33,7 +33,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
         // cloning the URL so we can provide an absolute URL to the .redirect() call,
         // per: https://nextjs.org/docs/messages/middleware-relative-urls
         const newUrl = req.nextUrl.clone()
-        newUrl.pathname = docsRedirects[key]
+        newUrl.pathname = destination
         return NextResponse.redirect(newUrl, 308)
       }
     }
