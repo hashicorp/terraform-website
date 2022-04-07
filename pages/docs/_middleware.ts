@@ -24,7 +24,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
       if (key in docsRedirects) {
         const destination = docsRedirects[key]
         
-        if (destination.startsWith('https://')) {
+        if (destination.startsWith('https://') || destination.startsWith('http://')) {
           // If the URL is NOT relative, don't construct a new URL from the current one. This prevents
           // learn redirects from going to https://terraform.io/https://learn.hashicorp.com/..., for example.
           return NextResponse.redirect(destination, 308)
