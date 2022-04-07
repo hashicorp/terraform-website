@@ -22,6 +22,14 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
 
     for (const key of [path, pathIndexHtml, pathHtml]) {
       if (key in docsRedirects) {
+        const destination = doscRedirects[key]
+        
+        if (destination.startsWith('https://')) {
+          // If the URL is NOT relative, don't construct a new URL from the current one. This prevents
+          // learn redirects from going to https://terraform.io/https://learn.hashicorp.com/..., for example.
+          return NextResponse.redirect(destination, 308)
+        }
+        
         // cloning the URL so we can provide an absolute URL to the .redirect() call,
         // per: https://nextjs.org/docs/messages/middleware-relative-urls
         const newUrl = req.nextUrl.clone()
