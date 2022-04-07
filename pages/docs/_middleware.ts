@@ -22,7 +22,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
 
     for (const key of [path, pathIndexHtml, pathHtml]) {
       if (key in docsRedirects) {
-        const destination = doscRedirects[key]
+        const destination = docsRedirects[key]
         
         if (destination.startsWith('https://')) {
           // If the URL is NOT relative, don't construct a new URL from the current one. This prevents
