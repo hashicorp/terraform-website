@@ -134,6 +134,18 @@ curl \
 | ------------ | ------------------- |
 | `:varset_id` | The variable set ID |
 
+### Request Body
+
+Properties without a default value are required.
+
+| Key path                        | Type    | Default | Description                                                                                                                             |
+| ------------------------------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `data.name`                     | string  |         | The name of the variable set.                                                                                                           |
+| `data.description`              | string  | `""`    | Text displayed in the UI to contextualize the variable set and its purpose.                                                             |
+| `data.global`                   | boolean | `false` | When true, Terraform Cloud automatically applies the variable set to all current and future workspaces in the organization.             |
+| `data.relationships.workspaces` | array   | \[]     | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments. |
+| `data.relationships.vars`       | array   | \[]     | Array of complete variable definitions that comprise the variable set.                                                                  |
+
 Terraform Cloud does not allow global variable sets to contain conflicting variables with the same name and type. You will receive a 422 response if you try to create a global variable set that contains conflicting variables.
 
 | Status  | Response                  | Reason(s)                                                                      |
