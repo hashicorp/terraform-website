@@ -397,6 +397,10 @@
       { "title": "User Tokens", "path": "api-docs/user-tokens" },
       { "title": "Users", "path": "api-docs/users" },
       { "title": "Variables", "path": "api-docs/variables" },
+      {
+        "title": "Variable Sets",
+        "path": "api-docs/variable-sets"
+      },
       { "title": "VCS Events", "path": "api-docs/vcs-events" },
       { "title": "Workspaces", "path": "api-docs/workspaces" },
       {
@@ -406,10 +410,6 @@
       {
         "title": "Workspace Resources",
         "path": "api-docs/workspace-resources"
-      },
-      {
-        "title": "Variable Sets",
-        "path": "api-docs/variable-sets"
       },
       {
         "title": "Admin",
