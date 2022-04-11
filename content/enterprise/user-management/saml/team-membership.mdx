@@ -21,9 +21,11 @@ Any team names that don't match existing teams are ignored; Terraform Enterprise
 
 To disable team membership mapping, uncheck the "Use SAML to manage team memberships" checkbox in the SAML admin page. With mapping disabled, Terraform Enterprise won't automatically manage team membership on login, and you can manually add users to teams via the organization's Teams page.
 
-## Team Names
+## Team Names and SSO Team IDs
 
-Terraform Enterprise expects the team names in the team membership SAML attribute to exactly match its own team names. This match is case sensitive. You cannot specify aliases for teams.
+Terraform Enterprise expects the team names in the team membership SAML attribute to exactly match its own team names, or its configured SSO Team IDs. This match is case sensitive.
+
+SSO Team IDs can be configured via the organization's Teams page. If one is configured, Terraform Enterprise will also attempt to match the chosen SAML attribute against the SSO Team ID (in addition to the team name) when mapping users to teams. This is useful if the chosen team membership SAML attribute is not human readable, and is not used as the team's name in Terraform Enterprise.
 
 Note that team names are unique across an organization but not necessarily unique across a whole Terraform Enterprise instance. If a user is a member of multiple organizations, their SAML assertion might add them to similarly-named teams in each organization. Keep this in mind when naming your teams.
 
