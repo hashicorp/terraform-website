@@ -1,0 +1,104 @@
+---
+page_title: Demo to Mounted Disk Migration - Infrastructure Administration - Terraform Enterprise
+---
+
+# Migrating from Demo Mode to Mounted Disk Mode
+
+The demo operational mode was removed in Terraform Enterprise v202204-1 in favor of the mounted disk operational mode. If you are currently running demo mode and wish to upgrade to Terraform Enterprise v202204-1, you will need to migrate your application data from the demo mode Docker volumes to the mounted disk directory.
+
+## Migrating Application Data From Demo Mode to Mounted Disk Mode
+
+1. Connect to your Terraform Enterprise instance.
+
+1. Create the mounted disk directory. You can choose any directory you'd like.
+However, it is expected that this directory is backed by persistent storage
+that can be mounted to the instance. 
+
+  ```bash
+  mkdir -p /opt/terraform-enterprise
+  ```
+
+1. Set the `disk_path` application setting to the mounted disk directory.
+
+  ```bash
+  replicatedctl app-config set disk_path --value '/opt/terraform-enterprise'
+  ```
+
+1. Migrate the PostgreSQL data to the mounted disk directory.
+
+  ```bash
+  # Create the `postgres` directory under the mounted disk directory.
+  mkdir -p /opt/terraform-enterprise/postgres
+
+  # Retrieve the PostgreSQL data path from the Docker volume.
+  demo_database="$(docker volume inspect postgres --format '{{ .Mountpoint }}')"
+
+  # Migrate the PostgreSQL data to the mounted disk directory.
+  cp -r "${demo_database}"/* /opt/terraform-enterprise/postgres
+
+  # Mark the PostgreSQL data as migrated.
+  touch /opt/terraform-enterprise/postgres/.poc-to-disk-migrated
+  ```
+
+1. Migrate the object storage data to the mounted disk directory.
+
+  ```bash
+  # Create the `aux` directory under the mounted disk directory.
+  mkdir -p /opt/terraform-enterprise/aux
+
+  # Retrieve the object storage data path from the Docker volume.
+  demo_object_storage="$(docker volume inspect aux --format '{{ .Mountpoint }}')"
+
+  # Migrate the object storage data to the mounted disk directory.
+  cp -r "${demo_object_storage}"/* /opt/terraform-enterprise/aux
+
+  # Mark the object storage data as migrated.
+  touch /opt/terraform-enterprise/aux/.poc-to-disk-migrated
+  ```
+
+1. Restart Terraform Enterprise.
+
+## Frequently Asked Questions (FAQs)
+
+### How do I check if I'm running demo mode?
+
+Connect to your Terraform Enterprise instance and run the following command.
+
+```sh
+replicatedctl app-config export --template '{{ .installation_type.Value }}'
+```
+
+If you see the value `poc` that means you are running demo mode and you'll need
+to migrate your application data to the mounted disk directory.
+
+### What happens if I upgrade to Terraform Enterprise v202204-1 without migrating my application data?
+
+Terraform Enterprise will fail to start with the following error until you
+migrate your application data.
+
+```
+Unmet start requirement: Required setting "Mounted Disk Path" is not set.
+```
+
+If you run `replicatedctl app status`, you will see output similar to the
+following.
+
+```json
+[
+    {
+        "AppID": "f9486004126d40904381e029d76353d0",
+        "Sequence": 609,
+        "PatchSequence": 0,
+        "State": "stopped",
+        "DesiredState": "started",
+        "Error": "Unmet start requirement: Required setting \"Mounted Disk Path\" is not set.",
+        "IsCancellable": false,
+        "IsTransitioning": false,
+        "LastModifiedAt": "2022-04-11T21:02:18.613686589Z"
+    }
+]
+```
+
+If you view the Replicated console, you'll see the following page.
+
+![A screenshot showing the error message on the Replicated console.](/img/docs/demo-to-disk.png)
