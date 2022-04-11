@@ -53,14 +53,15 @@ async function main() {
     await fs.promises.readdir(pagesDir, { withFileTypes: true })
   ).filter((ent) => ent.isDirectory())
 
-  for (const dir of pagesDirs) {
-    if (!dir.name.includes(repo) && dir.name !== 'home') {
-      console.log(`🧹 removing pages for ${dir.name}`)
-      await fs.promises.rm(path.join(pagesDir, dir.name), {
-        recursive: true,
-      })
-    }
-  }
+  // TODO(kevinwang): temporarily disabling this to test `terraform` deploy previews
+  // for (const dir of pagesDirs) {
+  //   if (!dir.name.includes(repo) && dir.name !== 'home') {
+  //     console.log(`🧹 removing pages for ${dir.name}`)
+  //     await fs.promises.rm(path.join(pagesDir, dir.name), {
+  //       recursive: true,
+  //     })
+  //   }
+  // }
 
   /** Install deps */
   console.log('📦 Installing dependencies')
