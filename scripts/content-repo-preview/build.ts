@@ -4,7 +4,7 @@ import fs from 'fs'
 
 function checkEnvVars() {
   // Filter out defined env vars, leaving only the missing ones
-  const missingEnvVars = ['REPO', 'IS_CONTENT_PREVIEW'].filter(
+  const missingEnvVars = ['IS_CONTENT_PREVIEW'].filter(
     (key) => !process.env[key]
   )
 
@@ -26,8 +26,6 @@ async function main() {
     return
   }
 
-  const repo = process.env.REPO
-
   // our CWD
   const cwd = process.cwd()
 
@@ -41,36 +39,19 @@ async function main() {
   }
 
   // copy public files
-  console.log('📝 copying files in the public folder')
+  console.log('📝 Copying files from "./public" to "../"')
   execFileSync('cp', ['-R', './public', '../'])
-
-  /**
-   * Remove dirs in `src/pages` which are not associated with the product
-   */
-  const pagesDir = path.join(cwd, 'pages')
-
-  const pagesDirs = (
-    await fs.promises.readdir(pagesDir, { withFileTypes: true })
-  ).filter((ent) => ent.isDirectory())
-
-  // TODO(kevinwang): temporarily disabling this to test `terraform` deploy previews
-  // for (const dir of pagesDirs) {
-  //   if (!dir.name.includes(repo) && dir.name !== 'home') {
-  //     console.log(`🧹 removing pages for ${dir.name}`)
-  //     await fs.promises.rm(path.join(pagesDir, dir.name), {
-  //       recursive: true,
-  //     })
-  //   }
-  // }
 
   /** Install deps */
   console.log('📦 Installing dependencies')
   execFileSync('npm', ['install', '--production=false'], { stdio: 'inherit' })
 
   /** Build */
+  console.log('🏗️  Building project')
   execFileSync('npm', ['run', 'build'], { stdio: 'inherit' })
 
   // Put node_modules into .next/cache so we can retrieve them on subsequent builds
+  console.log('🐿 Copying "node_modules" to ".next/cache"')
   execFileSync('cp', ['-R', 'node_modules', '.next/cache'], {
     stdio: 'inherit',
   })
