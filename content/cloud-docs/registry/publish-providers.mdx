@@ -13,7 +13,7 @@ In addition to [curating public providers from the Terraform Registry](/cloud-do
 
 ## Requirements
 
-Review the following before publishing a new provider.
+Review the following before publishing a new provider or provider version.
 
 ### Permissions
 
@@ -29,18 +29,27 @@ Private providers do not currently support documentation.
 
 GPG signing is required for private providers, and you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](/registry/providers/publishing#preparing-and-adding-a-signing-key) for more details. Unlike the public Terraform Registry, the private registry does not automatically upload new releases. You must manually add new provider versions and the associated release files.
 
-## Publishing a Provider and Creating a Version
+## Publishing a Provider
 
-You must create a provider, at least one version, and at least one platform for that version before consumers can use the provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
+Before consumers can use a private provider, you must create the provider, upload a GPG signing key, create at least one version, create at least one platform for that version, and upload release files.
 
-To publish a new provider through the Terraform Cloud API:
+### Create a Provider
+
+Use the [Create a Provider endpoint](/cloud-docs/api-docs/private-registry/providers#create-a-provider) to create the provider in Terraform Cloud.
+
+The provider is available in your organization’s Terraform Cloud private registry, but consumers cannot use it until you add a version and a platform.
+
+### Create a Version and Platform
+
+To create a version, a platform, and upload the required release files:
+
+1. Confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release.
 
 1. Use the [Add a GPG key endpoint](/cloud-docs/api-docs/private-registry/gpg-keys#add-a-gpg-key) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
 
     ```json
     "key-id": "32966F3FB5AC1129"
     ```
-1. Use the [Create a Provider endpoint](/cloud-docs/api-docs/private-registry/providers#create-a-provider) to create the provider in Terraform Cloud. 
 
 1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-version) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
 
@@ -75,7 +84,7 @@ To publish a new provider through the Terraform Cloud API:
 
 1. (Optional) Repeat steps 4 and 5 to add additional platform binaries for the release.
 
-The provider is available in your organization’s Terraform Cloud private registry. Users can search for it in the private registry UI and begin using it in configurations.
+The version is available in the Terraform Cloud UI. Consumers can begin using this provider version in configurations.
 
 ## Checking Release Files
 
