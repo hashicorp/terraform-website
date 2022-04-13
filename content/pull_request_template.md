@@ -17,7 +17,7 @@ _If items do not apply to your changes, add (N/A) and mark them as complete._
 - [ ] Redirects added for moved, renamed, or deleted pages.
 - [ ] Sidebar navigation files updated for added, deleted, reordered, or renamed pages.
 - [ ] New pages have metadata (page name and description) at the top.
-- [ ] New images are 2048 px wide. They have HashiCorp standard annotation color and format, blurred sensitive details (e.g. credentials, usernames), and descriptive alt text in the markdown for accessibility.
+- [ ] New images are 2048 px wide. They have HashiCorp standard annotation color (#F92672) and format (rectangle with rounded corners), blurred sensitive details (e.g. credentials, usernames, user icons), and descriptive alt text in the markdown for accessibility.
 - [ ] New code blocks have the correct syntax and line breaks to eliminate horizontal scroll bars.
 - [ ] UI elements (button names, page names, etc.) are bolded.
 - [ ] The Vercel website preview successfully deployed.
