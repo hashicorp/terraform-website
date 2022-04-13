@@ -82,7 +82,6 @@ export default function Homepage({ data }): React.ReactElement {
         brand="terraform"
         heading={introHeading}
         description={introDescription}
-        features={introFeatures}
         offerings={{
           image: {
             src: introOfferingsImage.url,
