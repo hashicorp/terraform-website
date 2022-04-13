@@ -21,7 +21,6 @@ export default function Homepage({ data }): React.ReactElement {
     heroCards,
     introHeading,
     introDescription,
-    introFeatures,
     introOfferingsImage,
     introOfferings,
     introOfferingsCta,
