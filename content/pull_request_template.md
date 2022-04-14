@@ -14,7 +14,7 @@ _If items do not apply to your changes, add (N/A) and mark them as complete._
 - [ ] Description links to related pull requests or issues, if any.
 
 **Content**
-- [ ] Redirects added for moved, renamed, or deleted pages.
+- [ ] Redirects have been added for moved, renamed, or deleted pages.
 - [ ] Sidebar navigation files updated for added, deleted, reordered, or renamed pages.
 - [ ] Links to related content where appropriate (e.g., API endpoints, permissions, etc.).
 - [ ] Pages with related content are updated and link to this content when appropriate.
