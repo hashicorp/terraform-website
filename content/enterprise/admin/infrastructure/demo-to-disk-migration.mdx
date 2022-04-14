@@ -4,14 +4,20 @@ page_title: Demo to Mounted Disk Migration - Infrastructure Administration - Ter
 
 # Migrating from Demo Mode to Mounted Disk Mode
 
-The demo operational mode was removed in Terraform Enterprise v202204-1 in favor of the mounted disk operational mode. If you are currently running demo mode and wish to upgrade to Terraform Enterprise v202204-1, you will need to migrate your application data from the demo mode Docker volumes to the mounted disk directory.
+Terraform Enterprise removed the _Demo_ operational mode in v202204-1. We
+strongly recommend upgrading your instance from _Demo_ mode to _Mounted Disk_
+mode.
+
+If you are currently running Demo mode and wish to upgrade to Terraform
+Enterprise v202204-1, you must migrate your application data from the _Demo_
+mode Docker volumes to the _Mounted Disk_ directory.
 
 ## Migrating Application Data From Demo Mode to Mounted Disk Mode
 
 1. Connect to your Terraform Enterprise instance.
 
-1. Create the mounted disk directory. You can choose any directory you'd like.
-However, it is expected that this directory is backed by persistent storage
+1. Create the Mounted Disk directory. You can choose any directory, but
+Terraform Enterprise expects that the directory is backed by persistent storage
 that can be mounted to the instance. 
 
   ```bash
@@ -56,7 +62,8 @@ that can be mounted to the instance.
   touch /opt/terraform-enterprise/aux/.poc-to-disk-migrated
   ```
 
-1. Restart Terraform Enterprise.
+1. Restart Terraform Enterprise to apply the changes and start the application
+in _Mounted Disk_ mode.
 
 ## Frequently Asked Questions (FAQs)
 
@@ -99,6 +106,6 @@ following.
 ]
 ```
 
-If you view the Replicated console, you'll see the following page.
+The Replicated console shows the following page.
 
 ![A screenshot showing the error message on the Replicated console.](/img/docs/demo-to-disk.png)
