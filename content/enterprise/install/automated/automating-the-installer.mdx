@@ -19,11 +19,14 @@ This document expects that the user is already familiar with how to do a [manual
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings
+screen. You need to create this file first since it is referenced in the
+`ImportSettingsFrom` property in `/etc/replicated.conf`.
 
 ### Format
 
-The settings file is JSON formatted. All values must be strings.  The example below is suitable for a _Mounted Disk_ installation:
+The settings file is JSON formatted. All values must be strings. The following
+example shows a possible settings file for a _Mounted Disk_ installation.
 
 ```json
 {
@@ -77,7 +80,8 @@ To extract the settings as JSON, access the instance via SSH, then run:
 tfe$ replicatedctl app-config export > settings.json
 ```
 
-Here is an example `app-config export` output for an instance configured in _Mounted Disk_ mode:
+The following example shows `replicatedctl app-config export` output for an
+instance configured in _Mounted Disk_ mode.
 
 ```
 tfe$ replicatedctl app-config export > settings.json
@@ -206,7 +210,7 @@ The following settings apply to every installation:
 
 - `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not. Defaults to `1`.
 
-- `production_type` — One of `external` or `disk`. Defaults to `disk`.
+- `production_type` — Either `external` or `disk`. Defaults to `disk`.
 
 If you have chosen `disk` for `production_type`, `disk_path` is required:
 
