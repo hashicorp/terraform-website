@@ -25,7 +25,7 @@ have two types of data on it:
   to configure Terraform Enterprise itself such as installation type, database
   connection settings, hostname. This data rarely changes.
 
-In _Mounted Disk_ and _External Services_ modes, only
+In the Mounted Disk and External Services operational modes, only
 installer data is stored on the instance. Application data
 is stored in the mounted disk or in an external PostgreSQL instance.
 
@@ -34,10 +34,10 @@ _External Services_ as the amount of backed up data is smaller and
 less risky.
 
 You can configure snapshots in the dashboard under `Console Settings`, in the
-`Snapshot & Restore` section. We suggest you select `Enable Automatic Scheduled
-Snapshots`. The interval depends on the operational mode. We recommend Daily
-for _Mounted Disk_ or _External Services_ because the snapshots contain only
-configuration data, not application data.
+`Snapshot & Restore` section. We recommend selecting `Enable Automatic
+Scheduled Snapshots`. The interval depends on the operational mode, but we
+recommend Daily for Mounted Disk or External Services because the snapshots
+contain only configuration data, not application data.
 
 ## Restore a snapshot in a new Terraform Enterprise instance
 

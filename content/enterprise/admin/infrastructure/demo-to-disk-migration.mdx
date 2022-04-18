@@ -1,21 +1,21 @@
 ---
 page_title: Demo to Mounted Disk Migration - Infrastructure Administration - Terraform Enterprise
 description: >-
-  Learn how to migrate Terraform Enterprise from _Demo_ mode to _Mounted Disk_
+  Learn how to migrate Terraform Enterprise from Demo mode to Mounted Disk
   mode.
 ---
 
 # Migrating from Demo Mode to Mounted Disk Mode
 
-Terraform Enterprise removed the _Demo_ operational mode in v202204-1. We
-strongly recommend upgrading your instance from _Demo_ mode to _Mounted Disk_
+Terraform Enterprise removed the Demo operational mode in v202204-1. We
+strongly recommend upgrading your instance from Demo mode to Mounted Disk
 mode.
 
 If you are currently running Demo mode and wish to upgrade to Terraform
-Enterprise v202204-1, you must migrate your application data from the _Demo_
-mode Docker volumes to the _Mounted Disk_ directory.
+Enterprise v202204-1, you must migrate your application data from the Demo
+mode Docker volumes to the Mounted Disk directory.
 
-## How do I check if I'm running demo mode?
+## Determining the Operational Mode
 
 Connect to your Terraform Enterprise instance and run the following command.
 
@@ -23,10 +23,10 @@ Connect to your Terraform Enterprise instance and run the following command.
 replicatedctl app-config export --template '{{ .installation_type.Value }}'
 ```
 
-If you see the value `poc` that means you are running demo mode and you'll need
-to migrate your application data to the mounted disk directory.
+If Terraform Enterprise returns the value `poc`, you are running Demo mode and
+must migrate your application data to the mounted disk directory.
 
-## What happens if I upgrade to Terraform Enterprise v202204-1 without migrating my application data?
+## Data Migration is Required
 
 Terraform Enterprise will fail to start with the following error until you
 migrate your application data.
@@ -62,7 +62,7 @@ The Replicated console shows the following page.
 
 1. Connect to your Terraform Enterprise instance.
 
-1. Create the Mounted Disk directory. You can choose any directory, but Terraform Enterprise expects that the directory is backed by persistent storage that can be mounted to the instance.
+1. Create the mounted disk directory. You can choose any directory, but Terraform Enterprise expects that the directory is backed by persistent storage that can be mounted to the instance.
 
   ```bash
   mkdir -p /opt/terraform-enterprise
@@ -126,7 +126,7 @@ The Replicated console shows the following page.
       touch /opt/terraform-enterprise/aux/.poc-to-disk-migrated
       ```
 
-1. Restart Terraform Enterprise to apply the changes and start the application in _Mounted Disk_ mode.
+1. Restart Terraform Enterprise to apply the changes and start the application in Mounted Disk mode.
 
     1. Stop Terraform Enterprise.
 
@@ -134,7 +134,7 @@ The Replicated console shows the following page.
       replicatedctl app stop
       ```
 
-    1. Wait for Terraform Enterprise to stop.
+    1. Wait for Terraform Enterprise to stop. Terraform Enterprise is stopped once the `State` shows `stopped`.
 
       ```bash
       replicatedctl app status
