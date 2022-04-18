@@ -8,7 +8,10 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'configuration'
-const NAV_DATA = path.join(process.env.NAV_DATA_DIRNAME, BASE_ROUTE + '-nav-data.json')
+const NAV_DATA = path.join(
+  process.env.NAV_DATA_DIRNAME,
+  BASE_ROUTE + '-nav-data.json'
+)
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug }
 
@@ -19,7 +22,8 @@ export default function ConfigurationLayout(props) {
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
-  process.env.IS_CONTENT_PREVIEW && process.env.PREVIEW_FROM_REPO === 'terraform'
+  process.env.IS_CONTENT_PREVIEW &&
+    process.env.PREVIEW_FROM_REPO === 'terraform'
     ? {
         strategy: 'fs',
         basePath: BASE_ROUTE,
@@ -34,20 +38,19 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         remarkPlugins: (params) => [
           () => {
             const product = PRODUCT.slug
-            const version = 'main'
+            const version = process.env.CURRENT_GIT_BRANCH
             return function transform(tree) {
               visit(tree, 'image', (node) => {
                 const originalUrl = node.url
-                const assetPath = params.page
-                  ? path.posix.join(
-                      ...params.page,
-                      node.url.startsWith('.')
-                        ? `.${node.url}`
-                        : `../${node.url}`
-                    )
-                  : node.url
-                const asset = path.posix.join('website/docs/cli', assetPath)
-                node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
+                const asset = path.posix.join('website', originalUrl)
+                const url = new URL(
+                  'https://mktg-content-api.vercel.app/api/assets'
+                )
+                url.searchParams.append('asset', asset)
+                url.searchParams.append('version', version)
+                url.searchParams.append('product', product)
+
+                node.url = url.toString()
                 console.log(`Rewriting asset url for local preview:
 - Found: ${originalUrl}
 - Replaced with: ${node.url}

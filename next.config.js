@@ -22,8 +22,9 @@ module.exports = withHashicorp({
     BUGSNAG_SERVER_KEY: '1f55a49019f70f94a17dd6d93210f09d',
     IS_CONTENT_PREVIEW: process.env.IS_CONTENT_PREVIEW || false,
     PREVIEW_FROM_REPO: process.env.PREVIEW_FROM_REPO,
-    NAV_DATA_DIRNAME: process.env.NAV_DATA_DIRNAME || "",
-    CONTENT_DIRNAME: process.env.CONTENT_DIRNAME || "",
+    NAV_DATA_DIRNAME: process.env.NAV_DATA_DIRNAME || '',
+    CONTENT_DIRNAME: process.env.CONTENT_DIRNAME || '',
+    CURRENT_GIT_BRANCH: process.env.CURRENT_GIT_BRANCH || 'main',
   },
   images: {
     domains: ['www.datocms-assets.com'],

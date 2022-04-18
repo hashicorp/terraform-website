@@ -8,7 +8,10 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cdktf'
-const NAV_DATA = path.join(process.env.NAV_DATA_DIRNAME, BASE_ROUTE + '-nav-data.json')
+const NAV_DATA = path.join(
+  process.env.NAV_DATA_DIRNAME,
+  BASE_ROUTE + '-nav-data.json'
+)
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform-cdk' }
 
@@ -27,7 +30,8 @@ export default function CDKLayout(props) {
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
-  process.env.IS_CONTENT_PREVIEW && process.env.PREVIEW_FROM_REPO === 'terraform-cdk'
+  process.env.IS_CONTENT_PREVIEW &&
+    process.env.PREVIEW_FROM_REPO === 'terraform-cdk'
     ? {
         strategy: 'fs',
         basePath: BASE_ROUTE,
@@ -42,7 +46,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         remarkPlugins: (params) => [
           () => {
             const product = PRODUCT.slug
-            const version = 'main'
+            const version = process.env.CURRENT_GIT_BRANCH
             return function transform(tree) {
               visit(tree, 'image', (node) => {
                 const originalUrl = node.url
@@ -55,7 +59,14 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
                     )
                   : node.url
                 const asset = path.posix.join('website/docs/cdktf', assetPath)
-                node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
+                const url = new URL(
+                  `https://mktg-content-api.vercel.app/api/assets`
+                )
+                url.searchParams.append('asset', asset)
+                url.searchParams.append('version', version)
+                url.searchParams.append('product', product)
+
+                node.url = url.toString()
                 console.log(`Rewriting asset url for local preview:
 - Found: ${originalUrl}
 - Replaced with: ${node.url}
