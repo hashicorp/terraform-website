@@ -65,7 +65,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
 - Found: ${originalUrl}
 - Replaced with: ${node.url}
 
-If this is a net-new asset, it may not be available in the preview yet.`)
+If this is a net-new asset, you'll need to commit and push it to GitHub.`)
               })
             }
           },
