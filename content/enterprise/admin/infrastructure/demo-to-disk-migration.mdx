@@ -62,9 +62,7 @@ The Replicated console shows the following page.
 
 1. Connect to your Terraform Enterprise instance.
 
-1. Create the Mounted Disk directory. You can choose any directory, but
-Terraform Enterprise expects that the directory is backed by persistent storage
-that can be mounted to the instance.
+1. Create the Mounted Disk directory. You can choose any directory, but Terraform Enterprise expects that the directory is backed by persistent storage that can be mounted to the instance.
 
   ```bash
   mkdir -p /opt/terraform-enterprise
@@ -80,52 +78,70 @@ that can be mounted to the instance.
 
     1. Create the `postgres` directory under the mounted disk directory.
 
-        ```bash
-        mkdir -p /opt/terraform-enterprise/postgres
-        ```
+      ```bash
+      mkdir -p /opt/terraform-enterprise/postgres
+      ```
 
     1. Retrieve the PostgreSQL data path from the Docker volume.
 
-        ```bash
-        demo_database="$(docker volume inspect postgres --format '{{ .Mountpoint }}')"
-        ```
+      ```bash
+      demo_database="$(docker volume inspect postgres --format '{{ .Mountpoint }}')"
+      ```
 
     1. Migrate the PostgreSQL data to the mounted disk directory.
 
-        ```bash
-        cp -r "${demo_database}"/* /opt/terraform-enterprise/postgres
-        ```
+      ```bash
+      cp -r "${demo_database}"/* /opt/terraform-enterprise/postgres
+      ```
 
     1. Mark the PostgreSQL data as migrated.
-        ```bash
-        touch /opt/terraform-enterprise/postgres/.poc-to-disk-migrated
-        ```
+
+      ```bash
+      touch /opt/terraform-enterprise/postgres/.poc-to-disk-migrated
+      ```
 
 1. Migrate the object storage data to the mounted disk directory.
 
     1. Create the `aux` directory under the mounted disk directory.
 
-        ```bash
-        mkdir -p /opt/terraform-enterprise/aux
-        ```
+      ```bash
+      mkdir -p /opt/terraform-enterprise/aux
+      ```
 
     1. Retrieve the object storage data path from the Docker volume.
 
-        ```bash
-        demo_object_storage="$(docker volume inspect aux --format '{{ .Mountpoint }}')"
-        ```
+      ```bash
+      demo_object_storage="$(docker volume inspect aux --format '{{ .Mountpoint }}')"
+      ```
 
     1. Migrate the object storage data to the mounted disk directory.
 
-        ```bash
-        cp -r "${demo_object_storage}"/* /opt/terraform-enterprise/aux
-        ```
+      ```bash
+      cp -r "${demo_object_storage}"/* /opt/terraform-enterprise/aux
+      ```
 
     1. Mark the object storage data as migrated.
 
-        ```bash
-        touch /opt/terraform-enterprise/aux/.poc-to-disk-migrated
-        ```
+      ```bash
+      touch /opt/terraform-enterprise/aux/.poc-to-disk-migrated
+      ```
 
-1. Restart Terraform Enterprise to apply the changes and start the application
-in _Mounted Disk_ mode.
+1. Restart Terraform Enterprise to apply the changes and start the application in _Mounted Disk_ mode.
+
+    1. Stop Terraform Enterprise.
+
+      ```bash
+      replicatedctl app stop
+      ```
+
+    1. Wait for Terraform Enterprise to stop.
+
+      ```bash
+      replicatedctl app status
+      ```
+
+    1. Start Terraform Enterprise.
+
+      ```bash
+      replicatedctl app start
+      ```
