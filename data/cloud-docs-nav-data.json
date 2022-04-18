@@ -143,7 +143,6 @@
   {
     "title": "Users, Teams, Organizations",
     "routes": [
-      { "title": "Overview", "path": "users-teams-organizations" },
       { "title": "Users", "path": "users-teams-organizations/users" },
       { "title": "Teams", "path": "users-teams-organizations/teams" },
       {
