@@ -13,26 +13,29 @@ description: >-
 
 # Teams
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+-> **Note:** Team management is a paid feature. Free organizations only include an owners team with up to five members. Refer to [Terraform Cloud pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
+
+Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. If a user belongs to at least one team in an organization, they are considered a member of that organization.
+
+The organization can [grant workspace permissions to teams](#managing-workspace-access) that allow its members to start Terraform runs, create workspace variables, read and write state, etc. Teams can only have permissions on workspaces within their organization, although individual users can belong to teams in other organizations.
 
 > **Hands-on:** Try the [Manage Permissions in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-permissions?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. To delegate provisioning work, the organization can grant workspace permissions to specific teams.
+## API and Terraform Enterprise Provider
 
-Teams can only have permissions on workspaces within their organization, although any user in a team can belong to teams in other organizations.
+In addition to the Terraform Cloud UI, you can use the following methods to manage teams:
 
-If a user belongs to at least one team in an organization, they are considered a member of that organization.
-
--> **API:** See the [Teams API](/cloud-docs/api-docs/teams), [Team Members API](/cloud-docs/api-docs/team-members), [Team Tokens API](/cloud-docs/api-docs/team-tokens), and [Team Access API](/cloud-docs/api-docs/team-access).<br/>
-**Terraform:** See the `tfe` provider's [`tfe_team`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team), [`tfe_team_members`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_members), and [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_access) resources.
+- [Teams API](/cloud-docs/api-docs/teams) to list, create, update, and delete teams
+- [Team Members API](/cloud-docs/api-docs/team-members) to add and delete users from teams
+- [Team Tokens API](/cloud-docs/api-docs/team-tokens) to generate and delete tokens
+- [Team Access API](/cloud-docs/api-docs/team-access) to manage team access to one or more workspaces
+- The `tfe` provider resources [`tfe_team`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team), [`tfe_team_members`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_members), and [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_access)
 
 ## The Owners Team
 
-Every organization has a team named "owners", whose members have special permissions. In Terraform Cloud's documentation and UI, members of the owners team are sometimes called organization owners.
+Every organization has a team named **owners**. Members of the owners team are sometimes called organization owners in Terraform Cloud's documentation and UI.
 
-An organization's creator is the first member of its owners team; other members can be added or removed in the same way as other teams. Unlike other teams, the owners team can't be deleted and can't be empty; if there is only one member, you must add another before removing the current member.
-
-Members of the owners team have full access to every workspace in the organization. Additionally, the following tasks can only be performed by organization owners:
+Every user in the owners team has full access to every workspace in the organization. Additionally, only organization owners can perform the following tasks:
 
 - Creating and deleting teams
 - Inviting users to the organization
@@ -40,77 +43,98 @@ Members of the owners team have full access to every workspace in the organizati
 - Viewing the full list of teams, both visible and secret
 - Managing [organization settings][]
 
-([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-
+Refer to [Organization Owners](/cloud-docs/users-teams-organizations/permissions#organization-owners) for more details about owners team permissions.
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-In free organizations, the owners team is limited to five members. In paid organizations, the size of the owners team is not limited.
+An organization's creator is the first member of its owners team, and other members can be added or removed in the same way as other teams. In free organizations, the owners team is limited to five members. In paid organizations, the size of the owners team is not limited.
+
+Unlike other teams, you cannot delete the owners team or leave it empty. If there is only one member in an owners team, you must add another user before you can remove the current member.
 
 ## Managing Teams
 
-Teams are managed in the [organization settings][]. Click the "Settings" link in the top navigation bar, then click the "Teams" link in the left sidebar.
-
-![Screenshot: the teams page, displaying a list of teams. Each team's entry shows how many members it has.](/img/docs/teams-list.png)
-
-The teams page includes a list of the organization's teams. Clicking a team in the list loads its team settings page, which manages its membership and other settings:
-
-![Screenshot: a team's settings page showing organization access, visibility, and team token.](/img/docs/teams-team-settings.png)
-
-The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](/cloud-docs/users-teams-organizations/2fa) enabled.
-
 Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization, plus any secret teams they
-are members of. See [Team Visibility](/cloud-docs/users-teams-organizations/teams#team-visibility) for more information.
+are members of. Refer to [Team Visibility](/cloud-docs/users-teams-organizations/teams#team-visibility) for details.
+
+To manage teams:
+
+1. Click **Settings** in the navigation bar, and then click **Teams** in the sidebar. The **Team Management** page appears, containing a list of all teams within the organization.
+1. Click a team to go to its settings page, which lists the team's settings and current members. Members that have [two-factor authentication](/cloud-docs/users-teams-organizations/2fa) enabled have a **2FA** badge.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-### Creating and Deleting Teams
+### Creating Teams
 
-Organization owners can create new teams from the teams page, using the controls under the "Create a New Team" header.
+Organization owners can create new teams from the teams page.
+
+To create a new team:
+
+1. Click **Settings** in the navigation bar, and then click **Teams** in the sidebar. The **Team Management** page appears, containing a list of all teams within the organization.
+1. Enter a unique team **Name** and click **Create Team**. Team names can include numbers, letters, underscores (`_`), and hyphens (`-`).
+
+The new team's settings page appears, where you can add new members and grant permissions.
+
+### Deleting Teams
+
+~> **Important:** Deletion is permanent and cannot be undone.
+
+To delete a team:
+
+1. Click **Settings** in the navigation bar, and then click **Teams** in the sidebar. The **Team Management** page appears, containing a list of all teams within the organization.
+1. Click the team you want to delete to go to its settings page.
+1. Click **Delete [team name]** at the bottom of the page. The **Deleting team "[team name]"** box appears.
+1. Click **Yes, delete team** to permanently delete the team and all of its data from Terraform Cloud.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-To create a new team, provide a name (unique within the organization) and click the "Create team" button. Team names can include numbers, letters, underscores (`_`), and hyphens (`-`).
-
-To delete a team, go to the target team's settings page and click the "Delete TEAM NAME" button.
 
 ### Managing Team Membership
 
-Organization owners can use a team's settings page to add and remove users from the team.
+Team structure often resembles your company's group structure. Refer to the [Terraform Recommended Practices guide](/cloud-docs/guides/recommended-practices) for a discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
 
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
+#### Add Users
 
-![Screenshot: a team's settings page showing the team's members.](/img/docs/teams-team-settings-membership.png)
+If the user is not yet in the organization, [invite them to join the organization](/cloud-docs/users-teams-organizations/organizations#users) and include a list of teams they should belong to in the invitation. Once the user accepts the invitation, Terraform Cloud automatically adds them to those teams.
 
-To add a user to a team, choose an existing organization member from the "Select user" drop-down menu, under the "Add a New Team Member" header. If the list of organization members is large, you can use the drop-down's text field to filter the list by username or email.
+To add a user that is already in the organization:
 
-To add a teammate who doesn't yet belong to the organization, [invite them to join the organization](/cloud-docs/users-teams-organizations/organizations#users) and include a list of teams they should belong to in the invitation. Once the user accepts their invitation, they will be automatically added to those teams.
+1. Click **Settings** in the navigation bar, and then click **Teams** in the sidebar. The **Team Management** page appears, containing a list of all teams within the organization.
+1. Click the team to go to its settings page.
+1. Choose a user from the **Select user** menu under **Add a New Team Member**. Use the text field to filter the list by username or email.
+1. Click the user to add them to the team. The user is now listed under **Members**.
 
-To remove a user from a team, click the "🗑" (trash can) button by their entry in the member list.
+#### Remove users
 
-Typically, your team structure will mirror your company's group structure. The [Terraform Recommended Practices guide](/cloud-docs/guides/recommended-practices) offers more in-depth discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
+To remove a user from a team:
+
+1. Click **Settings** in the navigation bar, and then click **Teams** in the sidebar. The **Team Management** page appears, containing a list of all teams within the organization.
+1. Click the team to go to its settings page.
+1. Click the **ellipses (...)** next to the user's name and select **Remove from team**. Terraform Cloud removes the user from the list of team members.
+
+
 
 ### Team Visibility
 
-Team visibility controls who can see a team within the organization.
+Visibility controls who can see a team within the organization. To edit a team's visibility:
 
-- When a team is set to "Visible", every user in the organization can see the
+1. Click **Settings** in the navigation bar, and then click **Teams** in the sidebar. The **Team Management** page appears, containing a list of all teams within the organization.
+1. Click the team to go to its settings page.
+1. Choose a visibility setting:
+   - **Visible:** every user in the organization can see the
   team and its membership on the Teams page. Non-members have read-only access;
   they cannot generate a team API token, for instance.
-- When a team is set to "Secret", only team members and organization owners can
-  read a team and its membership. This is the default setting.
+   - **Secret:** only team members and organization owners can read a team and its membership. This is the default setting.
+
+We recommend making most (or all) teams visible to simplify workspace administration. Secret teams should only have
+[organization-level permissions](/cloud-docs/users-teams-organizations/permissions#organization-permissions), since workspace admins cannot manage permissions for teams they cannot view.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have
-[organization-level permissions](/cloud-docs/users-teams-organizations/permissions#organization-permissions), since workspace admins can't manage permissions for teams they can't view.
-
 ### API Tokens
 
-Each team can have a special API token that is not associated with a specific user. You can manage this API token from the team's settings page. See [API Tokens](/cloud-docs/users-teams-organizations/api-tokens) for more information.
+Each team can have an API token that is not associated with a specific user. You can manage this API token from the team's settings page. Refer to [API Tokens](/cloud-docs/users-teams-organizations/api-tokens) for details.
 
 ## Managing Workspace Access
 
-A team can be given various permissions on one or more workspaces.
+You can grant teams various permissions on workspaces.
 
 - Use any workspace's "Access" tab to manage team permissions on that workspace. For full instructions, see [Managing Access to Workspaces](/cloud-docs/workspaces/settings/access).
 - For detailed information about the available permissions levels, see [Permissions](/cloud-docs/users-teams-organizations/permissions#workspace-permissions).
