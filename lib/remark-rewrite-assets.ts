@@ -11,15 +11,15 @@ import type { Image } from 'mdast'
 export function remarkRewriteAssets(args: {
   product: string
   version: string
-  assetPathBuilder?: (nodeUrl: string) => string[]
+  getAssetPathParts?: (nodeUrl: string) => string[]
 }): Plugin {
-  const { product, version, assetPathBuilder = (nodeUrl) => [nodeUrl] } = args
+  const { product, version, getAssetPathParts = (nodeUrl) => [nodeUrl] } = args
 
   return function plugin() {
     return function transform(tree) {
       visit<Image>(tree, 'image', (node) => {
         const originalUrl = node.url
-        const asset = path.posix.join(...assetPathBuilder(originalUrl))
+        const asset = path.posix.join(...getAssetPathParts(originalUrl))
 
         const url = new URL('https://mktg-content-api.vercel.app/api/assets')
         url.searchParams.append('asset', asset)

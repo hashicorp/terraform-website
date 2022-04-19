@@ -48,7 +48,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           remarkRewriteAssets({
             product: PRODUCT.slug,
             version: process.env.CURRENT_GIT_BRANCH,
-            assetPathBuilder: (nodeUrl) => ['website', nodeUrl],
+            getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
           }),
         ],
       }
