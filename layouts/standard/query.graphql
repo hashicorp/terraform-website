@@ -1,0 +1,6 @@
+query UseCasesQuery {
+  useCaseNavItems: allTerraformUseCases {
+    url: slug
+    text: heroHeading
+  }
+}
