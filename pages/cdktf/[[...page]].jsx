@@ -3,8 +3,9 @@ import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
-import visit from 'unist-util-visit'
 import path from 'path'
+
+import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cdktf'
@@ -44,37 +45,18 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
         },
         remarkPlugins: (params) => [
-          () => {
-            const product = PRODUCT.slug
-            const version = process.env.CURRENT_GIT_BRANCH
-            return function transform(tree) {
-              visit(tree, 'image', (node) => {
-                const originalUrl = node.url
-                const assetPath = params.page
-                  ? path.posix.join(
-                      ...params.page,
-                      node.url.startsWith('.')
-                        ? `.${node.url}`
-                        : `../${node.url}`
-                    )
-                  : node.url
-                const asset = path.posix.join('website/docs/cdktf', assetPath)
-                const url = new URL(
-                  `https://mktg-content-api.vercel.app/api/assets`
-                )
-                url.searchParams.append('asset', asset)
-                url.searchParams.append('version', version)
-                url.searchParams.append('product', product)
-
-                node.url = url.toString()
-                console.log(`Rewriting asset url for local preview:
-- Found: ${originalUrl}
-- Replaced with: ${node.url}
-
-If this is a net-new asset, you'll need to commit and push it to GitHub.`)
-              })
-            }
-          },
+          remarkRewriteAssets({
+            product: PRODUCT.slug,
+            version: process.env.CURRENT_GIT_BRANCH,
+            assetPathBuilder: (nodeUrl) =>
+              params.page
+                ? [
+                    'website/docs/cdktf',
+                    ...params.page,
+                    nodeUrl.startsWith('.') ? `.${nodeUrl}` : `../${nodeUrl}`,
+                  ]
+                : ['website/docs/cdktf', nodeUrl],
+          }),
         ],
       }
     : {
