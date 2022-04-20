@@ -21,11 +21,15 @@ The Terraform Enterprise May 2022 release will change the names of application c
 1. Added the ability to specify an ['SSO team ID'](https://www.terraform.io/cloud-docs/users-teams-organizations/single-sign-on#team-names-and-sso-team-ids) for teams that Terraform Enterprise can use to map teams to non-human readable 'MemberOf' values in SAML assertions.
 1. Updated display of download count metrics for modules in the private registry
 1. Added an API endpoint to fetch a workspace's current state version outputs. Refer to https://www.terraform.io/cloud-docs/api-docs/state-version-outputs#show-current-state-version-outputs-for-a-workspace for details
-1. Updated the default `json-file` log rotation settings for all containers.
-    - Values of `max-size: 10m` and `max-file: 3` were changed to `max-size: 8m` and `max-file: 4`
-    - Values of `max-size: 10m` and `max-file: 10` were changed to `max-size: 32m` and `max-file: 4`
-    - Values of `max-size: 100m` and `max-file: 10` were changed to `max-size: 64m` and `max-file: 8`
-    - Values of `max-size: 100m` and `max-file: 200` were changed to `max-size: 50m` and `max-file: 20`
+1. Updated the default `json-file` log rotation settings for all containers in order to improve the performance of support bundle generation.
+
+       | Previous Settings | New Settings  |
+       | :-:               |       :-:     |
+       | `max-size: 10m` and `max-file: 3`| `max-size: 8m` and `max-file: 4`|
+       | `max-size: 10m` and `max-file: 10` | `max-size: 32m` and `max-file: 4`|
+       | `max-size: 100m` and `max-file: 10`| `max-size: 64m` and `max-file: 8`|
+       | `max-size: 100m` and `max-file: 200`| `max-size: 50m` and `max-file: 20`|
+
 
 ## APPLICATION LEVEL BUG FIXES
 
