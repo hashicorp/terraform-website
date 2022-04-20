@@ -27,6 +27,6 @@ _If items do not apply to your changes, add (N/A) and mark them as complete._
 - [ ] UI elements (button names, page names, etc.) are bolded.
 - [ ] The Vercel website preview successfully deployed.
 
-**Reviews**
+#### Reviews
 - [ ] I or someone else reviewed the content for technical accuracy.
 - [ ] I or someone else reviewed the content for typos, punctuation, spelling, and grammar.
