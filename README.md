@@ -122,7 +122,7 @@ Submodules are used in this project to allow teams that work on different parts 
 
 Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on [terraform.io](https://terraform.io).)
 
-In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git init submodule`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
+In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git submodule init`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
 
 Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. You also need to update the submodule every time changes are made to the upstream repo that the submodule represents.
 

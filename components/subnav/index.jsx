@@ -1,19 +1,26 @@
 import Subnav from '@hashicorp/react-subnav'
 import Link from 'next/link'
-import navMenuItems from 'data/primary-navigation.js'
 
-export default function DefaultSubnav() {
+export default function DefaultSubnav({ menuItems }) {
   return (
     <Subnav
-      titleLink={{ text: 'terraform', url: '/' }}
+      hideGithubStars={true}
+      titleLink={{ text: 'HashiCorp Terraform', url: '/' }}
       ctaLinks={[
-        { text: 'Download CLI', url: '/downloads' },
+        { text: 'GitHub', url: 'https://github.com/hashicorp/terraform' },
         {
           text: 'Terraform Cloud',
           url: 'https://cloud.hashicorp.com/products/terraform',
         },
+        {
+          text: 'Download',
+          url: '/downloads',
+          theme: {
+            brand: 'terraform',
+          },
+        },
       ]}
-      menuItems={navMenuItems}
+      menuItems={menuItems}
       menuItemsAlign="right"
       constrainWidth
       Link={Link}

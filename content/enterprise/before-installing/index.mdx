@@ -45,10 +45,6 @@ The operational mode is selected at install time and cannot be changed once Terr
    etc. This option is best for users with experience mounting performant
    block storage.
 
-1. _Demo_ - This mode stores all data on the instance. The data can be
-   backed up with the snapshot mechanism for restore later. This option is best for initial
-   installation and testing, and is not recommended or supported for true production use.
-
 The decision you make will be entered during setup.
 
 ## Credentials
@@ -348,7 +344,7 @@ You can use Terraform Enterprise's instance profile to provide default credentia
 
 Terraform Enterprise supports SELinux running in enforcing mode when certain requirements are met. These requirements vary depending on the type of Terraform Enterprise installation.
 
-For _External Services_ and _Demo_ installations, you must install the latest version of the `container-selinux` package.
+For _External Services_ installations, you must install the latest version of the `container-selinux` package.
 
 For _Mounted Disk_ installations, you must:
 
