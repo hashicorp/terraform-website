@@ -1,8 +1,11 @@
-**What**: Explain what you changed and provide a list of changed page names.
+### What
+<!-- Explain what you changed and provide a list of changed page names. -->
 
-**Why:** Explain why this change is necessary and how it benefits users.
+### Why
+<!-- Explain why this change is necessary and how it benefits users. -->
 
-**Screenshots:** Optional. Show additions to the sidebar or new formatting.
+### Screenshots
+<!-- Optional. Show additions to the sidebar or new formatting. -->
 
 ----------
 
