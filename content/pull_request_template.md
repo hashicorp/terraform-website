@@ -16,7 +16,7 @@ _If items do not apply to your changes, add (N/A) and mark them as complete._
 - [ ] One or more labels describe the type of change (e.g. clarification) and associated product (e.g. tfc).
 - [ ] Description links to related pull requests or issues, if any.
 
-**Content**
+#### Content
 - [ ] Redirects have been added for moved, renamed, or deleted pages.
 - [ ] Sidebar navigation files have been updated for added, deleted, reordered, or renamed pages.
 - [ ] Links to related content where appropriate (e.g., API endpoints, permissions, etc.).
