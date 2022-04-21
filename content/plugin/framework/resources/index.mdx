@@ -145,6 +145,12 @@ The [`tfsdk.ResourceImportStatePassthroughID` function](https://pkg.go.dev/githu
 
 Refer to [Resource Import](/plugin/framework/resources/import) for more details and code examples.
 
+### UpgradeState
+
+`UpgradeState` is an optional method that implements resource [state](/language/state) upgrades when there are breaking changes to the [schema](/plugin/framework/schemas).
+
+Refer to [State Upgrades](/plugin/framework/resources/state-upgrade) for more details and code examples.
+
 ## Add Resource to Provider
 
 To make new resources available to practitioners, add them to the `GetResources` method on the [provider](/plugin/framework/providers).
