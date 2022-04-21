@@ -67,12 +67,8 @@ func main() {
 	ctx := context.Background()
 	providers := []func() tfprotov6.ProviderServer{
 		// Example terraform-plugin-framework providers
-		func() tfprotov6.ProviderServer {
-			return tfsdk.NewProtocol6Server(provider1.New("test")())
-		},
-		func() tfprotov6.ProviderServer {
-			return tfsdk.NewProtocol6Server(provider2.New("test")())
-		},
+		tfsdk.NewProtocol6ProviderServer(provider1.New("test")())
+		tfsdk.NewProtocol6ProviderServer(provider2.New("test")())
 	}
 
 	muxServer, err := tf6muxserver.NewMuxServer(ctx, providers...)
@@ -113,12 +109,8 @@ resource.Test(t, resource.TestCase{
 			ctx := context.Background()
 			providers := []func() tfprotov6.ProviderServer{
 				// Example terraform-plugin-framework providers
-				func() tfprotov6.ProviderServer {
-					return tfsdk.NewProtocol6Server(provider1.New("test")())
-				},
-				func() tfprotov6.ProviderServer {
-					return tfsdk.NewProtocol6Server(provider2.New("test")())
-				},
+				tfsdk.NewProtocol6ProviderServer(provider1.New("test")())
+				tfsdk.NewProtocol6ProviderServer(provider2.New("test")())
 			}
 
 			muxServer, err := tf6muxserver.NewMuxServer(ctx, providers...)

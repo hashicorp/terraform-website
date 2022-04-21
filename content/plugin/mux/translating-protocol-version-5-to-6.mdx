@@ -57,9 +57,7 @@ providers := []func() tfprotov6.ProviderServer{
 	upgradedSdkProvider.ProviderServer,
 
 	// Example terraform-plugin-framework provider
-	func() tfprotov6.ProviderServer {
-		return tfsdk.NewProtocol6Server(frameworkprovider.New(version)())
-	},
+	tfsdk.NewProtocol6ProviderServer(frameworkprovider.New(version)())
 }
 
 muxServer, err := tf6muxserver.NewMuxServer(ctx, providers...)
