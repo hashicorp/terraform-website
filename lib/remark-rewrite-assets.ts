@@ -27,12 +27,23 @@ export function remarkRewriteAssets(args: {
         url.searchParams.append('product', product)
 
         node.url = url.toString()
-        console.log(`Rewriting asset url for local preview:
+        logOnce(
+          node.url,
+          `Rewriting asset url for local preview:
 - Found: ${originalUrl}
 - Replaced with: ${node.url}
 
-If this is a net-new asset, you'll need to commit and push it to GitHub.\n`)
+If this is a net-new asset, you'll need to commit and push it to GitHub.\n`
+        )
       })
     }
   }
+}
+
+// A simple cache & util to prevent logging the same message multiple times
+const cache = new Map<string, boolean>()
+const logOnce = (id: string, message: string) => {
+  if (cache.get(id)) return
+  cache.set(id, true)
+  console.log(message)
 }
