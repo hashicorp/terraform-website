@@ -2,16 +2,17 @@ import { productName, productSlug } from 'data/metadata'
 import DocsPage from '@hashicorp/react-docs-page'
 import ProviderTable from 'components/provider-table'
 // Imports below are only used server-side
-import {
-  generateStaticPaths,
-  generateStaticProps,
-} from '@hashicorp/react-docs-page/server'
-import visit from 'unist-util-visit'
+import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
+import path from 'path'
+import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'guides'
-const NAV_DATA = 'data/guides-nav-data.json'
-const CONTENT_DIR = 'content/guides'
+const NAV_DATA = path.join(
+  process.env.NAV_DATA_DIRNAME,
+  BASE_ROUTE + '-nav-data.json'
+)
+const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug }
 
 export default function GuidesLayout(props) {
@@ -25,25 +26,33 @@ export default function GuidesLayout(props) {
   )
 }
 
-export async function getStaticPaths() {
-  const paths = await generateStaticPaths({
-    navDataFile: NAV_DATA,
-    localContentDir: CONTENT_DIR,
-    product: PRODUCT
-  })
-  return { paths, fallback: false }
-}
+const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
+  process.env.IS_CONTENT_PREVIEW &&
+    process.env.PREVIEW_FROM_REPO === 'terraform'
+    ? {
+        strategy: 'fs',
+        basePath: BASE_ROUTE,
+        localContentDir: CONTENT_DIR,
+        navDataFile: NAV_DATA,
+        product: PRODUCT.slug,
+        githubFileUrl(filepath) {
+          // This path rewriting is meant for local preview from `terraform`.
+          filepath = filepath.replace('preview/', '')
+          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
+        },
+        remarkPlugins: (params) => [
+          remarkRewriteAssets({
+            product: PRODUCT.slug,
+            version: process.env.CURRENT_GIT_BRANCH,
+            getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
+          }),
+        ],
+      }
+    : {
+        strategy: 'remote',
+        basePath: BASE_ROUTE,
+        product: PRODUCT.slug,
+      }
+)
 
-export async function getStaticProps({ params }) {
-  const props = await generateStaticProps({
-    navDataFile: NAV_DATA,
-    localContentDir: CONTENT_DIR,
-    params,
-    product: PRODUCT,
-    githubFileUrl(path) {
-      const filepath = path.replace('content/', '')
-      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
-    },
-  })
-  return { props }
-}
+export { getStaticPaths, getStaticProps }
