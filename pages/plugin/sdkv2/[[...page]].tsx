@@ -22,17 +22,6 @@ export default function PluginSdkv2Layout(props) {
 
   return (
     <>
-      <div>
-        pages / plugin / sdkv2 / [[...page]].tsx
-        <style jsx>{`
-          div {
-            color: red;
-            font-family: var(--font-monospace);
-            border: 1px solid red;
-            text-align: center;
-          }
-        `}</style>
-      </div>
       <DocsPage
         additionalComponents={{ ProviderTable }}
         baseRoute={BASE_ROUTE}

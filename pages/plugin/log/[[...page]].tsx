@@ -22,17 +22,6 @@ export default function PluginLogLayout(props) {
   ])
   return (
     <>
-      <div>
-        pages / plugin / log / [[...page]].tsx
-        <style jsx>{`
-          div {
-            color: rebeccapurple;
-            font-family: var(--font-monospace);
-            border: 1px solid rebeccapurple;
-            text-align: center;
-          }
-        `}</style>
-      </div>
       <DocsPage
         additionalComponents={{ ProviderTable }}
         baseRoute={BASE_ROUTE}

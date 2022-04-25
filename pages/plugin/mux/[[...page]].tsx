@@ -18,17 +18,6 @@ export default function PluginMuxLayout(props) {
 
   return (
     <>
-      <div>
-        pages / plugin / mux / [[...page]].tsx
-        <style jsx>{`
-          div {
-            color: orange;
-            font-family: var(--font-monospace);
-            border: 1px solid orange;
-            text-align: center;
-          }
-        `}</style>
-      </div>
       <DocsPage
         additionalComponents={{ ProviderTable }}
         baseRoute={BASE_ROUTE}

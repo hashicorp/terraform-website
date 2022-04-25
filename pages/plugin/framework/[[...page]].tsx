@@ -22,17 +22,6 @@ export default function PluginFrameworkLayout(props) {
   ])
   return (
     <>
-      <div>
-        pages / plugin / framework / [[...page]].tsx
-        <style jsx>{`
-          div {
-            color: green;
-            font-family: var(--font-monospace);
-            border: 1px solid green;
-            text-align: center;
-          }
-        `}</style>
-      </div>
       <DocsPage
         additionalComponents={{ ProviderTable }}
         baseRoute={BASE_ROUTE}
