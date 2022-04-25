@@ -4,6 +4,10 @@ page_title: Releases - Terraform Enterprise
 
 # TFE Release v202203-1 (607)
 
+## Known Issues
+
+1. [April 21, 2022] This release includes an issue with the `tfe-bootstrap` container being unable to negotiate the Docker API version causing the installation and upgrade of Terraform Enterprise to fail with `Error response from daemon: client version 1.41 is too new. Maximum supported API version is 1.40` affecting docker `v19.03.x` or older. This issue is fixed in `v202204-2`.
+
 ## UPCOMING DEPRECATION NOTICES:
 
 The Terraform Enterprise April 2022 release will:
