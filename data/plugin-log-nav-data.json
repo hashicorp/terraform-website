@@ -1,0 +1,11 @@
+[
+  { "heading": "Logging" },
+  {
+    "title": "Managing Log Output",
+    "path": "managing"
+  },
+  {
+    "title": "Writing Log Output",
+    "path": "writing"
+  }
+]

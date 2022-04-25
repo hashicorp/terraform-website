@@ -14,7 +14,27 @@
     "path": "which-sdk"
   },
   {
+    "title": "Publishing to the Registry",
+    "href": "/registry/providers/publishing"
+  },
+  {
+    "title": "Terraform Integration Program",
+    "href": "/docs/partnerships"
+  },
+  {
+    "title": "Community Forum",
+    "href": "https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43"
+  },
+
+  {
+    "heading": "Plugin SDKs and Libraries"
+  },
+  { "title": "SDKv2", "href": "sdkv2/sdkv2-intro" },
+  { "title": "Framework", "href": "framework" },
+  { "title": "Logging", "href": "log" },
+  {
     "title": "SDKv2",
+    "hidden": true,
     "routes": [
       { "title": "Overview", "path": "sdkv2/sdkv2-intro" },
       {
@@ -157,6 +177,7 @@
   },
   {
     "title": "Framework",
+    "hidden": true,
     "routes": [
       {
         "title": "Overview",
@@ -228,6 +249,7 @@
   },
   {
     "title": "Logging",
+    "hidden": true,
     "routes": [
       {
         "title": "Managing Log Output",
@@ -245,6 +267,7 @@
   },
   {
     "title": "Combining and Translating",
+    "hidden": true,
     "routes": [
       {
         "title": "Overview",
@@ -267,17 +290,5 @@
         "path": "mux/translating-protocol-version-6-to-5"
       }
     ]
-  },
-  {
-    "title": "Publishing to the Registry",
-    "href": "/registry/providers/publishing"
-  },
-  {
-    "title": "Terraform Integration Program",
-    "href": "/docs/partnerships"
-  },
-  {
-    "title": "Community Forum",
-    "href": "https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43"
   }
 ]
