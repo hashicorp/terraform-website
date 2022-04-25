@@ -1,0 +1,163 @@
+---
+page_title: Plugin Development - Debugging Providers
+description: How to use both logs and debugging tools to debug Terraform providers.
+---
+
+# Debugging Providers
+
+This guide documents a few different ways to access more information about the
+runtime operations of Terraform providers. It is intended for Terraform
+provider developers, though sufficiently advanced users may also be able to use
+it.
+
+There are multiple available approaches to debugging Terraform providers, such as logging, using Terraform CLI development overrides, or debuggers.
+
+## Log-Based Debugging
+
+Log-based debugging is a method of using logging calls to record what is
+happening in a provider and then examining that record to diagnose issues. Logs can help you debug your provider without access to the environment or configuration.
+
+When developing your provider, think carefully about what information you will need for debugging. Log lines cannot be inserted into the binary after it has been built. You will need to add a new log line and recompile your provider for new information to be surfaced in log output.
+
+- [Managing Log Output](/plugin/log/managing) explains how to turn on logging, filter log output, choose the log format, and specify the log output path.
+- [Writing Log Output](/plugin/log/writing) contains details about how to use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write log output at varying verbosity levels, add variables to logs, and create subsystems to group logs that relate to distinct sections of code (e.g., the API client).
+
+## Terraform CLI Development Overrides
+
+Development overrides is a method of using a specified local filesystem Terraform provider binary with Terraform CLI, such as one locally built with updated code, rather than a released binary. This method of debugging allows the use of real-world configurations and Terraform CLI commands for reproduction. For automated testing, implement [acceptance testing](/plugin/sdkv2/testing/acceptance-tests) instead.
+
+To start, create a [Terraform CLI Configuration File](/cli/config/config-file) that includes a `provider_installation` block with a `dev_overrides` block. If the configuration file is created in your operating system user directory with the name `.terraformrc`, it will always be used, otherwise the `TF_CLI_CONFIG_FILE` environment variable must be set to the file location for the configuration to take effect.
+
+In this example, the `hashicorp/example` provider binary will be sourced from the local filesystem path `/home/example/go/bin/terraform-provider-example`, while others will be sourced normally:
+
+```hcl
+provider_installation {
+  dev_overrides {
+    "hashicorp/example" = "/home/example/go/bin"
+  }
+
+  direct {}
+}
+```
+
+Terraform CLI commands, such as `terraform apply`, will now use the specified provider binary. It is not necessary to run the `terraform init` command to use development overrides.
+
+Refer to the [Terraform CLI Configuration File documentation](/cli/config/config-file#development-overrides-for-provider-developers) for additional information about the configuration file and the developement overrides functionality.
+
+## Debugger-Based Debugging
+
+Debugger-based debugging is a method of using a debugging tool similar to
+[delve](https://github.com/go-delve/delve) to inspect what is happening in a
+provider as it is happening, often using breakpoints to pause execution of the
+provider and examine the values of variables. This method of debugging must be
+done contemporarily; the developer doing the debugging needs to actively run
+Terraform using the appropriate configuration and in the appropriate
+environment to reproduce the issue. It is therefore most useful
+when a bug is reliably reproducible. This level of analysis enables developers to
+ask arbitrary questions and step through provider executions, allowing them to
+explore what is happening in the provider during runtime.
+
+-> **Note**: Debugger-based debugging only works with Terraform versions
+0.12.26 and higher.
+
+### Enabling Debugging In A Provider
+
+The code for enabling debugging is dependent on the provider implementation:
+
+* [terraform-plugin-framework](/plugin/framework/debugging): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-go tf5server.WithManagedDebug()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server#WithManagedDebug): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [terraform-plugin-go tf6server.WithManagedDebug()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server#WithManagedDebug): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [terraform-plugin-sdk/v2](/plugin/sdkv2/debugging): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+
+If the provider is using [combining and translating functionality](/plugin/mux), refer to these code implementation sections instead:
+
+* [tf5muxserver](/plugin/mux/combining-protocol-version-5-providers#code-implementation): A package to combine multiple protocol version 5 providers.
+* [tf5to6server](/plugin/mux/translating-protocol-version-5-to-6#code-implementation): A package to translate protocol version 5 providers into protocol version 6.
+* [tf6muxserver](/plugin/mux/combining-protocol-version-6-providers#code-implementation): A package to combine multiple protocol version 6 providers.
+* [tf6to5server](/plugin/mux/translating-protocol-version-6-to-5#code-implementation): A package to translate protocol version 6 providers into protocol version 5.
+
+It is important to start a provider in debug mode only when you intend
+to debug it, as its behavior will change in minor ways from normal operation of
+providers. The main differences are:
+
+* Terraform will not start the provider process; it must be run manually.
+* The provider's constraints will no longer be checked as part of `terraform
+  init`.
+* The provider will no longer be restarted once per walk of the Terraform
+  graph; instead the same provider process will be reused until the command is
+  completed.
+
+~> **Important:** You may need to disable compiler optimization and
+[inlining](https://en.wikipedia.org/wiki/Inline_expansion)
+to have the debugger work efficiently with the provider binary.
+To do so, build the provider binary with the necessary
+[Go compiler flags (gcflags)](https://golang.org/cmd/compile/):
+`go build -gcflags="all=-N -l"`
+
+### Starting A Provider In Debug Mode
+
+After you add a debug mode to your provider's `main` function, you can activate the debugger, which is typically built into an editor or the Delve CLI. To run your debugger, pass it the provider binary as the command to execute. Specify flags, environment variables, and any other input your provider needs to run.
+
+#### Visual Studio Code
+
+Visual Studio Code (VS Code) features native [debugging](https://code.visualstudio.com/docs/editor/debugging) support with the [Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go). You can create the necessary launch configuration within the repository as a `.vscode/launch.json` file, [user settings](https://code.visualstudio.com/docs/editor/debugging#_global-launch-configuration), or [workspace settings](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-launch-configurations).
+
+An example `.vscode/launch.json` configuration file:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Terraform Provider",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            // this assumes your workspace is the root of the repo
+            "program": "${workspaceFolder}",
+            "env": {},
+            "args": [
+                "-debug",
+            ]
+        }
+    ]
+}
+```
+
+Running the editor debugger will output the reattach configuration to the debug console.
+
+#### Delve CLI
+
+Start a [`delve`](https://github.com/go-delve/delve) debugging session:
+
+```sh
+$ dlv exec --accept-multiclient --continue --headless ./terraform-provider-example -- -debug
+```
+
+It will print output like the following to `stdout`:
+
+```
+Provider started, to attach Terraform set the TF_REATTACH_PROVIDERS env var:
+
+        TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}'
+```
+
+Connect your debugger, such as your editor or another delve CLI process, to the debugger server.
+
+For example with Delve CLI, using the server address and port output by `dlv exec` such as `API server listening at: 127.0.0.1:55413`:
+
+```shell
+dlv connect 127.0.0.1:55413
+```
+
+### Running Terraform With A Provider In Debug Mode
+
+Copy the line starting with `TF_REATTACH_PROVIDERS` from your provider's
+output. Either export it, or prefix every Terraform command with it:
+
+```sh
+TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}' terraform apply
+```
+
+Run Terraform as usual. Any breakpoints you have set will halt execution and
+show you the current variable values.

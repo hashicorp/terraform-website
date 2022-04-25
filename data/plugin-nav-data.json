@@ -215,6 +215,10 @@
       {
         "title": "Acceptance Tests",
         "path": "framework/acctests"
+      },
+      {
+        "title": "Debugging",
+        "path": "framework/debugging"
       }
     ]
   },
@@ -230,6 +234,10 @@
         "path": "log/writing"
       }
     ]
+  },
+  {
+    "title": "Debugging",
+    "path": "debugging"
   },
   {
     "title": "Combining and Translating",
