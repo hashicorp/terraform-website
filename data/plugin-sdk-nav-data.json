@@ -1,6 +1,6 @@
 [
   { "heading": "SDKv2" },
-
+  { "title": "Placeholder", "path": "", "hidden": true },
   { "title": "Overview", "path": "sdkv2-intro" },
   {
     "title": "Tutorials: Custom Providers",

@@ -36,6 +36,7 @@
     "title": "SDKv2",
     "hidden": true,
     "routes": [
+      { "title": "Placeholder", "path": "sdkv2", "hidden": true },
       { "title": "Overview", "path": "sdkv2/sdkv2-intro" },
       {
         "title": "Tutorials: Custom Providers",
@@ -251,6 +252,7 @@
     "title": "Logging",
     "hidden": true,
     "routes": [
+      { "title": "Placeholder", "path": "log", "hidden": true },
       {
         "title": "Managing Log Output",
         "path": "log/managing"
