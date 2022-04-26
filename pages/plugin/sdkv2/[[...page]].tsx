@@ -17,7 +17,7 @@ export default function PluginSdkv2Layout(props) {
     { heading: 'Other Plugin Docs' },
     { title: 'Plugin Development', href: '/plugin' },
     { title: 'Framework', href: '/plugin/framework' },
-    { title: 'Logging', href: '/plugin/log' },
+    { title: 'Logging', href: '/plugin/log/managing' },
   ])
 
   return (
