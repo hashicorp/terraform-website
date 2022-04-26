@@ -49,7 +49,7 @@ export default function DownloadsPage(staticProps) {
 }
 
 export async function getStaticProps() {
-  const props = await generateStaticProps({
+  const props: $TSFixMe = await generateStaticProps({
     product: productSlug,
     latestVersion: VERSION,
   })

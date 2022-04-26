@@ -14,7 +14,9 @@ const NAV_DATA = path.join(
   BASE_ROUTE + '-nav-data.json'
 )
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
-const PRODUCT = { name: productName, slug: 'terraform-cdk' }
+const PRODUCT = { name: productName, slug: 'terraform' } as const
+
+const SOURCE_REPO = 'terraform-cdk'
 
 export default function CDKLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -35,21 +37,20 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     process.env.PREVIEW_FROM_REPO === 'terraform-cdk'
     ? {
         strategy: 'fs',
-        basePath: BASE_ROUTE,
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
-        product: PRODUCT.slug,
+        product: SOURCE_REPO,
         githubFileUrl(filepath) {
           // This path rewriting is meant for local preview from `terraform-cdk`.
           filepath = filepath.replace('preview/', '')
-          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
+          return `https://github.com/hashicorp/${SOURCE_REPO}/blob/main/website/${filepath}`
         },
         remarkPlugins: (params) => [
           remarkRewriteAssets({
-            product: PRODUCT.slug,
+            product: SOURCE_REPO,
             version: process.env.CURRENT_GIT_BRANCH,
             getAssetPathParts: (nodeUrl) =>
-              params.page
+              Array.isArray(params.page)
                 ? [
                     'website/docs/cdktf',
                     ...params.page,
@@ -62,7 +63,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         basePath: BASE_ROUTE,
-        product: PRODUCT.slug,
+        product: SOURCE_REPO,
       }
 )
 
