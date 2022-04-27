@@ -14,7 +14,7 @@ You can manage run tasks through the UI as detailed below or through the [Run Ta
 
 **Terraform Version** - You can only assign run tasks to workspaces that use a Terraform version of 0.12 and later. Downgrading a workspace with existing run tasks to use a prior Terraform version will not result in an error, but Terraform Cloud will no longer trigger the run tasks during plan and apply operations.
 
-**Permissions** - To create a run task, you must have a user account with [organization owner](/cloud-docs/users-teams-organizations/permissions#organization-owners) permissions. To associate run tasks with a workspace, you must be at least a [workspace administrator](/cloud-docs/users-teams-organizations/permissions#workspace-admins).
+**Permissions** - To create a run task, you must have a user account with the [Manage Run Tasks permission](/cloud-docs/users-teams-organizations/permissions#manage-run-tasks). To associate run tasks with a workspace, you need the [Manage Run Task Associations permission](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) on that particular workspace.
 
 ## Creating a Run Task
 
