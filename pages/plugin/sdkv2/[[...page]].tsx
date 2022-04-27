@@ -8,7 +8,7 @@ import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 const BASE_ROUTE = 'plugin/sdkv2'
 const NAV_DATA = 'data/plugin-sdk-nav-data.json'
 const CONTENT_DIR = 'content/plugin/sdkv2'
-const PRODUCT = { name: productName, slug: 'terraform' }
+const PRODUCT = { name: productName, slug: 'terraform' } as const
 
 // TODO: update to terraform-plugin-sdk
 const SOURCE_REPO = 'terraform-website'

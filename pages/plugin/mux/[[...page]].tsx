@@ -9,7 +9,7 @@ import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 const BASE_ROUTE = 'plugin/mux'
 const NAV_DATA = 'data/plugin-mux-nav-data.json'
 const CONTENT_DIR = 'content/plugin/mux'
-const PRODUCT = { name: productName, slug: 'terraform' }
+const PRODUCT = { name: productName, slug: 'terraform' } as const
 
 // TODO: update to terraform-plugin-mux
 const SOURCE_REPO = 'terraform-website'
