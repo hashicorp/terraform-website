@@ -73,7 +73,7 @@ The following workspace permissions can be granted to teams on a per-workspace b
   - **Apply runs:** — _Implies permission to queue plans._ Allows users to approve and apply Terraform plans, causing changes to real infrastructure.
 - **Lock and unlock workspace:** — Allows users to manually lock the workspace to temporarily prevent runs. When a workspace's execution mode is set to "local", this permission is required for performing local CLI runs using this workspace's state.
 - **Download Sentinel mocks:** — Allows users to download data from runs in the workspace in a format that can be used for developing Sentinel policies. This run data is very detailed, and often contains unredacted sensitive information.
-- **Manage Workspace Run Tasks:** - Allows users to associate or dissociate run tasks in the workspace. Run Tasks are created at the organization level, after which you can manually associate or dissociate them to specific workspaces.
+- **Manage Workspace Run Tasks:** - Allows users to associate or dissociate run tasks with the workspace. Run Tasks are created at the organization level, after which you can manually associate or dissociate them with specific workspaces.
 - **Variables:**
   - **Read variables:** — Allows users to view the values of Terraform variables and environment variables for the workspace. Note that variables marked as sensitive are write-only, and can't be viewed by any user.
   - **Read and write variables:** — _Implies permission to read variables._ Allows users to edit the values of variables in the workspace.
