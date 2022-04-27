@@ -28,13 +28,11 @@ export default function CommunityPage() {
           },
           {
             header: 'Training',
-            body:
-              'Paid <a href="https://www.hashicorp.com/training">HashiCorp training courses</a> are also available in a city near you. Private training courses are also available.',
+            body: 'Paid <a href="https://www.hashicorp.com/training">HashiCorp training courses</a> are also available in a city near you. Private training courses are also available.',
           },
           {
             header: 'Certification',
-            body:
-              'Learn more about our <a href="https://www.hashicorp.com/certification">Cloud Engineer Certification program</a> and <a href="https://www.hashicorp.com/certification/terraform-associate">HashiCorp&apos;s Infrastructure Automation Certification</a> exams.',
+            body: 'Learn more about our <a href="https://www.hashicorp.com/certification">Cloud Engineer Certification program</a> and <a href="https://www.hashicorp.com/certification/terraform-associate">HashiCorp&apos;s Infrastructure Automation Certification</a> exams.',
           },
         ]}
       />

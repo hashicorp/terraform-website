@@ -3,16 +3,16 @@ import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 import cloudDocsData from 'data/cloud-docs-nav-data.json'
 // Imports below are only used server-side
-import {
-  generateStaticPaths,
-  generateStaticProps,
-} from '@hashicorp/react-docs-page/server'
+import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 
 //  Configure the docs path
 const BASE_ROUTE = 'enterprise'
 const NAV_DATA = 'data/enterprise-nav-data.json'
 const CONTENT_DIR = 'content/enterprise'
-const PRODUCT = { name: productName, slug: 'terraform-website' }
+const PRODUCT = { name: productName, slug: 'terraform' } as const
+
+const SOURCE_REPO = 'terraform-website'
+const DEFAULT_BRANCH = 'master'
 
 export default function EnterpriseLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -33,27 +33,16 @@ export default function EnterpriseLayout(props) {
   )
 }
 
-export async function getStaticPaths() {
-  const paths = await generateStaticPaths({
-    navDataFile: NAV_DATA,
-    localContentDir: CONTENT_DIR,
-    product: PRODUCT,
-  })
-  return { paths, fallback: false }
-}
-
-export async function getStaticProps({ params }) {
-  const props = await generateStaticProps({
-    navDataFile: NAV_DATA,
-    localContentDir: CONTENT_DIR,
-    params,
-    product: PRODUCT,
-    githubFileUrl(path) {
-      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/master/${path}`
-    },
-  })
-  return { props }
-}
+const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions({
+  strategy: 'fs',
+  localContentDir: CONTENT_DIR,
+  navDataFile: NAV_DATA,
+  product: SOURCE_REPO,
+  githubFileUrl(filepath) {
+    return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
+  },
+})
+export { getStaticPaths, getStaticProps }
 
 // This function is used specifically to modify the data from the cloud docs
 // navigation so that it works on the enterprise page.

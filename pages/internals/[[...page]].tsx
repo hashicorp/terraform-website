@@ -12,7 +12,7 @@ const NAV_DATA = path.join(
   BASE_ROUTE + '-nav-data.json'
 )
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
-const PRODUCT = { name: productName, slug: productSlug }
+const PRODUCT = { name: productName, slug: productSlug } as const
 
 export default function InternalsLayout(props) {
   return (
@@ -25,7 +25,6 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     process.env.PREVIEW_FROM_REPO === 'terraform'
     ? {
         strategy: 'fs',
-        basePath: BASE_ROUTE,
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
         product: PRODUCT.slug,

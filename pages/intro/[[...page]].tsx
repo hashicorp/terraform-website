@@ -3,20 +3,21 @@ import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
+import visit from 'unist-util-visit'
 import path from 'path'
 
 import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
-const BASE_ROUTE = 'cli'
+const BASE_ROUTE = 'intro'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
   BASE_ROUTE + '-nav-data.json'
 )
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
-const PRODUCT = { name: productName, slug: productSlug }
+const PRODUCT = { name: productName, slug: productSlug } as const
 
-export default function CLILayout(props) {
+export default function IntroLayout(props) {
   // add the "other docs" section to the bottom of the nav data
   const modifiedProps = Object.assign({}, props)
   modifiedProps.navData = modifiedProps.navData.concat(otherDocsData)
@@ -35,7 +36,6 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     process.env.PREVIEW_FROM_REPO === 'terraform'
     ? {
         strategy: 'fs',
-        basePath: BASE_ROUTE,
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
         product: PRODUCT.slug,
