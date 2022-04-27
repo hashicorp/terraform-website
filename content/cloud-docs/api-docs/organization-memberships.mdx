@@ -187,12 +187,13 @@ $ curl \
 
 This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-| Parameter        | Description                                                                                                                     |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `q`              | **Optional.** A search query string. Organization memberships are searchable by user name and email.                            |
-| `filter[status]` | **Optional.** If specified, restricts results to those with the matching status value. Valid values are `invited` and `active`. |
-| `page[number]`   | **Optional.** If omitted, the endpoint will return the first page.                                                              |
-| `page[size]`     | **Optional.** If omitted, the endpoint will return 20 users per page.                                                           |
+| Parameter        | Description                                                                                                                                                                                   |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `q`              | **Optional.** A search query string. Organization memberships are searchable by user name and email.                                                                                          |
+| `filter[status]` | **Optional.** If specified, restricts results to those with the matching status value. Valid values are `invited` and `active`.                                                               |
+| `filter[email]`  | **Optional.** If specified, restricts results to those with a matching user email address. If multiple comma separated values are specified, results matching any of the values are returned. | 
+| `page[number]`   | **Optional.** If omitted, the endpoint will return the first page.                                                                                                                            |
+| `page[size]`     | **Optional.** If omitted, the endpoint will return 20 users per page.                                                                                                                         |
 
 ### Sample Request
 
