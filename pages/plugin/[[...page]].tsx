@@ -11,6 +11,7 @@ const NAV_DATA = 'data/plugin-nav-data.json'
 const CONTENT_DIR = 'content/plugin'
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
+// TODO: update to terraform-plugin-common
 const SOURCE_REPO = 'terraform-website'
 const DEFAULT_BRANCH = 'master'
 

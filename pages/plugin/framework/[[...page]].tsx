@@ -9,7 +9,10 @@ import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 const BASE_ROUTE = 'plugin/framework'
 const NAV_DATA = 'data/plugin-framework-nav-data.json'
 const CONTENT_DIR = 'content/plugin/framework'
-const PRODUCT = { name: productName, slug: 'terraform-website' }
+const PRODUCT = { name: productName, slug: 'terraform' }
+
+// TODO: update to terraform-plugin-framework
+const SOURCE_REPO = 'terraform-website'
 
 export default function PluginFrameworkLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -38,9 +41,9 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions({
   strategy: 'fs',
   localContentDir: CONTENT_DIR,
   navDataFile: NAV_DATA,
-  product: PRODUCT.slug,
+  product: SOURCE_REPO,
   githubFileUrl(path) {
-    return `https://github.com/hashicorp/${PRODUCT.slug}/blob/master/${path}`
+    return `https://github.com/hashicorp/${SOURCE_REPO}/blob/master/${path}`
   },
 })
 
