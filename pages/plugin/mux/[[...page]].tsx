@@ -14,7 +14,14 @@ const PRODUCT = { name: productName, slug: 'terraform-website' }
 export default function PluginMuxLayout(props) {
   // add the "other docs" section to the bottom of the nav data
   const modifiedProps = Object.assign({}, props)
-  modifiedProps.navData = modifiedProps.navData.concat([])
+  modifiedProps.navData = modifiedProps.navData.concat([
+    { heading: 'Other Plugin Docs' },
+    { title: 'Plugin Development', href: '/plugin' },
+    { title: 'SDKv2', href: '/plugin/sdkv2/sdkv2-intro' },
+    { title: 'Framework', href: '/plugin/framework' },
+    { title: 'Logging', href: '/plugin/log' },
+    // { title: 'Combining and Translating', href: '/plugin/mux' },
+  ])
 
   return (
     <>

@@ -31,7 +31,8 @@
   },
   { "title": "SDKv2", "href": "sdkv2/sdkv2-intro" },
   { "title": "Framework", "href": "framework" },
-  { "title": "Logging", "href": "log" },
+  { "title": "Logging", "href": "log/managing" },
+  { "title": "Combining and Translating", "href": "mux" },
   {
     "title": "SDKv2",
     "hidden": true,

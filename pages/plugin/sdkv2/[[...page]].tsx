@@ -16,8 +16,10 @@ export default function PluginSdkv2Layout(props) {
   modifiedProps.navData = modifiedProps.navData.concat([
     { heading: 'Other Plugin Docs' },
     { title: 'Plugin Development', href: '/plugin' },
+    // { title: 'SDKv2', href: '/plugin/sdkv2/sdkv2-intro' },
     { title: 'Framework', href: '/plugin/framework' },
-    { title: 'Logging', href: '/plugin/log/managing' },
+    { title: 'Logging', href: '/plugin/log' },
+    { title: 'Combining and Translating', href: '/plugin/mux' },
   ])
 
   return (

@@ -19,6 +19,8 @@ export default function PluginLogLayout(props) {
     { title: 'Plugin Development', href: '/plugin' },
     { title: 'SDKv2', href: '/plugin/sdkv2/sdkv2-intro' },
     { title: 'Framework', href: '/plugin/framework' },
+    // { title: 'Logging', href: '/plugin/log' },
+    { title: 'Combining and Translating', href: '/plugin/mux' },
   ])
   return (
     <>
