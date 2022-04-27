@@ -60,5 +60,9 @@
   {
     "title": "Acceptance Tests",
     "path": "acctests"
+  },
+  {
+    "title": "Debugging",
+    "path": "debugging"
   }
 ]
