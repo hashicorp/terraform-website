@@ -25,7 +25,10 @@
     "title": "Community Forum",
     "href": "https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43"
   },
-
+  {
+    "title": "Debugging",
+    "path": "debugging"
+  },
   {
     "heading": "Plugin SDKs and Libraries"
   },
@@ -263,10 +266,6 @@
         "path": "log/writing"
       }
     ]
-  },
-  {
-    "title": "Debugging",
-    "path": "debugging"
   },
   {
     "title": "Combining and Translating",
