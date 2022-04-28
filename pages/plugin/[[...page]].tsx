@@ -54,7 +54,7 @@ const getStaticPaths = async (ctx) => {
 
   // remove paths for "framework", "log", "mux", and "sdkv2"
   const paths = res.paths.filter((p: { params: NextParsedUrlQuery }) => {
-    return /framework|log|mux|sdkv2/i.test(p.params.page?.[0])
+    return !/framework|log|mux|sdkv2/i.test(p.params.page?.[0])
   })
 
   // update getStaticPaths object before returning it to Next.js
