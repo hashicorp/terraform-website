@@ -4,6 +4,7 @@ import ProviderTable from 'components/provider-table'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
+import type { NextParsedUrlQuery } from 'next/dist/server/request-meta'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin'
@@ -52,15 +53,9 @@ const getStaticPaths = async (ctx) => {
   const res = await _getStaticPaths(ctx)
 
   // remove paths for "framework", "log", "mux", and "sdkv2"
-  const paths = res.paths.reduce((acc, p) => {
-    if (typeof p !== 'string') {
-      if (/framework|log|mux|sdkv2/.test(p.params.page?.[0])) {
-        return acc
-      }
-      return acc.concat(p)
-    }
-    return acc
-  }, [] as typeof res.paths)
+  const paths = res.paths.filter((p: { params: NextParsedUrlQuery }) => {
+    return /framework|log|mux|sdkv2/i.test(p.params.page?.[0])
+  })
 
   // update getStaticPaths object before returning it to Next.js
   res.paths = paths
