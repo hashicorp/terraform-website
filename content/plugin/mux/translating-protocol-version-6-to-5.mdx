@@ -37,7 +37,7 @@ The following example downgrades a `terraform-plugin-framework` provider.
 ```go
 downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(
 	context.Background(),
-	tfsdk.NewProtocol6ProviderServer(frameworkprovider.New(version)())
+	providerserver.NewProtocol6(frameworkprovider.New(version)())
 )
 ```
 
@@ -79,7 +79,7 @@ resource.Test(t, resource.TestCase{
 			ctx := context.Background()
 			downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(
 				ctx,
-				tfsdk.NewProtocol6ProviderServer(frameworkprovider.New("test")())
+				providerserver.NewProtocol6(frameworkprovider.New("test")())
 			)
 
 			if err != nil {
