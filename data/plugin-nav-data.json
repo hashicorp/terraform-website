@@ -181,6 +181,10 @@
           {
             "title": "Plan Modification",
             "path": "framework/resources/plan-modification"
+          },
+          {
+            "title": "State Upgrade",
+            "path": "framework/resources/state-upgrade"
           }
         ]
       },
