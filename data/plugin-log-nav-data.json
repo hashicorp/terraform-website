@@ -1,6 +1,5 @@
 [
   { "heading": "Logging" },
-  { "title": "Placeholder", "path": "", "hidden": true },
   {
     "title": "Managing Log Output",
     "path": "managing"

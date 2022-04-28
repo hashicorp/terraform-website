@@ -1,6 +1,8 @@
 import { productName, productSlug } from 'data/metadata'
 import DocsPage from '@hashicorp/react-docs-page'
 import ProviderTable from 'components/provider-table'
+import otherPluginsData from 'data/other-plugins-nav-data.json'
+
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 
@@ -14,16 +16,12 @@ const PRODUCT = { name: productName, slug: 'terraform' } as const
 const SOURCE_REPO = 'terraform-website'
 
 export default function PluginSdkv2Layout(props) {
-  // add the "other docs" section to the bottom of the nav data
+  // display "Other Plugin Docs" section
   const modifiedProps = Object.assign({}, props)
-  modifiedProps.navData = modifiedProps.navData.concat([
-    { heading: 'Other Plugin Docs' },
-    { title: 'Plugin Development', href: '/plugin' },
-    // { title: 'SDKv2', href: '/plugin/sdkv2/sdkv2-intro' },
-    { title: 'Framework', href: '/plugin/framework' },
-    { title: 'Logging', href: '/plugin/log' },
-    { title: 'Combining and Translating', href: '/plugin/mux' },
-  ])
+  // filter out the link for this page
+  modifiedProps.navData = modifiedProps.navData.concat(
+    otherPluginsData.filter(({ href }) => !href?.startsWith(BASE_ROUTE))
+  )
 
   return (
     <>
