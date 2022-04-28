@@ -34,35 +34,43 @@ New workspaces can be created by teams with permission to manage workspaces. ([M
 
 [submodules]: /cloud-docs/workspaces/settings/vcs#include-submodules-on-clone
 
--> **Note:** The "Create a New Workspace" page is split into multiple screens. The controls on these screens can vary based on your choices and your organization's settings.
+The workspace creation process varies depending on your chosen workflow (e.g., VCS) and your organization's settings. After you create a new workspace, you can optionally specify values for undefined [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables).
 
-<video muted autoPlay loop playsInline>
-  <source src="/img/docs/creating.mp4" type="video/mp4" />
-</video>
+### Create a workspace
 
 To create a new workspace:
 
-1. [Navigate to the workspace list](/cloud-docs/workspaces/#listing-and-filtering-workspaces) and click the "+ New Workspace" button (near the top of the page).
+1. [Navigate to the workspace list](/cloud-docs/workspaces/#listing-and-filtering-workspaces) and click the **+ New Workspace** button (near the top of the page).
 
-1. On the first screen, choose your VCS provider (or choose "No VCS connection").
+1. Choose a VCS provider (or choose **No VCS connection**). The **Choose a repository** screen appears. This screen is skipped if you chose **No VCS connection**.
 
    -> **Note:** If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](/cloud-docs/vcs) for more information.
 
-1. On the second screen, choose a repository from the filterable list. This screen is skipped if you chose "No VCS connection".
+1. Choose a repository from the filterable list. The **Configure settings** screen appears.
 
    Some VCS providers limit the list's size. If a repository isn't listed, you can still choose it by name; scroll to the bottom of the list and enter its ID in the text field.
 
    -> **Note:** For some VCS providers, this list includes a drop-down menu for changing which account's repositories are shown. Other providers combine all available accounts into a single list.
 
-1. On the third screen, enter a name for the workspace. This defaults to the repository name, if applicable. The name must be unique within the organization, and can include letters, numbers, dashes (`-`), and underscores (`_`). See also our [advice for useful workspace names](/cloud-docs/workspaces/naming).
+1. Enter a name for the workspace. This defaults to the repository name, if applicable. The name must be unique within the organization, and can include letters, numbers, dashes (`-`), and underscores (`_`). See our [advice for useful workspace names](/cloud-docs/workspaces/naming).
 
-1. Optionally, click the "Advanced options" link on the third screen to configure some additional version control settings. (These settings not shown if you chose "No VCS connection".) For information about these settings, see:
+1. Optionally, click the **Advanced options** link on the third screen to configure some additional version control settings. (These settings not shown if you chose **No VCS connection**.) For information about these settings, see:
    - [Terraform Working Directory][workdir]
    - [Automatic Run Triggering][trigger]
    - [VCS branch][branch]
    - [Include submodules on clone][submodules]
 
-1. Confirm creation with the "Create workspace" button.
+1. Click the **Create workspace** button to confirm creation. The **Configure Terraform variables** screen appears. You can set values for undefined [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables) within the configuration or click the **Go to workspace overview** button to skip this step.
+
+### Configure Variables (Optional)
+
+Click the **Go to workspace overview** button to skip this step and instead [edit variables](/cloud-docs/workspaces/variables/managing-variables#edit-a-variable) on the workspace **Variables** page. Terraform cannot complete runs until you enter values for those variables. To configure variables:
+
+1. Enter values for [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables) identified within the configuration.
+
+1. Click the **Save variables** button.
+
+1. Click the **Start new plan** button if you're ready to queue a plan. If you're not, click the **Go to workspace overview** button.
 
 ## After Creating a Workspace
 
@@ -71,7 +79,7 @@ Terraform Cloud presents a dialog with shortcut links to either queue a plan or 
 You may also want to:
 
 - [Edit input or environment variables](/cloud-docs/workspaces/variables): Input variables define the parameters of a Terraform configuration, and shell environment variables store credentials and customize Terraform's behavior.
-- [Edit additional workspace settings](/cloud-docs/workspaces/settings): This includes notifications, permissions, and "Run Triggers" to queue runs automatically.
+- [Edit additional workspace settings](/cloud-docs/workspaces/settings): This includes notifications, permissions, and **Run Triggers** to queue runs automatically.
 - [Learn more about running Terraform in your workspace](/cloud-docs/run): You can use the UI, API, or CLI to manage infrastructure.
 
 ### VCS Connection
