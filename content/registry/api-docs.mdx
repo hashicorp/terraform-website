@@ -695,6 +695,50 @@ Content-Type: text/html; charset=utf-8
 <a href="/v1/modules/hashicorp/consul/aws/0.0.1/download">Found</a>.
 ```
 
+## Get a Module Downloads Metrics Summary
+
+-> **Note:** The download metrics summary APIs are `v2`and use the API `<base_url>` of
+`https://registry.terraform.io/v2/modules/`
+
+This endpoint returns a module's download metrics summary.
+
+| Method | Path                                                      | Produces           |
+| ------ | --------------------------------------------------------- | ------------------ |
+| `GET`  | `<base_url>/:namespace/:name/:provider/downloads/summary` | `application/json` |
+
+### Parameters
+
+- `namespace` `(string: <required>)` - The user the module is owned by.
+  This is required and is specified as part of the URL path.
+
+- `name` `(string: <required>)` - The name of the module.
+  This is required and is specified as part of the URL path.
+
+- `provider` `(string: <required>)` - The name of the provider.
+  This is required and is specified as part of the URL path.
+
+### Sample Request
+
+```shell
+$ curl \
+    https://registry.terraform.io/v2/modules/hashicorp/consul/aws/downloads/summary
+```
+
+### Sample Response
+
+```json
+"data": {
+    "type": "module-downloads-summary",
+    "id": "5792",
+    "attributes": {
+      "week": 645,
+      "month": 2474,
+      "year": 8621,
+      "total": 90237
+    }
+  }
+```
+
 ## HTTP Status Codes
 
 The API follows regular HTTP status semantics. To make implementing a complete

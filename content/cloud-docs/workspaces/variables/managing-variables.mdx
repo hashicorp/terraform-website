@@ -15,7 +15,6 @@ You can create and edit workspace-specific variables through:
 - The Variables API for [workspace-specific variables](/cloud-docs/api-docs/workspace-variables) and [variable sets](/cloud-docs/api-docs/variable-sets).
 - The `tfe` provider's [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource, which can be more convenient for bulk management.
 
-~> **Note:** Variable sets are in beta.
 
 ## Permissions
 You must have [`read variables` permission](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in your organization.
@@ -87,6 +86,8 @@ You can only do this with files ending in `auto.tfvars`; Terraform Cloud does no
 
 > **Hands On:** Try the [Manage Variable Sets in Terraform Cloud tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-multiple-variable-sets) on HashiCorp Learn.
 
+Only members of the [Owners Team](/cloud-docs/users-teams-organizations/permissions#organization-owners) or members of a team with the [Manage Workspaces](/cloud-docs/users-teams-organizations/permissions#manage-workspaces) permission can create, update, and delete variable sets.
+
 To view variable sets for your organization, click **Settings** in the top menu bar, then click **Variable sets** in the left sidebar.
 
 The **Variable sets** page appears, listing all of the organization's variable sets. Click on a variable set to open it and review details about its variables and scoping.
@@ -95,7 +96,6 @@ The **Variable sets** page appears, listing all of the organization's variable s
 
 ### Create Variable Sets
 
-~> **Note:** Variable sets are currently in beta.
 
 To create a variable set:
 

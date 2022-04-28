@@ -42,7 +42,7 @@ page_title: Configuration Versions - API Docs - Terraform Cloud and Terraform En
 
 A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
 
-You need read runs permission to list and view configuration versions for a workspace, and you need apply runs permission to create new configuration versions. Refer to the [permissions](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) documentation for more details.
+You need read runs permission to list and view configuration versions for a workspace, and you need queue plans permission to create new configuration versions. Refer to the [permissions](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) documentation for more details.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -392,9 +392,17 @@ curl \
 
 ## Download Configuration Files
 
-`GET /configuration-versions/:id/download`
+`GET /configuration-versions/:configuration_version_id/download`
 
-`GET /runs/:id/configuration-version/download`
+| Parameter                   | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `configuration_version_id`  | The ID of the configuration version to download. |
+
+`GET /runs/:run_id/configuration-version/download`
+
+| Parameter                   | Description                                                         |
+| --------------------------- | ------------------------------------------------------------------- |
+| `run_id`                    | The ID of the run whose configuration version should be downloaded. |
 
 These endpoints generate a temporary URL to the location of the configuration version in a `.tar.gz` archive, and then redirect to that link. If using a client that can follow redirects, you can use these endpoints to save the `.tar.gz` archive locally without needing to save the temporary URL. These endpoints will return an error if attempting to download a configuration version that is not in an `uploaded` [state](#configuration-version-states).
 
@@ -420,4 +428,7 @@ curl \
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
 
-* `ingress_attributes` - The commit information used in the configuration
+| Resource Name        | Description                                       |
+| -------------------- | ------------------------------------------------- |
+| `ingress_attributes` | The commit information used in the configuration. |
+| `run`                | The run created by the configuration.             |

@@ -19,19 +19,22 @@ This document expects that the user is already familiar with how to do a [manual
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the _Demo_ installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings
+screen. You need to create this file first since it is referenced in the
+`ImportSettingsFrom` property in `/etc/replicated.conf`.
 
 ### Format
 
-The settings file is JSON formatted. All values must be strings.  The example below is suitable for a _Demo_ installation:
+The settings file is JSON formatted. All values must be strings. The following
+example shows a possible settings file for a _Mounted Disk_ installation.
 
 ```json
 {
     "hostname": {
         "value": "terraform.example.com"
     },
-    "installation_type": {
-        "value": "poc"
+    "disk_path": {
+        "value": "/opt/terraform-enterprise"
     },
     "enc_password": {
         "value": "CHANGEME"
@@ -56,8 +59,8 @@ $ python -m json.tool settings.json
     "hostname": {
         "value": "terraform.example.com"
     },
-    "installation_type": {
-        "value": "poc"
+    "disk_path": {
+        "value": "/opt/terraform-enterprise"
     },
     "enc_password": {
         "value": "CHANGEME"
@@ -77,7 +80,8 @@ To extract the settings as JSON, access the instance via SSH, then run:
 tfe$ replicatedctl app-config export > settings.json
 ```
 
-Here is an example `app-config export` output for an instance configured in _Demo_ mode:
+The following example shows `replicatedctl app-config export` output for an
+instance configured in _Mounted Disk_ mode.
 
 ```
 tfe$ replicatedctl app-config export > settings.json
@@ -96,7 +100,9 @@ tfe$ cat settings.json
     "custom_image_tag": {
         "value": "hashicorp/build-worker:now"
     },
-    "disk_path": {},
+    "disk_path": {
+        "value": "/opt/terraform-enterprise"
+    },
     "enc_password": {
         "value": "CHANGEME"
     }
@@ -112,9 +118,6 @@ tfe$ cat settings.json
     "gcs_project": {},
     "hostname": {
         "value": "terraform.example.com"
-    },
-    "installation_type": {
-        "value": "poc"
     },
     "pg_dbname": {},
     "pg_extra_params": {},
@@ -145,8 +148,6 @@ The settings available to configure your installation are summarized below. It i
 The following settings apply to every installation:
 
 - `hostname` — (Required) The hostname you will use to access your installation.
-
-- `installation_type` — (Required) One of `poc` or `production`.
 
 - `enc_password` — (Required) The [password](/enterprise/install/automated/encryption-password) used to encrypt and decrypt the internally-managed Vault unseal key and root token. Not required only when opting out of internally-managed Vault.
 
@@ -209,9 +210,7 @@ The following settings apply to every installation:
 
 - `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not. Defaults to `1`.
 
-If you have chosen `production` for the `installation_type`, `production_type` is required:
-
-- `production_type` — One of `external` or `disk`.
+- `production_type` — Either `external` or `disk`. Defaults to `disk`.
 
 If you have chosen `disk` for `production_type`, `disk_path` is required:
 

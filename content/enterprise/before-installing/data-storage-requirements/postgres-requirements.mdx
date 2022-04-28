@@ -4,7 +4,7 @@ page_title: PostgreSQL Requirements - Before Installing - Terraform Enterprise
 
 # PostgreSQL Requirements for Terraform Enterprise
 
--> **Note:** These requirements apply to the _External Services_ operational mode, not the _Mounted Disk_ operational mode. See the [Pre-Install Checklist](/enterprise/before-installing) for more information.
+-> **Note:** These requirements apply to the External Services operational mode, not the Mounted Disk operational mode. See the [Pre-Install Checklist](/enterprise/before-installing) for more information.
 
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:
@@ -47,7 +47,10 @@ CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 
 When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
-`require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with _External Services_ installation or `disable` with _Demo_ installation.
+require`, `verify-full`, `verify-ca`, and `disable` values are allowed. For
+installations in External Services mode , the default value of `sslmode` is set
+to `require`. For installations in Mounted Disk mode, the default value of
+`sslmode` is set to `disable`.
 
 -> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/12/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](/enterprise/install/interactive/installer#certificate-authority-ca-bundle) setting.
 
@@ -55,6 +58,8 @@ note an additional restriction on the `sslmode` parameter is that only the
 
 ## PostgreSQL 9.5 to 12 Upgrade
 
-In Terraform Enterprise v202103-1, the internally-managed PostgreSQL server has been upgraded from PostgreSQL 9.5 to PostgreSQL 12. This change only affects mounted disk and proof of concept installations.
+In Terraform Enterprise v202103-1, the internally-managed PostgreSQL server was
+been upgraded from PostgreSQL 9.5 to PostgreSQL 12. This change only affected
+installations in Mounted Disk mode.
 
 For more details, consult the v202103-1 [release notes](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202103-1.md).

@@ -6,12 +6,14 @@ page_title: Automated Installation - Active/Active - Terraform Enterprise
 
 When your organization requires increased reliability or performance from Terraform Enterprise that your current single application instance cannot provide, it is time to scale to the Active/Active architecture.
 
-However, the benefits that come with the Active/Active architecture need to be weighed against increasing operation complexity:
+!> **Warning:** The discontinued clustered version of Terraform Enterprise is no longer supported, and we strongly advise all customers to move to an Active/Active installation. Please contact your support representative if you need assistance.
+
+Before scaling to Active/Active, you should weigh its benefits against increasing operational complexity. Specifically, consider the following aspects of the Active/Active architecture:
 
 * Hard requirement of a completely automated installation
 * Observability concerns when monitoring multiple instances
 * Custom automation required to manage the lifecycle of application nodes
-* [New CLI-based commands](/enterprise/admin/infrastructure/active-active) vs Replicated Admin Console for administration
+* [CLI-based commands](/enterprise/admin/infrastructure/admin-cli) for administration instead of the Replicated Admin Console
 
 -> **Note**: Please contact your Customer Success Manager before attempting to follow this guide. They will be able to walk you through the process to make it as seamless as possible.
 
@@ -148,7 +150,7 @@ For example:
 
 ```
 
--> **Note**: In versions prior to `v202104-1` the following values were also required to be set: `install_id`, `root_secret`, `user_token`, `cookie_hash`, `archivist_token`, `internal_api_token`, `registry_session_encryption_key` (HEX), and `registry_session_encryption_key` (HEX). These values are no longer required but will still work if they are still set by your configuration.
+-> **Note**: In versions prior to `v202104-1` the following values were also required to be set: `install_id`, `root_secret`, `user_token`, `cookie_hash`, `archivist_token`, `internal_api_token`, `registry_session_secret_key` (HEX), and `registry_session_encryption_key` (HEX). These values are no longer required but will still work if they are still set by your configuration.
 
 ### Step 3: Connect to External Redis
 
@@ -186,7 +188,7 @@ Which will output something similar to the following:
 
 Installation is complete once `isTransitioning` is `false` and `State` is `started`.
 
-See [Active/Active Administration](/enterprise/admin/infrastructure/active-active) for more status and troubleshooting commands.
+Refer to the [Admin CLI Commands](/enterprise/admin/infrastructure/admin-cli) documentation for more status and troubleshooting commands.
 
 #### Validate Application
 
@@ -230,7 +232,7 @@ Confirm the general functionality of the Terraform Enterprise UI to validate the
 
 ### Scaling Beyond Two Nodes
 
-Terraform Enterprise supports scaling up to 3 nodes as part of the Active/Active deployment. When scaling beyond 2 nodes, you should also carefully evaluate and scale external services, particularly the database server. Scaling to 3 nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/active-active#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node or rebuild entirely.
+Terraform Enterprise supports scaling up to 3 nodes as part of the Active/Active deployment. When scaling beyond 2 nodes, you should also carefully evaluate and scale external services, particularly the database server. Scaling to 3 nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/admin-cli#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node or rebuild entirely.
 
 #### PostgreSQL Server
 

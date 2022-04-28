@@ -1,108 +1,27 @@
-.splitSection {
-  & > h2 {
-    text-align: center;
-    max-width: 593px;
-    margin: 0 auto;
-  }
-
-  & :global(.g-text-split) {
-    /* the default spacing is too much when these TextSplit components are next to each other on a responsive breakpoint */
-    padding: 40px 0;
-  }
-}
-
-.feedbackSection {
-  background-color: var(--gray-6, #f2f2f3);
-  padding: 44px;
-  text-align: center;
+.container {
   composes: g-grid-container from global;
+}
 
-  @media (--small) {
-    max-width: unset;
-  }
+/*
+ * Use cases
+ */
+
+.useCases {
+  margin-bottom: 64px;
 
   @media (--medium-up) {
-    padding: 88px;
-    composes: g-grid-container from global;
+    margin-bottom: 128px;
   }
 }
 
-.communitySection {
-  composes: g-grid-container from global;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr;
+/*
+ * Tutorials
+ */
 
-  & iframe {
-    margin-bottom: 48px;
-    width: 100%;
-    height: 200px;
-  }
-
-  & h2 {
-    margin: 0;
-  }
-
-  & p {
-    font-size: 15px;
-  }
+.tutorials {
+  margin-bottom: 64px;
 
   @media (--medium-up) {
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 104px;
-
-    & iframe {
-      margin-bottom: 0;
-      width: 560px;
-      height: 315px;
-    }
-  }
-}
-
-.communitySectionList {
-  list-style: none;
-  padding: 0;
-  font-weight: bold;
-  font-size: 20px;
-  font-family: var(--font-display);
-
-  & li {
-    display: flex;
-    align-items: center;
-
-    &::before {
-      content: '\2022';
-      color: var(--terraform);
-      font-weight: bold;
-      display: inline-block;
-      width: 35px;
-      font-size: 40px;
-      font-family: sans-serif;
-      line-height: 38px;
-    }
-  }
-}
-
-.getStartedSection {
-  display: grid;
-  grid-row-gap: 32px;
-
-  @media (--medium-up) {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 32px;
-    grid-row-gap: 0;
-  }
-
-  & h4 {
-    padding-bottom: 16px;
-    border-bottom: 1px solid #000;
-    margin: 0 0 24px;
-  }
-
-  & button,
-  & a {
-    display: block;
-    margin: 4px 0;
-    text-align: left;
+    margin-bottom: 128px;
   }
 }

@@ -21,6 +21,8 @@ This feature relies heavily on the proper parsing of [plan JSON output](/interna
 
 When a run reaches the appropriate phase and a run task is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the run task should respond `200 OK`, or Terraform will retry to trigger the run task.
 
+Refer to the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) for the exact payload specification.
+
 ```json
 {
   "payload_version": 1,
@@ -48,6 +50,8 @@ When a run reaches the appropriate phase and a run task is triggered, the suppli
 ```
 
 Once your server receives this payload, Terraform Cloud expects you to callback to the supplied `task_result_callback_url` using the `access_token` as an [Authentication Header](/cloud-docs/api-docs/#authentication) with a [jsonapi](/cloud-docs/api-docs/#json-api-formatting) payload of the form:
+
+Refer to the [Run Task Integration API](/cloud-docs/api-docs/run-tasks-integration) for the exact callback specification.
 
 ```json
 {
@@ -81,11 +85,11 @@ $ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
 ## HCP Packer Run Task
 > **Hands On:** Try the [Set Up Terraform Cloud Run Task for HCP Packer](https://learn.hashicorp.com/tutorials/packer/setup-tfc-run-task), [Standard tier run task image validation](https://learn.hashicorp.com/tutorials/packer/run-tasks-data-source-image-validation), and [Plus tier run task image validation](https://learn.hashicorp.com/tutorials/packer/run-tasks-resource-image-validation) tutorials on HashiCorp Learn to set up and test the Terraform Cloud Run Task integration end to end.
 
-[Packer](https://www.packer.io/) lets you create identical machine images for multiple platforms from a single source template. The [HCP Packer registry](docs/packer) lets you track golden images, designate images for test and production environments, and query images to use in Packer and Terraform configurations.
+[Packer](https://www.packer.io/) lets you create identical machine images for multiple platforms from a single source template. The [HCP Packer registry](https://cloud.hashicorp.com/docs/packer) lets you track golden images, designate images for test and production environments, and query images to use in Packer and Terraform configurations.
 
 The HCP Packer validation run task checks the image artifacts within a Terraform configuration. If the configuration references images marked as unusable (revoked), the run task fails and provides an error message containing the number of revoked artifacts and whether HCP Packer has metadata for newer versions. For HCP Packer Plus registries, run tasks also help you identify hardcoded and untracked images that may not meet security and compliance requirements.
 
-To get started, [create an HCP Packer account](/products/packer) and follow the instructions in the [HCP Packer Run Task](https://cloud.hashicorp.com/docs/packer/manage-image-use/terraform-cloud-run-tasks) documentation.
+To get started, [create an HCP Packer account](https://cloud.hashicorp.com/products/packer) and follow the instructions in the [HCP Packer Run Task](https://cloud.hashicorp.com/docs/packer/manage-image-use/terraform-cloud-run-tasks) documentation.
 
 ## Run Tasks Technology Partners
 

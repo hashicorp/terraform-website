@@ -204,12 +204,16 @@
             "path": "admin/infrastructure/backup-restore"
           },
           {
-            "title": "Active/Active",
-            "path": "admin/infrastructure/active-active"
+            "title": "Admin CLI Commands",
+            "path": "admin/infrastructure/admin-cli"
           },
           {
             "title": "Terraform Cloud Agents on TFE",
             "href": "/enterprise/admin/agents-on-tfe"
+          },
+          {
+            "title": "Demo to Mounted Disk Migration",
+            "path": "admin/infrastructure/demo-to-disk-migration"
           }
         ]
       },
@@ -290,6 +294,9 @@
       { "title": "Overview", "path": "releases" },
       { "title": "2022", "routes": [
           { "title": "Overview", "path": "releases/2022" },
+          { "title": "v202204-2", "path": "releases/2022/v202204-2" },
+          { "title": "v202204-1", "path": "releases/2022/v202204-1" },
+          { "title": "v202203-1", "path": "releases/2022/v202203-1" },
           { "title": "v202202-1", "path": "releases/2022/v202202-1" },
           { "title": "v202201-2", "path": "releases/2022/v202201-2" },
           { "title": "v202201-1", "path": "releases/2022/v202201-1" }

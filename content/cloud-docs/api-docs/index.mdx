@@ -51,7 +51,7 @@ HashiCorp provides a [stability policy](/cloud-docs/api-docs/stability-policy) f
 
 All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, Terraform Cloud responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
 
-There are three kinds of token available:
+There are three kinds of tokens available:
 
 - [User tokens](/cloud-docs/users-teams-organizations/users#api-tokens) — each Terraform Cloud user can have any number of API tokens, which can make requests on their behalf.
 - [Team tokens](/cloud-docs/users-teams-organizations/api-tokens#team-api-tokens) — each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
