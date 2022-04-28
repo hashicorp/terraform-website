@@ -9,7 +9,7 @@ This page contains implementation details for inspecting runtime information of 
 
 ## Code Implementation
 
-Update the `main` function for the project to conditionally enable the [`tfsdk/ServeOpts.Debug` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ServeOpts.Debug). Conventionally, a `-debug` flag is used to control the `Debug` value.
+Update the `main` function for the project to conditionally enable the [`providerserver/ServeOpts.Debug` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/providerserver#ServeOpts.Debug). Conventionally, a `-debug` flag is used to control the `Debug` value.
 
 This example uses a `-debug` flag to enable debugging, otherwise starting the provider normally:
 
@@ -20,12 +20,12 @@ func main() {
 	flag.BoolVar(&debug, "debug", false, "set to true to run the provider with support for debuggers like delve")
 	flag.Parse()
 
-	opts := tfsdk.ServeOpts{
-		Debug: debug,
-		Name:  "registry.terraform.io/example-namespace/example",
+	opts := providerserver.ServeOpts{
+		Address: "registry.terraform.io/example-namespace/example",
+		Debug:   debug,
 	}
 
-	err := tfsdk.Serve(context.Background(), provider.New(), opts)
+	err := providerserver.Serve(context.Background(), provider.New(), opts)
 
 	if err != nil {
 		log.Fatal(err.Error())
