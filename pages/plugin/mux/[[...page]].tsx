@@ -20,7 +20,7 @@ export default function PluginMuxLayout(props) {
   const modifiedProps = Object.assign({}, props)
   // filter out the link for this page
   modifiedProps.navData = modifiedProps.navData.concat(
-    otherPluginsData.filter(({ href }) => !href?.startsWith(BASE_ROUTE))
+    otherPluginsData.filter(({ href }) => !href?.includes(BASE_ROUTE))
   )
 
   return (
