@@ -5,15 +5,23 @@ import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import type { NextParsedUrlQuery } from 'next/dist/server/request-meta'
+import path from 'path'
+
+import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin'
-const NAV_DATA = 'data/plugin-nav-data.json'
-const CONTENT_DIR = 'content/plugin'
+// const NAV_DATA = 'data/plugin-nav-data.json'
+const NAV_DATA = path.join(
+  process.env.NAV_DATA_DIRNAME,
+  BASE_ROUTE + '-nav-data.json'
+)
+
+// const CONTENT_DIR = 'content/plugin'
+const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-// TODO: update to terraform-plugin-common
-const SOURCE_REPO = 'terraform-website'
+const SOURCE_REPO = 'terraform-docs-common'
 const DEFAULT_BRANCH = 'master'
 
 function PluginLayout(props) {
@@ -31,36 +39,32 @@ function PluginLayout(props) {
   )
 }
 
-const { getStaticPaths: _getStaticPaths, getStaticProps } =
-  getStaticGenerationFunctions({
-    strategy: 'fs',
-    localContentDir: CONTENT_DIR,
-    navDataFile: NAV_DATA,
-    product: SOURCE_REPO,
-    githubFileUrl(filepath) {
-      return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
-    },
-  })
+const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
+  process.env.IS_CONTENT_PREVIEW &&
+    process.env.PREVIEW_FROM_REPO === 'terraform-docs-common'
+    ? {
+        strategy: 'fs',
+        localContentDir: CONTENT_DIR,
+        navDataFile: NAV_DATA,
+        product: SOURCE_REPO,
+        githubFileUrl(filepath) {
+          return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
+        },
+        remarkPlugins: (params) => [
+          remarkRewriteAssets({
+            product: SOURCE_REPO,
+            version: process.env.CURRENT_GIT_BRANCH,
+            getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
+          }),
+        ],
+      }
+    : {
+        strategy: 'remote',
+        basePath: BASE_ROUTE,
+        product: SOURCE_REPO,
+      }
+)
 
-/**
- * This is a temporary hack to allow multiple `plugin` page components that
- * may generate duplicate static paths. When `plugin` content is split into
- * terraform-docs-common, this can be removed.
- *
- * - https://nextjs.org/docs/messages/conflicting-ssg-paths
- */
-const getStaticPaths = async (ctx) => {
-  const res = await _getStaticPaths(ctx)
-
-  // remove paths for "framework", "log", "mux", and "sdkv2"
-  const paths = res.paths.filter((p: { params: NextParsedUrlQuery }) => {
-    return !/framework|log|mux|sdkv2/i.test(p.params.page?.[0])
-  })
-
-  // update getStaticPaths object before returning it to Next.js
-  res.paths = paths
-  return res
-}
 export { getStaticPaths, getStaticProps }
 
 export default PluginLayout
