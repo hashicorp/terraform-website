@@ -41,6 +41,12 @@ Terraform's built-in [`terraform_remote_state` data source](/language/state/remo
 
 Terraform Cloud automatically manages API credentials for `terraform_remote_state` access during [runs managed by Terraform Cloud](/cloud-docs/run#remote-operations). This means you do not usually need to include an API token in a `terraform_remote_state` data source's configuration.
 
+## Upgrading State
+
+A workspace's state version can be upgraded to a new Terraform version without making any configuration changes using no-operation (empty) applies. Empty applies are a [type of run mode](/cloud-docs/run/modes-and-options) that instructs Terraform Cloud to perform an apply when a plan produces no changes.   
+
+-> **Note:** If the desired Terraform version is incompatible with a workspace's existing state version, the run will fail prompting to run an apply with a compatible version first. Please refer to the [Terraform upgrade guides](/language/upgrade-guides) for more information on upgrading between versions.
+
 ### Remote State Access Controls
 
 Remote state access between workspaces is subject to access controls:

@@ -109,6 +109,7 @@ Properties without a default value are required.
 
 | Key path                                           | Type                 | Default                                            | Description                                                                                                                                                                                                                                |
 | -------------------------------------------------- | -------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `data.attributes.allow-empty-apply`                | bool                 | false                                              | Whether this run should execute a [no operation apply](/cloud-docs/run/modes-and-options#no-operation-apply).                                                                                                                                             |
 | `data.attributes.auto-apply`                       | bool                 | The current Auto Apply setting in the workspace    | Whether to automatically apply changes when a Terraform plan is successful. Defaults to the [Auto Apply](/cloud-docs/workspaces/settings#auto-apply-and-manual-apply) workspace setting.                                                   |
 | `data.attributes.is-destroy`                       | bool                 | false                                              | Specifies whether this plan is a destroy plan that will destroy all provisioned resources. Mutually exclusive with `refresh-only`.                                                                                                         |
 | `data.attributes.message`                          | string               | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.                                                                                                                                                                                      |
@@ -182,6 +183,7 @@ curl \
       "created-at": "2021-05-24T07:38:04.171Z",
       "has-changes": false,
       "auto-apply": false,
+      "allow-empty-apply": false,
       "is-destroy": false,
       "message": "Custom message",
       "plan-only": false,
@@ -332,6 +334,7 @@ curl \
         "created-at": "2021-05-24T07:38:04.171Z",
         "has-changes": false,
         "auto-apply": false,
+        "allow-empty-apply": false,
         "is-destroy": false,
         "message": "Custom message",
         "plan-only": false,
@@ -420,6 +423,7 @@ curl \
       "created-at": "2021-05-24T07:38:04.171Z",
       "has-changes": false,
       "auto-apply": false,
+      "allow-empty-apply": false,
       "is-destroy": false,
       "message": "Custom message",
       "plan-only": false,

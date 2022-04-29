@@ -53,6 +53,10 @@ Users can also leave comments if there's something unusual involved in a run.
 
 Note that once the plan stage is completed, until you apply or discard a plan, Terraform Cloud can't start another run in that workspace.
 
+### Empty apply
+
+By default, Terraform Cloud will automatically mark a run as completed if the plan contains no changes. However, plans that contain no changes can be applied if you create a run in [Allow Empty Apply Mode](/cloud-docs/run/modes-and-options#allow-empty-apply). This is particularly useful for upgrading between Terraform versions in your workspace, [read more on upgrading workspace state.](/cloud-docs/workspaces/state#upgrading-state).  
+
 ### Auto apply
 
 If you would rather automatically apply plans that don't have errors, you can [enable auto apply](/cloud-docs/workspaces/settings#auto-apply-and-manual-apply) on the workspace's "General Settings" page. Some plans can't be auto-applied, like plans queued by [run triggers](/cloud-docs/workspaces/settings/run-triggers) or by users without permission to apply runs. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
