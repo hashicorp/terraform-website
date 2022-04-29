@@ -60,10 +60,11 @@ Any member of an organization can view visible teams and any secret teams they a
 
 This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-| Parameter      | Description                                                          |
-| -------------- | -------------------------------------------------------------------- |
-| `page[number]` | **Optional.** If omitted, the endpoint will return the first page.   |
-| `page[size]`   | **Optional.** If omitted, the endpoint will return 20 runs per page. |
+| Parameter       | Description                                                                                                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filter[names]` | **Optional**: If specified, restricts results to a team with a matching name. If multiple comma separated values are specified, teams matching any of the names are returned.|
+| `page[number]`  | **Optional.** If omitted, the endpoint will return the first page.                                                                                                           |
+| `page[size]`    | **Optional.** If omitted, the endpoint will return 20 runs per page.                                                                                                         |
 
 ### Sample Request
 
