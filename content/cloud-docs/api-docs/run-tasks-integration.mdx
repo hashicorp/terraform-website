@@ -112,6 +112,7 @@ Once a run task request has been fulfilled by the external integration, the inte
 | ------- | ------------------------- | ---------------------------------------- |
 | [200][] | Nothing                   | Successfully submitted a run task result |
 | [401][] | [JSON API error object][] | Not authorized to perform action         |
+| [422][] | [JSON API error object][] | Invalid response payload. This could be caused by invalid attributes, or sending a status that is not accepted. |
 
 ### Request Body
 
@@ -120,11 +121,11 @@ The PATCH request submits a JSON object with the following properties as a reque
 |         Key path          |  Type  |                                           Description                                           |
 | ------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
 | `data.type`               | string | Must be `"task-results"`.                                                                       |
-| `data.attributes.status`  | string | The current status of the task. Only `passed` or `failed` indicate that the task has completed. |
+| `data.attributes.status`  | string | The current status of the task. Only `passed`, `failed` or `running` are allowed.               |
 | `data.attributes.message` | string | (Optional) A short message describing the status of the task.                                   |
-| `data.attributes.url`     | string | (Optional) A URL where users can obtain more information about the task.                         |
+| `data.attributes.url`     | string | (Optional) A URL where users can obtain more information about the task.                        |
 
-Status values other than `passed` or `failed` are considered a partial update and will not complete the task within Terraform Cloud. An External Service could use this to send a `started` status with a URL so that a user could monitor the task at the External Service's website. The External Service can send another callback when the task completes.
+Status values other than `passed`, `failed` or `running` are not accepted and return an error. Both the `passed` and `failed` statuses represent a final state for a Run Task. The `running` status allows for partial updates to the task and will not mark it as complete. Multiple partial updates can be applied until the task has reached one of the completed states.
 
 ```json
 {
