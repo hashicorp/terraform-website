@@ -6,7 +6,7 @@ description: >-
 
 # Resource Import
 
-Practitioners can use the  [`terraform import` command](/cli/commands/import) to let Terraform begin managing existing infrastructure resources. All resources implement the `ImportState` method, which must either specify enough Terraform state for the `Read` method to refresh [`tfsdk.Resource`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Resource) or return an error.
+Practitioners can use the  [`terraform import` command](/cli/commands/import) to let Terraform begin managing existing infrastructure resources. Resources can implement the `ImportState` method, which must either specify enough Terraform state for the `Read` method to refresh [`tfsdk.Resource`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Resource) or return an error.
 
 ## Single Attribute
 
@@ -88,13 +88,7 @@ func (r exampleResource) ImportState(ctx context.Context, req tfsdk.ImportResour
 
 ## Not Implemented
 
-If the resource does not support `terraform import`, use the [`tfsdk.ResourceImportStateNotImplemented` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStateNotImplemented) to return an error. The following example returns a default error message:
-
-```go
-func (r exampleResource) ImportState(ctx context.Context, req tfsdk.ImportResourceStateRequest, resp *tfsdk.ImportResourceStateResponse) {
-    tfsdk.ResourceImportStateNotImplemented(ctx, "", resp)
-}
-```
+If the resource does not support `terraform import`, skip the `ImportState` method implementation.
 
 When a practitioner runs `terraform import`, Terraform CLI will return:
 
@@ -106,12 +100,4 @@ example_resource.example: Importing from ID "some-identifier"...
 │ 
 │ This resource does not support import. Please contact the provider developer for additional information.
 ╵
-```
-
-You can also modify the `details` parameter of the function to include customized recommendations, such as other actions the practitioner can take. For example:
-
-```go
-func (r exampleResource) ImportState(ctx context.Context, req tfsdk.ImportResourceStateRequest, resp *tfsdk.ImportResourceStateResponse) {
-    tfsdk.ResourceImportStateNotImplemented(ctx, "Custom error message.", resp)
-}
 ```

@@ -23,14 +23,9 @@ sources](/plugin/framework/data-sources).
 ## Version
 
 Every schema has a version, which is an integer that allows you to track changes to your schemas. It is generally only used when
-upgrading resource state, to help massage resources created with earlier
+[upgrading resource state](/plugin/framework/resources/state-upgrade), to help massage resources created with earlier
 schemas into the shape defined by the current schema. It will never be used for
 provider or data source schemas and can be omitted.
-
-~> **Important:** Upgrading resource state is [not currently
-supported](https://github.com/hashicorp/terraform-plugin-framework/issues/42)
-in the framework. At this time, there is no reason to specify a schema version.
-It can be safely omitted.
 
 ## DeprecationMessage
 
