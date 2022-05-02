@@ -11,7 +11,7 @@ The [`tf5muxserver`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mu
 Use this package to:
 
 * Support multiple development teams across separate codebases.
-* Support multiple provider SDK implementations. For example, you could downgrade an existing [terraform-plugin-framework](/plugin/framework) provider to protocol version 5 and then combine it with one or more providers built with [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro).
+* Support multiple provider SDK implementations. For example, you could downgrade an existing [terraform-plugin-framework](/plugin/framework) provider to protocol version 5 and then combine it with one or more providers built with [terraform-plugin-sdk/v2](/plugin/sdkv2).
 
 ## Compatibility
 
@@ -19,7 +19,7 @@ Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and l
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-sdk/v2](/plugin/sdkv2): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
 * [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): A lower-level SDK to develop Terraform providers for more advanced use cases.
 * [tf6to5server](/plugin/mux/translating-protocol-version-6-to-5): A package to translate protocol version 6 providers into protocol version 5.
 

@@ -841,7 +841,7 @@ export const docsRedirects = {
   '/docs/extend/schemas/schema-behaviors.html': '/plugin/sdkv2/schemas/schema-behaviors',
   '/docs/extend/schemas/schema-methods.html': '/plugin/sdkv2/schemas/schema-methods',
   '/docs/extend/schemas/schema-types.html': '/plugin/sdkv2/schemas/schema-types',
-  '/docs/extend/sdkv2-intro.html': '/plugin/sdkv2/sdkv2-intro',
+  '/docs/extend/sdkv2-intro.html': '/plugin/sdkv2',
   '/docs/extend/terraform-0.12-compatibility.html': '/plugin/sdkv2/guides/terraform-0.12-compatibility',
   '/docs/extend/testing/acceptance-tests/index.html': '/plugin/sdkv2/testing/acceptance-tests',
   '/docs/extend/testing/acceptance-tests/sweepers.html': '/plugin/sdkv2/testing/acceptance-tests/sweepers',
