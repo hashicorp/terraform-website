@@ -199,18 +199,9 @@ module.exports = (async () => {
     }
   )
 
-  // /plugin content split
-  // https://github.com/hashicorp/terraform-website/pull/2258
-  //
-  // these are redirects for /index pages that are required but not yet leveraged
-  const pluginRedirects = [
-    { source: '/plugin/log', destination: '/plugin/log/managing', permanent: false },
-  ]
-
   return [
     ...registryTopLevelRedirects,
     ...registryDocsRedirects,
     ...miscRedirects,
-    ...pluginRedirects,
   ]
 })()

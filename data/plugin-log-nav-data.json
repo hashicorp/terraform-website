@@ -1,6 +1,10 @@
 [
   { "heading": "Logging" },
   {
+    "title": "Overview",
+    "path": ""
+  },
+  {
     "title": "Managing Log Output",
     "path": "managing"
   },

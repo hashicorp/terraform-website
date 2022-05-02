@@ -1,11 +1,17 @@
-<!--
-This is a placeholder page.
-`docs-sidenav` expects an MDX file to exist for a /<base>
+---
+page_title: 'Plugin Development - Logging: Overview'
+description: >-
+  Learn about logging with Terraform Providers.
+---
 
-This could be:
-- plugin/log/index.mdx
-- plugin/log.mdx
+## Logging
 
-If you wish to leverage this file, remove the associated redirect from
-`pluginRedirects` in `redirects.next.js`
--->
+Terraform CLI, provider SDKs, and provider logic support a rich logging framework for [debugging](/plugin/debugging) in testing and production.
+
+### Managing Log Output
+
+Learn how to [use environment variables and other methods](/plugin/log/managing) to enable and filter logs.
+
+### Writing Log Output
+
+Learn how to [implement code in provider logic](/plugin/log/writing) to output logs.
