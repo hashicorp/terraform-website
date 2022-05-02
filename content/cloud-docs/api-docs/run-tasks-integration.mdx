@@ -125,7 +125,7 @@ The PATCH request submits a JSON object with the following properties as a reque
 | `data.attributes.message` | string | (Optional) A short message describing the status of the task.                                   |
 | `data.attributes.url`     | string | (Optional) A URL where users can obtain more information about the task.                        |
 
-Status values other than `passed`, `failed` or `running` are not accepted and return an error. Both the `passed` and `failed` statuses represent a final state for a Run Task. The `running` status allows for partial updates to the task and will not mark it as complete. Multiple partial updates can be applied until the task has reached one of the completed states.
+Status values other than passed, failed, or running return an error. Both the passed and failed statuses represent a final state for a run task. The running status allows one or more partial updates until the task has reached a final state.
 
 ```json
 {
