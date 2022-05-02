@@ -10,16 +10,16 @@ The [`tf5to6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mu
 
 Use this package to:
 
-* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro) to [terraform-plugin-framework](/plugin/framework) over time, while using protocol version 6 features in terraform-plugin-framework.
-* Develop with [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro), but require Terraform CLI 1.0 or later.
+* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](/plugin/sdkv2) to [terraform-plugin-framework](/plugin/framework) over time, while using protocol version 6 features in terraform-plugin-framework.
+* Develop with [terraform-plugin-sdk/v2](/plugin/sdkv2), but require Terraform CLI 1.0 or later.
 
 ## Compatibility
 
-Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later. Terraform CLI 1.1.5 and later is required to upgrade [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro).
+Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later. Terraform CLI 1.1.5 and later is required to upgrade [terraform-plugin-sdk/v2](/plugin/sdkv2).
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-sdk/v2](/plugin/sdkv2): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
 * [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): A lower-level SDK to develop Terraform providers for more advanced use cases.
 
 ## Requirements

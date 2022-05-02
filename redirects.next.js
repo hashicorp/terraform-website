@@ -167,6 +167,7 @@ module.exports = (async () => {
     '/intro/vs/cloudformation.html': '/intro/vs/cloudformation',
     '/intro/vs/custom.html': '/intro/vs/custom',
     '/intro/vs/index.html': '/intro/vs',
+    '/plugin/sdkv2/sdkv2-intro': '/plugin/sdkv2',
     '/security.html': '/security',
     '/upgrade-guides': '/language/upgrade-guides',
     '/upgrade-guides/0-10.html': '/language/upgrade-guides/0-10',
@@ -204,7 +205,6 @@ module.exports = (async () => {
   // these are redirects for /index pages that are required but not yet leveraged
   const pluginRedirects = [
     { source: '/plugin/log', destination: '/plugin/log/managing', permanent: false },
-    { source: '/plugin/sdkv2', destination: '/plugin/sdkv2/sdkv2-intro', permanent: false },
   ]
 
   return [
