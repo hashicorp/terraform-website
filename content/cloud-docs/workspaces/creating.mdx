@@ -9,18 +9,15 @@ description: >-
 
 > **Hands-on:** Try the [Get Started - Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
-Workspaces organize infrastructure into meaningful groups. Create new workspaces whenever you need to manage a new collection of infrastructure resources.
+Workspaces organize infrastructure into meaningful groups. Create new workspaces whenever you need to manage a new collection of infrastructure resources. You can use the following methods to create workspaces:
 
-Each new workspace needs a unique name, and needs to know where its Terraform configuration will come from. Most commonly, the configuration comes from a connected version control repository. If you choose not to connect a repository, you'll need to upload configuration versions for the workspace using Terraform CLI or the API.
-
-For more information about how configuration versions and connected repositories work, see [Terraform Configurations in Terraform Cloud Workspaces](/cloud-docs/workspaces/configurations).
-
--> **API:** Refer to the [Create a Workspace endpoint](/cloud-docs/api-docs/workspaces#create-a-workspace) (`POST /organizations/:organization/workspaces`). <br/>
-**Terraform:** Refer to the `tfe` provider's [`tfe_workspace`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace) resource.
+- **Terraform Cloud UI:** [Create a Workspace](#create-a-workspace)
+- **Workspaces API:** [Create a Workspace endpoint](/cloud-docs/api-docs/workspaces#create-a-workspace)
+- **Terraform Enterprise Provider:** [`tfe_workspace` resource](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace)
 
 ## Permissions
 
-To create a new workspace, you must be a member of a team with [manage workspaces permissions](/cloud-docs/users-teams-organizations/permissions#manage-workspaces).
+To create a workspace, you must be a member of a team with [manage workspaces permissions](/cloud-docs/users-teams-organizations/permissions#manage-workspaces).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -34,7 +31,7 @@ To create a new workspace, you must be a member of a team with [manage workspace
 
 [submodules]: /cloud-docs/workspaces/settings/vcs#include-submodules-on-clone
 
-The workspace creation process varies depending on the workflow you choose. To create a new workspace:
+The workspace creation process varies depending on the workflow you choose (e.g., CLI-driven). To create a workspace in the Terraform Cloud UI:
 
 1. Click **Workspaces** in the top navigation bar to view a list of the workspaces within your organization.
 1. Click **+ New Workspace**. The **Create a new Workspace** page appears.
@@ -59,25 +56,24 @@ For CLI and API-driven workspaces, the workspace overview page appears. For vers
 
 ### Configure Terraform Variables (Version Control Only)
 
-After you create a new workspace from a version control respository, Terraform Cloud scans the Terraform configuration files in that repository for [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables). It automatically creates those variables within the workspace. Terraform cannot perform successful runs until you set values for all undefined variables.
+After you create a new workspace from a version control respository, Terraform Cloud scans its configuration files for [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables) and automatically creates those variables within the workspace. Terraform cannot perform successful runs until you set values for all undefined variables.
 
 Choose one of the following actions:
 
-- To skip this step, click **Go to workspace overview**. You can set values for these variables later within the workspace.
+- To skip this step, click **Go to workspace overview**. Terraform Cloud still adds all Terraform variables to the workspace with undefined values. You can set values for these variables later from within the workspace.
 - To configure variables, enter a value for each variable and click **Save variables**.
 
 ## After Creating a Workspace
 
-Terraform Cloud presents a dialog with shortcut links to either queue a plan or edit variables. If you don't need to edit variables, [manually queue a run](/cloud-docs/run/ui#manually-starting-runs) to prepare your workspace.
+If you have already configured all Terraform variables, we recommend [manually starting a run](/cloud-docs/run/ui#manually-starting-runs) to prepare VCS-driven workspaces. You may also want to do one or more of the following actions:
 
-You may also want to:
-
+- [Upload configuration versions](/cloud-docs/workspaces/configurations#providing-configuration-versions): If you chose the API or CLI-Driven workflow, you must upload configuration versions for the workspace.
 - [Edit input or environment variables](/cloud-docs/workspaces/variables): Input variables define the parameters of a Terraform configuration, and shell environment variables store credentials and customize Terraform's behavior.
-- [Edit additional workspace settings](/cloud-docs/workspaces/settings): This includes notifications, permissions, and **Run Triggers** to queue runs automatically.
-- [Learn more about running Terraform in your workspace](/cloud-docs/run): You can use the UI, API, or CLI to manage infrastructure.
+- [Edit additional workspace settings](/cloud-docs/workspaces/settings): This includes notifications, permissions, and run triggers to start runs automatically.
+- [Learn more about running Terraform in your workspace](/cloud-docs/run): This includes how Terraform processes runs within the workspace, run modes, run states, etc.
 
 ### VCS Connection
 
-If you connected a VCS repository to the workspace, Terraform Cloud automatically registers a webhook with your VCS provider. A workspace with no runs will not accept new runs from a VCS webhook, so you must [manually queue at least one run](/cloud-docs/run/ui#manually-starting-runs).
+If you connected a VCS repository to the workspace, Terraform Cloud automatically registers a webhook with your VCS provider. A workspace with no runs will not accept new runs from a VCS webhook, so you must [manually start at least one run](/cloud-docs/run/ui#manually-starting-runs).
 
-After you have manually queued a run, Terraform Cloud will automatically queue a plan for the workspace when new commits appear in the selected branch of the linked repository or someone opens a pull request on that branch. [Learn more about VCS webhooks](/cloud-docs/vcs/#webhooks).
+After you have manually started a run, Terraform Cloud will automatically queue a plan for the workspace when new commits appear in the selected branch of the linked repository or someone opens a pull request on that branch. Refer to [Webhooks](/cloud-docs/vcs/#webhooks) for more details.
