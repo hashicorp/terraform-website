@@ -75,6 +75,7 @@ We have a list of [recommend OS / architecture combinations](/registry/providers
 
 To use GitHub Actions to publish new provider releases to the Terraform Registry:
 
+1. Ensure the [GitHub Organization settings for GitHub Actions](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization) and [GitHub Repository settings for GitHub Actions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository) allows running workflows and allows the actions specified in the [GitHub Actions workflow from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.github/workflows/release.yml).
 1. Create and export a signing key that you plan on using to sign your provider releases. See [Preparing and Adding a Signing Key](#preparing-and-adding-a-signing-key) for more information.
 1. Copy the [GoReleaser configuration from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.goreleaser.yml) to the root of your repository.
 1. Copy the [GitHub Actions workflow from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.github/workflows/release.yml) to `.github/workflows/release.yml` in your repository.

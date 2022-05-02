@@ -124,6 +124,8 @@ make testacc
 
 If using [GitHub](https://github.com/), run acceptance testing via [GitHub Actions](https://github.com/features/actions). Other continuous integration runners, while not exhaustively documented, are also supported.
 
+Ensure the [GitHub Organization settings for GitHub Actions](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization) and [GitHub Repository settings for GitHub Actions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository) allows running workflows and allows the `actions/checkout`, `actions/setup-go`, and `hashicorp/setup-terraform` actions.
+
 Create a [GitHub Actions workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) file, such as `.github/workflows/test.yaml`, that does the following:
 
 - Runs when pull requests are submitted or on [other events](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) as appropriate.
