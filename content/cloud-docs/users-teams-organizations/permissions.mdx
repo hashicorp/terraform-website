@@ -73,6 +73,7 @@ The following workspace permissions can be granted to teams on a per-workspace b
   - **Apply runs:** — _Implies permission to queue plans._ Allows users to approve and apply Terraform plans, causing changes to real infrastructure.
 - **Lock and unlock workspace:** — Allows users to manually lock the workspace to temporarily prevent runs. When a workspace's execution mode is set to "local", this permission is required for performing local CLI runs using this workspace's state.
 - **Download Sentinel mocks:** — Allows users to download data from runs in the workspace in a format that can be used for developing Sentinel policies. This run data is very detailed, and often contains unredacted sensitive information.
+- **Manage Workspace Run Tasks:** - Allows users to associate or dissociate run tasks with the workspace. Run Tasks are created at the organization level, after which you can manually associate or dissociate them with specific workspaces.
 - **Variables:**
   - **Read variables:** — Allows users to view the values of Terraform variables and environment variables for the workspace. Note that variables marked as sensitive are write-only, and can't be viewed by any user.
   - **Read and write variables:** — _Implies permission to read variables._ Allows users to edit the values of variables in the workspace.
@@ -101,6 +102,7 @@ Workspace admins have the following permissions on their workspace:
 - Read and write workspace settings (workspace admins only) — this includes general settings, notification configurations, run triggers, and more.
 - Set or remove workspace permissions for any team (workspace admins only)
 - Delete workspace (workspace admins only)
+- Manage workspace run tasks
 
 See [General Workspace Permissions][] above for details about specific permissions.
 
@@ -139,6 +141,7 @@ The "write" permission set is for people who do most of the day-to-day work of p
 - Download Sentinel mocks
 - Read and write variables
 - Read and write state versions
+- Manage workspace run tasks
 
 See [General Workspace Permissions][] above for details about specific permissions.
 
@@ -163,6 +166,10 @@ The following organization permissions are available:
 Allows members to create, edit, and delete the organization's Sentinel policies.
 
 This permission implicitly gives permission to read runs on all workspaces, which is necessary to set enforcement of [policy sets](/cloud-docs/sentinel/manage-policies).
+
+### Manage Run Tasks
+
+Allows members to create, edit, and delete run tasks on the organization.
 
 ### Manage Policy Overrides
 
