@@ -28,8 +28,6 @@ To create a new run task:
 
 1. Click **Create run task**.
 
-   ![Screenshot: an organization's blank run tasks state](/img/docs/run-tasks-empty-run-tasks.png)
-
 1. Enter the information about the run task to be configured:
 
 - **Enabled** (optional): Whether the run task will run across all associated workspaces. New tasks are enabled by default.
@@ -47,17 +45,12 @@ To create a new run task:
 
 1. Click the **+** next to the task(s) you want to add to the workspace.
 
-   ![Screenshot: a workspace's populated tasks configuration page](/img/docs/run-tasks-workspace-run-tasks-populated.png)
-
 1. Choose an enforcement level:
 
 - **Advisory**  - Run tasks can not block a run from completing. If the task fails, the run will proceed with a warning in the UI.
 - **Mandatory** - Run tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), the run will transition to an Errored state with a warning in the UI.
 
 4. Click **Create**. Your run task is now configured.
-   ![Screenshot: enforcement configuration for a specific task within a workspace](/img/docs/run-tasks-add-to-workspace.png)
-
-   ![Screenshot: final configuration of tasks within a workspace](/img/docs/run-tasks-final-workspace-configuration.png)
 
 ## Understanding Run Tasks Within a Run
 
@@ -81,7 +74,6 @@ Removing a run task from a workspace does not delete it from the organization. T
 
 1. Click the ellipses (...) on the associated run task, and then click **Remove**. The run task will no longer be applied to runs within the workspace.
 
-   ![Screenshot: removing a run task from a workspace](/img/docs/run-tasks-workspace-remove.png)
 
 ## Deleting a Run Task
 
