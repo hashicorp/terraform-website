@@ -56,11 +56,11 @@ For CLI and API-driven workspaces, the workspace overview page appears. For vers
 
 ### Configure Terraform Variables (Version Control Only)
 
-After you create a new workspace from a version control respository, Terraform Cloud scans its configuration files for undefined [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables) and automatically creates those variables within the workspace. Terraform cannot perform successful runs until you set values for all undefined variables.
+After you create a new workspace from a version control repository, Terraform Cloud scans its configuration files for undefined [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables) without default values and automatically creates those variables within the workspace. Terraform cannot perform successful runs until you set values for these undefined variables.
 
 Choose one of the following actions:
 
-- To skip this step, click **Go to workspace overview**. Terraform Cloud still adds all Terraform variables to the workspace with undefined values. You can set values for these variables later from within the workspace.
+- To skip this step, click **Go to workspace overview**. Terraform Cloud still adds any undefined Terraform variables without default values to the workspace. You can set values for these variables later from within the workspace.
 - To configure variables, enter a value for each variable and click **Save variables**.
 
 ## After Creating a Workspace
