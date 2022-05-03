@@ -1,0 +1,10 @@
+[
+  {
+    "heading": "Terraform Cloud Agents"
+  },
+  { "title": "Overview", "path": "" },
+  { "title": "Telemetry", "path": "telemetry" },
+  { "title": "Monitoring", "path": "monitoring" },
+  { "title": "Hooks", "path": "hooks" },
+  { "title": "Changelog", "path": "changelog" }
+]

@@ -3,6 +3,7 @@ import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
+import { NextParsedUrlQuery } from 'next/dist/server/request-meta'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cloud-docs'
@@ -27,13 +28,28 @@ export default function CloudDocsLayout(props) {
   )
 }
 
-const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions({
-  strategy: 'fs',
-  localContentDir: CONTENT_DIR,
-  navDataFile: NAV_DATA,
-  product: SOURCE_REPO,
-  githubFileUrl(filepath) {
-    return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
-  },
-})
+const { getStaticPaths: _getStaticPaths, getStaticProps } =
+  getStaticGenerationFunctions({
+    strategy: 'fs',
+    localContentDir: CONTENT_DIR,
+    navDataFile: NAV_DATA,
+    product: SOURCE_REPO,
+    githubFileUrl(filepath) {
+      return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
+    },
+  })
+
+/**
+ * TODO (kevinwang): This is a temporary hack until /cloud-docs sources remote content.
+ */
+const getStaticPaths = async (ctx) => {
+  const res = await _getStaticPaths(ctx)
+  const paths = res.paths.filter((p: { params: NextParsedUrlQuery }) => {
+    return !/agents/i.test(p.params.page?.[0])
+  })
+
+  // update getStaticPaths object before returning it to Next.js
+  res.paths = paths
+  return res
+}
 export { getStaticPaths, getStaticProps }
