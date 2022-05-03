@@ -5,8 +5,6 @@ description: >-
   specific points in the Terraform Cloud run lifecycle.
 ---
 
--> Note: As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
-
 # Run Tasks Integration
 
 In addition to using existing technology partners integrations, HashiCorp Terraform Cloud customers can build their own custom run task integrations. Custom integrations have access to plan details in between the plan and apply phase, and can display custom messages within the run pipeline as well as prevent a run from continuing to the apply phase.
@@ -93,17 +91,22 @@ To get started, [create an HCP Packer account](https://cloud.hashicorp.com/produ
 
 ## Run Tasks Technology Partners
 
-### Snyk
+### Aqua Security
 
-The [Snyk](https://snyk.io/) integration for Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+Aqua Security’s Trivy open source project integrates with Terraform Cloud run tasks to scan Terraform code in the plan phase and detect potential configuration issues that expose your deployments to the risk of attack. The integration allows teams to identify, classify, and understand issues - misconfigurations, compliance violations, and best practices checks - through the Terraform console.
 
-To get started, [create a free Snyk account](https://snyk.io/) and follow the instructions in the [Integrating Snyk with Terraform Cloud](https://docs.snyk.io/features/integrations/ci-cd-integrations/integrating-snyk-with-terraform-cloud) user documentation.
 
 ### Bridgecrew
 
 [Bridgecrew](https://bridgecrew.io/) helps teams address security and compliance errors in Terraform as part of each and every code review.
 
 To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
+
+### Firefly
+
+Firefly integrates with Terraform Cloud to help you move faster without breaking your cloud. The run tasks integration helps teams cast a cloud safety net and understand how changing untargeted assets will affect your cloud before you deploy it.
+
+To get started, create a [Firefly account](https://app.gofirefly.io/) and follow the [Terraform Cloud Run Tasks guide](https://firefly-5.gitbook.io/firefly-product-docs123/appendix/terraform-cloud-run-tasks) in the Firefly documentation.
 
 ### Infracost
 
@@ -132,3 +135,24 @@ To get started, [sign up](https://www.lightlytics.com/signup) for a free trial, 
 [Moderne.io](https://moderne.io/) provides customers with an intuitive view for searching, analyzing, and transforming code across their entire organization.
 
 To get started, request early access at [Moderne.io](https://moderne.io/), and follow the instructions in the [Terraform Cloud integration](https://docs.moderne.io/how-to/terraform-cloud-integration) user documentation.
+
+### Snyk
+
+The [Snyk](https://snyk.io/) integration for Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+
+To get started, [create a free Snyk account](https://snyk.io/) and follow the instructions in the [Integrating Snyk with Terraform Cloud](https://docs.snyk.io/features/integrations/ci-cd-integrations/integrating-snyk-with-terraform-cloud) user documentation.
+
+> **Hands-on:** Try the [Configure Snyk Run Task in Terraform Cloud tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-run-tasks-snyk?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) on HashiCorp Learn.
+
+### Sophos
+
+Sophos Factory works with Terraform Cloud run tasks to enable IaC security tools including OPA, BridgeCrew’s Checkov, Accurics, TerraScan through a public solution catalog of prebuilt DevSecOps pipelines. To get started, follow the [Integrate with Terraform Cloud](https://docs.refactr.it/docs/tutorials/terraform-cloud/) tutorial in the Sophos documentation.
+
+### Tenable
+
+Tenable.cs and Hashicorp Terraform Cloud enables teams to codify cloud security policies for infrastructure as code with automated enforcement and remediation recommendations as part of their development workflow. This lets you establish compliance and security guardrails in the development process that ensure infrastructure is secure before it is provisioned. To get started, follow the [Configure Terraform Cloud Integration guide](https://docs.tenable.com/tenablecs/Content/Quickstart/CI-CD/Terraform.htm) in the Tenable documentation.
+
+### Vantage
+
+Vantage helps developers understand and optimize their cloud infrastructure costs. The Run Tasks API integration provides actionable cost recommendations and accrued and forecasted costs from their AWS & GCP accounts each time they make infrastructure changes. To get started, follow the [Run Task Integration Instructions](https://docs.vantage.sh/terraform_cloud_integration/) in the Vantage documentation.
+
