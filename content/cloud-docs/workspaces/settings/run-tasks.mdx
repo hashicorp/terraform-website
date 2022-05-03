@@ -35,14 +35,16 @@ To create a new run task:
 
 ## Associating Run Tasks with a Workspace
 
-1. Click **Workspaces** in the top navigation bar, click your workspace in the grid, open the **Settings** menu and select **Run Tasks**.
+1. Click **Workspaces** in the top navigation bar and then go to the workspace where you want to associate run tasks.
+
+1. Open the **Settings** menu and select **Run Tasks**.
 
 1. Click the **+** next to the task you want to add to the workspace.
 
 1. Choose an enforcement level:
 
-   - **Advisory**  - Run tasks can not block a run from completing. If the task fails, the run will proceed with a warning in the UI.
-   - **Mandatory** - Run tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), the run will transition to an Errored state with a warning in the UI.
+   - **Advisory**: Run tasks can not block a run from completing. If the task fails, the run will proceed with a warning in the UI.
+   - **Mandatory**: Run tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), the run will transition to an Errored state with a warning in the UI.
 
 4. Click **Create**. Your run task is now configured.
 
