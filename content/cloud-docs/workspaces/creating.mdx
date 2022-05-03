@@ -58,6 +58,8 @@ For CLI and API-driven workspaces, the workspace overview page appears. For vers
 
 After you create a new workspace from a version control repository, Terraform Cloud scans its configuration files for [Terraform variables](/cloud-docs/workspaces/variables#terraform-variables) without default values and automatically creates those variables within the workspace. Terraform cannot perform successful runs until you set values for these variables.
 
+  -> **Note:** Your Terraform configuration needs to be in the root (default) working directory for this to work. If you're using a different working directory, configure variables from within the workspace.
+
 Choose one of the following actions:
 
 - To skip this step, click **Go to workspace overview**. Terraform Cloud still adds any Terraform variables without default values to the workspace. You can set values for these variables later from within the workspace.
