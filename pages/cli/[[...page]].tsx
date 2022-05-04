@@ -16,6 +16,9 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug } as const
 
+const SOURCE_REPO = 'terraform'
+const DEFAULT_BRANCH = 'main'
+
 export default function CLILayout(props) {
   // add the "other docs" section to the bottom of the nav data
   const modifiedProps = Object.assign({}, props)
@@ -32,12 +35,12 @@ export default function CLILayout(props) {
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW &&
-    process.env.PREVIEW_FROM_REPO === 'terraform'
+    process.env.PREVIEW_FROM_REPO === SOURCE_REPO
     ? {
         strategy: 'fs',
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
-        product: PRODUCT.slug,
+        product: SOURCE_REPO,
         githubFileUrl(filepath) {
           // This path rewriting is meant for local preview from `terraform`.
           filepath = filepath.replace('preview/', '')
