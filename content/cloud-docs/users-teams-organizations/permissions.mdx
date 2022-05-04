@@ -201,5 +201,8 @@ Since Terraform Cloud integrates with other systems, the permissions models of t
 
 - When a workspace is connected to a VCS repository, anyone who can merge changes to that repository's main branch can indirectly queue plans in that workspace, regardless of whether they have explicit permission to queue plans or are even a member of your Terraform Cloud organization. (And when auto-apply is enabled, merging changes will indirectly apply runs.)
 - If you use Terraform Cloud's API to create a Slack bot for provisioning infrastructure, anyone able to issue commands to that Slack bot can implicitly act with that bot's permissions, regardless of their own membership and permissions in the Terraform Cloud organization.
+- When a run task sends a request to an integrator, it provides an access token that provides access depending on the run task stage:
+  - For post-plan, it provides access to the runs plan json and the run task callback
+  - All access tokens created for run tasks have a lifetime of 10 minutes
 
 When integrating Terraform Cloud with other systems, you are responsible for understanding the effects on your organization's security. An integrated system is able to delegate any level of access that it has been granted, so carefully consider the conditions and events that will cause it to delegate that access.
