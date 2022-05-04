@@ -1,6 +1,5 @@
 import { productName, productSlug } from 'data/metadata'
 import DocsPage from '@hashicorp/react-docs-page'
-import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 
@@ -15,9 +14,12 @@ const SOURCE_REPO = 'terraform-website'
 const DEFAULT_BRANCH = 'master'
 
 export default function CloudDocsAgentsLayout(props) {
-  // add the "other docs" section to the bottom of the nav data
+  // append additional nav data
   const modifiedProps = Object.assign({}, props)
-  modifiedProps.navData = modifiedProps.navData.concat(otherDocsData)
+  modifiedProps.navData = modifiedProps.navData.concat([
+    { divider: true },
+    { title: 'Back to Cloud and Enterprise', href: '/cloud-docs' },
+  ])
 
   return (
     <DocsPage
