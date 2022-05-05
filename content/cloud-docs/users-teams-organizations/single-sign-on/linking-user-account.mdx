@@ -1,10 +1,10 @@
 ---
-page_title: Single Sign-on - Linking to User Account
+page_title: Single Sign-on - Linking a User Account
 description: >-
  Manage the user account linked to an SSO identity.
 ---
 
-# Linking to User Account
+# Linking a User Account
 
 -> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. Refer to [Terraform Cloud pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
@@ -17,6 +17,7 @@ You can add and remove SSO identity links for all providers, including Microsoft
 The first time you use SSO to log in to an organization, Terraform Cloud links that SSO identity to your user account. You can only log in to that organization using the linked user account.
 
 When Terraform Cloud does not recognize the email address associated with your identity provider, it asks if you want to create a new user account with that email address. You can choose one of the following actions:
+
 - **Create a new account:** Terraform Cloud automatically links your SSO identity to this new account after creation.
 - **Link to an existing account:**  Click **Link SSO identity to a different account** and sign in with a Terraform Cloud account. Terraform Cloud automatically links your SSO identity to this account when you log in.
 
@@ -25,12 +26,14 @@ When Terraform Cloud does not recognize the email address associated with your i
 ## Change SSO Identity Link
 
 Terraform Cloud shows an error if you try to log in to an SSO-enabled organization with a different user account than the one linked to your SSO identity. To change this SSO identity link:
+
 1. Log in to Terraform Cloud using the linked account.
 1. [Remove the SSO identity link](#remove-sso-identity-link) from the current account.
 1. Sign out of Terraform Cloud.
 1. Log in and [add an SSO identity link](#add-sso-identity-link) to the desired account.
 
 ## Remove SSO Identity Link
+
 To unlink an SSO identity from a Terraform Cloud account:
 
 1. [Sign in with SSO](/cloud-docs/users-teams-organizations/single-sign-on#signing-in-with-sso) to the linked account.

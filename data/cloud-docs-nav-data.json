@@ -193,7 +193,7 @@
             "path": "users-teams-organizations/single-sign-on/saml"
           },
           {
-            "title": "Linking User Account",
+            "title": "Linking a User Account",
             "path": "users-teams-organizations/single-sign-on/linking-user-account"
           },
           {
