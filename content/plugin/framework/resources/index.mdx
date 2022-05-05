@@ -129,21 +129,23 @@ value when it's set in the state; the state can never hold any unknown values.
    [`tfsdk.DeleteResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DeleteResourceRequest)
 1. Using the configured API client injected into the resource by the resource
    type's `NewResource` method
-1. Calling the [`State.RemoveResource`
-   method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#State.RemoveResource)
-   on the state in the
-   [`tfsdk.DeleteResourceResponse`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DeleteResourceResponse).
 
 ### ImportState
 
-`ImportState` creates an initial Terraform state to bring the resource under management via the [`terraform import` command](/cli/commands/import). This method must provide enough state for the resource to be successfully refreshed via the `Read` method. This is usually accomplished by:
+`ImportState` is an optional method that implements resource [import](/cli/import). This functionality creates an initial Terraform state to bring the resource under management via the [`terraform import` command](/cli/commands/import). This method must provide enough state for the resource to be successfully refreshed via the `Read` method. This is usually accomplished by:
 
 1. Using the import identifier from the [`tfsdk.ImportResourceStateRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ImportResourceStateRequest) to [set state data](/plugin/framework/writing-state) in the
    [`tfsdk.ImportResourceStateResponse`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ImportResourceStateResponse).
 
-The [`tfsdk.ResourceImportStatePassthroughID` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStatePassthroughID) is available to simplify writing the import identifier to an attribute. The [`tfsdk.ResourceImportStateNotImplemented` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStateNotImplemented) can be used if this resource does not support import.
+The [`tfsdk.ResourceImportStatePassthroughID` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStatePassthroughID) is available to simplify writing the import identifier to an attribute.
 
 Refer to [Resource Import](/plugin/framework/resources/import) for more details and code examples.
+
+### UpgradeState
+
+`UpgradeState` is an optional method that implements resource [state](/language/state) upgrades when there are breaking changes to the [schema](/plugin/framework/schemas).
+
+Refer to [State Upgrades](/plugin/framework/resources/state-upgrade) for more details and code examples.
 
 ## Add Resource to Provider
 

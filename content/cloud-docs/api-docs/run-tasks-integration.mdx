@@ -1,0 +1,143 @@
+---
+page_title: Run Tasks Integration - API Docs - Terraform Cloud and Terraform Enterprise
+---
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+[JSON API error object]: https://jsonapi.org/format/#error-objects
+
+# Run Tasks Integration API
+
+[Run tasks](/cloud-docs/workspaces/settings/run-tasks) allow Terraform Cloud to interact with external systems at specific points in the Terraform Cloud run lifecycle.
+This page lists the API endpoints used to trigger a run task and the expected response from the integration.
+
+Refer to [run tasks](/cloud-docs/api-docs/run-tasks) for the API endpoints to create and manage run tasks within Terraform Cloud.
+
+## Run Task Request
+
+When a run reaches the appropriate phase and a run task is triggered, Terraform Cloud will send a request to the run task's URL.
+The service receiving the run task request should respond with `200 OK`, or Terraform Cloud will retry to trigger the run task.
+
+`POST :url`
+
+| Parameter | Description                                             |
+|-----------|---------------------------------------------------------|
+| `:url`    | The URL configured in the run task to send requests to. |
+
+| Status  | Response | Reason                            |
+|---------|----------|-----------------------------------|
+| [200][] | Nothing  | Successfully submitted a run task |
+
+### Request Body
+
+The POST request submits a JSON object with the following properties as a request payload.
+
+|            Key path             |  Type   |          Values          |                                                 Description                                                 |
+| ------------------------------- | ------- | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `payload_version`               | integer | `1`                      | Schema version of the payload. Only `1` is supported.                                                       |
+| `access_token`                  | string  |                          | Bearer token to use when calling back to Terraform Cloud.                                                   |
+| `stage`                         | string  | `post-plan`, `pre-apply` | The [stage](/cloud-docs/run/states) the task was triggered at.                                              |
+| `is_speculative`                | bool    |                          | Whether the task is part of a [speculative run](/cloud-docs/run#speculative-plans).                         |
+| `task_result_id`                | string  |                          | ID of task result within Terraform Cloud.                                                                   |
+| `task_result_enforcement_level` | string  | `mandatory`, `advisory`  | Enforcement level for this task.                                                                            |
+| `task_result_callback_url`      | string  |                          | URL that should called back with the result of this task.                                                   |
+| `run_id`                        | string  |                          | Id of the run this task is part of.                                                                         |
+| `run_app_url`                   | string  |                          | URL within Terraform Cloud to the run.                                                                      |
+| `run_message`                   | string  |                          | Message that was associated with the run.                                                                   |
+| `run_created_at`                | string  |                          | When the run was started.                                                                                   |
+| `run_created_by`                | string  |                          | Who created the run.                                                                                        |
+| `workspace_id`                  | string  |                          | Id of the workspace the task is associated with.                                                            |
+| `workspace_name`                | string  |                          | Name of the workspace.                                                                                      |
+| `workspace_app_url`             | string  |                          | URL within Terraform Cloud to the workspace.                                                                |
+| `organization_name`             | string  |                          | Name of the organization the task is configured within.                                                     |
+| `plan_json_api_url`             | string  |                          | URL to retrieve the JSON Terraform plan for this run.                                                       |
+| `vcs_repo_url`                  | string  |                          | URL to the workspace's VCS repository. This is `null` if the workspace does not have a VCS repository.              |
+| `vcs_branch`                    | string  |                          | Repository branch that the workspace executes from. This is `null` if the workspace does not have a VCS repository. |
+| `vcs_pull_request_url`          | string  |                          | URL to the Pull Request/Merge Request that triggered this run. This is `null` if the run was not triggered.         |
+| `vcs_commit_url`                | string  |                          | URL to the commit that triggered this run. This is `null` if the workspace does not a VCS repository.               |
+
+### Sample Payload
+
+```json
+{
+  "payload_version": 1,
+  "access_token": "4QEuyyxug1f2rw.atlasv1.iDyxqhXGVZ0ykes53YdQyHyYtFOrdAWNBxcVUgWvzb64NFHjcquu8gJMEdUwoSLRu4Q",
+  "stage": "post_plan",
+  "is_speculative": false,
+  "task_result_id": "taskrs-2nH5dncYoXaMVQmJ",
+  "task_result_enforcement_level": "mandatory",
+  "task_result_callback_url": "https://app.terraform.io/api/v2/task-results/5ea8d46c-2ceb-42cd-83f2-82e54697bddd/callback",
+  "run_app_url": "https://app.terraform.io/app/hashicorp/my-workspace/runs/run-i3Df5to9ELvibKpQ",
+  "run_id": "run-i3Df5to9ELvibKpQ",
+  "run_message": "Triggered via UI",
+  "run_created_at": "2021-09-02T14:47:13.036Z",
+  "run_created_by": "username",
+  "workspace_id": "ws-ck4G5bb1Yei5szRh",
+  "workspace_name": "tfr_github_0",
+  "workspace_app_url": "https://app.terraform.io/app/hashicorp/my-workspace",
+  "organization_name": "hashicorp",
+  "plan_json_api_url": "https://app.terraform.io/api/v2/plans/plan-6AFmRJW1PFJ7qbAh/json-output",
+  "vcs_repo_url": "https://github.com/hashicorp/terraform-random",
+  "vcs_branch": "main",
+  "vcs_pull_request_url": null,
+  "vcs_commit_url": "https://github.com/hashicorp/terraform-random/commit/7d8fb2a2d601edebdb7a59ad2088a96673637d22"
+}
+```
+
+### Request Headers
+
+The POST request submits the following properties as the request headers.
+
+|          Name          |                   Value                    |                                                                                                                    Description                                                                                                                    |
+| ---------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-Type`         | `application/json`                         | Specifies the type of data in the request body                                                                                                                                                                                                    |
+| `User-Agent`           | `TFC/1.0 (+https://app.terraform.io; TFC)` | Identifies the request is coming from Terraform Cloud                                                                                                                                                                                             |
+| `X-TFC-Task-Signature` | string                                     | If the run task is configured with an [HMAC Key](cloud-docs/integrations/run-tasks#securing-your-run-task), this header contains the signed SHA512 sum of the request payload using the configured HMAC key. Otherwise, this is an empty string. |
+
+## Run Task Callback
+
+Once a run task request has been fulfilled by the external integration, the integration must call back into Terraform Cloud with the result. Terraform expects this callback within 10 minutes, or the request will be considered to have errored.
+
+`PATCH :callback_url`
+
+|    Parameter    |                           Description                            |
+| --------------- | ---------------------------------------------------------------- |
+| `:callback_url` | The `task_result_callback_url` specified in the run task request. Typically `/task-results/:guid/callback`. |
+
+| Status  |         Response          |                  Reason                  |
+| ------- | ------------------------- | ---------------------------------------- |
+| [200][] | Nothing                   | Successfully submitted a run task result |
+| [401][] | [JSON API error object][] | Not authorized to perform action         |
+| [422][] | [JSON API error object][] | Invalid response payload. This could be caused by invalid attributes, or sending a status that is not accepted. |
+
+### Request Body
+
+The PATCH request submits a JSON object with the following properties as a request payload.
+
+|         Key path          |  Type  |                                           Description                                           |
+| ------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| `data.type`               | string | Must be `"task-results"`.                                                                       |
+| `data.attributes.status`  | string | The current status of the task. Only `passed`, `failed` or `running` are allowed.               |
+| `data.attributes.message` | string | (Optional) A short message describing the status of the task.                                   |
+| `data.attributes.url`     | string | (Optional) A URL where users can obtain more information about the task.                        |
+
+Status values other than passed, failed, or running return an error. Both the passed and failed statuses represent a final state for a run task. The running status allows one or more partial updates until the task has reached a final state.
+
+```json
+{
+  "data": {
+    "type": "task-results",
+    "attributes": {
+      "status": "passed",
+      "message": "4 passed, 0 skipped, 0 failed",
+      "url": "https://external.service.dev/terraform-plan-checker/run-i3Df5to9ELvibKpQ"
+    }
+  }
+}
+```
+
+### Request Headers
+
+The PATCH request must use the token supplied in the originating request (`access_token`) for [authentication](/cloud-docs/api-docs#authentication).

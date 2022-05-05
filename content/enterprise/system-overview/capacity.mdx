@@ -25,12 +25,11 @@ After factoring in the memory needed to run the base services that make up the a
 The settings for per-run memory and concurrency are available in the dashboard on port 8800, on the Settings page, under the Capacity section. They can also be set via
 the [application settings JSON file when using the automated install procedure](/enterprise/install/automated/automating-the-installer#available-settings).
 
-## Increasing Capacity
+## Increasing Concurrency
 
-To increase the number of concurrent runs, adjust the **Capacity** setting. Note that this setting is not limited by
+To increase the number of concurrent runs, adjust the `capacity_concurrency` setting. This setting is not limited by
 system checks; it depends on the operator to provide enough memory to the system to accommodate the requested
-concurrent capacity. For instance, if **Capacity** is set to `100`, the instance would require, at a minimum,
-52 GB of memory reserved for Terraform runs.
+concurrent capacity. For example, if `capacity_concurrency` is set to `100` and the worker memory is set to 512, the instance would require a minimum of 52 GB of memory just for Terraform runs. The rest of the TFE application requires a minimum of 4 GB of memory in addition to the Operating System requirements.
 
 ## Adjusting Memory
 
@@ -66,12 +65,11 @@ A root volume with 200 GB of storage can sustain a capacity well over 100 concur
 Because of the amount of churn caused by container creation as well as Terraform state management,
 highly concurrent setups will begin pushing hard on disk I/O. In cloud environments like AWS that limit disk
 I/O to IOPS that are credited per disk, it's important to provision a minimum number to prevent I/O related
-stalls.
+stalls. Low disk I/O can create significant performance issues. 
 
 This resource is harder to predict than memory or CPU usage because it varies per Terraform module,
-but in general we suggest 35 IOPS per concurrent Terraform run. So if an instance is configured for
-20 concurrent runs, the disk should have 700 IOPS allocated. For reference, on AWS, an EBS volume
+but we generally recommend a minimum of 50 IOPS per concurrent Terraform run. So if an instance is configured for 10 concurrent runs, the disk should have 500 IOPS allocated. For reference, on AWS, an EBS volume
 with an allocated size of 250 GB comes with a steady state of 750 IOPS.
 
-It is recommended to use a disk with a minimum of 500 IOPS or 100+MB/s throughput, whichever is the smaller and these are provisioned values.
+We recommend using a disk with a minimum of 500 IOPS, but high load systems should consider increasing this significantly. For example, a production instance with a consistently high level of utilization and a concurrency of 10 should ideally have a disk with about 3,000 IOPS. Internal testing has shown performance increases with additional IOPs up to 8,000. Scaling the disk beyond 8,000 IOPs does not significantly improve performance.
 

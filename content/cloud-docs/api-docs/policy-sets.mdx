@@ -934,16 +934,37 @@ curl \
 
 The `upload` link URL in the above response is valid for one hour after the `created_at` timestamp of the policy set version. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set Version](#show-a-policy-set-version) endpoint again to verify that the status has changed from `pending` to `ready`.
 
-## Relationships
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources for policy sets, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
+
+| Resource Name     | Description              |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `current_version` | The most recent **successful** policy set version.                                                                                                                                             |
+| `newest_version`  | The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors. |
+| `policies`        | Individually managed policies which are associated with the policy set.                                                                                                                        |
+| `workspaces`      | The workspaces to which the policy set applies.                                                                                                                                                |
+
+The following resource types may be included for policy set versions:
+
+| Resource Name | Description                                                      |
+| ------------- | ---------------------------------------------------------------- |
+| `policy_set`  | The policy set associated with the specified policy set version. |
+
+## Relationships 
 
 The following relationships may be present in various responses for policy sets:
 
-* `current-version`: The most recent **successful** policy set version.
-* `newest-version`: The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors.
-* `organization`: The organization associated with the specified policy set.
-* `policies`: Individually managed policies which are associated with the policy set.
-* `workspaces`: The workspaces to which the policy set applies.
+| Resource Name     | Description              |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `current-version` | The most recent **successful** policy set version.                                                                                                                                             |
+| `newest-version`  | The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors. |
+| `organization`    | The organization associated with the specified policy set.                                                                                                                                     |
+| `policies`        | Individually managed policies which are associated with the policy set.                                                                                                                        |
+| `workspaces`      | The workspaces to which the policy set applies.                                                                                                                                                |
 
 The following relationships may be present in various responses for policy set versions:
 
-* `policy-set`: The policy set associated with the specified policy set version.
+| Resource Name | Description                                                      |
+| ------------- | ---------------------------------------------------------------- |
+| `policy-set`  | The policy set associated with the specified policy set version. |

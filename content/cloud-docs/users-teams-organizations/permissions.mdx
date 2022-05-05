@@ -73,6 +73,7 @@ The following workspace permissions can be granted to teams on a per-workspace b
   - **Apply runs:** — _Implies permission to queue plans._ Allows users to approve and apply Terraform plans, causing changes to real infrastructure.
 - **Lock and unlock workspace:** — Allows users to manually lock the workspace to temporarily prevent runs. When a workspace's execution mode is set to "local", this permission is required for performing local CLI runs using this workspace's state.
 - **Download Sentinel mocks:** — Allows users to download data from runs in the workspace in a format that can be used for developing Sentinel policies. This run data is very detailed, and often contains unredacted sensitive information.
+- **Manage Workspace Run Tasks:** - Allows users to associate or dissociate run tasks with the workspace. Run Tasks are created at the organization level, after which you can manually associate or dissociate them with specific workspaces.
 - **Variables:**
   - **Read variables:** — Allows users to view the values of Terraform variables and environment variables for the workspace. Note that variables marked as sensitive are write-only, and can't be viewed by any user.
   - **Read and write variables:** — _Implies permission to read variables._ Allows users to edit the values of variables in the workspace.
@@ -93,12 +94,15 @@ Workspace admins have the following permissions on their workspace:
 
 - Apply runs
 - Lock and unlock workspace
+
+  -> **Note**: Typically, only the user who created the lock can unlock a workspace. Administrators and members of the Owners team can use [Force unlock](/docs/cloud/workspaces/settings.html#locking) to override this and unlock a workspace.
 - Download Sentinel mocks
 - Read and write variables
 - Read and write state versions
 - Read and write workspace settings (workspace admins only) — this includes general settings, notification configurations, run triggers, and more.
 - Set or remove workspace permissions for any team (workspace admins only)
 - Delete workspace (workspace admins only)
+- Manage workspace run tasks
 
 See [General Workspace Permissions][] above for details about specific permissions.
 
@@ -137,6 +141,7 @@ The "write" permission set is for people who do most of the day-to-day work of p
 - Download Sentinel mocks
 - Read and write variables
 - Read and write state versions
+- Manage workspace run tasks
 
 See [General Workspace Permissions][] above for details about specific permissions.
 
@@ -162,6 +167,10 @@ Allows members to create, edit, and delete the organization's Sentinel policies.
 
 This permission implicitly gives permission to read runs on all workspaces, which is necessary to set enforcement of [policy sets](/cloud-docs/sentinel/manage-policies).
 
+### Manage Run Tasks
+
+Allows members to create, edit, and delete run tasks on the organization.
+
 ### Manage Policy Overrides
 
 Allows members to override soft-mandatory policy checks.
@@ -174,6 +183,7 @@ Allows members to create and administrate all workspaces within the organization
 
 - Admin access to all workspaces. Any action that requires admin access is also available to teams with permission to manage workspaces.
 - The ability to create new workspaces (otherwise only available to organization owners).
+- Create, update, and delete [Variable Sets](/cloud-docs/workspaces/variables/managing-variables#variable-sets)
 
 ### Manage VCS Settings
 
@@ -191,5 +201,8 @@ Since Terraform Cloud integrates with other systems, the permissions models of t
 
 - When a workspace is connected to a VCS repository, anyone who can merge changes to that repository's main branch can indirectly queue plans in that workspace, regardless of whether they have explicit permission to queue plans or are even a member of your Terraform Cloud organization. (And when auto-apply is enabled, merging changes will indirectly apply runs.)
 - If you use Terraform Cloud's API to create a Slack bot for provisioning infrastructure, anyone able to issue commands to that Slack bot can implicitly act with that bot's permissions, regardless of their own membership and permissions in the Terraform Cloud organization.
+- When a run task sends a request to an integrator, it provides an access token that provides access depending on the run task stage:
+  - For post-plan, it provides access to the runs plan json and the run task callback
+  - All access tokens created for run tasks have a lifetime of 10 minutes
 
 When integrating Terraform Cloud with other systems, you are responsible for understanding the effects on your organization's security. An integrated system is able to delegate any level of access that it has been granted, so carefully consider the conditions and events that will cause it to delegate that access.

@@ -16,6 +16,57 @@ within each release are categorized into one or more of the following labels:
 Each version below corresponds to a release artifact available for download on
 the official [releases website](https://releases.hashicorp.com/tfc-agent/).
 
+## 1.2.0 (05/02/2022)
+
+IMPROVEMENTS:
+
+* Added better error handling for non-existent working directories (#148)
+* Added jq, python, and pip to the Docker image (#149)
+
+## 1.1.7 (04/25/2022)
+
+BUG FIXES:
+
+* Fixed response handling for retryable downloads (#146)
+
+## 1.1.6 (04/20/2022)
+
+BUG FIXES:
+
+* Fixed OpenTelemetry metrics by rolling back client version (#144)
+
+## 1.1.5 (04/18/2022)
+
+IMPROVEMENTS:
+
+* Improved resilience of downloads by adding retries. (#136)
+
+## 1.1.4 (03/22/2022)
+
+BUG FIXES:
+
+* Fixed `HOME` environment variable during hook execution. (#130)
+
+## 1.1.3 (03/17/2022)
+
+SECURITY FIXES:
+
+* Updated Docker image to address OpenSSL CVE-2022-0778 (#129)
+
+## 1.1.2 (03/11/2022)
+
+BUG FIXES:
+
+* Fixed Terraform variable validation to accept Terraform v0.12+ syntax. (#122)
+* Fixed core HTTP requests (fetch jobs, post status) to log in debug mode (#125)
+* Extended HTTP header timeout to 30 seconds (#127)
+
+## 1.1.1 (03/09/2022)
+
+IMPROVEMENTS:
+
+* Added redacted HTTP logs in debug log mode (#123)
+
 ## 1.1.0 (02/23/2022)
 
 FEATURES:

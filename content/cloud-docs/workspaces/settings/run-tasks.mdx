@@ -4,60 +4,49 @@ page_title: Run Tasks - Workspaces - Terraform Cloud and Terraform Enterprise
 
 # Run Tasks
 
--> **Note:** As of September 2021, Run Tasks are a private beta feature, subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
-
 Run Tasks allow you to directly integrate third-party tools and services at certain stages in the Terraform Cloud run lifecycle. When triggered, a run task sends an API payload to the external service. This payload contains a collection of run-related information, including a callback URL that the service uses to respond back to Terraform Cloud with a passed or failed status. Terraform Cloud uses this status response to determine if a run should proceed, based on the run task's enforcement settings that have been configured for the workspace.
 
 You can manage run tasks through the UI as detailed below or through the [Run Tasks APIs](/cloud-docs/api-docs/run-tasks).
+
+> **Hands-on:** Try the [Configure Snyk Run Task in Terraform Cloud tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-run-tasks-snyk?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) on HashiCorp Learn.
 
 ## Requirements
 
 **Terraform Version** - You can only assign run tasks to workspaces that use a Terraform version of 0.12 and later. Downgrading a workspace with existing run tasks to use a prior Terraform version will not result in an error, but Terraform Cloud will no longer trigger the run tasks during plan and apply operations.
 
-**Permissions** - To create a run task, you must have a user account with [organization owner](/cloud-docs/users-teams-organizations/permissions#organization-owners) permissions. To associate run tasks to a workspace, you must be at least a [workspace administrator](/cloud-docs/users-teams-organizations/permissions#workspace-admins).
+**Permissions** - To create a run task, you must have a user account with the [Manage Run Tasks permission](/cloud-docs/users-teams-organizations/permissions#manage-run-tasks). To associate run tasks with a workspace, you need the [Manage Workspace Run Tasks permission](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) on that particular workspace.
 
 ## Creating a Run Task
 
 To create a new run task:
 
-1. Navigate to the desired workspace, open the **Settings** menu and select **Run Tasks**.
-
-   ![Screenshot: a workspace's settings drop-down menu](/img/docs/run-tasks-workspace-settings.png)
+1. Navigate to the desired workspace, open the **Settings** menu, and select **Run Tasks**.
 
 1. Click **Create a new run task**. The **Run Tasks** page appears.
 
-1. Click **Create run task**.
-
-   ![Screenshot: an organization's blank run tasks state](/img/docs/run-tasks-empty-run-tasks.png)
-
 1. Enter the information about the run task to be configured:
 
-- **Enabled** (optional): Whether the run task will run across all associated workspaces. New tasks are enabled by default.
-- **Name** (required): A human-readable name for the run task. This will be displayed in workspace configuration pages and can contain letters, numbers, dashes and underscores.
-- **Endpoint URL** (required): The URL for the external service. Run tasks will POST the [run tasks payload](/cloud-docs/integrations/run-tasks/#integration-details) to this URL.
-- **HMAC key** (optional): A secret key that may be required by the external service to verify request authenticity.
+   - **Enabled** (optional): Whether the run task will run across all associated workspaces. New tasks are enabled by default.
+   - **Name** (required): A human-readable name for the run task. This will be displayed in workspace configuration pages and can contain letters, numbers, dashes and underscores.
+   - **Endpoint URL** (required): The URL for the external service. Run tasks will POST the [run tasks payload](/cloud-docs/integrations/run-tasks/#integration-details) to this URL.
+   - **HMAC key** (optional): A secret key that may be required by the external service to verify request authenticity.
 
-5. Click **Create run task**.
+5. Click **Create run task**. The run task is now available within the organization. You can now associate it with one or more workspaces.
 
-   ![Screenshot: an organization's populated run tasks state](/img/docs/run-tasks-run-tasks-populated.png)
+## Associating Run Tasks with a Workspace
 
-## Adding Run Tasks to a Workspace
+1. Click **Workspaces** in the top navigation bar and then go to the workspace where you want to associate run tasks.
 
-1. Click **Workspaces** in the top navigation bar, click your workspace in the grid, open the **Settings** menu and select **Run Tasks**.
+1. Open the **Settings** menu and select **Run Tasks**.
 
-1. Click the **+** next to the task(s) you want to add to the workspace.
-
-   ![Screenshot: a workspace's populated tasks configuration page](/img/docs/run-tasks-workspace-run-tasks-populated.png)
+1. Click the **+** next to the task you want to add to the workspace.
 
 1. Choose an enforcement level:
 
-- **Advisory**  - Run tasks can not block a run from completing. If the task fails, the run will proceed with a warning in the UI.
-- **Mandatory** - Run tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), the run will transition to an Errored state with a warning in the UI.
+   - **Advisory**: Run tasks can not block a run from completing. If the task fails, the run will proceed with a warning in the UI.
+   - **Mandatory**: Run tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), the run will transition to an Errored state with a warning in the UI.
 
 4. Click **Create**. Your run task is now configured.
-   ![Screenshot: enforcement configuration for a specific task within a workspace](/img/docs/run-tasks-add-to-workspace.png)
-
-   ![Screenshot: final configuration of tasks within a workspace](/img/docs/run-tasks-final-workspace-configuration.png)
 
 ## Understanding Run Tasks Within a Run
 
@@ -65,11 +54,11 @@ Run tasks perform actions between the [plan](/cloud-docs/run/states#2-the-plan-s
 
 For example, if a mandatory task fails and an advisory task succeeds, the run will fail. If an advisory task fails, but a mandatory task succeeds, the run will succeed and proceed to the apply stage. Regardless of the exit status of a task, Terraform Cloud displays the status and any related message data in the UI.
 
-Here is an example of a run that failed due to a mandatory run task.
+The following example shows a run that failed due to a mandatory run task.
 
 ![Screenshot: a run with failed tasks](/img/docs/run-tasks-run-failed.png)
 
-And here is an example of a run that succeeded.
+The following example shows a run that succeeded.
 
 ![Screenshot: a run with passed tasks](/img/docs/run-tasks-run-success.png)
 
@@ -81,7 +70,6 @@ Removing a run task from a workspace does not delete it from the organization. T
 
 1. Click the ellipses (...) on the associated run task, and then click **Remove**. The run task will no longer be applied to runs within the workspace.
 
-   ![Screenshot: removing a run task from a workspace](/img/docs/run-tasks-workspace-remove.png)
 
 ## Deleting a Run Task
 
@@ -94,5 +82,3 @@ You must remove a run task from all associated workspaces before you can delete 
 1. Click **Delete run task**.
 
 You cannot delete run tasks that are still associated with a workspace. If you attempt this, you will see a warning in the UI containing a list of all workspaces that are associated with the run task.
-
-![Screenshot: a warning when attempting to delete an in-use run task](/img/docs/run-tasks-delete-run-task-warning.png)

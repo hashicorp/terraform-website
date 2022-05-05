@@ -114,7 +114,8 @@ curl \
           "can-manage-public-providers": true,
           "can-create-provider": true,
           "can-manage-public-modules": true,
-          "can-manage-custom-providers": false
+          "can-manage-custom-providers": false,
+          "can-manage-run-tasks": false
         },
         "fair-run-queuing-enabled": true,
         "saml-enabled": false,
@@ -192,7 +193,8 @@ curl \
           "can-manage-public-providers": true,
           "can-create-provider": true,
           "can-manage-public-modules": true,
-          "can-manage-custom-providers": false
+          "can-manage-custom-providers": false,
+          "can-manage-run-tasks": false
         },
         "fair-run-queuing-enabled": true,
         "saml-enabled": false,
@@ -314,6 +316,7 @@ curl \
         "can-manage-tags": true,
         "can-manage-public-modules": true,
         "can-manage-public-providers": false,
+        "can-manage-run-tasks": false,
         "can-create-provider": false
       },
       "fair-run-queuing-enabled": true,
@@ -448,6 +451,7 @@ curl \
         "can-manage-tags": true,
         "can-manage-public-modules": true,
         "can-manage-public-providers": false,
+        "can-manage-run-tasks": false,
         "can-create-provider": false
       },
       "fair-run-queuing-enabled": true,
@@ -495,6 +499,7 @@ curl \
         "operations": true,
         "private-module-registry": true,
         "sentinel": false,
+        "run-tasks": false,
         "state-storage": true,
         "teams": false,
         "vcs-integrations": true,
@@ -608,6 +613,7 @@ curl \
         "can-manage-tags": true,
         "can-manage-public-modules": true,
         "can-manage-public-providers": false,
+        "can-manage-run-tasks": false,
         "can-create-provider": false
       },
       "fair-run-queuing-enabled": true,
@@ -712,6 +718,7 @@ curl \
       "operations": true,
       "private-module-registry": true,
       "sentinel": false,
+      "run-tasks": false,
       "state-storage": true,
       "teams": false,
       "vcs-integrations": true,
@@ -800,12 +807,22 @@ curl \
 }
 ```
 
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
+
+| Resource Name         | Description                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| `entitlement_set`     | The entitlement set that determines which Terraform Cloud features the organization can use. |
+
 ## Relationships
 
-The following relationships may be present in various responses:
+The following relationships may be present in various responses.
 
-* `module-producers`: Other organizations that are configured to share modules with the organization. Terraform Enterprise v202103-1 or later only.
-* `oauth-tokens`: OAuth tokens associated with VCS configurations for the organization.
-* `authentication-token`: The API token for an organization.
-* `entitlement-set`: The entitlement set that determines which Terraform Cloud features the organization can use.
-* `subscription`: The current subscription for an organization.
+| Resource Name         | Description                                                                                                                   |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `module-producers`    | Other organizations that are configured to share modules with the organization. Terraform Enterprise v202103-1 or later only. |
+| `oauth-tokens`        | OAuth tokens associated with VCS configurations for the organization.                                                         |
+| `authentication-token`| The API token for an organization.                                                                                            |
+| `entitlement-set`     | The entitlement set that determines which Terraform Cloud features the organization can use.                                  |
+| `subscription`        | The current subscription for an organization.                                                                                 |

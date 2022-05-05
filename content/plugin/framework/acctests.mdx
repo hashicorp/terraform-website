@@ -28,18 +28,15 @@ to supply a map of functions that return a
 To get a `tfprotov6.ProviderServer` from a
 [`tfsdk.Provider`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Provider),
 you need to use the
-[`tfsdk.NewProtocol6Server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#NewProtocol6Server)
+[`providerserver.NewProtocol6WithError`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/providerserver#NewProtocol6WithError)
 helper. For example:
 
 ```go
 resource.Test(t, resource.TestCase{
 	PreCheck: func() { testAccPreCheck(t) },
 	ProtoV6ProviderFactories: map[string]func() (tfprotov6.ProviderServer, error) {
-		"example_provider": func() (tfprotov6.ProviderServer, error) {
-			// newProvider is your function that returns a
-			// tfsdk.Provider implementation
-			return tfsdk.NewProtocol6Server(newProvider()), nil
-		},
+		// newProvider is your function that returns a tfsdk.Provider
+		"example_provider": providerserver.NewProtocol6WithError(newProvider()),
 	},
 	CheckDestroy: testAccCheckExampleResourceDestroy,
 	Steps: []resource.TestStep{

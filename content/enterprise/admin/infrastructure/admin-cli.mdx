@@ -1,0 +1,159 @@
+---
+page_title: Admin CLI Commands - Infrastructure Administration - Terraform Enterprise
+---
+
+# Terraform Enterprise Admin CLI Commands
+
+The [Active/Active](/enterprise/install/automated/active-active) operational mode disables the Replicated Admin Console. Instead, it provides admin CLI commands to change the configuration, stop the application safely, and produce support bundles. You must use SSH to log in to a node in the Active/Active cluster to run these commands.
+
+-> **Note**: Admin CLI commands are available on installations using the Standalone operational mode in Terraform Enterprise version v202203-1 and later.
+
+### Commands
+
+Note that `tfe-admin` is an alias for `replicated admin`, and can be used interchangeably.
+
+#### support-bundle
+
+```bash
+tfe-admin support-bundle
+```
+
+This command generates a support bundle for all nodes.
+
+For Standalone (single node) installations the support bundle will be created in `/var/lib/replicated/support-bundles`.
+
+For Active/Active, the support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID, which is a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
+
+Example upload structure
+
+```bash
+support-bundles
+└── 2020-11-10T02:03:05Z
+    ├── 10.0.0.5
+    │   └── replicated-support702524260.tar.gz
+    └── 10.0.0.6
+        └── replicated-support577188727.tar.gz
+```
+
+#### node-drain
+
+```bash
+tfe-admin node-drain
+```
+
+This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes).
+
+-> **Note:** There is no reverse drain command - a restart is needed to restore the node.
+
+#### app-config
+
+```bash
+tfe-admin app-config -k <KEY> -v <VALUE>
+```
+
+This command allows you to use the CLI to make real-time application changes, such as `capacity_concurrency`. You must provide both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value). Run `replicatedctl app-config export` for a complete list of the current `app-config` settings.
+
+For the configuration changes to take effect, you must restart the Terraform Enterprise application **on each node instance**. To restart Terraform Enterprise:
+
+1. Run `replicatedctl app stop` to stop the application.
+1. Run `replicatedctl app status` to confirm the application is stopped.
+1. Run `replicatedctl app start` to start the application.
+
+-> **Note:** You should ensure that any ad hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad hoc changes could be lost.
+
+-> **Hint:** Adding a function to your Linux start-up like an alias can give you a short cut to the admin `app-config` command only requiring a single command and parameters, such as:
+
+```bash
+# shortcut: tfe-app-config <KEY> <VALUE>
+tfe-app-config ()
+{
+        tfe-admin app-config -k "$1" -v "$2"
+}
+```
+
+#### list-nodes
+
+```bash
+tfe-admin list-nodes
+```
+
+This command lists the IP addresses of all active nodes in the installation. Nodes send a heartbeat every 5 seconds to signal that they are active. If Terraform Enterprise does not receive a heartbeat from a node within 30 seconds, it considers the node inactive and removes the node from the list.
+
+#### rotate-encryption-password
+
+```bash
+tfe-admin rotate-encryption-password CURRENT_PASSWORD NEW_PASSWORD
+```
+
+This command rotates the [encryption password](https://www.terraform.io/enterprise/install/automated/encryption-password) in use by Terraform Enterprise.
+
+To prevent sensitive information from being stored in the shell history, temporarily write the current and new encryption passwords to files and read them upon execution, deleting the temporary files when finished:
+
+```bash
+tfe-admin rotate-encryption-password "$(cat current_password.txt)" "$(cat new_password.txt)"
+```
+
+A successful encryption password rotation will show the following output:
+
+```bash
+Encryption password successfully rotated!
+
+Updating the `enc_password` application configuration on 2 node(s) to reflect the new encryption password.
+
+You must update any installation or automation processes to reflect the new encryption password!
+```
+
+An unsuccessful encryption password rotation will show an error:
+
+```bash
+Error rotating encryption password:
+Error:
+exit status 1
+Output:
+Encryption password not rotated!
+Error reading previous Vault configuration: failed decrypting unseal key: could not decrypt ciphertext: chacha20poly1305: message authentication failed
+```
+
+## Other Supporting Commands
+
+There are additional commands available for checking status and troubleshooting directly on nodes. You can use them to confirm successful installation or to check on the status of a running node as part of troubleshooting activities.  Also, there are additional command aliases available that allow you to run more abbreviated versions of commands like just `support-bundle`. Run an `alias` command with no parameters to see the list of available command aliases.
+
+### Commands
+
+#### health-check
+
+```bash
+tfe-admin health-check
+(alias health-check)
+```
+
+This command tests and reports on the status of the major TFE services. Each will be listed as PASS or FAIL. If any are marked as FAIL, your TFE implementation is NOT healthy and additional action must be taken.
+
+#### replicated status
+
+```bash
+replicatedctl system status
+```
+
+Displays status info on the Replicated sub-system. Key values to note are that status values return as "ready". This reports on the status of the system on the node instance that it is run on.
+
+#### tfe application status
+
+```bash
+replicatedctl app status
+```
+
+Displays status info on the TFE application. Key values to note are that `State` and `DesiredState` are both "started" and `IsTransitioning` is false. This reports on the status of the application on the node instance that it is run on.
+
+## Upgrading TFE or Patching TFE Node Instances
+
+The mechanism used to upgrade the TFE node instances is to fully repave the instances (destroy and rebuild entirely).
+This is another reason why using automation to build the instances is important. Currently, the safest way to perform and upgrade is to shut down all node instances, rebuild one node to validate a successful upgrade, and then scale to additional nodes (currently max 3).
+
+These are the steps required to repave the node instances:
+
+* Run the `node-drain` command as described previously on each node to complete active work and stop new work from being processed.
+* Update the instance build configuration such as setting a new `ReleaseSequence` to upgrade versions and/or make any other alterations such as patching the base image used for building the instances.
+* Follow the instructions in [Terraform Enterprise Active/Active](/enterprise/install/automated/active-active#scale-down-to-zero-nodes) to scale down to zero nodes and proceed through scaling up to one node, validating success, and then scaling additional nodes.
+
+If planned and orchestrated efficiently, the total downtime for the repaving will be the amount of time it has taken to build one node as processing will resume as soon as the first node is functional.

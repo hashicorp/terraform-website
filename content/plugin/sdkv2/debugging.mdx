@@ -1,156 +1,31 @@
 ---
-page_title: Plugin Development - Debugging Providers
-description: How to use both logs and debugging tools to debug Terraform providers.
+page_title: Plugin Development - Debugging SDKv2 Providers
+description: How to implement debugger support in SDKv2 Terraform providers.
 ---
 
-# Debugging Providers
+# Debugging SDKv2 Providers
 
-This guide documents a few different ways to access more information about the
-runtime operations of Terraform providers. It is intended for Terraform
-provider developers, though sufficiently advanced users may also be able to use
-it.
+This page contains implementation details for inspecting runtime information of a Terraform provider developed with SDKv2 via a debugger tool. Review the top level [Debugging](/plugin/debugging) page for information pertaining to the overall Terraform provider debugging process and other inspection options, such as log-based debugging.
 
-There are two available approaches to debugging Terraform providers. We'll talk
-about each of them separately and in turn.
+## Code Implementation
 
-## Log-Based Debugging
+Update the `main` function for the project to conditionally enable the [`plugin/ServeOpts.Debug` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/plugin#ServeOpts.Debug). Conventionally, a `-debug` flag is used to control the `Debug` value.
 
-Log-based debugging is a method of using logging calls to record what is
-happening in a provider and then examining that record to diagnose issues. Logs can help you debug your provider without access to the environment or configuration.
-
-When developing your provider, think carefully about what information you will need for debugging. Log lines cannot be inserted into the binary after it has been built. You will need to add a new log line and recompile your provider for new information to be surfaced in log output.
-
-- [Managing Log Output](/plugin/log/managing) explains how to turn on logging, filter log output, choose the log format, and specify the log output path.
-- [Writing Log Output](/plugin/log/writing) contains details about how to use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write log output at varying verbosity levels, add variables to logs, and create subsystems to group logs that relate to distinct sections of code (e.g., the API client).
-
-## Debugger-Based Debugging
-
-Debugger-based debugging is a method of using a debugging tool similar to
-[delve](https://github.com/go-delve/delve) to inspect what is happening in a
-provider as it is happening, often using breakpoints to pause execution of the
-provider and examine the values of variables. This method of debugging must be
-done contemporaneously; the developer doing the debugging needs to actively run
-Terraform using the appropriate configuration and in the appropriate
-environment to induce the behavior being examined. It is therefore most useful
-when a bug is reliably reproducible. This level of analysis enables developers to
-ask arbitrary questions and step through provider executions, allowing them to
-explore what is happening in the provider during runtime.
-
--> **Note**: Debugger-based debugging only works with Terraform versions
-0.12.26 and higher.
-
-### Enabling Debugging In A Provider
-
-Debugging is available for providers using Terraform Plugin SDK versions 2.0.0
-and above. The plugin must also be started in debug
-mode, called `plugin.Debug` instead of `plugin.Serve`. We recommend that you
-enable this using a flag, as the provider should use `plugin.Serve` under
-normal operation, when not being debugged.
+This example uses a `-debug` flag to enable debugging, otherwise starting the provider normally:
 
 ```go
 func main() {
-	var debugMode bool
+	var debug bool
 
-	flag.BoolVar(&debugMode, "debug", false, "set to true to run the provider with support for debuggers like delve")
+	flag.BoolVar(&debug, "debug", false, "set to true to run the provider with support for debuggers like delve")
 	flag.Parse()
 
-	opts := &plugin.ServeOpts{ProviderFunc: provider.New}
-
-	if debugMode {
-		// TODO: update this string with the full name of your provider as used in your configs
-		err := plugin.Debug(context.Background(), "registry.terraform.io/my-org/my-provider", opts)
-		if err != nil {
-			log.Fatal(err.Error())
-		}
-		return
+	opts := &plugin.ServeOpts{
+		Debug:        debug,
+		ProviderAddr: "registry.terraform.io/example-namespace/example",
+		ProviderFunc: provider.New(),
 	}
 
 	plugin.Serve(opts)
 }
 ```
-
-It is important to start a provider in debug mode only when you intend
-to debug it, as its behavior will change in minor ways from normal operation of
-providers. The main differences are:
-
-* Terraform will not start the provider process; it must be run manually.
-* The provider's constraints will no longer be checked as part of `terraform
-  init`.
-* The provider will no longer be restarted once per walk of the Terraform
-  graph; instead the same provider process will be reused until the command is
-  completed.
-
-~> **Important:** You may need to disable compiler optimization and
-[inlining](https://en.wikipedia.org/wiki/Inline_expansion)
-to have the debugger work efficiently with the provider binary.
-To do so, build the provider binary with the necessary
-[Go compiler flags (gcflags)](https://golang.org/cmd/compile/):
-`go build -gcflags="all=-N -l"`
-
-### Starting A Provider In Debug Mode
-
-After you add a debug mode to your provider's `main` function, you can activate the debugger, which is typically built into an editor or the Delve CLI. To run your debugger, pass it the provider binary as the command to execute. Specify flags, environment variables, and any other input your provider needs to run.
-
-#### Visual Studio Code
-
-Visual Studio Code (VS Code) features native [debugging](https://code.visualstudio.com/docs/editor/debugging) support with the [Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go). You can create the necessary launch configuration within the repository as a `.vscode/launch.json` file, [user settings](https://code.visualstudio.com/docs/editor/debugging#_global-launch-configuration), or [workspace settings](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-launch-configurations).
-
-An example `.vscode/launch.json` configuration file:
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Debug Terraform Provider",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            // this assumes your workspace is the root of the repo
-            "program": "${workspaceFolder}",
-            "env": {},
-            "args": [
-                "-debug",
-            ]
-        }
-    ]
-}
-```
-
-Running the editor debugger will output the reattach configuration to the debug console.
-
-#### Delve CLI
-
-Start a [`delve`](https://github.com/go-delve/delve) debugging session:
-
-```sh
-$ dlv exec --accept-multiclient --continue --headless ./terraform-provider-example -- -debug
-```
-
-It will print output like the following to `stdout`:
-
-```
-Provider started, to attach Terraform set the TF_REATTACH_PROVIDERS env var:
-
-        TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}'
-```
-
-Connect your debugger, such as your editor or another delve CLI process, to the debugger server.
-
-For example with Delve CLI, using the server address and port output by `dlv exec` such as `API server listening at: 127.0.0.1:55413`:
-
-```shell
-dlv connect 127.0.0.1:55413
-```
-
-### Running Terraform With A Provider In Debug Mode
-
-Copy the line starting with `TF_REATTACH_PROVIDERS` from your provider's
-output. Either export it, or prefix every Terraform command with it:
-
-```sh
-TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}' terraform apply
-```
-
-Run Terraform as usual. Any breakpoints you have set will halt execution and
-show you the current variable values.

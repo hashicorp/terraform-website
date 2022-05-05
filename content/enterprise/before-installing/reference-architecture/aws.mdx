@@ -38,7 +38,7 @@ architecture.
 Depending on the chosen [operational
 mode](/enterprise/before-installing/#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single AWS EC2 instance
-for demo installations to multiple instances connected to RDS and S3 for a
+for mounted disk installations to multiple instances connected to RDS and S3 for a
 stateless production installation.
 
 The following table provides high-level server guidelines. Of particular
@@ -415,7 +415,7 @@ The Replicated Console that allows access to certain information and realtime co
 
 #### Upgrades
 
-Upgrading the Terraform Enterprise version still follows a similar pattern as with _Standalone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate.
+Upgrading the Terraform Enterprise version still follows a similar pattern as with _Standalone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change that potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate.
 
 ### Failure Scenarios
 

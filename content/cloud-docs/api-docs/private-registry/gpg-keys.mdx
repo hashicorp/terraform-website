@@ -38,9 +38,7 @@ description: >-
 
 # GPG Keys API
 
-These endpoints are only relevant to private providers. When you [publish a private provider](/cloud-docs/registry/publish-providers) to the Terraform Cloud private registry, you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](registry/providers/publishing#preparing-and-adding-a-signing-key) for more details.
-
--> **Note:** Terraform Enterprise does not support private providers.
+These endpoints are only relevant to private providers. When you [publish a private provider](/cloud-docs/registry/publish-providers) to the Terraform Cloud private registry, you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](/registry/providers/publishing#preparing-and-adding-a-signing-key) for more details.
 
 You need [owners team](/cloud-docs/users-teams-organizations/permissions#organization-owners) or [Manage Private Registry](/cloud-docs/users-teams-organizations/permissions#manage-private-registry) permissions to add, update, or delete GPG keys in a private registry.
 
@@ -54,7 +52,7 @@ You need [owners team](/cloud-docs/users-teams-organizations/permissions#organiz
 | -------------------- | -------------------- |
 | `:registry_name`     | Must be `private`.   |
 
-Uploads a GPG Key to a private registry scoped with a namespace. The response will provide a "key-id", which is required to [Create a Provider Version](#create-a-provider-version) (see below).
+Uploads a GPG Key to a private registry scoped with a namespace. The response will provide a "key-id", which is required to [Create a Provider Version](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-version).
 
 | Status  | Response                                                   | Reason                                                         |
 | ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |

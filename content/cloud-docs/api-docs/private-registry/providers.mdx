@@ -41,7 +41,6 @@ description: >-
 
 You can add publicly curated providers from the [Terraform Registry](https://registry.terraform.io/) and custom, private providers to your Terraform Cloud private registry. The private registry stores a pointer to public providers so that you can view their data from within Terraform Cloud. This lets you clearly designate all of the providers that are recommended for the organization and makes them centrally accessible.
 
--> **Note:** Terraform Enterprise does not support private providers.
 
 All members of an organization can view and use both public and private providers, but you need [owners team](/cloud-docs/users-teams-organizations/permissions#organization-owners) or [Manage Private Registry](/cloud-docs/users-teams-organizations/permissions#manage-private-registry) permissions to add, update, or delete them them in private registry.
 
@@ -170,6 +169,12 @@ curl \
 
 `POST /organizations/:organization_name/registry-providers`
 
+Use this endpoint to create both public and private providers:
+
+- **Public providers:** The public provider record will be available in the organization's registry provider list immediately after creation. You cannot create versions for public providers; you must use the versions available on the Terraform Registry.
+- **Private providers:** The private provider record will be available in the organization's registry provider list immediately after creation, but you must [create a version and upload release assets](/cloud-docs/registry/publish-providers#publishing-a-provider-and-creating-a-version) before consumers can use it. The private registry does not automatically update private providers when you release new versions. You must add each new version with the [Create a Provider Version](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-version) endpoint.
+
+
 ### Parameters
 
 | Parameter            | Description                                                                                                                                                                                                |
@@ -178,15 +183,6 @@ curl \
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-#### Private Providers
-
-The private provider record will be available in the organization's registry provider list immediately after creation, but you must create a version and upload all necessary release assets before consumers can use the provider in configurations. Release assets include the `SHA256SUMS` file, the `SHA256SUMS.sig` file, and the GPG signing key. Refer to the [Publishing a Private Provider](/cloud-docs/registry/publish-providers) documentation for more details.
-
-The private registry does not automatically update private providers when you release new versions. You must explicitly create and upload each new version with the [Create a Provider Version](/cloud-docs/api-docs-private-registry/provider-versions-and-platforms#create-a-provider-version-private-provider) endpoint.
-
-#### Public Providers
-
-When created, the public provider record will be available in the organization's registry provider list. You cannot create versions for public providers; you must use the versions available on the Terraform Registry.
 
 | Status  | Response                                             | Reason                                                         |
 | ------- | ---------------------------------------------------- | -------------------------------------------------------------- |
@@ -196,6 +192,8 @@ When created, the public provider record will be available in the organization's
 | [404][] | [JSON API error object][]                            | User not authorized                                            |
 
 ### Request Body
+
+~> **Important:** For private providers, you must also create a version, a platform, and upload release assets before consumers can use the provider. Refer to [Publishing a Private Provider](/cloud-docs/registry/publish-providers) for more details.
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
 

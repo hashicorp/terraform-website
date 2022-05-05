@@ -48,20 +48,20 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
   **Notable branches:** `master` is the "live" content that gets deployed to [terraform.io](https://terraform.io). The site gets redeployed for new commits to master.
 
-- [hashicorp/terraform][https://github.com/hashicorp/terraform], under `website/docs`:
+- [hashicorp/terraform](https://github.com/hashicorp/terraform), under `website/docs`:
 
   - Terraform CLI docs
   - Terraform Language docs
 
   **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
-- [hashicorp/terraform-cdk][https://github.com/hashicorp/terraform-cdk], under `website/docs`:
+- [hashicorp/terraform-cdk](https://github.com/hashicorp/terraform-cdk), under `website/docs`:
 
   - Terraform CDK docs
 
   **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
-## Deploying Changes to [terraform.io][https://terraform.io]
+## Deploying Changes to [terraform.io](https://terraform.io)
 
 ### For changes in this repo
 
@@ -86,7 +86,7 @@ Instead of cherry-picking your commits to a specific version branch, you can add
 
 Currently, HashiCorp uses Vercel to deploy the [terraform.io](https://terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
-New commits in `hashicorp/terraform` and `hashicorp/terraform-cdk` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
+New commits in `hashicorp/terraform` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
 
 <!-- BEGIN: local-development -->
 <!-- Generated text, do not edit directly -->
@@ -122,7 +122,7 @@ Submodules are used in this project to allow teams that work on different parts 
 
 Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on [terraform.io](https://terraform.io).)
 
-In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git init submodule`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
+In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git submodule init`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
 
 Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. You also need to update the submodule every time changes are made to the upstream repo that the submodule represents.
 

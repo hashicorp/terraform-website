@@ -545,3 +545,11 @@ $ curl \
   --request DELETE \
   https://app.terraform.io/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd
 ```
+
+### Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
+
+| Resource Name  | Description                                 |
+| -------------- | ------------------------------------------- |
+| `workspaces`   | The workspaces attached to this agent pool. |

@@ -1,0 +1,8 @@
+[
+  { "heading": "Other Plugin Docs" },
+  { "title": "Plugin Development", "href": "/plugin" },
+  { "title": "SDKv2", "href": "/plugin/sdkv2" },
+  { "title": "Framework", "href": "/plugin/framework" },
+  { "title": "Logging", "href": "/plugin/log" },
+  { "title": "Combining and Translating", "href": "/plugin/mux" }
+]

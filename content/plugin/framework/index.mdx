@@ -7,10 +7,9 @@ description: |-
 
 # Terraform Plugin Framework
 
-The plugin framework is a new way to develop Terraform plugins, providing improvements and new features from [Teraform Plugin SDKv2](/plugin/sdkv2/sdkv2-intro).
+The plugin framework is a new way to develop Terraform Plugins on [protocol version 6](/plugin/how-terraform-works#protocol-version-6). It offers improvements and new features from [Teraform Plugin SDKv2](/plugin/sdkv2).
 
-~> **Important**: HashiCorp is currently developing providers against the framework, but it is still early in its development cycle. Its interfaces are subject to change and it may not yet support all of your desired features. It can also only build providers that require **Terraform CLI v1.0 or later**.
-[Which SDK Should I Use?](/plugin/which-sdk) can help you decide whether the framework is right for your provider.
+~> **Important**: [Which SDK Should I Use?](/plugin/which-sdk) explains the differences between [Teraform Plugin SDKv2](/plugin/sdkv2) and Terraform Plugin Framework to help you decide which option is right for your provider.
 
 ## Get Started
 
@@ -28,3 +27,8 @@ The plugin framework is a new way to develop Terraform plugins, providing improv
 
 - Learn to write [acceptance tests](/plugin/framework/acctests) for your provider.
 - Learn to [publish your provider](/registry/providers/publishing) to the Terraform Registry.
+
+## Combine or Translate
+
+* [Combine your provider](/plugin/mux/combining-protocol-version-6-providers) with other [protocol version 6](/plugin/how-terraform-works#protocol-version-6) providers.
+* [Translate your provider](/plugin/mux/translating-protocol-version-6-to-5) into a [protocol version 5](/plugin/how-terraform-works#protocol-version-5) provider for compatibility with Terraform 0.12 and later. [Protocol version 6](/plugin/how-terraform-works#protocol-version-6) features cannot be used.

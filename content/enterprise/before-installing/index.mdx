@@ -45,10 +45,6 @@ The operational mode is selected at install time and cannot be changed once Terr
    etc. This option is best for users with experience mounting performant
    block storage.
 
-1. _Demo_ - This mode stores all data on the instance. The data can be
-   backed up with the snapshot mechanism for restore later. This option is best for initial
-   installation and testing, and is not recommended or supported for true production use.
-
 The decision you make will be entered during setup.
 
 ## Credentials
@@ -130,9 +126,11 @@ See [Network Requirements](/enterprise/before-installing/network-requirements) f
 
 Terraform Enterprise requires **at least one** of the following Docker Engine configurations, in order of preference:
 
-1. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
-1. Docker Engine 20.10.x with `libseccomp` 2.4.4 or greater.
-1. Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
+1. 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
+1. 20.10.x with `libseccomp` 2.4.4 or greater.
+1. 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a [modified `libseccomp` profile](https://www.terraform.io/enterprise/before-installing#option-2-docker-engine-with-a-compatible-libseccomp-version).
+
+If you are installing on RHEL7, you can use Docker Engine 1.13.1 from the Extra Packages for Enterprise Linux (EPEL) repository, with a [modified `libseccomp` profile](https://www.terraform.io/enterprise/before-installing#option-2-docker-engine-with-a-compatible-libseccomp-version).
 
 Refer to the sections below for instructions on how to verify your Docker Engine configuration.
 
@@ -346,7 +344,7 @@ You can use Terraform Enterprise's instance profile to provide default credentia
 
 Terraform Enterprise supports SELinux running in enforcing mode when certain requirements are met. These requirements vary depending on the type of Terraform Enterprise installation.
 
-For _External Services_ and _Demo_ installations, you must install the latest version of the `container-selinux` package.
+For _External Services_ installations, you must install the latest version of the `container-selinux` package.
 
 For _Mounted Disk_ installations, you must:
 

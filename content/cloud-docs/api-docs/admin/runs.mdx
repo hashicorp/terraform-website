@@ -66,14 +66,6 @@ This endpoint lists all runs in the Terraform Enterprise installation.
 
 A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project) and repository in your VCS provider.
 
-### Available Related Resources
-
-This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
-
-| Resource Name            | Description                                   |
-| ------------------------ | --------------------------------------------- |
-| `workspace`              | The workspace this run belongs in.            |
-| `workspace.organization` | The organization of the associated workspace. |
 
 ### Sample Request
 
@@ -219,3 +211,13 @@ curl \
   }
 }
 ```
+
+### Available Related Resources
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
+
+| Resource Name                   | Description                                                       |
+| ------------------------------- | ----------------------------------------------------------------- |
+| `workspace`                     | The workspace this run belongs in.                                |
+| `workspace.organization`        | The organization of the associated workspace.                     |
+| `workspace.organization.owners` | The owners of the organization of the associated workspace.       |
