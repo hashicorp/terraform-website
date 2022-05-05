@@ -10,9 +10,10 @@ import path from 'path'
 //  Configure the docs path
 const BASE_ROUTE = 'plugin/mux'
 // const NAV_DATA = 'data/plugin-mux-nav-data.json'
+const NAV_DATA_PREFIX = 'plugin-mux'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
-  'plugin-mux' + '-nav-data.json'
+  NAV_DATA_PREFIX + '-nav-data.json'
 )
 // const CONTENT_DIR = 'content/plugin/mux'
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
@@ -56,6 +57,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         basePath: BASE_ROUTE,
+        navDataPrefix: NAV_DATA_PREFIX,
         product: SOURCE_REPO,
       }
 )
