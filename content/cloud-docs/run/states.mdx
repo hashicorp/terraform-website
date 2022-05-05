@@ -46,7 +46,26 @@ _Leaving this stage:_
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-## 3. The Cost Estimation Stage
+## 3. The Post-Plan Stage
+
+The post-plan phase executes any configured run tasks after the plan is complete, so it only occurs if there are [run tasks](/cloud-docs/workspaces/settings/run-tasks) enabled
+for the workspace. All runs can enter this phase, including [speculative plans](/cloud-docs/run/#speculative-plans). During this phase, Terraform Cloud sends information about the run to the configured external system and waits for a `passed` or `failed` response to determine whether the run can continue.
+
+-> **Note:** The information sent to the configured external system includes the [JSON output](/internals/json-format) of the Terraform plan.
+
+_States in this stage:_
+
+- **Running tasks:** Terraform Cloud is waiting for a response from the configured external system(s).
+  - External systems must respond initially with a `200 OK` acknowledging the request is in progress. After that, they have 10 minutes to return a status of `passed`, `running`, or `failed`, or the timeout will expire and the task will be assumed to be in the `failed` status.
+
+_Leaving this stage:_
+
+- If any mandatory tasks failed, the run skips to completion (**Plan Errored** state).
+- If any advisory tasks failed, the run proceeds to the **Applying** state, with a visible warning regarding the failed task.
+- If a combination of mandatory and advisory tasks are configured for a single run, Terraform will take the most restrictive action. This means that if there are two advisory tasks that succeed and one mandatory task that failed, the run will fail. If one mandatory task succeeds and two advisory tasks fail, the run will succeed with a warning.
+- If a user canceled the run, the run ends in the **Canceled** state.
+
+## 4. The Cost Estimation Stage
 
 This stage only occurs if cost estimation is enabled. After a successful `terraform plan`, Terraform Cloud uses plan data to estimate costs for each resource found in the plan.
 
@@ -60,7 +79,7 @@ _Leaving this stage:_
 - If cost estimation succeeded or errors, the run moves to the next stage.
 - If there are no policy checks or applies, the run does not continue (**Planned and Finished** state).
 
-## 4. The Policy Check Stage
+## 5. The Policy Check Stage
 
 This stage only occurs if [Sentinel policies][] are enabled. After a successful `terraform plan`, Terraform Cloud checks whether the plan obeys policy to determine whether it can be applied.
 
@@ -86,7 +105,7 @@ _Leaving this stage:_
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-## 5. The Apply Stage
+## 6. The Apply Stage
 
 _States in this stage:_
 
@@ -100,7 +119,7 @@ After applying, the run proceeds automatically to completion.
 - If the apply failed, the run ends in the **Apply Errored** state.
 - If a user canceled the apply by pressing the "Cancel Run" button, the run ends in the **Canceled** state.
 
-## 6. Completion
+## 7. Completion
 
 A run is considered completed if it finishes applying, if any part of the run fails, if there's nothing to do, or if a user chooses not to continue. Once a run is completed, the next run in the queue can enter the plan stage.
 
