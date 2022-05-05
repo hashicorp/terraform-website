@@ -11,10 +11,10 @@ import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin/log'
-// const NAV_DATA = 'data/plugin-log-nav-data.json'
+const NAV_DATA_PREFIX = 'plugin-log'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
-  'plugin-log' + '-nav-data.json'
+  NAV_DATA_PREFIX + '-nav-data.json'
 )
 // const CONTENT_DIR = 'content/plugin/log'
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
@@ -64,6 +64,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         basePath: BASE_ROUTE,
+        navDataPrefix: NAV_DATA_PREFIX,
         product: SOURCE_REPO,
       }
 )
