@@ -281,6 +281,8 @@ Agents in the **Unknown** state continue to be counted against the organization'
 
 Agents may have an **Unknown** status if they are terminated without gracefully exiting. Agents should always be shut down according to the [Stopping the Agent](#stopping-the-agent) section to allow them to deregister from Terraform Cloud. We strongly recommend ensuring that any process supervisor, application scheduler, or other runtime manager is configured to follow this procedure to minimize **Unknown** agent statuses.
 
+You can deregister agents that are **Unknown**, **Errored**, or **Exited** through either the **Organization Settings > Agents** page or through the [Agent API](/cloud-docs/api-docs/agents#delete-an-agent). Deregistered agents will no longer appear in settings page or count against the organization's agent allowance.
+
 ### Viewing Agent Logs
 
 Output from the Terraform execution will be visible on the run’s page within Terraform Cloud. For more in-depth debugging, you may wish to view the agent’s logs, which are sent to `stdout` and configurable via the `-log-level` command line argument. By default, these logs are not persisted in any way. It is the responsibility of the operator to collect and store these logs if they are needed.
