@@ -89,7 +89,8 @@ $ curl \
         "variables": "none",
         "state-versions": "none",
         "sentinel-mocks": "none",
-        "workspace-locking": false
+        "workspace-locking": false,
+        "run-tasks": false
       },
       "relationships": {
         "team": {
@@ -160,7 +161,8 @@ $ curl \
       "variables": "write",
       "state-versions": "write",
       "sentinel-mocks": "read",
-      "workspace-locking": true
+      "workspace-locking": true,
+      "run-tasks": false
     },
     "relationships": {
       "team": {
@@ -214,6 +216,7 @@ Properties without a default value are required.
 | `data.attributes.state-versions`         | string  | "none"  | If `access` is `custom`, the permission to grant for the workspace's state versions. Can only be used when `access` is `custom`. Valid values include `none`, `read-outputs`, `read`, or `write`. |
 | `data.attributes.sentinel-mocks`         | string  | "none"  | If `access` is `custom`, the permission to grant for the workspace's Sentinel mocks. Can only be used when `access` is `custom`. Valid values include `none`, or `read`.                          |
 | `data.attributes.workspace-locking`      | boolean | false   | If `access` is `custom`, the permission granting the ability to manually lock or unlock the workspace. Can only be used when `access` is `custom`.                                                |
+| `data.attributes.run-tasks`              | boolean | false   | If `access` is `custom`, this permission allows the team to manage run tasks within the workspace.                                                                                                |
 | `data.relationships.workspace.data.type` | string  |         | Must be `workspaces`.                                                                                                                                                                             |
 | `data.relationships.workspace.data.id`   | string  |         | The workspace ID to which the team is to be added.                                                                                                                                                |
 | `data.relationships.team.data.type`      | string  |         | Must be `teams`.                                                                                                                                                                                  |
@@ -231,7 +234,8 @@ Properties without a default value are required.
       "state-versions": "read-outputs",
       "plan-outputs": "none",
       "sentinel-mocks": "read",
-      "workspace-locking": false
+      "workspace-locking": false,
+      "run-tasks": false
     },
     "relationships": {
       "workspace": {
@@ -276,7 +280,8 @@ $ curl \
       "variables": "none",
       "state-versions": "read-outputs",
       "sentinel-mocks": "read",
-      "workspace-locking": false
+      "workspace-locking": false,
+      "run-tasks": false
     },
     "relationships": {
       "team": {
@@ -324,6 +329,7 @@ $ curl \
 | `data.attributes.state-versions`    | string  | "none" | If `access` is `custom`, the permission to grant for the workspace's state versions. Can only be used when `access` is `custom`.                   |
 | `data.attributes.sentinel-mocks`    | string  | "none" | If `access` is `custom`, the permission to grant for the workspace's Sentinel mocks. Can only be used when `access` is `custom`.                   |
 | `data.attributes.workspace-locking` | boolean | false  | If `access` is `custom`, the permission granting the ability to manually lock or unlock the workspace. Can only be used when `access` is `custom`. |
+| `data.attributes.run-tasks`         | boolean | false  | If `access` is `custom`, this permission allows the team to manage run tasks within the workspace.                                                 |
 
 ### Sample Request
 
@@ -362,7 +368,8 @@ $ curl \
       "variables": "write",
       "state-versions": "none",
       "sentinel-mocks": "read",
-      "workspace-locking": true
+      "workspace-locking": true,
+      "run-tasks": true
     },
     "relationships": {
       "team": {
