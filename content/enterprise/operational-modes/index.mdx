@@ -1,7 +1,7 @@
 ---
 page_title: Operational Modes - Terraform Enterprise
 description: >-
-  TODO
+  Learn about the different operational modes of Terraform Enterprise.
 ---
 
 # Terraform Enterprise Operational Modes
@@ -38,34 +38,40 @@ You are responsible for providing and maintaining the persistent storage.
 
 Configuration data is stored on a Docker volume on the instance. You can retrieve this information using `replicatedctl app-config export`.
 
-The Mounted Disk operational mode is best when you:
+### When to Use Mounted Disk
 
-- Want PostgreSQL Database and Object Storage data to persist even if the instance is terminated.
-- Have experience managing persistent storage such as an AWS EBS volume, an Azure Managed Disk, a Google Cloud Persistent Disk, an iSCSI location, etc.
-- Do not have access to an external PostgreSQL server or S3-compatible object storage.
+Mounted Disk is recommended when:
+
+- Running Terraform Enterprise in an environment that does not have an external PostgreSQL server or S3-compatible object storage.
+- You have experience managing persistent storage such as an AWS EBS volume, an Azure Managed Disk, a Google Cloud Persistent Disk, an iSCSI location, etc.
+- Are familiar with using tools like `cp`, `scp`, and `rsync` to backup and restore data.
 
 ## External Services
 
-The External Services operational mode stores the PostgreSQL Database and Object Storage data on an external PostgreSQL server and S3-compatible object storage. This allows you to backup and restore the PostgreSQL Database or Object Storage independently of the Terraform Enterprise instance.
+The External Services operational mode stores the PostgreSQL Database and Object Storage data on an external PostgreSQL server and S3-compatible object storage. This allows you to backup, restore, and scale the PostgreSQL Database or Object Storage independently of the Terraform Enterprise instance.
 
 You are responsible for providing and maintaining the external PostgreSQL server and S3-compatible object storage.
 
 Configuration data is stored on a Docker volume on the instance. You can retrieve this information using `replicatedctl app-config export`.
 
-The External Services operational mode is best when you:
+### When to Use External Services
 
-- Want PostgreSQL Database and Object Storage data to persist even if the instance is terminated.
-- Have experience managing a PostgreSQL server such as Amazon RDS for PostgreSQL, Google Cloud SQL for PostgreSQL, Azure Database for PostgreSQL, etc.
-- Have experience managing an S3-compatible object storage location such as AWS S3, Azure Blob Storage, Google Cloud Storage, MinIO, etc.
+External Services is recommended when:
+
+- Running Terraform Enterprise in environment that has an external PostgreSQL server or S3-compatible object storage.
+- You have experience managing a PostgreSQL server such as Amazon RDS for PostgreSQL, Google Cloud SQL for PostgreSQL, Azure Database for PostgreSQL, etc.
+- You have experience managing an S3-compatible object storage location such as AWS S3, Azure Blob Storage, Google Cloud Storage, MinIO, etc.
 - Want to use native backup and restore features provided by the external PostgreSQL server and S3-compatible object storage.
 
 ## External Vault
 
 Terraform Enterprise automatically creates an internally-managed Vault server that stores its data in the PostgreSQL Database. We strongly recommend that organizations use this internally-managed Vault server. However, some organizations have specific requirements around data encryption and auditing. Those organizations can configure Terraform Enterprise to use an external Vault server rather than the internally-managed Vault server.
 
-~> **Important:** TODO
+!> **Warning:** When using external Vault, you assume full responsibility for the Vault server. That includes sealing, unsealing, replication, etc. Do not use external Vault unless you have experience managing Vault in production.
 
-!> **Warning:** TODO
+!> **Warning:** Multiple Terraform Enterprise instances cannot use the same external Vault server unless they are a part of an Active/Active installation. Doing so will result in data loss.
+
+~> **Important:** External Vault must be configured during initial installation and can only be changed using the [backup and restore API](/enterprise/admin/infrastructure/backup-restore).
 
 ### External Vault Configuration
 
