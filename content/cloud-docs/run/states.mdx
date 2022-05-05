@@ -55,7 +55,7 @@ for the workspace. All runs can enter this phase, including [speculative plans](
 
 _States in this stage:_
 
-- **Running tasks:** Terraform Cloud is currently waiting for a response from the configured external system(s).
+- **Running tasks:** Terraform Cloud is waiting for a response from the configured external system(s).
   - External systems must respond initially with a `200 OK` acknowledging the request is in progress. After that, they have 10 minutes to return a status of `passed`, `running`, or `failed`, or the timeout will expire and the task will be assumed to be in the `failed` status.
 
 _Leaving this stage:_
