@@ -23,25 +23,12 @@ Terraform Enterprise data utilizes the following types of data:
 
 ## Operational Modes
 
-The table below lists each operational mode and where it stores each type of data.
+The following table lists each operational mode and where it stores each type of data.
 
 | Operational Mode                        | PostgreSQL Database                                                              | Object Storage                                                                  | Vault                                                                             | Configuration                              |
 | --------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------ |
-| [Demo](#demo)                           | Stored in a Docker volume on the instance.                                       | Stored in a Docker volume on the instance.                                      | Stored in the PostgreSQL Database unless using [External Vault](#external-vault). | Stored in a Docker volume on the instance. |
 | [Mounted Disk](#mounted-disk)           | Stored in a directory on the instance backed by user-managed persistent storage. | Stored in a directory on the instance backed by user-managed persisent storage. | Stored in the PostgreSQL Database unless using [External Vault](#external-vault). | Stored in a Docker volume on the instance. |
 | [External Services](#external-services) | Stored in an external user-managed PostgreSQL database.                          | Stored in an external user-managed object storage location.                     | Stored in the PostgreSQL Database unless using [External Vault](#external-vault). | Stored in a Docker volume on the instance. |
-
-## Demo
-
-!> **Warning:** Do not use the Demo operational mode in a production environment. Terraform Enterprise data is lost when the instance terminates.
-
-The Demo operational mode stores all data (PostgreSQL Database, Object Storage, Configuration) in Docker volumes on the instance. This allows you to quickly deploy Terraform Enterprise without any additional infrastructure. However, when the instance terminates, all data is lost.
-
-The Demo operational mode is best when you:
-
-- Are okay with all the data being lost when the instance terminates.
-- Are deploying Terraform Enterprise to a non-production, proof of concept environment.
-- Do not want to manage additional infrastructure besides an instance.
 
 ## Mounted Disk
 
@@ -82,7 +69,7 @@ Terraform Enterprise automatically creates an internally-managed Vault server th
 
 ### External Vault Configuration
 
-Execute the following commands against your external Vault server to configure it for use with Terraform Enterprise.
+Run the following commands to configure your external Vault server for use with Terraform Enterprise.
 
 1. Enable the AppRole Auth Method.
 
