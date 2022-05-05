@@ -9,10 +9,10 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin/sdkv2'
-// const NAV_DATA = 'data/plugin-sdk-nav-data.json'
+const NAV_DATA_PREFIX = 'plugin-sdk'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
-  'plugin-sdk' + '-nav-data.json'
+  NAV_DATA_PREFIX + '-nav-data.json'
 )
 
 // const CONTENT_DIR = 'content/plugin/sdkv2'
@@ -58,6 +58,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         basePath: BASE_ROUTE,
+        navDataPrefix: NAV_DATA_PREFIX,
         product: SOURCE_REPO,
       }
 )
