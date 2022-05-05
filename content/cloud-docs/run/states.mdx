@@ -48,11 +48,8 @@ _Leaving this stage:_
 
 ## 3. The Post-Plan Stage
 
-This phase only occurs if there are [run tasks](/cloud-docs/workspaces/settings/run-tasks) enabled
-for the workspace, and it executes any configured run tasks after the Plan has completed. This phase
-is entered for all runs, including [speculative](/cloud-docs/run/#speculative-plans) runs. During
-this phase, Terraform Cloud sends information about the run to the configured external system and
-waits for a `passed` or `failed` response to determine whether the run can continue.
+The post-plan phase executes any configured run tasks after the plan is complete, so it only occurs if there are [run tasks](/cloud-docs/workspaces/settings/run-tasks) enabled
+for the workspace. All runs can enter this phase, including [speculative plans](/cloud-docs/run/#speculative-plans). During this phase, Terraform Cloud sends information about the run to the configured external system and waits for a `passed` or `failed` response to determine whether the run can continue.
 
 -> **Note:** The information sent to the configured external system includes the [JSON output](/internals/json-format) of the Terraform plan.
 
