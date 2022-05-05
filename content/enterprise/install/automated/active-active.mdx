@@ -100,13 +100,13 @@ The existing settings for the Terraform Enterprise application (`ptfe-settings.j
 
 The settings for the Terraform Enterprise application must also be expanded to support an external Redis instance:
 
-| **Key**                   | **Required Value**                                                                                           | **Specific Format Required** |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------- |
-| redis_host                | Hostname of an external Redis instance which is resolvable from the TFE instance                             | **Yes**, string.             |
-| redis_port                | Port number of your external Redis instance                                                                  | **Yes**, string.             |
-| redis_use_password_auth\* | Set to ”1”, if you are using a Redis service that requires a password.                                       | **Yes**, string.             |
-| redis_pass\*              | _Must be set to the password of an external Redis instance if the instance requires password authentication_ | **Yes**, string.             |
-| redis_use_tls\*           | Set to “1” if you are using a Redis service that requires TLS                                                | **Yes**, string.             |
+| **Key**                   | **Required Value**                                                                | **Specific Format Required** |
+| ------------------------- | --------------------------------------------------------------------------------- | ---------------------------- |
+| redis_host                | Hostname of an external Redis instance which is resolvable from the TFE instance. | **Yes**, string.             |
+| redis_port                | Port number of your external Redis instance.                                      | **Yes**, string.             |
+| redis_use_password_auth\* | Set to `1`, if you are using a Redis service that requires a password.            | **Yes**, string.             |
+| redis_pass\*              | Password used to authenticate to Redis.                                           | **Yes**, string.             |
+| redis_use_tls\*           | Set to `1` if you are using a Redis service that requires TLS.                    | **Yes**, string.             |
 
 _\* Fields marked with an asterisk are only necessary if your particular external Redis instance requires them._
 
@@ -132,6 +132,8 @@ For example:
 }
 
 ```
+
+-> **Note:** To use in-transit encryption with GCP Memorystore for Redis you must [download the CA certificate](https://cloud.google.com/memorystore/docs/redis/enabling-in-transit-encryption#downloading_the_certificate_authority) for your Redis instance and configure it within the `ca_certs` Terraform Enterprise application setting.
 
 ##### Add Encryption Password
 
