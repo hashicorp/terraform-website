@@ -193,6 +193,10 @@
             "path": "users-teams-organizations/single-sign-on/saml"
           },
           {
+            "title": "Linking User Account",
+            "path": "users-teams-organizations/single-sign-on/linking-user-account"
+          },
+          {
             "title": "Testing",
             "path": "users-teams-organizations/single-sign-on/testing"
           }
