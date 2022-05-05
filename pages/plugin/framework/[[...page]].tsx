@@ -9,10 +9,10 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin/framework'
-// const NAV_DATA = 'data/plugin-framework-nav-data.json'
+const NAV_DATA_PREFIX = 'plugin-framework'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
-  'plugin-framework' + '-nav-data.json'
+  NAV_DATA_PREFIX + '-nav-data.json'
 )
 
 // const CONTENT_DIR = 'content/plugin/framework'
@@ -57,6 +57,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         basePath: BASE_ROUTE,
+        navDataPrefix: NAV_DATA_PREFIX,
         product: SOURCE_REPO,
       }
 )
