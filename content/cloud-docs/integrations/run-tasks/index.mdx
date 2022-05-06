@@ -72,7 +72,7 @@ Here's what the data flow looks like:
 
 ## Securing your Run Task
 
-When creating your run task, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-task-signature` header when calling your service.
+When creating your run task, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `X-Tfc-Task-Signature` header when calling your service.
 
 The signature is a sha512 sum of the webhook body using the provided HMAC key. The generation of the signature depends on your implementation, however an example of how to generate a signature in bash is provided below.
 
