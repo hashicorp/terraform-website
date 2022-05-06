@@ -117,16 +117,6 @@
     ]
   },
   {
-    "title": "Terraform Cloud Agents",
-    "routes": [
-      { "title": "Overview", "path": "agents" },
-      { "title": "Telemetry", "path": "agents/telemetry" },
-      { "title": "Monitoring", "path": "agents/monitoring" },
-      { "title": "Hooks", "path": "agents/hooks" },
-      { "title": "Changelog", "path": "agents/changelog" }
-    ]
-  },
-  {
     "title": "Private Registry",
     "routes": [
       { "title": "Overview", "path": "registry" },
@@ -378,7 +368,10 @@
       },
       { "title": "Runs", "path": "api-docs/run" },
       { "title": "Run Tasks", "path": "api-docs/run-tasks" },
-      { "title": "Run Tasks Integration", "path": "api-docs/run-tasks-integration" },
+      {
+        "title": "Run Tasks Integration",
+        "path": "api-docs/run-tasks-integration"
+      },
       { "title": "Run Triggers", "path": "api-docs/run-triggers" },
       { "title": "SSH Keys", "path": "api-docs/ssh-keys" },
       {
@@ -506,6 +499,23 @@
       }
     ]
   },
+  { "divider": true },
+  {
+    "title": "Terraform Cloud Agents",
+    "href": "/cloud-docs/agents"
+  },
+  {
+    "title": "Terraform Cloud Agents",
+    "hidden": true,
+    "routes": [
+      { "title": "Overview", "path": "agents" },
+      { "title": "Telemetry", "path": "agents/telemetry" },
+      { "title": "Monitoring", "path": "agents/monitoring" },
+      { "title": "Hooks", "path": "agents/hooks" },
+      { "title": "Changelog", "path": "agents/changelog" }
+    ]
+  },
+  { "divider": true },
   { "heading": "Terraform Enterprise" },
   { "title": "Deployment & Operation", "href": "/enterprise" }
 ]
