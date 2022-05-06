@@ -15,34 +15,40 @@ description: >-
 
 Organizations are a shared space for one or more [teams][] to collaborate on workspaces.
 
--> **API:** Refer to the [Organizations API](/cloud-docs/api-docs/organizations). <br/>
-**Terraform:** Refer to the `tfe` provider's [`tfe_organization`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/organization) resource.
+## API and Terraform Enterprise Provider
+
+In addition to the Terraform Cloud UI, you can use the following methods to manage organizations:
+- [Organizations API](/cloud-docs/api-docs/organizations)
+- The `tfe` provider [`tfe_organization`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/organization) resource
 
 ## Selecting Organizations
 
-On most pages within Terraform Cloud, the top navigation bar displays the name of the selected organization. Clicking the name reveals the organization switcher menu, which lists all of the organizations you belong to. You can switch to another organization by clicking its name, or you can create a new organization with the "Create new organization" button.
+Terraform Cloud displays your current organization in the left of the top navigation bar. To select an organization:
 
-![screenshot: the organization switcher menu](/img/docs/org-nav.png)
+- Click the current organization name to view a list of all the organizations where you are a member.
+- Click an organization to select it.
 
 ## Joining and Leaving Organizations
 
-To join an organization, you must be invited by one of its [owners][] and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.
+To join an organization, you must be invited by one of its [owners][] and must accept the emailed invitation. Refer to [Organization Settings: Users](#users) for details.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-You can leave an organization from your user account settings. See [User Settings: Organizations](/cloud-docs/users-teams-organizations/users#organizations) for details.
+You can leave an organization from your user account settings. Refer to [User Settings: Organizations](/cloud-docs/users-teams-organizations/users#organizations) for details.
 
 ## Creating Organizations
 
-Users can create new organizations by clicking the "Create new organization" button in the organization switcher menu. The new organization page also displays automatically when the currently logged-in user does not belong to any organizations, as when first logging in as a new user.
+On Terraform Enterprise, administrators can restrict your ability to create organizations. Refer to [Administration: General Settings](/enterprise/admin/application/general#organization-creation) for details.
 
-![screenshot: the new organization page](/img/docs/org-new.png)
+On Terraform Cloud, any user can create a new organization. If you do not belong to any organizations, Terraform Cloud prompts you to create one the first time you log in. Otherwise, to create an organization:
 
-To create a new organization, provide a unique name and a primary contact email address. Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
+1. Click the current organization name and select **Create new organization**. The **Create a new organization** page appears.
+1. Enter a unique **Organization name** Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
+1. Provide an **Email address** where you will receive notifictions about the organization.
+1. Click **Create organization**.
 
-Once you have created an organization, you can invite other users from your organization settings. [See below for more details.](#users)
+Terraform Cloud shows the new organization in the navigation bar and prompts you to create a new workspace. You can also [invite other users](#users) to join the organization.
 
--> **Note:** On the SaaS version of Terraform Cloud, any user can create a new organization. On Terraform Enterprise, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/enterprise/admin/application/general#organization-creation) for more details.
 
 ## Organization Settings
 
@@ -136,58 +142,48 @@ Organizations can have a special API token that is not associated with a specifi
 
 ### Authentication
 
-The authentication page allows owners to determine when users must reauthenticate. It also allows owners to require [two-factor authentication](/cloud-docs/users-teams-organizations/2fa) for all members of the organization.
+Available to members of the `owners` team. Determine when users must reauthenticate and require [two-factor authentication](/cloud-docs/users-teams-organizations/2fa) for all members of the organization.
 
 ### SSH Keys
 
-The SSH keys page manages any keys necessary for cloning Git-based module sources during Terraform runs. It does not manage keys used for accessing a connected VCS provider. See [SSH Keys for Cloning Modules](/cloud-docs/workspaces/settings/ssh-keys) for more information.
+Manage [SSH keys for cloning Git-based modules]((/cloud-docs/workspaces/settings/ssh-keys)) during Terraform runs. This does not include keys to access a connected VCS provider.
 
 ### Cost Estimation
 
--> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** package. Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
-The Cost Estimation page allows for enabling and disabling the [cost estimation](/cloud-docs/cost-estimation) feature for all workspaces.
+Enable and disable the [cost estimation](/cloud-docs/cost-estimation) feature for all workspaces.
 
 ### Policies
 
-The policies page is a deprecated interface for managing Sentinel policies. Use the policy sets page instead.
+This is a deprecated interface for managing Sentinel policies. Use the policy sets page instead.
 
 ### Policy Sets
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** package. Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
-The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces. It is available to users with permission to manage policies. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+Create groups of [Sentinel policies](/cloud-docs/sentinel) from a connected VCS repository and assign those policy sets to workspaces. Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. You must have [permission to manage policies](/cloud-docs/users-teams-organizations/permissions).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](/cloud-docs/sentinel) for more information about Sentinel, or [Managing Sentinel Policies](/cloud-docs/sentinel/manage-policies) for details about these two settings pages.
 
 ### Run Tasks
 
--> **Note:** As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
-
-Run tasks let you integrate third-party tools and services at specific stages in the Terraform Cloud run lifecycle. The Run Tasks page is for managing the tasks which are available for workspaces to consume.
-
-Refer to [Run Tasks](/cloud-docs/workspaces/settings/run-tasks) for more information.
+Manage the run tasks that you can add to workspaces within the organization. [Run tasks](/cloud-docs/workspaces/settings/run-tasks) let you integrate third-party tools and services at specific stages in the Terraform Cloud run lifecycle.
 
 ### VCS Providers
 
-The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+Configure [VCS providers](/cloud-docs/vcs) to use in the organization. You must have [permission to manage VCS settings](/cloud-docs/users-teams-organizations/permissions).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-See [Connecting VCS Providers](/cloud-docs/vcs) for more information.
-
 ## Trial Expired Organizations
 
-Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a HashiCorp Sales Representative, please ask them about how to get a free trial.
+Terraform Cloud paid features are available as a free trial. If you are working with a HashiCorp Sales Representative, ask them how to get a free trial.
 
-When a free trial has expired, the organization displays a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
+When a free trial has expired, the organization displays a banner reading **TRIAL EXPIRED — Upgrade Required** in the top navigation bar.
 
-![screenshot: the trial expiration banner](/img/docs/org-inactive.png)
+Organizations with expired trials return to the feature set of a free organization, but they retain any data created as part of paid features. Specifically, Terraform Cloud performs the following actions:
 
-Organizations with expired trials return to the feature set of a free organization, but they retain any data created as part of paid features. Specifically:
-
-- Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade.
-- Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade.
-- Cost estimation is disabled.
+- Disables teams other than `owners` and locks users who do not belong to the `owners` team out of the organization. Terraform Cloud preserves team membership and permissions and re-enables them after you upgrade the organization.
+- Disables Sentinel policy checks. Terraform Cloud preserves existing policies and policy sets and re-enables them after you upgrade the organization.
+- Disables cost estimation.
