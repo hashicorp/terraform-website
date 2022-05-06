@@ -8,16 +8,15 @@ import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cloud-docs/agents'
-// const NAV_DATA = 'data/cloud-docs-agents-nav-data.json'
+const NAV_DATA_PREFIX = 'cloud-docs-agents'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
-  'cloud-docs-agents' + '-nav-data.json'
+  NAV_DATA_PREFIX + '-nav-data.json'
 )
 // const CONTENT_DIR = 'content/cloud-docs/agents'
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-// TODO (kevinwang): update to `terraform-docs-agents`
 const SOURCE_REPO = 'terraform-docs-agents'
 const DEFAULT_BRANCH = 'main'
 
@@ -49,11 +48,11 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         githubFileUrl(filepath) {
           // This path rewriting is meant for local preview from `terraform`.
           filepath = filepath.replace('preview/', '')
-          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/${DEFAULT_BRANCH}/website/${filepath}`
+          return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/website/${filepath}`
         },
         remarkPlugins: (params) => [
           remarkRewriteAssets({
-            product: PRODUCT.slug,
+            product: SOURCE_REPO,
             version: process.env.CURRENT_GIT_BRANCH,
             getAssetPathParts: (nodeUrl) => [nodeUrl],
           }),
@@ -62,7 +61,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         basePath: BASE_ROUTE,
-        product: PRODUCT.slug,
+        navDataPrefix: NAV_DATA_PREFIX,
+        product: SOURCE_REPO,
       }
 )
 export { getStaticPaths, getStaticProps }
