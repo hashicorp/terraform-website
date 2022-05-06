@@ -3,14 +3,6 @@ page_title: API Changelog - API Docs - Terraform Cloud and Terraform Enterprise
 page_id: api-changelog
 ---
 
-[breaking]: /img/docs/breaking.png "Breaking"
-
-[cloud]: /img/docs/cloud.png "Cloud"
-
-[deprecation]: /img/docs/deprecation.png "Deprecation"
-
-[enterprise]: /img/docs/enterprise.png "Enterprise"
-
 # API Changelog
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
@@ -63,7 +55,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-08-11
 
-* ![breaking][] Security fix to [Configuration versions](/cloud-docs/api-docs/configuration-versions): upload-url attribute for [uploading configuration files](/cloud-docs/api-docs/configuration-versions#upload-configuration-files) is now only available on the create response.
+* **BREAKING CHANGE:** Security fix to [Configuration versions](/cloud-docs/api-docs/configuration-versions): upload-url attribute for [uploading configuration files](/cloud-docs/api-docs/configuration-versions#upload-configuration-files) is now only available on the create response.
 
 ### 2021-07-30
 
@@ -91,8 +83,8 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
   * added `organization_name` scoped APIs.
   * added [Module List API](/cloud-docs/api-docs/modules#list-registry-modules-for-an-organization).
   * updated [Module Delete APIs](/cloud-docs/api-docs/modules#delete-a-module) (see deprecation note below).
-  * ![cloud][] added public registry module related APIs.
-* ![deprecation] \[] The following [Registry Module APIs](/cloud-docs/api-docs/modules) have been replaced with newer apis and will be removed in the future.
+  * **CLOUD**: added public registry module related APIs.
+* **DEPRECATION**: The following [Registry Module APIs](/cloud-docs/api-docs/modules) have been replaced with newer apis and will be removed in the future.
   * The following endpoints to delete modules are replaced with [Module Delete APIs](/cloud-docs/api-docs/modules#delete-a-module)
     * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
     * `POST /registry-modules/actions/delete/:organization_name/:name/:provider` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
@@ -103,7 +95,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-05-27
 
-* ![cloud][] [Agents](/cloud-docs/api-docs/agents): added [delete endpoint](/cloud-docs/api-docs/agents#delete-an-agent).
+* **CLOUD**: [Agents](/cloud-docs/api-docs/agents): added [delete endpoint](/cloud-docs/api-docs/agents#delete-an-agent).
 
 ### 2021-05-19
 
@@ -123,18 +115,18 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-03-23
 
-* ![enterprise][] `v202103-1` Introduced [Share Modules Across Organizations with Terraform Enterprise](https://www.hashicorp.com/blog/share-modules-across-organizations-terraform-enterprise).
+* **ENTERPRISE**: `v202103-1` Introduced [Share Modules Across Organizations with Terraform Enterprise](https://www.hashicorp.com/blog/share-modules-across-organizations-terraform-enterprise).
   * [Admin Organizations](/cloud-docs/api-docs/admin/organizations):
     * added new query parameters to [List all Organizations endpoint](/cloud-docs/api-docs/admin/organizations#query-parameters)
     * added module-consumers link in `relationships` response
     * added [update module consumers endpoint](/cloud-docs/api-docs/admin/organizations#update-an-organization-39-s-module-consumers)
     * added [list module consumers endpoint](/cloud-docs/api-docs/admin/organizations#list-module-consumers-for-an-organization)
   * [Organizations](/cloud-docs/api-docs/organizations): added [Module Producers](/cloud-docs/api-docs/organizations#show-module-producers)
-  * ![deprecation][] [Admin Module Sharing](/cloud-docs/api-docs/admin/module-sharing): is replaced with a new JSON::Api compliant [endpoint](/cloud-docs/api-docs/admin/organizations#update-an-organization-39-s-module-consumers)
+  * **DEPRECATION**: [Admin Module Sharing](/cloud-docs/api-docs/admin/module-sharing): is replaced with a new JSON::Api compliant [endpoint](/cloud-docs/api-docs/admin/organizations#update-an-organization-39-s-module-consumers)
 
 ### 2021-03-18
 
-* ![cloud][] Introduced [New Workspace Overview for Terraform Cloud](https://www.hashicorp.com/blog/new-workspace-overview-for-terraform-cloud).
+* **CLOUD**: Introduced [New Workspace Overview for Terraform Cloud](https://www.hashicorp.com/blog/new-workspace-overview-for-terraform-cloud).
   * [Workspaces](/cloud-docs/api-docs/workspaces):
     * added `resource-count` and `updated-at` attributes.
     * added [performance attributes](/cloud-docs/api-docs/workspaces#workspace-performance-attributes) (`apply-duration-average`, `plan-duration-average`, `policy-check-failures`, `run-failures`, `workspaces-kpis-run-count`).
