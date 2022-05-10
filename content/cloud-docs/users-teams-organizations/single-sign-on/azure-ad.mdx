@@ -82,6 +82,8 @@ To configure team management in your Microsoft Azure AD application:
 1. Edit step 2, "User Attributes & Claims."
    We recommend naming it "MemberOf", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
 
+-> **Note:** When Azure AD is configured to use Group Claims, it provides Group UUIDs instead of human readable names in its SAML assertions. We recommend [configuring SSO Team IDs](/cloud-docs/users-teams-organizations/single-sign-on#team-names-and-sso-team-ids) for your Terraform Cloud teams to match these Azure Group UUIDs.
+
 If you plan to make use of SAML to set usernames in your Microsoft Azure AD application:
 
 1. Navigate to the single sign-on page.
