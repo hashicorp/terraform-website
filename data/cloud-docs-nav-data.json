@@ -278,7 +278,7 @@
         ]
       },
       {
-        "title": "Splunk integration",
+        "title": "Splunk Integration",
         "path": "integrations/splunk"
       },
       {
@@ -383,7 +383,7 @@
         "path": "api-docs/state-version-outputs"
       },
       { "title": "Subscriptions", "path": "api-docs/subscriptions" },
-      { "title": "Team Acccess", "path": "api-docs/team-access" },
+      { "title": "Team Access", "path": "api-docs/team-access" },
       { "title": "Team Membership", "path": "api-docs/team-members" },
       { "title": "Team Tokens", "path": "api-docs/team-tokens" },
       { "title": "Teams", "path": "api-docs/teams" },
