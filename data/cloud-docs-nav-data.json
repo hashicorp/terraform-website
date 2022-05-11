@@ -8,288 +8,8 @@
     "href": "https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS"
   },
   {
-    "title": "Migrating to Terraform Cloud",
+    "title": "Migrating Existing Resources",
     "path": "migrate"
-  },
-  {
-    "title": "VCS Integration",
-    "routes": [
-      { "title": "Overview", "path": "vcs" },
-      {
-        "title": "GitHub.com",
-        "path": "vcs/github-app"
-      },
-      { "title": "GitHub.com (OAuth)", "path": "vcs/github" },
-      {
-        "title": "GitHub Enterprise",
-        "path": "vcs/github-enterprise"
-      },
-      { "title": "GitLab.com", "path": "vcs/gitlab-com" },
-      { "title": "GitLab EE and CE", "path": "vcs/gitlab-eece" },
-      { "title": "Bitbucket Cloud", "path": "vcs/bitbucket-cloud" },
-      {
-        "title": "Bitbucket Server and Data Center",
-        "path": "vcs/bitbucket-server"
-      },
-      {
-        "title": "Azure DevOps Services",
-        "path": "vcs/azure-devops-services"
-      },
-      {
-        "title": "Azure DevOps Server",
-        "path": "vcs/azure-devops-server"
-      },
-      { "title": "Troubleshooting", "path": "vcs/troubleshooting" }
-    ]
-  },
-  {
-    "title": "Workspaces",
-    "routes": [
-      { "title": "Overview", "path": "workspaces" },
-      {
-        "title": "Creating Workspaces",
-        "path": "workspaces/creating"
-      },
-      { "title": "Naming", "path": "workspaces/naming" },
-      {
-        "title": "Terraform Configurations",
-        "path": "workspaces/configurations"
-      },
-      {
-        "title": "Variables",
-        "routes": [
-          { "title": "Overview", "path": "workspaces/variables" },
-          {
-            "title": "Managing Variables",
-            "path": "workspaces/variables/managing-variables"
-          }
-        ]
-      },
-      {
-        "title": "Settings",
-        "routes": [
-          { "title": "Overview", "path": "workspaces/settings" },
-          { "title": "VCS Connections", "path": "workspaces/settings/vcs" },
-          { "title": "Access", "path": "workspaces/settings/access" },
-          {
-            "title": "Notifications",
-            "path": "workspaces/settings/notifications"
-          },
-          {
-            "title": "SSH Keys for Modules",
-            "path": "workspaces/settings/ssh-keys"
-          },
-          {
-            "title": "Run Triggers",
-            "path": "workspaces/settings/run-triggers"
-          },
-          {
-            "title": "Run Tasks",
-            "path": "workspaces/settings/run-tasks"
-          }
-        ]
-      },
-      { "title": "Terraform State", "path": "workspaces/state" },
-      {
-        "title": "JSON Filtering",
-        "path": "workspaces/json-filtering"
-      }
-    ]
-  },
-  {
-    "title": "Terraform Runs and Remote Operations",
-    "routes": [
-      { "title": "Overview", "path": "run" },
-      { "title": "Viewing and Managing Runs", "path": "run/manage" },
-      { "title": "Run States and Stages", "path": "run/states" },
-      { "title": "Run Modes and Options", "path": "run/modes-and-options" },
-      { "title": "UI/VCS-driven Runs", "path": "run/ui" },
-      { "title": "API-driven Runs", "path": "run/api" },
-      { "title": "CLI-driven Runs", "path": "run/cli" },
-      {
-        "title": "The Run Environment",
-        "path": "run/run-environment"
-      },
-      {
-        "title": "Installing Software",
-        "path": "run/install-software"
-      }
-    ]
-  },
-  {
-    "title": "Private Registry",
-    "routes": [
-      { "title": "Overview", "path": "registry" },
-      {
-        "title": "Adding Public Providers and Modules",
-        "path": "registry/add"
-      },
-      {
-        "title": "Publishing Private Providers",
-        "path": "registry/publish-providers"
-      },
-      {
-        "title": "Publishing Private Modules",
-        "path": "registry/publish-modules"
-      },
-      { "title": "Using Providers and Modules", "path": "registry/using" },
-      {
-        "title": "Configuration Designer",
-        "path": "registry/design"
-      }
-    ]
-  },
-
-  {
-    "title": "Users, Teams, Organizations",
-    "routes": [
-      { "title": "Overview", "path": "users-teams-organizations" },
-      { "title": "Users", "path": "users-teams-organizations/users" },
-      { "title": "Teams", "path": "users-teams-organizations/teams" },
-      {
-        "title": "Organizations",
-        "path": "users-teams-organizations/organizations"
-      },
-      {
-        "title": "Permissions",
-        "path": "users-teams-organizations/permissions"
-      },
-
-      {
-        "title": "Two-factor Authentication",
-        "path": "users-teams-organizations/2fa"
-      },
-      {
-        "title": "API Tokens",
-        "path": "users-teams-organizations/api-tokens"
-      },
-      {
-        "title": "Single Sign On",
-        "routes": [
-          {
-            "title": "Overview",
-            "path": "users-teams-organizations/single-sign-on"
-          },
-          {
-            "title": "Microsoft Azure AD",
-            "path": "users-teams-organizations/single-sign-on/azure-ad"
-          },
-          {
-            "title": "Okta",
-            "path": "users-teams-organizations/single-sign-on/okta"
-          },
-          {
-            "title": "SAML",
-            "path": "users-teams-organizations/single-sign-on/saml"
-          },
-          {
-            "title": "Testing",
-            "path": "users-teams-organizations/single-sign-on/testing"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "title": "Sentinel",
-    "routes": [
-      { "title": "Overview", "path": "sentinel" },
-      {
-        "title": "Using Sentinel with Terraform 0.12",
-        "path": "sentinel/sentinel-tf-012"
-      },
-      {
-        "title": "Manage Policies",
-        "path": "sentinel/manage-policies"
-      },
-      {
-        "title": "Enforce and Override Policies",
-        "path": "sentinel/enforce"
-      },
-      {
-        "title": "Mocking Terraform Sentinel Data",
-        "path": "sentinel/mock"
-      },
-      {
-        "title": "Working With JSON Result Data",
-        "path": "sentinel/json"
-      },
-      {
-        "title": "Defining Policies",
-        "routes": [
-          { "title": "Overview", "path": "sentinel/import" },
-          { "title": "tfconfig", "path": "sentinel/import/tfconfig" },
-          {
-            "title": "tfconfig/v2",
-            "path": "sentinel/import/tfconfig-v2"
-          },
-          { "title": "tfplan", "path": "sentinel/import/tfplan" },
-          {
-            "title": "tfplan/v2",
-            "path": "sentinel/import/tfplan-v2"
-          },
-          { "title": "tfstate", "path": "sentinel/import/tfstate" },
-          {
-            "title": "tfstate/v2",
-            "path": "sentinel/import/tfstate-v2"
-          },
-          { "title": "tfrun", "path": "sentinel/import/tfrun" }
-        ]
-      },
-      { "title": "Example Policies", "path": "sentinel/examples" }
-    ]
-  },
-  {
-    "title": "Cost Estimation",
-    "routes": [
-      { "title": "Overview", "path": "cost-estimation" },
-      { "title": "AWS", "path": "cost-estimation/aws" },
-      { "title": "GCP", "path": "cost-estimation/gcp" },
-      { "title": "Azure", "path": "cost-estimation/azure" }
-    ]
-  },
-  {
-    "title": "Integrations",
-    "routes": [
-      {
-        "title": "ServiceNow Integration",
-        "routes": [
-          { "title": "Overview", "path": "integrations/service-now" },
-          {
-            "title": "Service Catalog",
-            "path": "integrations/service-now/service-catalog"
-          },
-          {
-            "title": "Admin Guide",
-            "path": "integrations/service-now/admin-guide"
-          },
-          {
-            "title": "Developer Reference",
-            "path": "integrations/service-now/developer-reference"
-          },
-          {
-            "title": "Example Customizations",
-            "path": "integrations/service-now/example-customizations"
-          },
-          {
-            "title": "V1 Setup Instructions",
-            "path": "integrations/service-now/service-now-v1"
-          }
-        ]
-      },
-      {
-        "title": "Splunk integration",
-        "path": "integrations/splunk"
-      },
-      {
-        "title": "Kubernetes Integration",
-        "path": "integrations/kubernetes"
-      },
-      {
-        "title": "Run Tasks Integration",
-        "path": "integrations/run-tasks"
-      }
-    ]
   },
   {
     "title": "API",
@@ -443,7 +163,286 @@
     ]
   },
   {
-    "title": "Architectural Details",
+    "title": "Workspaces",
+    "routes": [
+      { "title": "Overview", "path": "workspaces" },
+      {
+        "title": "Creating Workspaces",
+        "path": "workspaces/creating"
+      },
+      { "title": "Naming", "path": "workspaces/naming" },
+      {
+        "title": "Terraform Configurations",
+        "path": "workspaces/configurations"
+      },
+      {
+        "title": "Variables",
+        "routes": [
+          { "title": "Overview", "path": "workspaces/variables" },
+          {
+            "title": "Managing Variables",
+            "path": "workspaces/variables/managing-variables"
+          }
+        ]
+      },
+      {
+        "title": "Settings",
+        "routes": [
+          { "title": "Overview", "path": "workspaces/settings" },
+          { "title": "VCS Connections", "path": "workspaces/settings/vcs" },
+          { "title": "Access", "path": "workspaces/settings/access" },
+          {
+            "title": "Notifications",
+            "path": "workspaces/settings/notifications"
+          },
+          {
+            "title": "SSH Keys for Modules",
+            "path": "workspaces/settings/ssh-keys"
+          },
+          {
+            "title": "Run Triggers",
+            "path": "workspaces/settings/run-triggers"
+          },
+          {
+            "title": "Run Tasks",
+            "path": "workspaces/settings/run-tasks"
+          }
+        ]
+      },
+      { "title": "Terraform State", "path": "workspaces/state" },
+      {
+        "title": "JSON Filtering",
+        "path": "workspaces/json-filtering"
+      }
+    ]
+  },
+  {
+    "title": "Terraform Runs",
+    "routes": [
+      { "title": "Overview", "path": "run" },
+      { "title": "Viewing and Managing Runs", "path": "run/manage" },
+      { "title": "Run States and Stages", "path": "run/states" },
+      { "title": "Run Modes and Options", "path": "run/modes-and-options" },
+      { "title": "UI/VCS-driven Runs", "path": "run/ui" },
+      { "title": "API-driven Runs", "path": "run/api" },
+      { "title": "CLI-driven Runs", "path": "run/cli" },
+      {
+        "title": "The Run Environment",
+        "path": "run/run-environment"
+      },
+      {
+        "title": "Installing Software",
+        "path": "run/install-software"
+      }
+    ]
+  },
+  {
+    "title": "Users, Teams, Organizations",
+    "routes": [
+      { "title": "Overview", "path": "users-teams-organizations" },
+      { "title": "Users", "path": "users-teams-organizations/users" },
+      { "title": "Teams", "path": "users-teams-organizations/teams" },
+      {
+        "title": "Organizations",
+        "path": "users-teams-organizations/organizations"
+      },
+      {
+        "title": "Permissions",
+        "path": "users-teams-organizations/permissions"
+      },
+
+      {
+        "title": "Two-factor Authentication",
+        "path": "users-teams-organizations/2fa"
+      },
+      {
+        "title": "API Tokens",
+        "path": "users-teams-organizations/api-tokens"
+      },
+      {
+        "title": "Single Sign On",
+        "routes": [
+          {
+            "title": "Overview",
+            "path": "users-teams-organizations/single-sign-on"
+          },
+          {
+            "title": "Microsoft Azure AD",
+            "path": "users-teams-organizations/single-sign-on/azure-ad"
+          },
+          {
+            "title": "Okta",
+            "path": "users-teams-organizations/single-sign-on/okta"
+          },
+          {
+            "title": "SAML",
+            "path": "users-teams-organizations/single-sign-on/saml"
+          },
+          {
+            "title": "Testing",
+            "path": "users-teams-organizations/single-sign-on/testing"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Connecting to VCS",
+    "routes": [
+      { "title": "Overview", "path": "vcs" },
+      {
+        "title": "GitHub.com",
+        "path": "vcs/github-app"
+      },
+      { "title": "GitHub.com (OAuth)", "path": "vcs/github" },
+      {
+        "title": "GitHub Enterprise",
+        "path": "vcs/github-enterprise"
+      },
+      { "title": "GitLab.com", "path": "vcs/gitlab-com" },
+      { "title": "GitLab EE and CE", "path": "vcs/gitlab-eece" },
+      { "title": "Bitbucket Cloud", "path": "vcs/bitbucket-cloud" },
+      {
+        "title": "Bitbucket Server and Data Center",
+        "path": "vcs/bitbucket-server"
+      },
+      {
+        "title": "Azure DevOps Services",
+        "path": "vcs/azure-devops-services"
+      },
+      {
+        "title": "Azure DevOps Server",
+        "path": "vcs/azure-devops-server"
+      },
+      { "title": "Troubleshooting", "path": "vcs/troubleshooting" }
+    ]
+  },
+  {
+    "title": "Private Registry",
+    "routes": [
+      { "title": "Overview", "path": "registry" },
+      {
+        "title": "Adding Public Providers and Modules",
+        "path": "registry/add"
+      },
+      {
+        "title": "Publishing Private Providers",
+        "path": "registry/publish-providers"
+      },
+      {
+        "title": "Publishing Private Modules",
+        "path": "registry/publish-modules"
+      },
+      { "title": "Using Providers and Modules", "path": "registry/using" },
+      {
+        "title": "Configuration Designer",
+        "path": "registry/design"
+      }
+    ]
+  },
+  {
+    "title": "Sentinel Policy as Code",
+    "routes": [
+      { "title": "Overview", "path": "sentinel" },
+      {
+        "title": "Using Sentinel with Terraform 0.12",
+        "path": "sentinel/sentinel-tf-012"
+      },
+      {
+        "title": "Manage Policies",
+        "path": "sentinel/manage-policies"
+      },
+      {
+        "title": "Enforce and Override Policies",
+        "path": "sentinel/enforce"
+      },
+      {
+        "title": "Mocking Terraform Sentinel Data",
+        "path": "sentinel/mock"
+      },
+      {
+        "title": "Working With JSON Result Data",
+        "path": "sentinel/json"
+      },
+      {
+        "title": "Defining Policies",
+        "routes": [
+          { "title": "Overview", "path": "sentinel/import" },
+          { "title": "tfconfig", "path": "sentinel/import/tfconfig" },
+          {
+            "title": "tfconfig/v2",
+            "path": "sentinel/import/tfconfig-v2"
+          },
+          { "title": "tfplan", "path": "sentinel/import/tfplan" },
+          {
+            "title": "tfplan/v2",
+            "path": "sentinel/import/tfplan-v2"
+          },
+          { "title": "tfstate", "path": "sentinel/import/tfstate" },
+          {
+            "title": "tfstate/v2",
+            "path": "sentinel/import/tfstate-v2"
+          },
+          { "title": "tfrun", "path": "sentinel/import/tfrun" }
+        ]
+      },
+      { "title": "Example Policies", "path": "sentinel/examples" }
+    ]
+  },
+  {
+    "title": "Cost Estimation",
+    "routes": [
+      { "title": "Overview", "path": "cost-estimation" },
+      { "title": "AWS", "path": "cost-estimation/aws" },
+      { "title": "GCP", "path": "cost-estimation/gcp" },
+      { "title": "Azure", "path": "cost-estimation/azure" }
+    ]
+  },
+  {
+    "title": "Integrations",
+    "routes": [
+      {
+        "title": "ServiceNow Integration",
+        "routes": [
+          { "title": "Overview", "path": "integrations/service-now" },
+          {
+            "title": "Service Catalog",
+            "path": "integrations/service-now/service-catalog"
+          },
+          {
+            "title": "Admin Guide",
+            "path": "integrations/service-now/admin-guide"
+          },
+          {
+            "title": "Developer Reference",
+            "path": "integrations/service-now/developer-reference"
+          },
+          {
+            "title": "Example Customizations",
+            "path": "integrations/service-now/example-customizations"
+          },
+          {
+            "title": "V1 Setup Instructions",
+            "path": "integrations/service-now/service-now-v1"
+          }
+        ]
+      },
+      {
+        "title": "Splunk integration",
+        "path": "integrations/splunk"
+      },
+      {
+        "title": "Kubernetes Integration",
+        "path": "integrations/kubernetes"
+      },
+      {
+        "title": "Run Tasks Integration",
+        "path": "integrations/run-tasks"
+      }
+    ]
+  },
+  {
+    "title": "System Architecture",
     "routes": [
       { "title": "Overview", "path": "architectural-details" },
       {
@@ -461,41 +460,36 @@
     ]
   },
   {
-    "title": "Guides",
+    "title": "Recommended Practices",
     "routes": [
+      { "title": "Overview", "path": "recommended-practices" },
       {
-        "title": "Recommended Practices",
-        "routes": [
-          { "title": "Overview", "path": "guides/recommended-practices" },
-          {
-            "title": "Part 1: Overview of Our Recommended Workflow",
-            "path": "guides/recommended-practices/part1"
-          },
-          {
-            "title": "Part 2: Evaluating Your Current Provisioning Practices",
-            "path": "guides/recommended-practices/part2"
-          },
-          {
-            "title": "Part 3: How to Evolve Your Provisioning Practices",
-            "path": "guides/recommended-practices/part3"
-          },
-          {
-            "title": "Part 3.1: From Manual Changes to Semi-Automation",
-            "path": "guides/recommended-practices/part3.1"
-          },
-          {
-            "title": "Part 3.2: From Semi-Automation to Infrastructure as Code",
-            "path": "guides/recommended-practices/part3.2"
-          },
-          {
-            "title": "Part 3.3: From Infrastructure as Code to Collaborative Infrastructure as Code",
-            "path": "guides/recommended-practices/part3.3"
-          },
-          {
-            "title": "Part 3.4: Advanced Workflow Improvements",
-            "path": "guides/recommended-practices/part3.4"
-          }
-        ]
+        "title": "Part 1: Overview of Our Recommended Workflow",
+        "path": "recommended-practices/part1"
+      },
+      {
+        "title": "Part 2: Evaluating Your Current Provisioning Practices",
+            "path": "recommended-practices/part2"
+      },
+      {
+        "title": "Part 3: How to Evolve Your Provisioning Practices",
+        "path": "recommended-practices/part3"
+      },
+      {
+        "title": "Part 3.1: From Manual Changes to Semi-Automation",
+        "path": "recommended-practices/part3.1"
+      },
+      {
+        "title": "Part 3.2: From Semi-Automation to Infrastructure as Code",
+        "path": "recommended-practices/part3.2"
+      },
+      {
+        "title": "Part 3.3: From Infrastructure as Code to Collaborative Infrastructure as Code",
+        "path": "recommended-practices/part3.3"
+      },
+      {
+        "title": "Part 3.4: Advanced Workflow Improvements",
+        "path": "recommended-practices/part3.4"
       }
     ]
   },
