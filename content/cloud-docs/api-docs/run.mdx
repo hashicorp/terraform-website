@@ -54,9 +54,9 @@ Alternatively, you can create a run with a pre-existing configuration version, e
 The run state is found in `data.attributes.status`, and you can reference the following list of possible states.
 
 | State                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pending`              | The initial status of a run once it has been created.                                                                                                                                                                                                                                                                                                                                                                              |
-| `fetching`             | The run is waiting for Terraform Cloud to fetch the configuration from VCS.                                                                                                                                                                                                                                                                                                                                           |
+| `fetching`             | The run is waiting for Terraform Cloud to fetch the configuration from VCS.                                                                                                                                                                                                                                                                                                                                                        |
 | `plan_queued`          | Once a workspace has the availability to start a new run, the next run will transition to `plan_queued`. This status indicates that the it should start as soon as the backend services that run terraform have available capacity.  In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature. |
 | `planning`             | The planning phase of a run is in progress.                                                                                                                                                                                                                                                                                                                                                                                        |
 | `planned`              | The planning phase of a run has completed.                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -67,14 +67,14 @@ The run state is found in `data.attributes.status`, and you can reference the fo
 | `policy_soft_failed`   | A sentinel policy has soft failed for a plan-only run.  This is a final state.                                                                                                                                                                                                                                                                                                                                                     |
 | `policy_checked`       | The sentinel policy checking phase of a run has completed.                                                                                                                                                                                                                                                                                                                                                                         |
 | `confirmed`            | The plan produced by the run has been confirmed.                                                                                                                                                                                                                                                                                                                                                                                   |
-| `planned_and_finished` | The completion of a run containing a plan only, or a run that produces a plan with no changes to apply.  This is a final state.                                                                                                                                                                                                                                                                                                     |
+| `planned_and_finished` | The completion of a run containing a plan only, or a run that produces a plan with no changes to apply.  This is a final state.                                                                                                                                                                                                                                                                                                    |
 | `apply_queued`         | Once the changes in the plan have been confirmed, the run run will transition to `apply_queued`. This status indicates that the run should start as soon as the backend services that run terraform have available capacity. In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature.         |
 | `applying`             | The applying phase of a run is in progress.                                                                                                                                                                                                                                                                                                                                                                                        |
 | `applied`              | The applying phase of a run has completed.                                                                                                                                                                                                                                                                                                                                                                                         |
 | `discarded`            | The run has been discarded. This is a final state.                                                                                                                                                                                                                                                                                                                                                                                 |
 | `errored`              | The run has errored. This is a final state.                                                                                                                                                                                                                                                                                                                                                                                        |
 | `canceled`             | The run has been canceled.                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `force_canceled`       | The run has been canceled, forcefully.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `force_canceled`       | The run has been canceled, forcefully.                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ## Create a Run
 
@@ -108,7 +108,7 @@ This POST endpoint requires a JSON object with the following properties as a req
 Properties without a default value are required.
 
 | Key path                                           | Type                 | Default                                            | Description                                                                                                                                                                                                                                |
-| -------------------------------------------------- | -------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|----------------------------------------------------|----------------------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `data.attributes.auto-apply`                       | bool                 | The current Auto Apply setting in the workspace    | Whether to automatically apply changes when a Terraform plan is successful. Defaults to the [Auto Apply](/cloud-docs/workspaces/settings#auto-apply-and-manual-apply) workspace setting.                                                   |
 | `data.attributes.is-destroy`                       | bool                 | false                                              | Specifies whether this plan is a destroy plan that will destroy all provisioned resources. Mutually exclusive with `refresh-only`.                                                                                                         |
 | `data.attributes.message`                          | string               | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.                                                                                                                                                                                      |
@@ -121,7 +121,7 @@ Properties without a default value are required.
 | `data.relationships.configuration-version.data.id` | string               |                                                    | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.                                                     |
 
 | Status  | Response                               | Reason                                                                      |
-| ------- | -------------------------------------- | --------------------------------------------------------------------------- |
+|---------|----------------------------------------|-----------------------------------------------------------------------------|
 | [201][] | [JSON API document][] (`type: "runs"`) | Successfully created a run                                                  |
 | [404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action |
 | [422][] | [JSON API error object][]              | Malformed request body (missing attributes, wrong types, etc.)              |
@@ -232,7 +232,7 @@ curl \
 `POST /runs/:run_id/actions/apply`
 
 | Parameter | Description         |
-| --------- | ------------------- |
+|-----------|---------------------|
 | `run_id`  | The run ID to apply |
 
 Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs for the workspace.
@@ -250,7 +250,7 @@ Since this endpoint represents an action (not a resource), it does not return an
 -> **Note:** This endpoint cannot be accessed with [organization tokens](/cloud-docs/users-teams-organizations/api-tokens#organization-api-tokens). You must access it with a [user token](/cloud-docs/users-teams-organizations/users#api-tokens) or [team token](/cloud-docs/users-teams-organizations/api-tokens#team-api-tokens).
 
 | Status  | Response                  | Reason(s)                                               |
-| ------- | ------------------------- | ------------------------------------------------------- |
+|---------|---------------------------|---------------------------------------------------------|
 | [202][] | none                      | Successfully queued an apply request.                   |
 | [409][] | [JSON API error object][] | Run was not paused for confirmation; apply not allowed. |
 
@@ -259,7 +259,7 @@ Since this endpoint represents an action (not a resource), it does not return an
 This POST endpoint allows an optional JSON object with the following properties as a request payload.
 
 | Key path  | Type   | Default | Description                        |
-| --------- | ------ | ------- | ---------------------------------- |
+|-----------|--------|---------|------------------------------------|
 | `comment` | string | `null`  | An optional comment about the run. |
 
 ### Sample Payload
@@ -288,11 +288,11 @@ curl \
 `GET /workspaces/:workspace_id/runs`
 
 | Parameter      | Description                        |
-| -------------- | ---------------------------------- |
+|----------------|------------------------------------|
 | `workspace_id` | The workspace ID to list runs for. |
 
 | Status  | Response                                         | Reason                   |
-| ------- | ------------------------------------------------ | ------------------------ |
+|---------|--------------------------------------------------|--------------------------|
 | [200][] | Array of [JSON API document][]s (`type: "runs"`) | Successfully listed runs |
 
 ### Query Parameters
@@ -300,7 +300,7 @@ curl \
 This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 | Parameter      | Description                                                          |
-| -------------- | -------------------------------------------------------------------- |
+|----------------|----------------------------------------------------------------------|
 | `page[number]` | **Optional.** If omitted, the endpoint will return the first page.   |
 | `page[size]`   | **Optional.** If omitted, the endpoint will return 20 runs per page. |
 
@@ -384,13 +384,13 @@ curl \
 `GET /runs/:run_id`
 
 | Parameter | Description        |
-| --------- | ------------------ |
+|-----------|--------------------|
 | `:run_id` | The run ID to get. |
 
 This endpoint is used for showing details of a specific run.
 
 | Status  | Response                               | Reason                               |
-| ------- | -------------------------------------- | ------------------------------------ |
+|---------|----------------------------------------|--------------------------------------|
 | [200][] | [JSON API document][] (`type: "runs"`) | Success                              |
 | [404][] | [JSON API error object][]              | Run not found or user not authorized |
 
@@ -470,7 +470,7 @@ curl \
 `POST /runs/:run_id/actions/discard`
 
 | Parameter | Description           |
-| --------- | --------------------- |
+|-----------|-----------------------|
 | `run_id`  | The run ID to discard |
 
 The `discard` action can be used to skip any remaining work on runs that are paused waiting for confirmation or priority. This includes runs in the "pending," "needs confirmation," "policy checked," and "policy override" states.
@@ -486,7 +486,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 -> **Note:** This endpoint cannot be accessed with [organization tokens](/cloud-docs/users-teams-organizations/api-tokens#organization-api-tokens). You must access it with a [user token](/cloud-docs/users-teams-organizations/users#api-tokens) or [team token](/cloud-docs/users-teams-organizations/api-tokens#team-api-tokens).
 
 | Status  | Response                  | Reason(s)                                                             |
-| ------- | ------------------------- | --------------------------------------------------------------------- |
+|---------|---------------------------|-----------------------------------------------------------------------|
 | [202][] | none                      | Successfully queued a discard request.                                |
 | [409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed. |
 
@@ -495,7 +495,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 This POST endpoint allows an optional JSON object with the following properties as a request payload.
 
 | Key path  | Type   | Default | Description                                            |
-| --------- | ------ | ------- | ------------------------------------------------------ |
+|-----------|--------|---------|--------------------------------------------------------|
 | `comment` | string | `null`  | An optional explanation for why the run was discarded. |
 
 ### Sample Payload
@@ -524,7 +524,7 @@ curl \
 `POST /runs/:run_id/actions/cancel`
 
 | Parameter | Description          |
-| --------- | -------------------- |
+|-----------|----------------------|
 | `run_id`  | The run ID to cancel |
 
 The `cancel` action can be used to interrupt a run that is currently planning or applying. Performing a cancel is roughly equivalent to hitting ctrl+c during a Terraform plan or apply on the CLI. The running Terraform process is sent an `INT` signal, which instructs Terraform to end its work and wrap up in the safest way possible.
@@ -540,7 +540,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 -> **Note:** This endpoint cannot be accessed with [organization tokens](/cloud-docs/users-teams-organizations/api-tokens#organization-api-tokens). You must access it with a [user token](/cloud-docs/users-teams-organizations/users#api-tokens) or [team token](/cloud-docs/users-teams-organizations/api-tokens#team-api-tokens).
 
 | Status  | Response                  | Reason(s)                                             |
-| ------- | ------------------------- | ----------------------------------------------------- |
+|---------|---------------------------|-------------------------------------------------------|
 | [202][] | none                      | Successfully queued a cancel request.                 |
 | [409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed. |
 | [404][] | [JSON API error object][] | Run was not found or user not authorized.             |
@@ -550,7 +550,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 This POST endpoint allows an optional JSON object with the following properties as a request payload.
 
 | Key path  | Type   | Default | Description                                           |
-| --------- | ------ | ------- | ----------------------------------------------------- |
+|-----------|--------|---------|-------------------------------------------------------|
 | `comment` | string | `null`  | An optional explanation for why the run was canceled. |
 
 ### Sample Payload
@@ -579,7 +579,7 @@ curl \
 `POST /runs/:run_id/actions/force-cancel`
 
 | Parameter | Description          |
-| --------- | -------------------- |
+|-----------|----------------------|
 | `run_id`  | The run ID to cancel |
 
 The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued. The `force-cancel` operation requires admin access to the workspace. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
@@ -595,7 +595,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 ~> **Warning:** This endpoint has potentially dangerous side-effects, including loss of any in-flight state in the running Terraform process. Use this operation with extreme caution.
 
 | Status  | Response                  | Reason(s)                                                                                                          |
-| ------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+|---------|---------------------------|--------------------------------------------------------------------------------------------------------------------|
 | [202][] | none                      | Successfully queued a cancel request.                                                                              |
 | [409][] | [JSON API error object][] | Run was not planning or applying, has not been canceled non-forcefully, or the cool-off period has not yet passed. |
 | [404][] | [JSON API error object][] | Run was not found or user not authorized.                                                                          |
@@ -605,7 +605,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 This POST endpoint allows an optional JSON object with the following properties as a request payload.
 
 | Key path  | Type   | Default | Description                                           |
-| --------- | ------ | ------- | ----------------------------------------------------- |
+|-----------|--------|---------|-------------------------------------------------------|
 | `comment` | string | `null`  | An optional explanation for why the run was canceled. |
 
 ### Sample Payload
@@ -634,7 +634,7 @@ curl \
 `POST /runs/:run_id/actions/force-execute`
 
 | Parameter | Description           |
-| --------- | --------------------- |
+|-----------|-----------------------|
 | `run_id`  | The run ID to execute |
 
 The force-execute action cancels all prior runs that are not already complete, unlocking the run's workspace and allowing the run to be executed. (It initiates the same actions as the "Run this plan now" button at the top of the view of a pending run.)
@@ -656,7 +656,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 ~> **Note:** While useful at times, force-executing a run circumvents the typical workflow of applying runs using Terraform Cloud. It is not intended for regular use. If you find yourself using it frequently, please reach out to HashiCorp Support for help in developing an alternative approach.
 
 | Status  | Response                  | Reason(s)                                                                                     |
-| ------- | ------------------------- | --------------------------------------------------------------------------------------------- |
+|---------|---------------------------|-----------------------------------------------------------------------------------------------|
 | [202][] | none                      | Successfully initiated the force-execution process.                                           |
 | [403][] | [JSON API error object][] | Run is not pending, its workspace was not locked, or its workspace association was not found. |
 | [409][] | [JSON API error object][] | The run locking the workspace was not in a discardable state.                                 |
