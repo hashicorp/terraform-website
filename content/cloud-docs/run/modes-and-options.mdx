@@ -47,6 +47,22 @@ The [replace option](/cli/commands/plan#replace-address) instructs Terraform to 
 - **CLI:** Use `terraform plan -replace=ADDRESS` or `terraform apply -replace=ADDRESS`.
 - **API:** Use the `replace-addrs` option.
 
+## Allow Empty Apply
+
+A no-operation (empty) apply enables Terraform Cloud to apply a run that produces no changes rather than simply finishing after the plan stage. Empty applies are particularly useful for users wishing to upgrade a Terraform Cloud workspace's latest state version to the desired Terraform version.
+
+-> **Note:** Terraform Cloud cannot guarantee that a plan in this mode will produce no changes and so it is advised to check for resource drift beforehand.
+
+- **API:** Set the `allow-empty-apply` field to `true`.
+- **UI:** Use the "Start new plan" action from a workspace's "Actions" menu, then select the "Allow empty apply" option in the new plan dialog.
+
+## Plan Only
+
+A plan-only run is a way to create an un-apply-able plan using a specific terraform version that may differ from the workspace version. This is useful when checking if your configuration is upgradable to a newer terraform version without changing the workspace settings first.
+
+- **API:** Set the `plan-only` field to `true` and specify an available terraform version using the `terraform-version` field.
+- **UI:** Use the "Start new plan" action from a workspace's "Actions" menu, then select the "Plan only" option in the new plan dialog.
+
 ## Targeted Plan and Apply
 
 -> **Version note:** Targeting support is available in Terraform Enterprise v202006-1 or later.

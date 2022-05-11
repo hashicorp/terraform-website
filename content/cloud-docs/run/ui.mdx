@@ -63,6 +63,14 @@ If you would rather automatically apply plans that don't have errors, you can [e
 
 To help you review proposed changes, Terraform Cloud can automatically run [speculative plans][speculative plan] for pull requests or merge requests.
 
+## Upgrading Terraform using Speculative Plans
+
+Using the UI, you can start a new speculative plan using the current configuration version but any terraform version available to the organization. After clicking **Start New Run**, use the select list to choose **Plan only** as the run type. This run mode reveals a new option to choose the specific terraform version.
+
+![Screenshot: Clicking on the "Start New Run" button to try a new terraform version](/img/docs/run-plan-only-upgrade-ui.png)
+
+If the run succeeds, the next step is to change the [workspace terraform version](/cloud-docs/workspaces/settings#terraform-version) setting and start a new run with the type **Allow empty apply**. Creating a run in **Allow empty apply** mode allows Terraform to apply a plan containing no infrastructure changes. During an empty apply, Terraform upgrades the state file format to match the Terraform version, if required. This is particularly useful for upgrading between Terraform versions in your workspace. Once this run is applied, the state version upgrade will be complete.
+
 ### Viewing Pull Request Plans
 
 Speculative plans don't appear in a workspace's list of normal runs. Instead, Terraform Cloud adds a link to the run in the pull request itself, along with an indicator of the run's status.
