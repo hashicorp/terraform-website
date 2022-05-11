@@ -3,8 +3,7 @@ page_title: >-
   Remote Operations - Terraform Cloud and Terraform
   Enterprise
 description: >-
-  Terraform Cloud allows you to run Terraform remotely through the UI, API, or
-  CLI. Learn how Terraform Cloud manages runs.
+  Run Terraform remotely through the UI, API, or CLI. Learn how Terraform Cloud manages runs.
 ---
 
 # Remote Operations
@@ -25,9 +24,15 @@ Terraform runs managed by Terraform Cloud are called _remote operations._ Remote
 
 [execution_mode]: /cloud-docs/workspaces/settings#execution-mode
 
-Remote operations can be disabled for any workspace by changing its ["Execution Mode" setting][execution_mode] to "Local". This causes the workspace to act only as a remote backend for Terraform state, with all execution occurring on your own workstations or continuous integration workers.
+Many of Terraform Cloud's features rely on remote execution and are not available when using local operations. This includes features like Sentinel policy enforcement, cost estimation, and notifications.
 
-Many of Terraform Cloud's features rely on remote execution, and are not available when using local operations. This includes features like Sentinel policy enforcement, cost estimation, and notifications.
+You can disable remote operations for any workspace by changing its [Execution Mode][execution_mode] to **Local**. This causes the workspace to act only as a remote backend for Terraform state, with all execution occurring on your own workstations or continuous integration workers.
+
+### Protecting Private Environments
+
+[Terraform Cloud Agents](/cloud-docs/agents) are a paid feature that allows Terraform Cloud to communicate with isolated, private, or on-premises infrastructure. The agent polls Terraform Cloud or Terraform Enterprise for any changes to your configuration and executes the changes locally, so you do not need to allow public ingress traffic to your resources. Agents allow you to control infrastructure in private environments without modifying your network perimeter.
+
+Terraform Cloud Agents also support running custom programs, called hooks, during strategic points of a Terraform run. For example, you may create a hook to dynamically download software required by the Terraform run or send an HTTP request to a system to kick off an external workflow.
 
 ## Runs and Workspaces
 
