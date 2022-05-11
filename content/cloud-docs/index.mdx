@@ -7,11 +7,12 @@ description: >-
 
 # Terraform Cloud and Terraform Enterprise
 
-Terraform Cloud and Terraform Enterprise are different distributions of the same application. This documentation applies to both Terraform Cloud and Terraform Enterprise except when specifically stated otherwise. For expediency, this documentation refers to the application as Terraform Cloud.
+Terraform Cloud and Terraform Enterprise are different distributions of the same application. This documentation refers to the application as Terraform Cloud, but applies to both Terraform Cloud and Terraform Enterprise except when specifically stated otherwise.
 
--> **Note:** This documentation focuses on the API and user interface. Refer to [Terraform Enterprise Install and Admin](/enterprise) for details about maintaining your Terraform Enterprise instance.
+All distributions of Terraform Cloud used to be called Terraform Enterprise, and the self-hosted distribution was called Private Terraform Enterprise (PTFE). These previous names still appear in some supporting tools, like [the `tfe` Terraform provider](https://registry.terraform.io/providers/hashicorp/tfe/latest), which you can also use with Terraform Cloud.
 
-## About Terraform Cloud and Terraform Enterprise
+
+## What is Terraform Cloud?
 
 > **Hands On:** Try our [What is Terraform Cloud - Intro and Sign Up](https://learn.hashicorp.com/tutorials/terraform/cloud-sign-up?in=terraform/cloud-get-started) tutorial on HashiCorp Learn.
 
@@ -21,8 +22,9 @@ Terraform Cloud is available as a hosted service at <https://app.terraform.io>. 
 
 The [Business tier](https://www.hashicorp.com/products/terraform/editions/cloud) allows large organizations to scale to multiple concurrent runs, create infrastructure in private environments, manage user access with SSO, and automates self-service provisioning for infrastructure end users.
 
+## What is Terraform Enterprise?
+
 Enterprises with advanced security and compliance needs can purchase [Terraform Enterprise](/enterprise), our self-hosted distribution of Terraform Cloud. It offers enterprises a private instance that includes the advanced features available in Terraform Cloud.
 
-### Note About Product Names
+-> **Note:** This documentation focuses on the API and user interface. Refer to [Terraform Enterprise Install and Admin](/enterprise) for details about maintaining your Terraform Enterprise instance.
 
-Before mid-2019, all distributions of Terraform Cloud used to be called Terraform Enterprise; the self-hosted distribution was called Private Terraform Enterprise (PTFE). These previous names sometimes still appear in supporting tools (like [the `tfe` Terraform provider](https://registry.terraform.io/providers/hashicorp/tfe/latest), which is also intended for use with Terraform Cloud).
