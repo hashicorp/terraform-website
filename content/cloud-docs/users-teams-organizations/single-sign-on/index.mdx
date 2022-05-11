@@ -87,6 +87,8 @@ Terraform Cloud expects the team names in the team membership SAML attribute to 
 
 You can configure SSO Team IDs in the organization's **Teams** page. If an SSO Team ID is configured, Terraform Cloud will attempt to match the chosen SAML attribute against both the team name and the SSO Team ID when mapping users to teams. You may want to create an SSO Team ID if the team membership SAML attribute is not human readable and is not used as the team's name in Terraform Cloud.
 
+SSO Team IDs are particularly helpful if your SSO or Active Directory provider restricts the `MemberOf` attribute in its SAML responses to Group UUIDs, rather than human readable group names. Setting the SSO Team ID allows you to maintain human readable team names in Terraform Cloud, while still managing team membership through SSO or Active Directory.
+
 ## NameID Format
 
 Terraform Cloud requires that the NameID format in the SAML response be set to `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress` with a valid email address being provided as the value for this attribute.
