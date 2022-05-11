@@ -214,7 +214,7 @@
   {
     "title": "Terraform Runs",
     "routes": [
-      { "title": "Remote Operations", "path": "run" },
+      { "title": "Remote Operations", "path": "run/remote-operations" },
       { "title": "Viewing and Managing Runs", "path": "run/manage" },
       { "title": "Run States and Stages", "path": "run/states" },
       { "title": "Run Modes and Options", "path": "run/modes-and-options" },
