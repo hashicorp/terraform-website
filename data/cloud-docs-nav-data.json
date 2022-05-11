@@ -1,15 +1,10 @@
 [
-  { "heading": "Terraform Cloud / Enterprise" },
+  { "heading": "Terraform Cloud and Enterprise" },
   { "title": "Overview", "path": "" },
-  { "title": "Features", "path": "overview" },
-  { "title": "Free and Paid Plans", "path": "paid" },
+  { "title": "Plans and Features", "path": "overview" },
   {
     "title": "Getting Started",
     "href": "https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS"
-  },
-  {
-    "title": "Migrating Existing Resources",
-    "path": "migrate"
   },
   {
     "title": "API",
@@ -219,7 +214,7 @@
   {
     "title": "Terraform Runs",
     "routes": [
-      { "title": "Overview", "path": "run" },
+      { "title": "Remote Operations", "path": "run" },
       { "title": "Viewing and Managing Runs", "path": "run/manage" },
       { "title": "Run States and Stages", "path": "run/states" },
       { "title": "Run Modes and Options", "path": "run/modes-and-options" },
@@ -339,6 +334,10 @@
         "path": "registry/design"
       }
     ]
+  },
+  {
+    "title": "Migrating Existing Resources",
+    "path": "migrate"
   },
   {
     "title": "Sentinel Policy as Code",
@@ -510,6 +509,6 @@
     ]
   },
   { "divider": true },
-  { "heading": "Terraform Enterprise" },
-  { "title": "Deployment & Operation", "href": "/enterprise" }
+  { "title": "Enterprise Install and Admin", "href": "/enterprise" },
+  { "divider": true }
 ]

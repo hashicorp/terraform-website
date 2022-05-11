@@ -193,6 +193,7 @@ module.exports = (async () => {
     '/cloud-docs/api-docs/providers': '/cloud-docs/api-docs/private-registry/providers',
     '/cloud-docs/api-docs/modules': '/cloud-docs/api-docs/private-registry/modules',
     '/guides/recommended-practices': '/recommended-practices',
+    '/cloud-docs/paid': '/cloud-docs/overview',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
