@@ -133,7 +133,7 @@ For example:
 
 ```
 
--> **Note:** To use in-transit encryption with GCP Memorystore for Redis, you must [download the CA certificate](https://cloud.google.com/memorystore/docs/redis/enabling-in-transit-encryption#downloading_the_certificate_authority) for your Redis instance and configure it within the `ca_certs` Terraform Enterprise application setting.
+-> **Note:** To use in-transit encryption with GCP Memorystore for Redis, you must [download the CA certificate](https://cloud.google.com/memorystore/docs/redis/enabling-in-transit-encryption#downloading_the_certificate_authority) for your Redis instance and configure it within the `ca_certs` Terraform Enterprise application setting. Additionally, you must ensure that the `redis_port` and `redis_use_tls` settings are configured correctly.
 
 ##### Add Encryption Password
 
