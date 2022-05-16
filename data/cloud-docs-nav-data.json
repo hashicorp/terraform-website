@@ -509,6 +509,6 @@
     ]
   },
   { "divider": true },
-  { "title": "Enterprise Install and Admin", "href": "/enterprise" },
+  { "title": "Terraform Enterprise Admin", "href": "/enterprise" },
   { "divider": true }
 ]
