@@ -194,23 +194,14 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ### Non-Interactive Workflows
 
-You can use [environment variables](/cli/cloud/settings#environment-variables) to configure `cloud` block attributes in non-interactive workflows like Continuous Integration/Continuous Deployment (CI/CD). External systems cannot run the traditional apply workflow because it requires console input from the user to approve plans. Instead, you must choose one of the following approaches.
+External systems cannot run the traditional apply workflow because Terraform requires console input from the user to approve plans. We recommend using the [API-driven Run Workflow](/cloud-docs/run/api) for non-interactive workflows when possible.
 
-#### Automatically approve plans
+If you prefer to use the CLI, we recommend first running a [speculative plan](/cloud-docs/run#speculative-plans) to preview the changes Terraform will make to your infrastructure. Then, use one of the following approaches based on the [execution mode](/cloud-docs/workspaces/settings#execution-mode) for your workspaces.
 
-Add the [`-auto-approve`](/cli/commands/apply#auto-approve) flag to skip the plan approval step in the apply workflow.
-```bash
-$ terraform apply -auto-approve
-```
+- **Local Execution:**  Save the approved speculative plan and then run `terraform apply -auto-approve` with the saved plan.
+- **Remote Execution:** Terraform Cloud does not support uploding a saved plan, so we recommend running `terraform apply -auto-approve` immediately after approving the speculative plan to reduce the risk of drift. The [`-auto-approve`](/cli/commands/apply#auto-approve) flag skips the plan approval step in the apply workflow.
 
-We do not recommend this approach for production use cases because you cannot review proposed changes before Terraform applies them.
-
-#### Run a speculative plan
-
-You can first run and review a [speculative plan](/cloud-docs/run#speculative-plans) to preview the changes Terraform will make to your infrastructure. We recommend the following approaches based on your [execution mode](/cloud-docs/workspaces/settings#execution-mode).
-
-- For local execution, save the approved speculative plan and then run `terraform apply -auto-approve` with the saved plan.
--  For remote execution, Terraform Cloud does not support uploding a saved plan, so we recommend running `terraform apply -auto-approve` immediately after approving the speculative plan. The more time passes between the speculative plan and the apply, the more you risk drift. Drift occurs when there are changes to your infrastructure outside of Terraform, and the Terraform plan represents these as diffs. When you auto-approve plans that may contain drift, you risk making unintended changes to your infrastructure. For this reason, we do not recommend this approach for production use cases.
+  ~> **Warning:** Remote execution with non-interactive workflows may introduce drift. Drift occurs when there are changes to your infrastructure outside of Terraform. When you auto-approve new, unsaved plans, you risk making unintended changes to your infrastructure.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
