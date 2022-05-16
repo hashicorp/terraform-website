@@ -336,7 +336,7 @@
     ]
   },
   {
-    "title": "Migrating Existing Resources",
+    "title": "Migrating to Terraform Cloud",
     "path": "migrate"
   },
   {
