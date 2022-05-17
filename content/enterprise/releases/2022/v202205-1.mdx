@@ -4,16 +4,13 @@ page_title: Releases - Terraform Enterprise
 
 # TFE Release v202205-1 (619)
 
-
 ## APPLICATION LEVEL BREAKING CHANGES:
 
-1. All container names now follow the same naming convention: "tfe-<service>". If you have tooling that identifies containers by name, make sure this tooling is updated to reflect the new naming convention.
-
+1. All container names now follow the same naming convention: `tfe-<service>`. If you have tooling that identifies containers by name, make sure this tooling is updated to reflect the new naming convention.
 
 ## APPLICATION LEVEL FEATURES:
 
 1. Add option to de-register [inactive Agents](https://www.terraform.io/cloud-docs/agents#agent-capacity-usage) through the **Organization Settings > Agents** UI.
-
 
 ## APPLICATION LEVEL BUG FIXES:
 
@@ -28,12 +25,8 @@ page_title: Releases - Terraform Enterprise
 9. Improved agent dequeueing performance for large agent pools.
 10. Changed Vault CLI commands to Vault API calls for token creation. This will prevent any Vault CLI/Server version mismatch errors.
 
-
 ## APPLICATION LEVEL SECURITY FIXES:
 
 1. Adopted container updates to address reported vulnerabilities in underlying packages / dependencies.
 2. Updated the version of the internally-managed Vault server to 1.10.2.
 3. Updated the version of the internally-managed Nomad server to 1.2.6.
-
-
-
