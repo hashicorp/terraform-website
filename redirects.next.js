@@ -212,6 +212,10 @@ module.exports = (async () => {
     '/enterprise/user-management/saml/idp-configuration/aad': '/enterprise/saml/idp-configuration/aad',
     '/enterprise/user-management/saml/idp-configuration/okta': '/enterprise/saml/idp-configuration/okta',
     '/enterprise/user-management/saml/idp-configuration/onelogin': '/enterprise/saml/idp-configuration/onelogin',
+    '/enterprise/before-installing/data-storage-requirements/postgres-requirements': '/enterprise/requirements/data-storage/postgres-requirements',
+    '/enterprise/before-installing/data-storage-requirements/disk-requirements': '/enterprise/requirements/data-storage/disk-requirements',
+    '/enterprise/before-installing/data-storage-requirements/minio-setup-guide': '/enterprise/requirements/data-storage/mineo-setup-guide',
+    '/enterprise/before-installing/data-storage-requirements/vault': '/enterprise/requirements/data-storage/vault',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
