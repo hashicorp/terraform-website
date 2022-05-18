@@ -9,8 +9,25 @@
         "path": "requirements/credentials"
       },
       {
-        "title": "Hardware",
-        "path": "requirements/hardware"
+        "title": "Hardware and Data Storage",
+        "path": "requirements/hardware-data-storage"
+      },
+      {
+        "title": "Operating System",
+        "routes": [
+          {
+            "title": "Supported OS",
+            "path": "requirements/os-specific/supported-os"
+          },
+          {
+            "title": "RedHat Linux",
+            "path": "requirements/os-specific/rhel-requirements"
+          },
+          {
+            "title": "CentOS Linux",
+            "path": "requirements/os-specific/centos-requirements"
+          }
+        ]
       },
       {
         "title": "Data Storage",
@@ -38,17 +55,8 @@
         "path": "requirements/network"
       },
       {
-        "title": "Operating System",
-        "routes": [
-          {
-            "title": "RedHat Linux Requirements",
-            "path": "requirements/os-specific/rhel-requirements"
-          },
-          {
-            "title": "CentOS Linux Requirements",
-            "path": "requirements/os-specific/centos-requirements"
-          }
-        ]
+        "title": "Docker Engine",
+        "path": "requirements/docker"
       }
     ]
   },

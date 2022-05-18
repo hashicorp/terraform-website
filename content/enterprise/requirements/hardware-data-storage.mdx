@@ -1,0 +1,46 @@
+---
+page_title: Hardware and Data Storage - Requirements - Terraform Enterprise
+description: >-
+  Required disk space and memory for your Terraform Enterprise instance.
+---
+
+# Hardware and Data Storage Requirements
+
+TBD Intro
+
+## Hardware
+
+These requirements provide the instance with enough resources to run the
+Terraform Enterprise application as well as the Terraform plans and applies.
+
+- At least 10GB of disk space on the root volume
+- At least 40GB of disk space for the Docker data directory (defaults to `/var/lib/docker`)
+- At least 8GB of system memory
+- At least 4 CPU cores
+
+## Data Storage
+
+-> **Note:** If you are following one of the [reference architectures](/enterprise/before-installing/reference-architecture), refer to it while preparing your data storage services.
+
+Make sure your data storage services or device meet Terraform Enterprise's requirements. These requirements differ based on operational mode.
+
+### External Services Mode
+
+External Services mode has the following requirements:
+  
+  - [PostgreSQL Requirements](/enterprise/before-installing/data-storage-requirements/postgres-requirements)
+  - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
+    - Disable any lifecycle rules that would delete, archive, or transition objects in this container. Terraform Enterprise expects to manage all data the object storage service, so any lifecycle moves may result in unexpected data inconsistencies.
+    - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. Refer to the [Minio Setup Guide](/enterprise/before-installing/data-storage-requirements/minio-setup-guide) for details.
+  - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](/enterprise/before-installing/data-storage-requirements/vault).
+
+### Active/Active Mode
+
+Active/Active operational mode has the following requirements:
+
+  - Redis server v5 or v6
+  - Redis Cluster is _not_ supported.
+
+- _Mounted Disk_
+  - [Mounted Disk Requirements](/enterprise/before-installing/data-storage-requirements/disk-requirements)
+
