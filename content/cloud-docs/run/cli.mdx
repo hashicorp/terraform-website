@@ -201,7 +201,7 @@ If you prefer to use the CLI in a non-interactive environment, we recommend firs
 - **Local Execution:**  Save the approved speculative plan and then run `terraform apply -auto-approve` with the saved plan.
 - **Remote Execution:** Terraform Cloud does not support uploading saved plans for remote execution, so we recommend running `terraform apply -auto-approve` **immediately** after approving the speculative plan to prevent the plan from becoming stale. The [`-auto-approve`](/cli/commands/apply#auto-approve) flag skips prompting for approval.
 
-  ~> **Warning:** Remote execution with non-interactive workflows requires auto-approved deployments. Minimize risk of unpredictable infrastructure changes and configuration drift by making sure that no one can change your infrastructure outside of your automated build pipeline. 
+  ~> **Warning:** Remote execution with non-interactive workflows requires auto-approved deployments. Minimize the risk of unpredictable infrastructure changes and configuration drift by making sure that no one can change your infrastructure outside of your automated build pipeline. 
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
