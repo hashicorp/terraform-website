@@ -14,26 +14,22 @@
       },
       {
         "title": "Data Storage",
-        "path": "requirements/data-storage"
-      },
-      {
-        "title": "Data Storage Requirements",
         "routes": [
           {
             "title": "PostgreSQL Requirements",
-            "path": "requirements/data-storage-requirements/postgres-requirements"
+            "path": "requirements/data-storage/postgres-requirements"
           },
           {
             "title": "Mounted Disk Requirements",
-            "path": "requirements/data-storage-requirements/disk-requirements"
+            "path": "requirements/data-storage/disk-requirements"
           },
           {
             "title": "Minio Setup Guide",
-            "path": "requirements/data-storage-requirements/minio-setup-guide"
+            "path": "requirements/data-storage/minio-setup-guide"
           },
           {
             "title": "Externally Managed Vault",
-            "path": "requirements/data-storage-requirements/vault"
+            "path": "requirements/data-storage/vault"
           }
         ]
       },
