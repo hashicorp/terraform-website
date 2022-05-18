@@ -17,78 +17,76 @@
         "path": "requirements/data-storage"
       },
       {
+        "title": "Data Storage Requirements",
+        "routes": [
+          {
+            "title": "PostgreSQL Requirements",
+            "path": "requirements/data-storage-requirements/postgres-requirements"
+          },
+          {
+            "title": "Mounted Disk Requirements",
+            "path": "requirements/data-storage-requirements/disk-requirements"
+          },
+          {
+            "title": "Minio Setup Guide",
+            "path": "requirements/data-storage-requirements/minio-setup-guide"
+          },
+          {
+            "title": "Externally Managed Vault",
+            "path": "requirements/data-storage-requirements/vault"
+          }
+        ]
+      },
+      {
         "title": "Network",
         "path": "requirements/network"
       },
       {
         "title": "Operating System",
-        "path": "requirements/operating-system"
+        "routes": [
+          {
+            "title": "RedHat Linux Requirements",
+            "path": "requirements/os-specific/rhel-requirements"
+          },
+          {
+            "title": "CentOS Linux Requirements",
+            "path": "requirements/os-specific/centos-requirements"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Reference Architectures",
+    "routes": [
+      {
+        "title": "Overview",
+        "path": "reference-architecture"
       },
+      {
+        "title": "AWS Reference Architecture",
+        "path": "reference-architecture/aws"
+      },
+      {
+        "title": "Azure Reference Architecture",
+        "path": "reference-architecture/azure"
+      },
+      {
+        "title": "GCP Reference Architecture",
+        "path": "reference-architecture/gcp"
+      },
+      {
+        "title": "VMware Reference Architecture",
+        "path": "reference-architecture/vmware"
+      }
+    ]
+  },
   {
     "title": "Before Installing",
     "routes": [
       {
         "title": "Pre-Install Checklist",
         "path": "before-installing"
-      },
-      {
-        "title": "Reference Architectures",
-        "routes": [
-          {
-            "title": "Overview",
-            "path": "before-installing/reference-architecture"
-          },
-          {
-            "title": "AWS Reference Architecture",
-            "path": "before-installing/reference-architecture/aws"
-          },
-          {
-            "title": "Azure Reference Architecture",
-            "path": "before-installing/reference-architecture/azure"
-          },
-          {
-            "title": "GCP Reference Architecture",
-            "path": "before-installing/reference-architecture/gcp"
-          },
-          {
-            "title": "VMware Reference Architecture",
-            "path": "before-installing/reference-architecture/vmware"
-          }
-        ]
-      },
-      {
-        "title": "Data Storage Requirements",
-        "routes": [
-          {
-            "title": "PostgreSQL Requirements",
-            "path": "before-installing/data-storage-requirements/postgres-requirements"
-          },
-          {
-            "title": "Mounted Disk Requirements",
-            "path": "before-installing/data-storage-requirements/disk-requirements"
-          },
-          {
-            "title": "Minio Setup Guide",
-            "path": "before-installing/data-storage-requirements/minio-setup-guide"
-          },
-          {
-            "title": "Externally Managed Vault",
-            "path": "before-installing/data-storage-requirements/vault"
-          }
-        ]
-      },
-      {
-        "title": "OS-Specific Requirements",
-        "routes": [
-          {
-            "title": "RedHat Linux Requirements",
-            "path": "before-installing/os-specific/rhel-requirements"
-          },
-          {
-            "title": "CentOS Linux Requirements",
-            "path": "before-installing/os-specific/centos-requirements"
-          }
-        ]
       }
     ]
   },
