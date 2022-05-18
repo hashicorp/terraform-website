@@ -156,7 +156,7 @@ Changes to Outputs:
 
 In workspaces that are not connected to a VCS repository, users with [permission to apply runs](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) can use the CLI to trigger remote applies. Remote applies use the configuration code from the local working directory, but use the variable values from the specified workspace.
 
-~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
+~> **Note:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
 When you are ready to apply configuration changes, use the `terraform apply` command. Terraform Cloud will plan your changes, and the command line will prompt you for approval before applying them.
 
