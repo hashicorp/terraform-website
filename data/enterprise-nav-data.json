@@ -1,6 +1,29 @@
 [
   { "heading": "Deployment & Operation" },
-  { "title": "Overview", "path": "" },
+  { "title": "What is Terraform Enterprise?", "path": "" },
+  {
+    "title": "Requirements",
+    "routes": [
+      {
+        "title": "Credentials",
+        "path": "requirements/credentials"
+      },
+      {
+        "title": "Hardware",
+        "path": "requirements/hardware"
+      },
+      {
+        "title": "Data Storage",
+        "path": "requirements/data-storage"
+      },
+      {
+        "title": "Network",
+        "path": "requirements/network"
+      },
+      {
+        "title": "Operating System",
+        "path": "requirements/operating-system"
+      },
   {
     "title": "Before Installing",
     "routes": [
@@ -53,10 +76,6 @@
             "path": "before-installing/data-storage-requirements/vault"
           }
         ]
-      },
-      {
-        "title": "Network Requirements",
-        "path": "before-installing/network-requirements"
       },
       {
         "title": "OS-Specific Requirements",
