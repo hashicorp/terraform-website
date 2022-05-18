@@ -100,9 +100,11 @@ Workspace admins have the following permissions on their workspace:
 - Read and write variables
 - Read and write state versions
 - Read and write workspace settings (workspace admins only) — this includes general settings, notification configurations, run triggers, and more.
-- Set or remove workspace permissions for any team (workspace admins only)
+- Set or remove workspace permissions for visible teams (workspace admins only)
 - Delete workspace (workspace admins only)
 - Manage workspace run tasks
+
+Workspace admins do not implicitly have access to view all teams within their organization. This means that workspace admins are not able to manage workspace permissions for teams which are ["Secret"](/cloud-docs/users-teams-organizations/teams#team-visibility), unless they are also organiztion owners.
 
 See [General Workspace Permissions][] above for details about specific permissions.
 
