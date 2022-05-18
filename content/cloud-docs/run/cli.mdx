@@ -194,6 +194,8 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ### Non-Interactive Workflows
 
+> **Hands On:** Try the [Deploy Infrastructure with Terraform Cloud and CircleCI](https://learn.hashicorp.com/tutorials/terraform/circle-ci) tutorial on HashiCorp Learn.
+
 External systems cannot run the traditional apply workflow because Terraform requires console input from the user to approve plans. We recommend using the [API-driven Run Workflow](/cloud-docs/run/api) for non-interactive workflows when possible.
 
 If you prefer to use the CLI in a non-interactive environment, we recommend first running a [speculative plan](/cloud-docs/run#speculative-plans) to preview the changes Terraform will make to your infrastructure. Then, use one of the following approaches with the `-auto-approve` flag based on the [execution mode](/cloud-docs/workspaces/settings#execution-mode) of your workspace. The [`-auto-approve`](/cli/commands/apply#auto-approve) flag skips prompting you to approve the plan.
