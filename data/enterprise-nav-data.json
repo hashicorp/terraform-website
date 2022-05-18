@@ -122,61 +122,56 @@
     ]
   },
   {
-    "title": "User Management",
+    "title": "SAML SSO",
     "routes": [
       {
-        "title": "SAML SSO",
+        "title": "Overview",
+        "path": "saml"
+      },
+      {
+        "title": "Configuration",
+        "path": "saml/configuration"
+      },
+      {
+        "title": "Team Membership",
+        "path": "saml/team-membership"
+      },
+      {
+        "title": "Attributes",
+        "path": "saml/attributes"
+      },
+      {
+        "title": "Login",
+        "path": "saml/login"
+      },
+      {
+        "title": "IdP Configuration",
         "routes": [
           {
             "title": "Overview",
-            "path": "user-management/saml"
+            "path": "saml/idp-configuration"
           },
           {
-            "title": "Configuration",
-            "path": "user-management/saml/configuration"
+            "title": "ADFS",
+            "path": "saml/idp-configuration/adfs"
           },
           {
-            "title": "Team Membership",
-            "path": "user-management/saml/team-membership"
+            "title": "Azure Active Directory",
+            "path": "saml/idp-configuration/aad"
           },
           {
-            "title": "Attributes",
-            "path": "user-management/saml/attributes"
+            "title": "Okta",
+            "path": "saml/idp-configuration/okta"
           },
           {
-            "title": "Login",
-            "path": "user-management/saml/login"
-          },
-          {
-            "title": "IdP Configuration",
-            "routes": [
-              {
-                "title": "Overview",
-                "path": "user-management/saml/idp-configuration"
-              },
-              {
-                "title": "ADFS",
-                "path": "user-management/saml/idp-configuration/adfs"
-              },
-              {
-                "title": "Azure Active Directory",
-                "path": "user-management/saml/idp-configuration/aad"
-              },
-              {
-                "title": "Okta",
-                "path": "user-management/saml/idp-configuration/okta"
-              },
-              {
-                "title": "OneLogin",
-                "path": "user-management/saml/idp-configuration/onelogin"
-              }
-            ]
-          },
-          {
-            "title": "Troubleshooting",
-            "path": "user-management/saml/troubleshooting"
+            "title": "OneLogin",
+            "path": "saml/idp-configuration/onelogin"
           }
         ]
+      },
+      {
+        "title": "Troubleshooting",
+        "path": "saml/troubleshooting"
       }
     ]
   },
@@ -271,7 +266,7 @@
     ]
   },
   {
-    "title": "System Overview",
+    "title": "System Architecture",
     "routes": [
       { "title": "Overview", "path": "system-overview" },
       {
