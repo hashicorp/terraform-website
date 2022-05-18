@@ -47,9 +47,11 @@ To supplement these remote operations, you can also use the optional [Terraform 
 
 To enable the CLI-driven workflow, you must:
 
-1. Run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/cli/config/config-file#credentials).
+1. Run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can manually configure credentials in the CLI config file or through environment variables. Refer to [CLI Configuration](/cli/config/config-file#environment-variable-credentials) for details.
 
-1. Add the `cloud` block to your Terraform configuration. The example below shows how you can map your CLI workspaces to Terraform Cloud workspaces that have a specific tag.
+1. Add the `cloud` block to your Terraform configuration. You can define its arguments directly in your configuration file or supply them through environment variables, which can be useful for [non-interactive workflows](#non-interactive-workflows). Refer to [Using Terraform Cloud](/cli/cloud) for configuration details.
+
+   The following example shows how to map CLI workspaces to Terraform Cloud workspaces with a specific tag.
 
    ```
    terraform {
@@ -83,8 +85,6 @@ To enable the CLI-driven workflow, you must:
    If you ever set or change modules or Terraform Settings,
    run "terraform init" again to reinitialize your working directory.
    ```
-
-Refer to [Using Terraform Cloud](/cli/cloud) for more details about how to initialize and configure the integration.
 
 ### Implicit Workspace Creation
 
@@ -124,7 +124,7 @@ you can do so by defining a [`.terraformignore` file in your configuration direc
 
 ## Remote Speculative Plans
 
-You can run speculative plans in any workspace where you have permission to queue plans. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+You can run speculative plans in any workspace where you have [permission to queue plans](/cloud-docs/users-teams-organizations/permissions). Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
 
@@ -151,11 +151,12 @@ Changes to Outputs:
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
 ## Remote Applies
 
-In workspaces that aren't connected to a VCS repository, users with permission to apply runs can trigger remote applies with the CLI. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+In workspaces that are not connected to a VCS repository, users with [permission to apply runs](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) can use the CLI to trigger remote applies. Remote applies use the configuration code from the local working directory, but use the variable values from the specified workspace.
+
+~> **Note:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
 When you are ready to apply configuration changes, use the `terraform apply` command. Terraform Cloud will plan your changes, and the command line will prompt you for approval before applying them.
 
@@ -191,11 +192,21 @@ Do you want to perform these actions in workspace "docs-workspace"?
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
 
+### Non-Interactive Workflows
+
+> **Hands On:** Try the [Deploy Infrastructure with Terraform Cloud and CircleCI](https://learn.hashicorp.com/tutorials/terraform/circle-ci) tutorial on HashiCorp Learn.
+
+External systems cannot run the traditional apply workflow because Terraform requires console input from the user to approve plans. We recommend using the [API-driven Run Workflow](/cloud-docs/run/api) for non-interactive workflows when possible.
+
+If you prefer to use the CLI in a non-interactive environment, we recommend first running a [speculative plan](/cloud-docs/run#speculative-plans) to preview the changes Terraform will make to your infrastructure. Then, use one of the following approaches with the `-auto-approve` flag based on the [execution mode](/cloud-docs/workspaces/settings#execution-mode) of your workspace. The [`-auto-approve`](/cli/commands/apply#auto-approve) flag skips prompting you to approve the plan.
+
+- **Local Execution:**  Save the approved speculative plan and then run `terraform apply -auto-approve` with the saved plan.
+- **Remote Execution:** Terraform Cloud does not support uploading saved plans for remote execution, so we recommend running `terraform apply -auto-approve` immediately after approving the speculative plan to prevent the plan from becoming stale. 
+
+  !> **Warning:** Remote execution with non-interactive workflows requires auto-approved deployments. Minimize the risk of unpredictable infrastructure changes and configuration drift by making sure that no one can change your infrastructure outside of your automated build pipeline. 
+
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Remote applies use the configuration code from the local working directory, but use the variable values from the specified workspace.
-
-~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
 ## Sentinel Policies
 
