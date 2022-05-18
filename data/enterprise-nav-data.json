@@ -125,10 +125,6 @@
     "title": "SAML SSO",
     "routes": [
       {
-        "title": "Overview",
-        "path": "saml"
-      },
-      {
         "title": "Configuration",
         "path": "saml/configuration"
       },
@@ -145,10 +141,10 @@
         "path": "saml/login"
       },
       {
-        "title": "IdP Configuration",
+        "title": "Identity Providers",
         "routes": [
           {
-            "title": "Overview",
+            "title": "Sample Auth Request",
             "path": "saml/idp-configuration"
           },
           {
