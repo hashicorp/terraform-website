@@ -199,7 +199,7 @@ External systems cannot run the traditional apply workflow because Terraform req
 If you prefer to use the CLI, we recommend first running a [speculative plan](/cloud-docs/run#speculative-plans) to preview the changes Terraform will make to your infrastructure. Then, use one of the following approaches based on the [execution mode](/cloud-docs/workspaces/settings#execution-mode) for your workspaces.
 
 - **Local Execution:**  Save the approved speculative plan and then run `terraform apply -auto-approve` with the saved plan.
-- **Remote Execution:** Terraform Cloud does not support uploding a saved plan, so we recommend running `terraform apply -auto-approve` immediately after approving the speculative plan to reduce the risk of drift. The [`-auto-approve`](/cli/commands/apply#auto-approve) flag skips the plan approval step in the apply workflow.
+- **Remote Execution:** Terraform Cloud does not support uploading saved plans for remote execution, so we recommend running `terraform apply -auto-approve` **immediately** after approving the speculative plan to prevent the plan from becoming stale. The [`-auto-approve`](/cli/commands/apply#auto-approve) flag skips prompting for approval.
 
   ~> **Warning:** Remote execution with non-interactive workflows requires auto-approved deployments. Minimize risk of unpredictable infrastructure changes and configuration drift by making sure that no one can change your infrastructure outside of your automated build pipeline. 
 
