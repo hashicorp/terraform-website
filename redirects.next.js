@@ -201,6 +201,7 @@ module.exports = (async () => {
     '/enterprise/before-installing/reference-architecture/vmware': '/enterprise/reference-architecture/vmware',
     '/enterprise/before-installing/os-specific/rhel-requirements': '/enterprise/requirements/os-specific/rhel-requirements',
     '/enterprise/before-installing/os-specific/centos-requirements': '/enterprise/requirements/os-specific/centos-requirements',
+    '/enterprise/before-installing/network-requirements': '/enterprise/requirements/network',
     '/enterprise/user-management/saml': '/enterprise/saml/configuration',
     '/enterprise/user-management/saml/configuration': '/enterprise/saml/configuration',
     '/enterprise/user-management/saml/team-membership': '/enterprise/saml/team-membership',
