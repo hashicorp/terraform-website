@@ -78,18 +78,9 @@
     ]
   },
   {
-    "title": "Before Installing",
-    "routes": [
-      {
-        "title": "Pre-Install Checklist",
-        "path": "before-installing"
-      }
-    ]
-  },
-  {
     "title": "Install and Configure",
     "routes": [
-      { "title": "Overview", "path": "install" },
+      { "title": "Pre-Install Checklist", "path": "install/pre-install-checklist" },
       {
         "title": "Interactive Install",
         "routes": [
