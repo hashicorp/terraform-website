@@ -49,19 +49,19 @@ The [replace option](/cli/commands/plan#replace-address) instructs Terraform to 
 
 ## Allow Empty Apply
 
-A no-operation (empty) apply enables Terraform Cloud to apply a run that produces no changes rather than simply finishing after the plan stage. Empty applies are particularly useful for users wishing to upgrade a Terraform Cloud workspace's latest state version to the desired Terraform version.
+A no-operation (empty) apply enables Terraform Cloud to apply a run from a plan that contains no infrastructure changes. During apply, Terraform can upgrade the state version if required. You can use this option to upgrade the state in your Terraform Cloud workspace to a new Terraform version.
 
--> **Note:** Terraform Cloud cannot guarantee that a plan in this mode will produce no changes and so it is advised to check for resource drift beforehand.
+~> **Warning:** Terraform Cloud cannot guarantee that a plan in this mode will produce no changes. We recommend checking the plan for drift before proceeding to the apply stage.
 
 - **API:** Set the `allow-empty-apply` field to `true`.
 - **UI:** Use the "Start new plan" action from a workspace's "Actions" menu, then select the "Allow empty apply" option in the new plan dialog.
 
-## Plan Only
+## Plan Only/Speculative Plan
 
-A plan-only run is a way to create an un-apply-able plan using a specific terraform version that may differ from the workspace version. This is useful when checking if your configuration is upgradable to a newer terraform version without changing the workspace settings first.
+The Plan Only option creates a plan that Terraform cannot apply. Plan Only runs are also known as [Speculative plans](/cloud-docs/run#speculative-plans). They show a set of possible changes and check them against Sentinel policies, but those changes cannot be applied. You can use it to test a specific Terraform version that may differ from the workspace version. This lets you check whether your configuration is compatible with a newer terraform version without changing the workspace settings.
 
 - **API:** Set the `plan-only` field to `true` and specify an available terraform version using the `terraform-version` field.
-- **UI:** Use the "Start new plan" action from a workspace's "Actions" menu, then select the "Plan only" option in the new plan dialog.
+- **UI:** Open the workspace's **Actions** menu, select **Start new plan**, and then choose **Plan only** as the run type.
 
 ## Targeted Plan and Apply
 
