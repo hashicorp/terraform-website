@@ -1,5 +1,5 @@
 [
-  { "heading": "Deployment & Operation" },
+  { "heading": "Terraform Enterprise Admin" },
   { "title": "Overview", "path": "" },
   {
     "title": "Before Installing",
@@ -267,7 +267,7 @@
     ]
   },
   {
-    "title": "System Overview",
+    "title": "System Architecture",
     "routes": [
       { "title": "Overview", "path": "system-overview" },
       {
