@@ -30,23 +30,23 @@ An organization owner must [invite you to join an organization](/cloud-docs/user
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Terraform Cloud sends user invitations are sent by email. If the invited email address matches an existing Terraform Cloud account, the invitee can join the organization with that account. Otherwise, they must create a new account to work with that organization.
+Terraform Cloud sends user invitations by email. If the invited email address matches an existing Terraform Cloud account, the invitee can join the organization with that account. Otherwise, they must create a new account to work with that organization.
 
 ## Site Admin Permissions
 
 On Terraform Enterprise instances, some user accounts have a special site admin permission that allows them to administrate the entire instance.
 
-Admin permissions are distinct from normal organization-level permissions, and they apply to a different set of UI controls and API endpoints. Although admin users can administer any resource across the instance when using the site admin pages or the [admin API](/cloud-docs/api-docs/admin), they have a normal user's permissions (with access determined by the teams they belong to) when using an organization's standard UI controls and API endpoints.
+Admin permissions are distinct from normal organization-level permissions, and they apply to a different set of UI controls and API endpoints. Admin users can administer any resource across the instance when using the site admin pages or the [admin API](/cloud-docs/api-docs/admin), but they have normal user permissions when using an organization's standard UI controls and API endpoints. These normal user permissions are determined by team membership.
 
 Refer to [Administering Terraform Enterprise](/enterprise/admin) for more details.
 
 ## User Settings
 
-To view your settings page, click your user icon in the upper right corner and select **User settings** from the menu. Your **Profile** page appears, showing your username, email address, and avatar.
+To view your settings page, click your user icon and select **User settings**. Your **Profile** page appears, showing your username, email address, and avatar.
 
 ### Profile
 
-Terraform Cloud user profiles include a username and an email address. You can edit these from the **Profile** page within **User Settings**.
+Click **Profile** in the sidebar to view and edit the username and email address associated with your Terraform Cloud account.
 
 ~> **Important:** Terraform Cloud includes your username in URL paths to resources. If external systems make requests to these resources, you must update them before you change your username.
 
@@ -74,15 +74,23 @@ Click **Two Factor Authentication** in the sidebar to enable two-factor authenti
 
 Refer to [Two-Factor Authentication](/cloud-docs/users-teams-organizations/2fa) for details.
 
-### API Tokens
+### SSO
 
-Click **Tokens** in the sidebar to create, manage, and revoke API tokens. Terraform Cloud has three kinds of API tokens: user, team, and organization. Users can be members of multiple organizations, so user tokens work with any organization where the associated user is a member. Refer to [API Tokens](/cloud-docs/users-teams-organizations/api-tokens) for details.API tokens are necessary for the following tasks:
+Click **SSO** in the sidebar to review and [remove SSO identity links](/cloud-docs/users-teams-organizations/single-sign-on/linking-user-account#remove-sso-identity-link) associated with your account.
+
+You have an SSO identity for every SSO-enabled Terraform Cloud organization. Terraform Cloud links each SSO identity to a single Terraform Cloud user account. This link determines which account you can use to access each organization.
+
+### Tokens
+
+Click **Tokens** in the sidebar to create, manage, and revoke API tokens. Terraform Cloud has three kinds of API tokens: user, team, and organization. Users can be members of multiple organizations, so user tokens work with any organization where the associated user is a member. Refer to [API Tokens](/cloud-docs/users-teams-organizations/api-tokens) for details.
+
+API tokens are required for the following tasks:
 
 - Authenticating with the [Terraform Cloud API](/cloud-docs/api-docs). API calls require an `Authorization: Bearer <TOKEN>` HTTP header.
 - Authenticating with the [Terraform Cloud CLI integration](/cli/cloud/settings) or the [`remote` backend](/language/settings/backends/remote). These require a token in the CLI config file or in the backend configuration.
 - Using [private modules](/cloud-docs/registry/using) in command-line runs on local machines. This requires [a token in the CLI config file](/cloud-docs/registry/using#authentication).
 
-Protect your tokens carefully, because they can do anything your user account can. For example, if you belong to a team with permission to read and write variables for a workspace, your API token can edit variables in that workspace. Refer to [permissions.](/cloud-docs/users-teams-organizations/permissions) for more details.
+Protect your tokens carefully because they can do anything your user account can. For example, if you belong to a team with permission to read and write variables for a workspace, your API token can edit variables in that workspace. Refer to [permissions](/cloud-docs/users-teams-organizations/permissions) for more details.
 
 #### Creating a Token
 
@@ -95,6 +103,6 @@ Protect your tokens carefully, because they can do anything your user account ca
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 #### Revoking a Token
 
-To revoke a token, click the 🗑 **trash can** button next to it. That token will no longer be able to authenticate as your user account.
+To revoke a token, click the **trash can** next to it. That token will no longer be able to authenticate as your user account.
 
 -> **Note**: When SAML SSO is enabled there is a session timeout for user API tokens, forcing users to periodically reauthenticate through the web UI in order to keep their tokens active. Refer to [API Token Expiration](/enterprise/user-management/saml/login#api-token-expiration) for details.
