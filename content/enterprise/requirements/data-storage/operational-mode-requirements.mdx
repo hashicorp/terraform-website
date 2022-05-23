@@ -4,8 +4,7 @@ description: >-
   Data storage requirements differ based on the operational mode of your Terraform Enterprise instance.
 ---
 
-# Operational Mode
-
+# Operational Mode Data Storage Requirements
 
 Terraform Enterprise data storage requirements differ based on the operational mode you choose for your instance. If you are following one of the [reference architectures](/enterprise/before-installing/reference-architecture), we recommend referring to it while preparing your data storage services.
 
@@ -17,7 +16,7 @@ External Services mode has the following requirements:
   - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
     - Disable any lifecycle rules that would delete, archive, or transition objects in this container. Terraform Enterprise expects to manage all data the object storage service, so any lifecycle moves may result in unexpected data inconsistencies.
     - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. Refer to the [Minio Setup Guide](/enterprise/before-installing/data-storage-requirements/minio-setup-guide) for details.
-  - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](/enterprise/before-installing/data-storage-requirements/vault).
+  - Optionally: If you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](/enterprise/before-installing/data-storage-requirements/vault).
 
 ## Active/Active Mode
 
@@ -28,7 +27,7 @@ Active/Active operational mode has the following requirements:
 
 ## Mounted Disk
 
-If you choose to use the _Mounted Disk_ operational mode, Terraform Enterprise will manage its own PostgreSQL database and object storage using a separate directory on the host, with the intention that the directory is configured to store its data on an external disk, such as EBS, iSCSI, etc.
+If you choose to use the Mounted Disk operational mode, Terraform Enterprise will manage its own PostgreSQL database and object storage using a separate directory on the host, with the intention that the directory is configured to store its data on an external disk, such as EBS, iSCSI, etc.
 
 We strongly suggest following the guidelines below for mounted disk storage.
 
