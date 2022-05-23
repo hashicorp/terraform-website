@@ -9,8 +9,8 @@
         "path": "requirements/credentials"
       },
       {
-        "title": "Hardware and Data Storage",
-        "path": "requirements/hardware-data-storage"
+        "title": "Hardware",
+        "path": "requirements/hardware"
       },
       {
         "title": "Operating System",
@@ -32,6 +32,10 @@
       {
         "title": "Data Storage",
         "routes": [
+          {
+            "title": "Operational Mode Requirements",
+            "path": "requirements/data-storage/operational-mode-requirements"
+          },
           {
             "title": "PostgreSQL Requirements",
             "path": "requirements/data-storage/postgres-requirements"
