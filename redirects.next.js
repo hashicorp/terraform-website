@@ -195,7 +195,7 @@ module.exports = (async () => {
     '/cloud-docs/users-teams-organizations/index': '/cloud-docs/users-teams-organizations/users'
     '/guides/recommended-practices': '/recommended-practices',
     '/cloud-docs/paid': '/cloud-docs/overview',
-    '/cloud-docs/run': '/cloud-docs/run/remote-operations',
+    '/cloud-docs/run': '/cloud-docs/run/remote-operations'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
