@@ -192,7 +192,8 @@ module.exports = (async () => {
     '/cloud-docs/registry/publish': '/cloud-docs/registry/publish-modules',
     '/cloud-docs/api-docs/providers': '/cloud-docs/api-docs/private-registry/providers',
     '/cloud-docs/api-docs/modules': '/cloud-docs/api-docs/private-registry/modules',
-    '/guides/recommended-practices': '/recommended-practices',
+    '/cloud-docs/guides/recommended-practices': '/cloud-docs/recommended-practices',
+    '/cloud-docs/guides/recommended-practices/:path*': '/cloud-docs/recommended-practices/:path*',
     '/cloud-docs/paid': '/cloud-docs/overview',
     '/cloud-docs/run': '/cloud-docs/run/remote-operations',
   }
