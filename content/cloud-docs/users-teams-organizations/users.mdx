@@ -90,7 +90,7 @@ API tokens are required for the following tasks:
 - Authenticating with the [Terraform Cloud CLI integration](/cli/cloud/settings) or the [`remote` backend](/language/settings/backends/remote). These require a token in the CLI config file or in the backend configuration.
 - Using [private modules](/cloud-docs/registry/using) in command-line runs on local machines. This requires [a token in the CLI config file](/cloud-docs/registry/using#authentication).
 
-Protect your tokens carefully because they can do anything your user account can. For example, if you belong to a team with permission to read and write variables for a workspace, your API token can edit variables in that workspace. Refer to [permissions](/cloud-docs/users-teams-organizations/permissions) for more details.
+Protect your tokens carefully because they contain the same permissions as your user account. For example, if you belong to a team with permission to read and write variables for a workspace, another user could use your API token to authenticate as your user account and also edit variables in that workspace. Refer to [permissions](/cloud-docs/users-teams-organizations/permissions) for more details.
 
 #### Creating a Token
 
