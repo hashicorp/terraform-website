@@ -101,6 +101,7 @@ The `sso-team-id` attribute is only returned in Terraform Enterprise 202204-1 an
         "organization-access": {
           "manage-policies": true,
           "manage-policy-overrides": false,
+          "manage-run-tasks": true,
           "manage-workspaces": false,
           "manage-vcs-settings": false
         }
@@ -148,7 +149,7 @@ Properties without a default value are required.
 | `data.type`                             | string |            | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string |            | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
 | `data.attributes.sso-team-id`           | string | (nothing)  | The unique identifier of the team from the SAML `MemberOf` attribute. Only available in Terraform Enterprise 202204-1 and later, or if the team belongs to an organization in the paid Terraform Cloud Business tier.                |
-| `data.attributes.organization-access`   | object | (nothing)  | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
+| `data.attributes.organization-access`   | object | (nothing)  | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-run-tasks`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | `"secret"` | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
 ### Sample Payload
@@ -192,6 +193,7 @@ The `sso-team-id` attribute is only returned in Terraform Enterprise 202204-1 an
       "organization-access": {
         "manage-policies": false,
         "manage-policy-overrides": false,
+        "manage-run-tasks": false,
         "manage-vcs-settings": false,
         "manage-workspaces": true,
         "manage-providers": false,
@@ -266,6 +268,7 @@ The `sso-team-id` attribute is only returned in Terraform Enterprise 202204-1 an
       "organization-access": {
         "manage-policies": true,
         "manage-policy-overrides": false,
+        "manage-run-tasks": true,
         "manage-workspaces": false,
         "manage-vcs-settings": false,
         "manage-providers": false,
@@ -314,7 +317,7 @@ Properties without a default value are required.
 | `data.type`                             | string |                  | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
 | `data.attributes.sso-team-id`           | string | (previous value) | The unique identifier of the team from the SAML `MemberOf` attribute. Only available in Terraform Enterprise 202204-1 and later, or if the team belongs to an organization in the paid Terraform Cloud Business tier.                |
-| `data.attributes.organization-access`   | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
+| `data.attributes.organization-access`   | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-run-tasks`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
 ### Sample Payload
@@ -357,6 +360,7 @@ The `sso-team-id` attribute is only returned in Terraform Enterprise 202204-1 an
       "organization-access": {
         "manage-policies": false,
         "manage-policy-overrides": false,
+        "manage-run-tasks": true,
         "manage-vcs-settings": true,
         "manage-workspaces": true,
         "manage-providers": false,

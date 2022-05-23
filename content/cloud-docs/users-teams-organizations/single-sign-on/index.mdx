@@ -31,7 +31,7 @@ Once SSO is enabled for an organization, all non-owner members must sign in thro
 
 ### SSO Identities and Terraform Cloud User Accounts
 
-SSO does not automatically provision Terraform Cloud user accounts. A user signing in for the first time with SSO must either provide a password to create a new Terraform Cloud user account (using their SSO email address as their username), or must link their SSO identity to an existing Terraform Cloud user account.
+SSO does not automatically provision Terraform Cloud user accounts. The first time you sign in with SSO, you must either provide a password to create a new Terraform Cloud user account (using your SSO email address as the username), or link your SSO identity to an existing Terraform Cloud user account. Once the SSO identity is linked, you can only log in to that organization using the linked account. You must [remove the SSO link](/cloud-docs/users-teams-organizations/single-sign-on/linking-user-account#remove-sso-identity-link) if you want to access the organization with a different user account.
 
 The accounts of SSO users are normal Terraform Cloud user accounts. If logged in with username and password, these accounts can create, join, and interact with other Terraform Cloud organizations. However, they cannot interact with the SSO-enabled organization without signing in via SSO unless they belong to its owners team.
 
@@ -74,7 +74,7 @@ To enable team membership mapping:
 
 When team management is enabled, you can configure which SAML attribute in the SAMLResponse will control team membership. This defaults to the `MemberOf` attribute. The expected format of the corresponding `AttributeValue` in the SAMLResponse is a either a string containing a comma-separated list of teams, or separate `AttributeValue` items specifying teams.
 
-When users log in through SAML, Terraform automatically adds them to the teams included in their assertion and automatically removes them from teams that are not included in their assertion. This automatic mapping overrides any manually set team memberships. Each time the user logs in, their team membership is adjusted to match their SAML assertion. 
+When users log in through SAML, Terraform automatically adds them to the teams included in their assertion and automatically removes them from teams that are not included in their assertion. This automatic mapping overrides any manually set team memberships. Each time the user logs in, their team membership is adjusted to match their SAML assertion.
 
 Terraform Cloud ignores team names that do not exactly match existing teams and will not create new teams from those listed in the assertion. If the chosen SAML attribute is not provided in the SAMLResponse, Terraform assigns users to a default team named `sso` and does not remove them from any existing teams.
 
@@ -86,6 +86,8 @@ It is not possible to assign users to the `owners` team through this attribute.
 Terraform Cloud expects the team names in the team membership SAML attribute to exactly match its own team names or its configured SSO Team IDs. This match is case sensitive.
 
 You can configure SSO Team IDs in the organization's **Teams** page. If an SSO Team ID is configured, Terraform Cloud will attempt to match the chosen SAML attribute against both the team name and the SSO Team ID when mapping users to teams. You may want to create an SSO Team ID if the team membership SAML attribute is not human readable and is not used as the team's name in Terraform Cloud.
+
+SSO Team IDs are particularly helpful if your SSO or Active Directory provider restricts the `MemberOf` attribute in its SAML responses to Group UUIDs, rather than human readable group names. Setting the SSO Team ID allows you to maintain human readable team names in Terraform Cloud, while still managing team membership through SSO or Active Directory.
 
 ## NameID Format
 

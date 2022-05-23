@@ -1,0 +1,48 @@
+---
+page_title: Single Sign-on - Linking a User Account
+description: >-
+ Manage the user account linked to an SSO identity.
+---
+
+# Linking a User Account
+
+-> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. Refer to [Terraform Cloud pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
+
+You have an SSO identity for every SSO-enabled Terraform Cloud organization. Terraform Cloud links each SSO identity to a single Terraform Cloud user account. This link determines which account you can use to access each organization.
+
+You can add and remove SSO identity links for all providers, including Microsoft Azure AD, Okta, and SAML.
+
+## Add SSO Identity Link
+
+The first time you use SSO to log in to an organization, Terraform Cloud links that SSO identity to your user account. You can only log in to that organization using the linked user account.
+
+When Terraform Cloud does not recognize the email address associated with your identity provider, it asks if you want to create a new user account with that email address. You can choose one of the following actions:
+
+- **Create a new account:** Terraform Cloud automatically links your SSO identity to this new account after creation.
+- **Link to an existing account:**  Click **Link SSO identity to a different account** and sign in with a Terraform Cloud account. Terraform Cloud automatically links your SSO identity to this account when you log in.
+
+![Link SSO identity to a different account on login screen](/img/docs/sso-identity-link-existing-account.png)
+
+## Change SSO Identity Link
+
+Terraform Cloud shows an error if you try to log in to an SSO-enabled organization with a different user account than the one linked to your SSO identity. To change this SSO identity link:
+
+1. Log in to Terraform Cloud using the linked account.
+1. [Remove the SSO identity link](#remove-sso-identity-link) from the current account.
+1. Sign out of Terraform Cloud.
+1. Log in and [add an SSO identity link](#add-sso-identity-link) to the desired account.
+
+## Remove SSO Identity Link
+
+To unlink an SSO identity from a Terraform Cloud account:
+
+1. [Sign in with SSO](/cloud-docs/users-teams-organizations/single-sign-on#signing-in-with-sso) to the linked account.
+1. Click your user icon and select **User Settings**. Your **Profile** page appears.
+1. Click **SSO** in the left navigation bar. The **SSO** page appears, showing a list of all of the SSO identities associated with this account.
+1. Click the **ellipses (...)** next to the association you want to unlink and select **Unlink SSO identity**. The **Unlink SSO identity** box appears.
+1. Click **Unlink SSO identity**.
+
+The SSO association is now unlinked and removed from the SSO list. The organization is still available in the **Choose an organization** menu, but Terraform Cloud will prompt you to log into that organization through SSO before you can access it.
+
+
+
