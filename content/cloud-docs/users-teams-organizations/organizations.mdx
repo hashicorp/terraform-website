@@ -25,8 +25,8 @@ In addition to the Terraform Cloud UI, you can use the following methods to mana
 
 Terraform Cloud displays your current organization in the left of the top navigation bar. To select an organization:
 
-- Click the current organization name to view a list of all the organizations where you are a member.
-- Click an organization to select it.
+1. Click the current organization name to view a list of all the organizations where you are a member.
+1. Click an organization to select it.
 
 ## Joining and Leaving Organizations
 
@@ -50,115 +50,89 @@ On Terraform Cloud, any user can create a new organization. If you do not belong
 Terraform Cloud shows the new organization in the navigation bar and prompts you to create a new workspace. You can also [invite other users](#users) to join the organization.
 
 
-## Organization Settings
+## Managing Settings
 
-You can view and manage an organization's settings by clicking the "Settings" link in the top navigation bar.
+To view and manage an organization's settings, click **Settings** in the top navigation bar.
 
-![screenshot: the organization settings page](/img/docs/org-settings.png)
+The contents of the organization settings depends on your permissions within the organization. All users can review the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy. [Organization owners][owners] can view and manage the entire list of organization settings. Refer to [Organization Permissions](/cloud-docs/users-teams-organizations/permissions#organization-permissions) for details.
 
-The contents of the organization settings depends on the current user's permissions within the organization:
-
-- Users with permission to manage VCS settings or manage policies can manage the settings they have access to. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-- [Organization owners][owners] can view and manage the entire list of organization settings. Most settings cannot be delegated, and are only available to owners.
-- Other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+You may be able to manage the following types of organization permissions.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
+### Organization Settings
 
-### General
+#### General
 
-The general settings page is shown to all users in an organization, and displays the organization's name and contact email.
+Refer the organizations name and contact email. Organization owners can also  change the organization's name and contact email or delete the organization.
 
-Organization owners can use this page to change the organization's name and contact email or delete the organization.
+!> **Warning:** Deleting or renaming an organization can be very disruptive. We strongly recommend against deleting or renaming organizations with active members.
 
-#### Renaming an Organization
+To rename an organization that manages infrastructure:
 
-!> **Warning:** Renaming an organization can be very disruptive. With the exception of new organizations with no collaborators, we strongly recommend against renaming organizations.
-
-To rename a new organization with few or no collaborators, make sure there are no runs in progress and then update the name on the general settings page. Renaming a brand new organization is generally harmless and non-disruptive.
-
-To rename an organization that is already managing significant infrastructure, you must:
-
-1. Alert all members of the organization ahead of time, so they're prepared for the disruption.
-1. Lock all workspaces, and bring all current and pending runs to an end (by cancelling them or by waiting for them to finish). For your protection, Terraform Cloud won't change the name of an organization with runs in progress; locking workspaces ensures no new runs will start before you attempt to change the name.
+1.  Alert all members of the organization about its impending deletion.
+1. Cancel in progress and pending runs or wait for them to finish. Terraform Cloud cannot change the name of an organization with runs in progress.
+1. Lock all workspaces to ensure that no new runs will start before you change the name.
 1. Rename the organization.
-1. Update anything that uses Terraform Cloud's API with the organization to use its new name. This includes Terraform's `remote` backend, the `tfe` Terraform provider, and any external API integrations.
+1. Update all components using the Terraform Cloud API to the new organization name. This includes Terraform's `cloud` block CLI integration, the `tfe` Terraform provider, and any external API integrations.
 1. Unlock workspaces and resume normal operations.
 
-### Plan & Billing
+#### Plan & Billing
 
-The plan and billing page allows organization owners to upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features. It also displays any invoices for previous plan payments.
+Review the organization's plan and any invoices for previous plan payments. Organization owners can also upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features.
 
-### Tags
+#### Tags
 
-This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.
+Review a list of tags for all resources across the organization. When you delete a tag from this page, Terraform Cloud removes it from all resources.
 
-![Screenshot: the tags list, showing a list of currently used tags.](/img/docs/tag-management.png)
+#### Teams
 
-### Teams
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team that can include up to five members. Refer to [Terraform Cloud pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+All users in an organization can access the **Teams** page, which displays a list of [teams][] within the organiation. This excludes [secret teams](/cloud-docs/users-teams-organizations/teams#team-visibility) that you are not a member of. You can also view team membership and manage team API tokens.
 
-The teams page is shown to all users in an organization.
-
-Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
-
-Non-owners can view the list of teams (excluding [secret teams](/cloud-docs/users-teams-organizations/teams#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
+Organization owners can also create and delete teams, manage team membership, and manage team API tokens. Remember that users must accept an invitation to the organization before you can add them to teams.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-See [Teams][] for more information.
+#### Users
 
-### Users
+Organization owners can invite Terraform Cloud users into the organization, cancel invitations, and remove existing members.
 
-The users page allows organization owners to invite new Terraform Cloud users into the organization, cancel invitations, and remove existing members.
-
-The list of users is split into two tabs: one for currently active users, and one for invited users who haven't accepted their invitations yet. If the lists are large, you can filter them by username or email using the search field at the top. For active users, the list includes usernames, email addresses, avatar icons, two-factor authentication status, and current team memberships.
-
-![Screenshot: the users list, showing information for the currently active users.](/img/docs/org-users.png)
-
-To invite a user to an organization, click the "Invite a user" button on the "Users" page. You will be asked to provide an email address and an optional list of teams. If the user accepts the emailed invitation, they will be automatically added to the specified teams.
-
-![Screenshot: the "Invite a user" dialog, which includes fields for email address and teams.](/img/docs/org-users-invite.png)
+The list of users has one tab for active users and one tab for invited users who have not yet accepted their invitations. For active users, the list includes usernames, email addresses, avatar icons, two-factor authentication status, and current team memberships. Use the **Search by username or email** field to filter these lists.
 
 User invitations are always sent by email; you cannot invite someone using their Terraform Cloud username.
 
--> **Note:** All permissions in Terraform Cloud are managed via teams. Although users can join an organization without belonging to any teams, they won't be able to do anything until they are also added to a team. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+To invite a user to an organization:
+
+1. Click **Invite a user**. The **invite a user** box appears.
+1. Enter the user's email address and optionally add them to one or more teams. If the user accepts the invitation, Terraform Cloud will be automatically add them to the specified teams.
+
+All permissions in Terraform Cloud are managed through teams. Users can join an organization without belonging to any teams, but they cannot use Teraform Cloud features until they also belong to a team. Refer to [permissions](/cloud-docs/users-teams-organizations/permissions) for details.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-### Variable Sets
+#### Variable Sets
 
-Variable sets allow you to reuse the same variables across multiple workspaces in the organization. For example, you could define a variable set of provider credentials and automatically apply it to several workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
+Variable sets let you reuse the same variables across multiple workspaces in the organization. For example, you could define a variable set of provider credentials and automatically apply it to several workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
 
 The **Variable Sets** page allows everyone in an organization to view all of the available variable sets and their variables. Users with [`read and write variables` permissions](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) can also create variable sets and assign them to one or more workspaces.
 
-Refer to the [variables overview](/cloud-docs/workspaces/variables) documentation for more information about variable types, scope, and precedence. Refer to [managing variables](/cloud-docs/workspaces/variables/managing-variables) for details about how to create and manage variable sets.
+Refer to the [variables overview](/cloud-docs/workspaces/variables) documentation for details about variable types, scope, and precedence. Refer to [managing variables](/cloud-docs/workspaces/variables/managing-variables) for details about how to create and manage variable sets.
 
-### API Tokens
+### Integrations
 
-Organizations can have a special API token that is not associated with a specific user or team. See [API Tokens](/cloud-docs/users-teams-organizations/api-tokens) for more information.
-
-### Authentication
-
-Available to members of the `owners` team. Determine when users must reauthenticate and require [two-factor authentication](/cloud-docs/users-teams-organizations/2fa) for all members of the organization.
-
-### SSH Keys
-
-Manage [SSH keys for cloning Git-based modules]((/cloud-docs/workspaces/settings/ssh-keys)) during Terraform runs. This does not include keys to access a connected VCS provider.
-
-### Cost Estimation
+#### Cost Estimation
 
 -> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** package. Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
 Enable and disable the [cost estimation](/cloud-docs/cost-estimation) feature for all workspaces.
 
-### Policies
+#### Policies
 
 This is a deprecated interface for managing Sentinel policies. Use the policy sets page instead.
 
-### Policy Sets
+#### Policy Sets
 
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** package. Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
 
@@ -166,21 +140,60 @@ Create groups of [Sentinel policies](/cloud-docs/sentinel) from a connected VCS 
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-### Run Tasks
+#### Run Tasks
 
 Manage the run tasks that you can add to workspaces within the organization. [Run tasks](/cloud-docs/workspaces/settings/run-tasks) let you integrate third-party tools and services at specific stages in the Terraform Cloud run lifecycle.
 
-### VCS Providers
+### Security
+
+#### Agents
+
+-> Note: Terraform Cloud Agents are a paid feature, available as part of the **Business** package. Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
+
+Create and manage [Terraform Cloud agent pools](/cloud-docs/agents). Terraform Cloud Agents let Terraform Cloud to communicate with isolated, private, or on-premises infrastructure.  This is useful for on-premises infrastructure types such as vSphere, Nutanix, OpenStack, enterprise networking providers, and infrastructure within a protected enclave.
+
+#### API Tokens
+
+Organization owners can set up a special [Organization API Token](/cloud-docs/users-teams-organizations/api-tokens) that is not associated with a specific user or team.
+
+#### Authentication
+
+Organization owners can determine when users must reauthenticate and require [two-factor authentication](/cloud-docs/users-teams-organizations/2fa) for all members of the organization.
+
+#### SSH Keys
+
+Manage [SSH keys for cloning Git-based modules](/cloud-docs/workspaces/settings/ssh-keys) during Terraform runs. This does not include keys to access a connected VCS provider.
+
+#### SSO
+
+-> **Note:** Single sign-on is a paid feature, available as part of the **Business** package. Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
+
+Organization owners can [set up an SSO provider](/cloud-docs/users-teams-organizations/single-sign-on) for the organization.
+
+### Version Control
+
+#### General
+
+Workspaces that use part of a shared repository do not typically run plans for changes that do not affect their files. This includes [speculative plans](/cloud-docs/run/remote-operations#speculative-plans) on pull requests. Since **pending** status checks can block pull requests, workspaces automatically send passing commit statuses for any PRs that do not affect their files.
+
+You can disable this behavior if it creates too many status checks to your VCS provider. You may want to do this if you have a large number of workspaces sharing one VCS repository.
+
+#### VCS Events
+
+-> **Note:** This feature is in beta.
+
+Review the event logs for GitLab.com cnnections.
+
+#### VCS Providers
 
 Configure [VCS providers](/cloud-docs/vcs) to use in the organization. You must have [permission to manage VCS settings](/cloud-docs/users-teams-organizations/permissions).
+
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Trial Expired Organizations
 
-Terraform Cloud paid features are available as a free trial. If you are working with a HashiCorp Sales Representative, ask them how to get a free trial.
-
-When a free trial has expired, the organization displays a banner reading **TRIAL EXPIRED — Upgrade Required** in the top navigation bar.
+Terraform Cloud paid features are available as a free trial. When a free trial has expired, the organization displays a banner reading **TRIAL EXPIRED — Upgrade Required** in the top navigation bar.
 
 Organizations with expired trials return to the feature set of a free organization, but they retain any data created as part of paid features. Specifically, Terraform Cloud performs the following actions:
 
