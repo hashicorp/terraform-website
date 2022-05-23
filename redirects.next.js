@@ -217,6 +217,7 @@ module.exports = (async () => {
     '/enterprise/before-installing/data-storage-requirements/disk-requirements': '/enterprise/requirements/data-storage/disk-requirements',
     '/enterprise/before-installing/data-storage-requirements/minio-setup-guide': '/enterprise/requirements/data-storage/mineo-setup-guide',
     '/enterprise/before-installing/data-storage-requirements/vault': '/enterprise/requirements/data-storage/vault',
+    '/enterprise/requirements/data-storage/disk-requirements': '/enterprise/requirements/data-storage/operational-mode-requirements',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {

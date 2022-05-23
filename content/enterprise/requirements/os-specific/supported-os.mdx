@@ -1,4 +1,3 @@
-
 ---
 page_title: Supported Operating Systems - Requirements - Terraform Enterprise
 description: >-
@@ -11,8 +10,8 @@ Terraform Enterprise currently supports running under the following operating sy
 
 - Debian 9 - 10
 - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
-- Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
-- CentOS 7.4 - 7.9 / 8.4
+- Red Hat Enterprise Linux 7.4 - 7.9 / 8.4 ([RedHat Linux Requirements](/enterprise/requirements/os-specific/rhel-requirements))
+- CentOS 7.4 - 7.9 / 8.4 ([CentOS Requirements](/enterprise/requirements/os-specific/centos-requirements))
 - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
 - Oracle Linux 7.4 - 7.9 / 8.4
 
@@ -20,9 +19,9 @@ Terraform Enterprise currently supports running under the following operating sy
 
 Terraform Enterprise supports SELinux running in enforcing mode when certain requirements are met. These requirements vary depending on the type of Terraform Enterprise installation.
 
-For _External Services_ installations, you must install the latest version of the `container-selinux` package.
+For External Services installations, you must install the latest version of the `container-selinux` package.
 
-For _Mounted Disk_ installations, you must:
+For Mounted Disk installations, you must:
 
 - Install the latest version of the `container-selinux` package.
 - Add the `container_file_t` type to the SELinux context for the mounted disk path and its subdirectories. The commands below update the mounted disk path `/opt/tfe` and its subdirectories to use the correct SELinux context.

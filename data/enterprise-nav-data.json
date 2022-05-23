@@ -33,16 +33,12 @@
         "title": "Data Storage",
         "routes": [
           {
-            "title": "Operational Mode Requirements",
+            "title": "Operational Mode",
             "path": "requirements/data-storage/operational-mode-requirements"
           },
           {
-            "title": "PostgreSQL Requirements",
+            "title": "PostgreSQ",
             "path": "requirements/data-storage/postgres-requirements"
-          },
-          {
-            "title": "Mounted Disk Requirements",
-            "path": "requirements/data-storage/disk-requirements"
           },
           {
             "title": "Minio Setup Guide",
