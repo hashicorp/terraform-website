@@ -1,6 +1,6 @@
 [
-  { "heading": "Deployment & Operation" },
-  { "title": "What is Terraform Enterprise?", "path": "" },
+  { "heading": "Terraform Enterprise Admin" },
+  { "title": "Overview", "path": "" },
   {
     "title": "Requirements",
     "routes": [

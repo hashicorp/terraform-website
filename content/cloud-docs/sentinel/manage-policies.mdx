@@ -30,8 +30,6 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 
 Policies are managed as parts of versioned policy sets, which allow individual policy files to be stored in a supported VCS provider or uploaded via the Terraform Cloud API.
 
--> **Note:** It's also possible to manage policies and policy sets individually. However, this is a deprecated feature in Terraform Cloud, and we recommend always using versioned policy sets to manage policies.
-
 **Policy sets** are groups of policies that can be enforced on [workspaces][]. A policy set can be enforced on designated workspaces, or to all workspaces in the organization.
 
 After the plan stage of a Terraform run, Terraform Cloud checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.

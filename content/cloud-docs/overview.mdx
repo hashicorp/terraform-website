@@ -1,11 +1,11 @@
 ---
-page_title: Overview of Features - Terraform Cloud and Terraform Enterprise
+page_title: Plans and Features - Terraform Cloud and Terraform Enterprise
 description: >-
   How Terraform Cloud and Terraform Enterprise help teams use Terraform to
   manage infrastructure at scale.
 ---
 
-# Overview of Terraform Cloud Features
+# Terraform Cloud Plans and Features
 
 [cli]: /cli
 
@@ -19,11 +19,45 @@ description: >-
 
 [terraform enterprise]: /enterprise
 
-> **Hands-on:** Try the [Get Started — Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
-
 Terraform Cloud is a platform that performs Terraform runs to provision infrastructure, either on demand or in response to various events. Unlike a general-purpose continuous integration (CI) system, it is deeply integrated with Terraform's workflows and data, which allows it to make Terraform significantly more convenient and powerful.
 
-This page is a brief overview of Terraform Cloud's features and how they fit together.
+> **Hands On:** Try our [What is Terraform Cloud - Intro and Sign Up](https://learn.hashicorp.com/tutorials/terraform/cloud-sign-up?in=terraform/cloud-get-started) tutorial on HashiCorp Learn.
+
+## Free and Paid Plans
+
+Terraform Cloud is a commercial SaaS product developed by HashiCorp. Many of its features are free for small teams, including remote state storage, remote runs, and VCS connections. We also offer paid plans for larger teams that include additional collaboration and governance features.
+
+Terraform Cloud manages plans and billing at the [organization level](/cloud-docs/users-teams-organizations/organizations). Each Terraform Cloud user can belong to multiple organizations, which might subscribe to different billing plans. The set of features available depends on which organization you are currently working in.
+
+Refer to [Terraform pricing](https://www.hashicorp.com/products/terraform/pricing) for details about available plans and their features.
+
+### Free Organizations
+
+Small teams can use most of Terraform Cloud's features for free, including remote Terraform execution, VCS integration, the private module registry, and more.
+
+Free organizations are limited to five active members.
+
+### Paid Features
+
+Some of Terraform Cloud's features are limited to particular paid upgrade plans.
+
+Each higher paid upgrade plan is a strict superset of any lower plans — for example, the **Team & Governance** plan includes all of the features of the **Team** plan. Paid feature callouts in the documentation indicate the _lowest_ tier at which the feature is available, but any higher plans also include that feature.
+
+Terraform Enterprise generally includes all of Terraform Cloud's paid features, plus additional features geared toward large enterprises. However, some features are implemented differently due to the differences between self-hosted and SaaS environments, and some features might be absent due to being impractical or irrelevant in the types of organizations that need Terraform Enterprise. Cloud-only or Enterprise-only features are clearly indicated in documentation.
+
+### Changing Your Payment Plan
+
+[Organization owners](/cloud-docs/users-teams-organizations/teams#the-owners-team) can manage an organization's billing plan. The plan and billing settings include an integrated storefront, and you can subscribe to paid plans with a credit card.
+
+To change an organization's plan:
+
+1. Click **Settings** in the navigation bar.
+1. Click **Plan and billing**. The **Plan and Billing** page appears showing your current plan and any available invoices.
+1. Click **Change plan**.
+1. Select a plan, enter your billing information, and click **Update plan**.
+
+
+
 
 ## Terraform Workflow
 
@@ -122,8 +156,6 @@ Terraform Cloud can send notifications about Terraform runs to other systems, in
 - More info: [Notifications](/cloud-docs/workspaces/settings/notifications)
 
 ### Run Tasks
-
--> **Note:** As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
 
 Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle.
 
