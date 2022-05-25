@@ -38,7 +38,7 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 This repository contains docs for Terraform Enterprise, located in [`/content/enterprise`](https://github.com/hashicorp/terraform-website/tree/master/content/enterprise).
 
-The rest of the docs are located in various external repositories:
+The rest of the content is located in the following repositories:
 
 | Subpath | Repository |
 | :--- | :--- |
