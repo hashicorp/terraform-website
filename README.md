@@ -99,7 +99,7 @@ The rest of the content is located in the following repositories:
 
 Merge the PR to master, and the site will automatically deploy in about 5m. 🙌
 
-### For changes in any other listed repo
+### For changes in any other listed repositories
 
 There are various GitHub refs that will cause docs content to be deployed to terraform.io,
 and these may vary on a repo-to-repo basis but generally speaking, these are limited to `stable-website`, `main`, and a few others.
