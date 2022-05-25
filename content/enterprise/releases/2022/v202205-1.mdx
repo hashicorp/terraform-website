@@ -6,7 +6,7 @@ page_title: Releases - Terraform Enterprise
 
 ## KNOWN ISSUES:
 
-1. This release update the method by which TFE talks to Vault. This change caused an unanticipated error when the vault namespace is not provided, preventing successful startup of the application. Effected users will see the following error in the `tfe-base-startup` container: `/usr/bin/vault-external-configure: line 37: VAULT_NAMESPACE: unbound variable`. If you do use a non-root namespace, providing that in the configuration should prevent this issue. If you use the root/default namespace, you should not upgrade to this version. 
+1. This release updates the method by which TFE talks to Vault. This change caused an unanticipated error when the vault namespace is not provided, preventing successful startup of the application. Effected users will see the following error in the `tfe-base-startup` container: `/usr/bin/vault-external-configure: line 37: VAULT_NAMESPACE: unbound variable`. If you do use a non-root namespace, providing that in the configuration should prevent this issue. If you use the root/default namespace, you should not upgrade to this version. 
 
 ## APPLICATION LEVEL BREAKING CHANGES:
 
