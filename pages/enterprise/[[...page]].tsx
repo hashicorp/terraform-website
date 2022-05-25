@@ -56,7 +56,7 @@ async function fetchCloudDocsNavData() {
     `/api/content/terraform-docs-common/nav-data/v0.0.x/cloud-docs`,
     process.env.MKTG_CONTENT_API
   )
-  const response = await fetch(url)
+  const response = await fetch(url.toString())
   const data = await response.json()
 
   return data.result.navData
