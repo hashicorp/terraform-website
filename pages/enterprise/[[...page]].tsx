@@ -1,7 +1,7 @@
 import { productName, productSlug } from 'data/metadata'
 import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
-import cloudDocsData from 'data/cloud-docs-nav-data.json'
+
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 
@@ -21,7 +21,7 @@ export default function EnterpriseLayout(props) {
   // To do this, we pull the cloud docs data directly and massage it a little so that it
   // works out of context on this page.
   modifiedProps.navData = modifiedProps.navData
-    .concat(transformCloudDocsData(cloudDocsData))
+    .concat(transformCloudDocsData(props.cloudDocsNavData))
     .concat(otherDocsData)
 
   return (
@@ -33,16 +33,48 @@ export default function EnterpriseLayout(props) {
   )
 }
 
-const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions({
-  strategy: 'fs',
-  localContentDir: CONTENT_DIR,
-  navDataFile: NAV_DATA,
-  product: SOURCE_REPO,
-  githubFileUrl(filepath) {
-    return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
-  },
-})
-export { getStaticPaths, getStaticProps }
+const { getStaticPaths, getStaticProps: _getStaticProps } =
+  getStaticGenerationFunctions({
+    strategy: 'fs',
+    localContentDir: CONTENT_DIR,
+    navDataFile: NAV_DATA,
+    product: SOURCE_REPO,
+    githubFileUrl(filepath) {
+      return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
+    },
+  })
+
+export { getStaticPaths }
+
+/**
+ * This is temporary helper to enable `/enterprise` to use "cloud-docs" nav data
+ * which now lives in https://github.com/hashicorp/terraform-docs-common, and is
+ * available via the "Content API".
+ */
+async function fetchCloudDocsNavData() {
+  const url = new URL(
+    `/api/content/terraform-docs-common/nav-data/v0.0.x/cloud-docs`,
+    process.env.MKTG_CONTENT_API
+  )
+  const response = await fetch(url)
+  const data = await response.json()
+
+  return data.result.navData
+}
+
+// This is a temporary workaround to fetch cloud-docs nav-data from the Content API
+// serverside, and allow the enterprise page to use it.
+export const getStaticProps = async (context) => {
+  const cloudDocsNavData = await fetchCloudDocsNavData()
+  const res = await _getStaticProps(context)
+
+  // @ts-ignore
+  res.props.cloudDocsNavData = cloudDocsNavData
+  // @ts-ignore — make sure revalidate is serializable
+  res.props.revalidate = null
+  // @ts-ignore
+  return { props: res.props }
+}
 
 // This function is used specifically to modify the data from the cloud docs
 // navigation so that it works on the enterprise page.
