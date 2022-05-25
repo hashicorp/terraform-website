@@ -500,17 +500,6 @@
     "title": "Terraform Cloud Agents",
     "href": "/cloud-docs/agents"
   },
-  {
-    "title": "Terraform Cloud Agents",
-    "hidden": true,
-    "routes": [
-      { "title": "Overview", "path": "agents" },
-      { "title": "Telemetry", "path": "agents/telemetry" },
-      { "title": "Monitoring", "path": "agents/monitoring" },
-      { "title": "Hooks", "path": "agents/hooks" },
-      { "title": "Changelog", "path": "agents/changelog" }
-    ]
-  },
   { "divider": true },
   { "title": "Terraform Enterprise Admin", "href": "/enterprise" },
   { "divider": true }
