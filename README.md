@@ -104,7 +104,7 @@ Merge the PR to master, and the site will automatically deploy in about 5m. 🙌
 There are various GitHub refs that will cause docs content to be deployed to terraform.io,
 and these may vary on a repo-to-repo basis but generally speaking, these are limited to `stable-website`, `main`, and a few others.
 
-Changes will be deployed to terraform.io roughly every hour
+Changes will be deployed to terraform.io roughly every hour.
 
 > For more info, see Vercel's docs on [ISR](https://vercel.com/docs/concepts/next.js/incremental-static-regeneration).
 
