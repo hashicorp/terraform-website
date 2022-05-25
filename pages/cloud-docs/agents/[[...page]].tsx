@@ -59,6 +59,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         ],
       }
     : {
+        fallback: 'blocking',
+        revalidate: 360, // 1 hour
         strategy: 'remote',
         basePath: BASE_ROUTE,
         navDataPrefix: NAV_DATA_PREFIX,
