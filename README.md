@@ -36,8 +36,7 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 ## Where the Docs Live
 
-As of **May 25, 2022**, this repository only houses docs for Terraform Enterprise.
-This will also change soon.
+This repository contains docs for Terraform Enterprise, located in [`/content/enterprise`](https://github.com/hashicorp/terraform-website/tree/master/content/enterprise).
 
 The rest of the docs are located in various external repositories:
 
