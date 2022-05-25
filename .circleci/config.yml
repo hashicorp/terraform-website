@@ -37,11 +37,6 @@ workflows:
   version: 2
   website:
     jobs:
-      - algolia-index:
-          filters:
-            branches:
-              only:
-                - master
       - website-docker-image:
           filters:
             branches:
