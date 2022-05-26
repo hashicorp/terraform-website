@@ -37,7 +37,7 @@
             "path": "requirements/data-storage/operational-mode-requirements"
           },
           {
-            "title": "PostgreSQ",
+            "title": "PostgreSQL",
             "path": "requirements/data-storage/postgres-requirements"
           },
           {
