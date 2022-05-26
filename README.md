@@ -101,8 +101,7 @@ Merge the PR to master, and the site will automatically deploy in about 5m. 🙌
 
 ### For changes in any other listed repositories
 
-There are various GitHub refs that will cause docs content to be deployed to terraform.io,
-and these may vary on a repo-to-repo basis but generally speaking, these are limited to `stable-website`, `main`, and a few others.
+Depending on the repository, pushes to `stable-website` or `main` will update the latest docs on terraform.io.
 
 Changes will be deployed to terraform.io roughly every hour.
 
