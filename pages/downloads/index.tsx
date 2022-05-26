@@ -39,6 +39,7 @@ export default function DownloadsPage(staticProps) {
             title="Sign up for Terraform Cloud"
             linkType="inbound"
             className={s.signUpButton}
+            url="https://app.terraform.io/signup/account?utm_source=terraform_io_download&utm_content=download_cta"
             theme={{ variant: 'tertiary', brand: 'terraform' }}
           />
         </div>
