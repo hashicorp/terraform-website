@@ -6,7 +6,7 @@ page_title: Releases - Terraform Enterprise
 
 ## KNOWN ISSUES:
 
-1. External Vault users using the default Vault namespace will see the error `/usr/bin/vault-external-configure: line 37: VAULT_NAMESPACE: unbound variable` in the `tfe-vault` logs when attempting to start Terraform Enterprise. This error prevents Terraform Enterprise from starting. To resolve this, run `tfe-admin app-config -k extern_vault_namespace -v '/'` and restart Terraform Enterprise. This does not affect External Vault users that use a custom Vault namespace.
+1. External Vault users using the default Vault namespace will see the error `/usr/bin/vault-external-configure: line 37: VAULT_NAMESPACE: unbound variable` in the `tfe-vault` logs when attempting to start Terraform Enterprise. This error prevents Terraform Enterprise from starting. To resolve this, run `tfe-admin app-config -k extern_vault_namespace -v 'root'` and restart Terraform Enterprise. This does not affect External Vault users that use a custom Vault namespace.
 
 ## APPLICATION LEVEL BREAKING CHANGES:
 
