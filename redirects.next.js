@@ -195,10 +195,8 @@ module.exports = (async () => {
     '/enterprise/install': '/enterprise/install/pre-install-checklist',
     '/enterprise/before-installing': '/enterprise/install/pre-install-checklist',
     '/enterprise/before-installing/reference-architecture': '/enterprise/reference-architecture',
-    '/enterprise/before-installing/reference-architecture/aws': '/enterprise/reference-architecture/aws',
-    '/enterprise/before-installing/reference-architecture/azure': '/enterprise/reference-architecture/azure',
-    '/enterprise/before-installing/reference-architecture/gcp': '/enterprise/reference-architecture/gcp',
-    '/enterprise/before-installing/reference-architecture/vmware': '/enterprise/reference-architecture/vmware',
+    '/enterprise/before-installing/reference-architecture/:part': '/enterprise/reference-architecture/:part',
+
     '/enterprise/before-installing/os-specific/rhel-requirements': '/enterprise/requirements/os-specific/rhel-requirements',
     '/enterprise/before-installing/os-specific/centos-requirements': '/enterprise/requirements/os-specific/centos-requirements',
     '/enterprise/before-installing/network-requirements': '/enterprise/requirements/network',
