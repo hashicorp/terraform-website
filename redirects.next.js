@@ -209,7 +209,7 @@ module.exports = (async () => {
     '/enterprise/user-management/saml/login': '/enterprise/saml/login',
     '/enterprise/user-management/saml/troubleshooting': '/enterprise/saml/troubleshooting',
     '/enterprise/user-management/saml/idp-configuration': '/enterprise/saml/idp-configuration',
-    '/enterprise/user-management/saml/idp-configuration/afds': '/enterprise/saml/idp-configuration/afds',
+    '/enterprise/user-management/saml/idp-configuration/adfs': '/enterprise/saml/idp-configuration/adfs',
     '/enterprise/user-management/saml/idp-configuration/aad': '/enterprise/saml/idp-configuration/aad',
     '/enterprise/user-management/saml/idp-configuration/okta': '/enterprise/saml/idp-configuration/okta',
     '/enterprise/user-management/saml/idp-configuration/onelogin': '/enterprise/saml/idp-configuration/onelogin',
