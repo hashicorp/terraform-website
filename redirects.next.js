@@ -218,10 +218,11 @@ module.exports = (async () => {
     '/enterprise/before-installing/data-storage-requirements/minio-setup-guide': '/enterprise/requirements/data-storage/mineo-setup-guide',
     '/enterprise/before-installing/data-storage-requirements/vault': '/enterprise/requirements/data-storage/vault',
     '/enterprise/requirements/data-storage/disk-requirements': '/enterprise/requirements/data-storage/operational-mode-requirements',
+    '/cloud-docs/users-teams-organizations/index': '/cloud-docs/users-teams-organizations/users',
     '/cloud-docs/guides/recommended-practices': '/cloud-docs/recommended-practices',
     '/cloud-docs/guides/recommended-practices/:path*': '/cloud-docs/recommended-practices/:path*',
     '/cloud-docs/paid': '/cloud-docs/overview',
-    '/cloud-docs/run': '/cloud-docs/run/remote-operations',
+    '/cloud-docs/run': '/cloud-docs/run/remote-operations'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
