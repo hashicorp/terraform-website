@@ -15,9 +15,7 @@ External Services mode has the following requirements:
   - [PostgreSQL Requirements](/enterprise/before-installing/data-storage-requirements/postgres-requirements)
   - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
     - Disable any lifecycle rules that would delete, archive, or transition objects in this container. Terraform Enterprise expects to manage all data the object storage service, so any lifecycle moves may result in unexpected data inconsistencies.
-    - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. Refer to the [Minio Setup Guide](/enterprise/before-installing/data-storage-requirements/minio-setup-guide) for details.
-  - Optionally: If you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](/enterprise/before-installing/data-storage-requirements/vault).
-
+  
 ## Active/Active Mode
 
 Active/Active mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Specifically, Active/Active operational mode has the following additional requirements:
