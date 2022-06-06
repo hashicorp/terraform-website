@@ -2,81 +2,93 @@
   { "heading": "Terraform Enterprise Admin" },
   { "title": "Overview", "path": "" },
   {
-    "title": "Before Installing",
+    "title": "Requirements",
     "routes": [
       {
-        "title": "Pre-Install Checklist",
-        "path": "before-installing"
+        "title": "Credentials",
+        "path": "requirements/credentials"
       },
       {
-        "title": "Reference Architectures",
+        "title": "Hardware",
+        "path": "requirements/hardware"
+      },
+      {
+        "title": "Operating System",
         "routes": [
           {
-            "title": "Overview",
-            "path": "before-installing/reference-architecture"
+            "title": "Supported OS",
+            "path": "requirements/os-specific/supported-os"
           },
           {
-            "title": "AWS Reference Architecture",
-            "path": "before-installing/reference-architecture/aws"
+            "title": "RedHat Linux",
+            "path": "requirements/os-specific/rhel-requirements"
           },
           {
-            "title": "Azure Reference Architecture",
-            "path": "before-installing/reference-architecture/azure"
-          },
-          {
-            "title": "GCP Reference Architecture",
-            "path": "before-installing/reference-architecture/gcp"
-          },
-          {
-            "title": "VMware Reference Architecture",
-            "path": "before-installing/reference-architecture/vmware"
+            "title": "CentOS Linux",
+            "path": "requirements/os-specific/centos-requirements"
           }
         ]
       },
       {
-        "title": "Data Storage Requirements",
+        "title": "Data Storage",
         "routes": [
           {
-            "title": "PostgreSQL Requirements",
-            "path": "before-installing/data-storage-requirements/postgres-requirements"
+            "title": "Operational Mode",
+            "path": "requirements/data-storage/operational-mode-requirements"
           },
           {
-            "title": "Mounted Disk Requirements",
-            "path": "before-installing/data-storage-requirements/disk-requirements"
+            "title": "PostgreSQL",
+            "path": "requirements/data-storage/postgres-requirements"
           },
           {
             "title": "Minio Setup Guide",
-            "path": "before-installing/data-storage-requirements/minio-setup-guide"
+            "path": "requirements/data-storage/minio-setup-guide"
           },
           {
             "title": "Externally Managed Vault",
-            "path": "before-installing/data-storage-requirements/vault"
+            "path": "requirements/data-storage/vault"
           }
         ]
       },
       {
-        "title": "Network Requirements",
-        "path": "before-installing/network-requirements"
+        "title": "Network",
+        "path": "requirements/network"
       },
       {
-        "title": "OS-Specific Requirements",
-        "routes": [
-          {
-            "title": "RedHat Linux Requirements",
-            "path": "before-installing/os-specific/rhel-requirements"
-          },
-          {
-            "title": "CentOS Linux Requirements",
-            "path": "before-installing/os-specific/centos-requirements"
-          }
-        ]
+        "title": "Docker Engine",
+        "path": "requirements/docker"
+      }
+    ]
+  },
+  {
+    "title": "Reference Architectures",
+    "routes": [
+      {
+        "title": "Overview",
+        "path": "reference-architecture"
+      },
+      {
+        "title": "AWS Reference Architecture",
+        "path": "reference-architecture/aws"
+      },
+      {
+        "title": "Azure Reference Architecture",
+        "path": "reference-architecture/azure"
+      },
+      {
+        "title": "GCP Reference Architecture",
+        "path": "reference-architecture/gcp"
+      },
+      {
+        "title": "VMware Reference Architecture",
+        "path": "reference-architecture/vmware"
       }
     ]
   },
   {
     "title": "Install and Configure",
     "routes": [
-      { "title": "Overview", "path": "install" },
+      { "title": "Pre-Install Checklist", "path": "install/pre-install-checklist" },
       {
         "title": "Interactive Install",
         "routes": [
@@ -118,61 +130,52 @@
     ]
   },
   {
-    "title": "User Management",
+    "title": "SAML SSO",
     "routes": [
       {
-        "title": "SAML SSO",
+        "title": "Configuration",
+        "path": "saml/configuration"
+      },
+      {
+        "title": "Team Membership",
+        "path": "saml/team-membership"
+      },
+      {
+        "title": "Attributes",
+        "path": "saml/attributes"
+      },
+      {
+        "title": "Login",
+        "path": "saml/login"
+      },
+      {
+        "title": "Identity Providers",
         "routes": [
           {
-            "title": "Overview",
-            "path": "user-management/saml"
+            "title": "Sample Auth Request",
+            "path": "saml/idp-configuration"
           },
           {
-            "title": "Configuration",
-            "path": "user-management/saml/configuration"
+            "title": "ADFS",
+            "path": "saml/idp-configuration/adfs"
           },
           {
-            "title": "Team Membership",
-            "path": "user-management/saml/team-membership"
+            "title": "Azure Active Directory",
+            "path": "saml/idp-configuration/aad"
           },
           {
-            "title": "Attributes",
-            "path": "user-management/saml/attributes"
+            "title": "Okta",
+            "path": "saml/idp-configuration/okta"
           },
           {
-            "title": "Login",
-            "path": "user-management/saml/login"
-          },
-          {
-            "title": "IdP Configuration",
-            "routes": [
-              {
-                "title": "Overview",
-                "path": "user-management/saml/idp-configuration"
-              },
-              {
-                "title": "ADFS",
-                "path": "user-management/saml/idp-configuration/adfs"
-              },
-              {
-                "title": "Azure Active Directory",
-                "path": "user-management/saml/idp-configuration/aad"
-              },
-              {
-                "title": "Okta",
-                "path": "user-management/saml/idp-configuration/okta"
-              },
-              {
-                "title": "OneLogin",
-                "path": "user-management/saml/idp-configuration/onelogin"
-              }
-            ]
-          },
-          {
-            "title": "Troubleshooting",
-            "path": "user-management/saml/troubleshooting"
+            "title": "OneLogin",
+            "path": "saml/idp-configuration/onelogin"
           }
         ]
+      },
+      {
+        "title": "Troubleshooting",
+        "path": "saml/troubleshooting"
       }
     ]
   },

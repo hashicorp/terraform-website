@@ -1,0 +1,50 @@
+---
+page_title: Pre-Install Checklist - Before Installing - Terraform Enterprise
+description: >-
+  Make key architecture decisions and prepare infrastructure and
+  data files for Terraform Enterprise.
+---
+
+# Terraform Enterprise Pre-Install Checklist
+
+Complete all of the following tasks before installing Terraform Enterprise.
+
+
+## Choose an Operational Mode
+
+Choose how Terraform Enterprise should store its data. Each option has a
+different approach to
+[reliability and availability](/enterprise/system-overview/reliability-availability). You must make this decision before you begin installation because some modes have additional requirements. You cannot change the operational mode once Terraform Enterprise is running.
+
+| Mode | Description|
+|------|------------|
+| External Services |External Services mode stores the majority of the stateful data used by the instance in an external PostgreSQL database and an external S3-compatible endpoint, GCP Cloud Storage bucket or Azure blob storage. There is still critical data stored on the instance that must be managed with snapshots. Check the [PostgreSQL Requirements](/enterprise/before-installing/data-storage-requirements/postgres-requirements) for information that needs to be present for Terraform Enterprise to work. This option is best for users with expertise managing PostgreSQL or users that have access to managed PostgreSQL offerings like the offers from [Amazon](https://aws.amazon.com/rds/), [Azure](https://azure.microsoft.com/en-us/services/postgresql/), or [Google Cloud](https://cloud.google.com/sql/docs/postgres/).|
+| Active/Active | Active/Active mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Refer to the [Active/Active](/enterprise/install/automated/active-active) page for details. |
+|Mounted Disk | Mounted Disk mode stores data in a separate directory on the host, with the intention that the directory is configured to store its data on an external disk, such as EBS, iSCSI, etc. This option is best for users with experience mounting performant block storage. |
+
+## Obtain Credentials
+
+You must obtain an Enterprise license and a TLS certificate for Terraform Enterprise to use. If you choose the external services operational mode, Terraform Enterprise requires access to an S3-compliant endpoint for object storage. Refer to [Credentials](/enterprise/requirements/credentials) for details.
+
+## Prepare Data Storage
+
+Make sure your data storage services or device meet Terraform Enterprise's requirements. These differ depending on the operational mode you choose for your instance. Refer to the following for your use case:
+
+- [Operational Mode Data Storage Requirements](/enterprise/requirements/data-storage/operational-mode-requirements)
+- [PostgreSQL Requirements](/enterprise/requirements/data-storage/postgres-requirements)
+- [Minio Setup Guide](/enterprise/requirements/data-storage/minio-setup-guide)
+- [Externally Managed Vault](/enterprise/requirements/data-storage/vault)
+
+
+## Configure Linux Instance
+
+You must prepare a running Linux instance for Terraform Enterprise before running the installer. This might require additional configuration or software installation, depending on the operating system (OS) and your operational requirements. You will start and manage this instance like any other server.
+
+Configure the following for the Linux Instance:
+
+- **Operating System:** Refer to [Supported OS](/enterprise/requirements/os-specific/supported-os) for details.
+- **Hardware:** Incorrect amounts of disk space or memory can cause significant performance issues. Refer to [Hardware Requirements](/enterprise/requirements/hardware) for details.
+- **Network:** Terraform Enterprise is a networked application. Its Linux instance(s) must allow several kinds of incoming and outgoing network traffic. Refer to [Network Requirements](/enterprise/before-installing/network-requirements) for details.
+- **Docker Engine:** Terraform Enterprise requires a Docker engine. Refer to [Docker Requirements](/enterprise/requirements/docker) for configuration details.
+
+
