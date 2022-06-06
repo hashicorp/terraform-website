@@ -22,11 +22,11 @@ When configured to use _External Services_, Terraform Enterprise must be connect
 
 ~> **Note:** This is not a production-ready configuration: it's intended to guide you to a working configuration that can later be automated and hardened.
 
-This guide will walk through installing Minio in a Docker container alongside Terraform Enterprise on the same host, with Terraform Enterprise configured in the _External Services_ [operational mode](/enterprise/before-installing/#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of Terraform Enterprise.
+This guide will walk through installing Minio in a Docker container alongside Terraform Enterprise on the same host, with Terraform Enterprise configured in the _External Services_ [operational mode](/enterprise/before-installing/#choose-an-operational-mode). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of Terraform Enterprise.
 
 ### System preparation
 
-Ensure your Linux instance meets the [requirements](/enterprise/before-installing/#linux-instance). You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
+Ensure your Linux instance meets the [requirements](/enterprise/before-installing/#configure-linux-instance). You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
 
 You also need a PostgreSQL database that meets the [requirements](/enterprise/before-installing/data-storage-requirements/postgres-requirements), as this is part of the _External Services_ operational mode.
 
