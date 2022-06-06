@@ -8,14 +8,27 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
 
 ## Install Requirements
 
-* A [supported version](/enterprise/requirements/os-specific/supported-os) of RedHat Enterprise Linux.
-* A [supported Docker Engine](/enterprise/requirements/docker) configuration.
+* A [supported version](/enterprise/before-installing#operating-system-requirements) of RedHat Enterprise Linux.
+* A [supported Docker Engine](/enterprise/before-installing#docker-engine-requirements) configuration. 
+	* We recommend installing the [latest available version of Docker CE for CentOS](https://docs.docker.com/engine/release-notes/). This is what is used for internal testing. 
 
-### Pinning the Docker Version
+## FAQ
+
+### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
+
+Yes, this is the recommended option. Docker CE is compatible with Terraform Enterprise, and tested every night. It is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). This a robust open source community, however.
+
+### Can I use the Docker version in the RHEL Extras Repository?
+
+Yes, if you are running Red Hat Enterprise Linux v7. If you are running v7 and choose to run Docker from the Extra Packages for Enterprise Linux (EPEL) repository, you must [modify the default `libseccomp` profile](/enterprise/before-installing#option-3-docker-engine-using-a-modified-libseccomp-profile).
+
+### How can I prevent accidental upgrades of Docker?
 
 To pin the version of Docker and prevent an inadvertent upgrade, follow [this guide](https://access.redhat.com/solutions/98873) from RedHat.
 
-### Downgrading the Docker Version
+Red Hat Enterprise Linux v8 does not offer docker in the EPEL repository, please use Docker CE for CentOS. This is tested nightly and ahead of each release of Terraform Enterprise. 
+
+### Docker was accidentally upgraded, how can I downgrade?
 
 The `yum downgrade` command can be used to downgrade the version of Docker that is installed.
 
@@ -26,18 +39,6 @@ sudo yum downgrade docker-1.13.1-72.git6f36bd4el7.x86_64 docker-client-1.13.1-72
 ```
 
 Afterwards, restart the Docker service and verify the newly installed version using `docker version`.
-
-## FAQ
-
-### Can I use the Docker version in the RHEL Extras Repository?
-
-Yes, if you are running Red Hat Enterprise Linux v7. If you are running v7 and choose to run Docker from the Extra Packages for Enterprise Linux (EPEL) repository, you must [modify the default `libseccomp` profile](/enterprise/before-installing#option-3-docker-engine-using-a-modified-libseccomp-profile).
-
-Red Hat Enterprise Linux v8 does not offer docker in the EPEL repository.
-
-### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
-
-Yes, Docker CE is compatible with Terraform Enterprise. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611).
 
 ### Which storage driver should I use?
 
