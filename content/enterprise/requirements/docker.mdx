@@ -14,7 +14,9 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
 
 If you are installing on RHEL7, you can use Docker Engine 1.13.1 from the Extra Packages for Enterprise Linux (EPEL) repository, with a [modified `libseccomp` profile](#docker-engine-with-a-compatible-libseccomp-version).
 
--> **Note:** Both the online and airgap installers for Terraform Enterprise are not capable of verifying the Docker Engine configuration automatically.
+On a first install of Terraform Enterprise (online install), Docker can be automatically installed with all necessary dependancies. Upgrades to Terraform Enterprise will not automatically upgrade Docker. Docker should be regularly updated to ensure stability and security. 
+
+-> **Note:** If you install Docker manually, Terraform Enterprise is not capable of verifying the Docker Engine configuration automatically.
 
 ## Docker Engine With a Compatible `runc` Version
 
