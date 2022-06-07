@@ -8,9 +8,9 @@ description: >-
 
 Terraform Enterprise requires **at least one** of the following Docker Engine configurations, in order of preference:
 
-1. 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
+1. 20.10.x with `runc` v1.0.0-rc93 or greater (19.03.x is also supported).
 1. 20.10.x with `libseccomp` 2.4.4 or greater.
-1. 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a [modified `libseccomp` profile](#docker-engine-with-a-compatible-libseccomp-version).
+1. 20.10.x using a [modified `libseccomp` profile](#docker-engine-with-a-compatible-libseccomp-version) (19.03.x is also supported).
 
 If you are installing on RHEL7, you can use Docker Engine 1.13.1 from the Extra Packages for Enterprise Linux (EPEL) repository, with a [modified `libseccomp` profile](#docker-engine-with-a-compatible-libseccomp-version).
 
@@ -18,7 +18,7 @@ If you are installing on RHEL7, you can use Docker Engine 1.13.1 from the Extra 
 
 ## Docker Engine With a Compatible `runc` Version
 
-1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 20.10.x for your operating system.
 
 1. Install the latest version of `containerd` for your operating system.
 
@@ -80,7 +80,7 @@ If you are installing on RHEL7, you can use Docker Engine 1.13.1 from the Extra 
 
 -> **Note:** These instructions should only be used if your operating system does not meet the requirements detailed in either [Docker Engine With a Compatible `runc` Version](#docker-engine-with-a-compatible-runc-version) or [Docker Engine With a Compatible `libseccomp` Version](docker-engine-with-a-compatible-libseccomp-version).
 
-1. [Install](https://docs.docker.com/engine/install/) Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 20.10.x, or 1.13.1 (RHEL v7 only), for your operating system.
 
 1. Check if the file `/etc/docker/seccomp.json` exists. If it does, proceed to step 4.
 
