@@ -237,7 +237,8 @@ module.exports = (async () => {
     '/language/resources/provisioners/chef': '/language/v1.1.x/resources/provisioners/chef',
     '/language/resources/provisioners/habitat': '/language/v1.1.x/resources/provisioners/habitat',
     '/language/resources/provisioners/puppet': '/language/v1.1.x/resources/provisioners/puppet',
-    '/language/resources/provisioners/salt-masterless': '/language/v1.1.x/resources/provisioners/salt-masterless'
+    '/language/resources/provisioners/salt-masterless': '/language/v1.1.x/resources/provisioners/salt-masterless',
+    '/docs/language/functions/defaults': '/docs/language/expressions/type-constraints#optional-object-type-attributes',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
