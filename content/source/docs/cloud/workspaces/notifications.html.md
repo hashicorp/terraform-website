@@ -50,16 +50,16 @@ Fill in the following fields to configure your notifications:
 - **Email Recipients** _(only available for emails):_ Select the users from the workspace's organization to notify.
 
 - **Triggers:** Whether to notify this destination for all events, or only for selected events. The following specific events are available:
-- Run Events:
+  - Run Events:
     - **Created**: When a run is created and enters the "Pending" state.
     - **Planning**: When a run acquires the lock and starts to execute.
     - **Needs Attention**: Human decision required. When a plan has changes and is not auto-applied, or requires a policy override.
     - **Applying**: When a run begins the apply stage, after a plan is confirmed or auto-applied.
     - **Completed**: When a run has completed on a happy path and can't go any further.
     - **Errored**: When a run has terminated early due to error or cancellation.
-- Workspace Events: 
-  - **Drift**: If drift detection has been turned on for this workspace, every time a drift is detected.
-  - **Drift Check Fail**: If drift detection has been turned on, every time a drift detection check fails.
+  - Workspace Events: 
+    - **Drift**: If drift detection has been turned on for this workspace, every time a drift is detected.
+    - **Drift Check Fail**: If drift detection has been turned on, every time a drift detection check fails.
 
 When finished, click the "Create configuration" button.
 
