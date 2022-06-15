@@ -1,0 +1,34 @@
+---
+page_title: Releases - Terraform Enterprise
+---
+
+# TFE Release v202206-1 (636)
+
+## APPLICATION LEVEL FEATURES:
+
+1. Added several new run options to simplify Terraform upgrades: [perform plan-only runs with an alternate Terraform version](https://www.terraform.io/cloud-docs/run/ui#testing-terraform-upgrades-with-speculative-plans), re-try completed speculative plans with an alternate Terraform version, and use [empty apply runs](https://www.terraform.io/cloud-docs/run/modes-and-options#allow-empty-apply) to upgrade your state without requiring config changes. 
+1. Added functionality to the [backup and restore API](https://www.terraform.io/enterprise/admin/infrastructure/backup-restore) that lets Terraform Enterprise skip backing up the object storage data. 
+1. Added a warning in **Workspace > Settings > General** when you select a new Terraform version that is not recommended. 
+1. Updated the email template used when testing SMTP configuration. 
+1. Updated the email template used when sending VCS notifications. 
+1. Added support for [sending notifications to Microsoft Teams channels](https://www.terraform.io/cloud-docs/workspaces/settings/notifications#microsoft-teams).
+1. Terraform CLI versions up through 1.2.1 are now available. 
+
+## APPLICATION LEVEL BUG FIXES:
+
+1. Fixed SAML performance issue. Previously the SAML login performance would degrade significantly in installs with large amounts of Organizations and Teams. This release significantly improves the overall performance of SAML logins. 
+1. Fixed VCS Workspace creation not enabling "Automatic speculative plans" when enabled by the user. 
+1. [Structured run output](https://www.terraform.io/cloud-docs/workspaces/settings#user-interface) will no longer throw the error `undefined is not an object` when objects are deleted. 
+1. Fixed a bug that was blocking users from cancelling runs in certain states.
+1. Fixed a performance issue where requests to the `/workspaces` endpoint were taking longer than 3000ms.
+1. Service Accounts will no longer be emailed when an Organization is deleted. 
+1. Fix 'Copy' button in two-factor settings for copying recovery codes.
+1. Fixed an issue where upgrading Terraform Enterprise would overwrite existing Terraform CLI Versions.
+1. Fixed an unbound variable error issue when `extern_vault_namespace` was unset.
+
+## APPLICATION LEVEL SECURITY FIXES:
+
+1. Adopted container updates to address reported vulnerabilities in underlying packages / dependencies.
+1. Updated go-getter version to protect against security vulnerabilities.
+1. Updated ruby to 2.7.6, receiving a fix against a security vulnerability.
+1. Updated Sentinel to 0.18.10 which included multiple security fixes for remote source installation.
