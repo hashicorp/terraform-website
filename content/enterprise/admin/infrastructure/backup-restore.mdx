@@ -108,9 +108,10 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path   | Type   | Default | Description                                   |
-| ---------- | ------ | ------- | --------------------------------------------- |
-| `password` | string |         | The password used to encrypt the backup blob. |
+| Key path              | Type   | Default | Description                                                |
+| --------------------- | ------ | ------- | ---------------------------------------------------------- |
+| `password`            | string |         | The password used to encrypt the backup blob.              |
+| `skip_object_storage` | bool   | `false` | Whether or not to skip backing up the object storage data. |
 
 ### Sample Payload
 
