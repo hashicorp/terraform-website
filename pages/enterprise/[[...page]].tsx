@@ -4,15 +4,21 @@ import otherDocsData from 'data/other-docs-nav-data.json'
 
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
+import path from 'path'
+
+// import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'enterprise'
-const NAV_DATA = 'data/enterprise-nav-data.json'
-const CONTENT_DIR = 'content/enterprise'
+const NAV_DATA = path.join(
+  process.env.NAV_DATA_DIRNAME,
+  BASE_ROUTE + '-nav-data.json'
+)
+const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-const SOURCE_REPO = 'terraform-website'
-const DEFAULT_BRANCH = 'master'
+const SOURCE_REPO = 'release-automation'
+// const DEFAULT_BRANCH = 'main'
 
 export default function EnterpriseLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -34,15 +40,29 @@ export default function EnterpriseLayout(props) {
 }
 
 const { getStaticPaths, getStaticProps: _getStaticProps } =
-  getStaticGenerationFunctions({
-    strategy: 'fs',
-    localContentDir: CONTENT_DIR,
-    navDataFile: NAV_DATA,
-    product: SOURCE_REPO,
-    githubFileUrl(filepath) {
-      return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
-    },
-  })
+  getStaticGenerationFunctions(
+    process.env.IS_CONTENT_PREVIEW &&
+      process.env.PREVIEW_FROM_REPO === SOURCE_REPO
+      ? {
+          strategy: 'fs',
+          localContentDir: CONTENT_DIR,
+          navDataFile: NAV_DATA,
+          product: SOURCE_REPO,
+          githubFileUrl(filepath) {
+            // enterprise pages will not be editable by contributors.
+            //
+            // todo: maybe link to a GitHub issue?
+            return null
+          },
+        }
+      : {
+          fallback: 'blocking',
+          revalidate: 360, // 1 hour
+          strategy: 'remote',
+          basePath: BASE_ROUTE,
+          product: SOURCE_REPO,
+        }
+  )
 
 export { getStaticPaths }
 
