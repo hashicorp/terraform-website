@@ -256,7 +256,7 @@ For Azure:
 
 For GCS:
 
-- `gcs_credentials` — (Required) JSON blob containing the GCP credentials document. **Note:** This is a string, so ensure values are properly escaped.
+- `gcs_credentials` — (Optional) JSON blob containing the GCP credentials document. If this value is not present, then GCP attempts to [authenticate with the service account](https://cloud.google.com/docs/authentication/production) attached to the instance. **Note:** This is a string, so ensure values are properly escaped.
 - `gcs_project` — (Required) The GCP project where the bucket resides.
 - `gcs_bucket` — (Required) The storage bucket name.
 
