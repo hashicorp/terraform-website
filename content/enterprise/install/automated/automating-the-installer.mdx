@@ -77,65 +77,92 @@ One the easiest ways to get the settings is to [perform a manual install](/enter
 To extract the settings as JSON, access the instance via SSH, then run:
 
 ```
-tfe$ replicatedctl app-config export > settings.json
+$ replicatedctl app-config export > settings.json
 ```
 
 The following example shows `replicatedctl app-config export` output for an
 instance configured in _Mounted Disk_ mode.
 
 ```
-tfe$ replicatedctl app-config export > settings.json
-tfe$ cat settings.json
+$ replicatedctl app-config export
 {
-    "aws_access_key_id": {},
-    "aws_instance_profile": {},
-    "aws_secret_access_key": {},
-    "azure_account_key": {},
-    "azure_account_name": {},
-    "azure_container": {},
-    "azure_endpoint": {},
-    "ca_certs": {},
-    "capacity_concurrency": {},
-    "capacity_memory": {},
-    "custom_image_tag": {
-        "value": "hashicorp/build-worker:now"
-    },
-    "disk_path": {
-        "value": "/opt/terraform-enterprise"
-    },
-    "enc_password": {
-        "value": "CHANGEME"
-    }
-    "extern_vault_addr": {},
-    "extern_vault_enable": {},
-    "extern_vault_path": {},
-    "extern_vault_role_id": {},
-    "extern_vault_secret_id": {},
-    "extern_vault_token_renew": {},
-    "extra_no_proxy": {},
-    "gcs_bucket": {},
-    "gcs_credentials": {},
-    "gcs_project": {},
-    "hostname": {
-        "value": "terraform.example.com"
-    },
-    "pg_dbname": {},
-    "pg_extra_params": {},
-    "pg_netloc": {},
-    "pg_password": {},
-    "pg_user": {},
-    "placement": {},
-    "production_type": {},
-    "s3_bucket": {},
-    "s3_endpoint": {},
-    "s3_region": {},
-    "s3_sse": {},
-    "s3_sse_kms_key_id": {},
-    "tbw_image": {
-        "value": "default_image"
-    },
-    "vault_path": {},
-    "vault_store_snapshot": {}
+  "aws_access_key_id": {},
+  "aws_instance_profile": {},
+  "aws_secret_access_key": {},
+  "azure_account_key": {},
+  "azure_account_name": {},
+  "azure_container": {},
+  "azure_endpoint": {},
+  "backup_token": {},
+  "ca_certs": {},
+  "capacity_concurrency": {
+    "value": "10"
+  },
+  "capacity_cpus": {},
+  "capacity_memory": {
+    "value": "512"
+  },
+  "custom_image_tag": {
+    "value": "hashicorp/build-worker:now"
+  },
+  "disk_path": {
+    "value": "/opt/terraform-enterprise"
+  },
+  "enable_active_active": {},
+  "enc_password": {
+    "value": "CHANGEME"
+  },
+  "extern_vault_addr": {},
+  "extern_vault_enable": {},
+  "extern_vault_namespace": {},
+  "extern_vault_path": {},
+  "extern_vault_propagate": {},
+  "extern_vault_role_id": {},
+  "extern_vault_secret_id": {},
+  "extern_vault_token_renew": {},
+  "extra_no_proxy": {},
+  "force_tls": {},
+  "gcs_bucket": {},
+  "gcs_credentials": {},
+  "gcs_project": {},
+  "hairpin_addressing": {},
+  "hostname": {
+    "value": "terraform.example.org"
+  },
+  "iact_subnet_list": {},
+  "iact_subnet_time_limit": {},
+  "log_forwarding_config": {},
+  "log_forwarding_enabled": {},
+  "metrics_endpoint_enabled": {},
+  "metrics_endpoint_port_http": {},
+  "metrics_endpoint_port_https": {},
+  "pg_dbname": {},
+  "pg_extra_params": {},
+  "pg_netloc": {},
+  "pg_password": {},
+  "pg_user": {},
+  "placement": {},
+  "production_type": {
+    "value": "disk"
+  },
+  "redis_host": {},
+  "redis_pass": {},
+  "redis_port": {},
+  "redis_use_password_auth": {},
+  "redis_use_tls": {},
+  "restrict_worker_metadata_access": {},
+  "s3_bucket": {},
+  "s3_endpoint": {},
+  "s3_region": {},
+  "s3_sse": {},
+  "s3_sse_kms_key_id": {},
+  "tbw_image": {
+    "value": "default_image"
+  },
+  "tls_ciphers": {},
+  "tls_vers": {
+    "value": "tls_1_2_tls_1_3"
+  }
 }
 ```
 
@@ -205,6 +232,7 @@ The following settings apply to every installation:
   - `extern_vault_secret_id` — (Required) AppRole SecretId to use to authenticate with the Vault cluster.
   - `extern_vault_path` — (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`.
   - `extern_vault_token_renew` — (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`.
+  - `extern_vault_namespace` — (Optional) The Vault namespace to use. Leave blank to use the default namespace. When running v202205-1, be aware of this [known issue](https://www.terraform.io/enterprise/releases/2022/v202205-1#known-issues).
 
 - `vault_path` — (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
 

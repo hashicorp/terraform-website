@@ -17,7 +17,6 @@ This repository contains the entire source for the [Terraform Website](https://w
 - [Where the Docs Live](#where-the-docs-live)
 - [Deploying Changes to terraform.io](#deploying-changes-to-terraformio)
 - [Running the Site Locally](#running-the-site-locally)
-- [Using Submodules](#using-submodules)
 - [More about `stable-website`](#more-about-stable-website)
 - [Editing Markdown Content](#editing-markdown-content)
 - [Editing Navigation Sidebars](#editing-navigation-sidebars)
@@ -37,56 +36,80 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 ## Where the Docs Live
 
-Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io](https://terraform.io) and click the "Edit this page" link at the bottom.)
+This repository contains docs for Terraform Enterprise, located in [`/content/enterprise`](https://github.com/hashicorp/terraform-website/tree/master/content/enterprise).
 
-- This repository, under `content/`:
+The rest of the content is located in the following repositories:
 
-  - Terraform Cloud docs
-  - Terraform Enterprise docs
-  - Plugin Development
-  - Terraform Registry Publishing
+| Subpath | Repository |
+| :--- | :--- |
+| [`/cdktf`][cdktf]                         | [terraform-cdk] |
+| [`/cli`][cli]                             | [terraform] |
+| [`/cloud-docs`][cloud-docs]               | [terraform-docs-common] |
+| [`/cloud-docs/agents`][cloud-docs/agents] | [terraform-docs-agents] |
+| [`/configuration`][configuration]         | [terraform] |
+| [`/docs`][docs]                           | [terraform] |
+| [`/enterprise`][enterprise]               | [terraform-website] |
+| [`/guides`][guides]                       | [terraform] |
+| [`/internals`][internals]                 | [terraform] |
+| [`/intro`][intro]                         | [terraform] |
+| [`/language`][language]                   | [terraform] |
+| [`/plugin`][plugin]                       | [terraform-docs-common] |
+| [`/plugin/framework`][plugin/framework]   | [terraform-plugin-framework] |
+| [`/plugin/log`][plugin/log]               | [terraform-plugin-log] |
+| [`/plugin/mux`][plugin/mux]               | [terraform-plugin-mux] |
+| [`/plugin/sdkv2`][plugin/sdkv2]           | [terraform-plugin-sdk] |
+| [`/registry`][registry]                   | [terraform-docs-common] |
+
+
+[cdktf]: https://www.terraform.io/cdktf
+[cli]: https://www.terraform.io/cli
+[cloud-docs]: https://www.terraform.io/cloud-docs
+[cloud-docs/agents]: https://www.terraform.io/cloud-docs/agents
+[configuration]: https://www.terraform.io/configuration
+[docs]: https://www.terraform.io/docs
+[enterprise]: https://www.terraform.io/enterprise
+[guides]: https://www.terraform.io/guides
+[internals]: https://www.terraform.io/internals
+[intro]: https://www.terraform.io/intro
+[language]: https://www.terraform.io/language
+[plugin]: https://www.terraform.io/plugin
+[plugin/framework]: https://www.terraform.io/plugin/framework
+[plugin/log]: https://www.terraform.io/plugin/log
+[plugin/mux]: https://www.terraform.io/plugin/mux
+[plugin/sdkv2]: https://www.terraform.io/plugin/sdkv2
+[registry]: https://www.terraform.io/registry
+
+[terraform-cdk]: https://github.com/hashicorp/terraform-cdk
+[terraform]: https://github.com/hashicorp/terraform
+[terraform-website]: https://github.com/hashicorp/terraform-cdk
+[terraform-docs-common]: https://github.com/hashicorp/terraform-docs-common
+[terraform-docs-agents]: https://github.com/hashicorp/terraform-docs-agents
+[terraform-plugin-sdk]: https://github.com/hashicorp/terraform-plugin-sdk
+[terraform-plugin-log]: https://github.com/hashicorp/terraform-plugin-log
+[terraform-plugin-mux]: https://github.com/hashicorp/terraform-plugin-mux
+[terraform-plugin-framework]: https://github.com/hashicorp/terraform-plugin-framework
+
 
   **Notable branches:** `master` is the "live" content that gets deployed to [terraform.io](https://terraform.io). The site gets redeployed for new commits to master.
 
-- [hashicorp/terraform](https://github.com/hashicorp/terraform), under `website/docs`:
-
-  - Terraform CLI docs
-  - Terraform Language docs
-
-  **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
-
-- [hashicorp/terraform-cdk](https://github.com/hashicorp/terraform-cdk), under `website/docs`:
-
-  - Terraform CDK docs
-
-  **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
 ## Deploying Changes to [terraform.io](https://terraform.io)
 
 ### For changes in this repo
 
-Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
+Merge the PR to master, and the site will automatically deploy in about 5m. 🙌
 
-### For changes in `hashicorp/terraform`
+### For changes in any other listed repositories
 
-Merge the PR to `main`. The changes will appear in the next major Terraform release.
+Depending on the repository, pushes to `stable-website` or `main` will update the latest docs on terraform.io.
 
-If you need your changes to be deployed sooner, cherry-pick them to:
+Changes will be deployed to terraform.io roughly every hour.
 
-- the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
-- the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
+> For more info, see Vercel's docs on [ISR](https://vercel.com/docs/concepts/next.js/incremental-static-regeneration).
 
-Once your PR to `stable-website` is merged, open a PR bumping the submodule commit in `terraform-website`. See the [Using Submodules](#using-submodules) section below for more details.
+If you need your docs deployed sooner, this can be done by redeploying all of terraform.io,
+via the [Vercel project](https://vercel.com/hashicorp/terraform-website/).
 
-#### Backport Tags
-
-Instead of cherry-picking your commits to a specific version branch, you can add the associated backport tag (e.g., "1.1-backport") to your pull request before merging. After you merge, a bot automatically creates a pull request to add your commits to the version branch (linked in your original PR). You must manually merge the auto-generated PR into the version branch.
-
-### Deployment
-
-Currently, HashiCorp uses Vercel to deploy the [terraform.io](https://terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
-
-New commits in `hashicorp/terraform` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
 
 <!-- BEGIN: local-development -->
 <!-- Generated text, do not edit directly -->
@@ -115,24 +138,6 @@ If your local development environment has a supported version (v10.0.0+) of [nod
 If you pull down new code from github, you should run `npm install` again. Otherwise, there's no need to re-run `npm install` each time the site is run, you can just run `npm start` to get it going.
 
 <!-- END: local-development -->
-
-## Using Submodules
-
-Submodules are used in this project to allow teams that work on different parts of terraform that are housed in different repos to all be able to contribute docs to the docs website at their own pace and in the way they prefer, while keeping the documentation content alongside the core code.
-
-Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on [terraform.io](https://terraform.io).)
-
-In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git submodule init`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
-
-Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. You also need to update the submodule every time changes are made to the upstream repo that the submodule represents.
-
-If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably means that the upstream repo of a submodule was updated and you need to "pull" that update to point to the most recent commit. Run `git submodule update` to resolve this and you should see a clean `git status` return. Inactive submodules don't show up in `git status`.
-
-### Updating Submodules
-
-In order for `terraform-website` to pull the latest content from its submodules, the submodules need to be updated to their latest versions. This can be achieved by running `git submodule update --remote`, which will cause the submodule to show as a changed file in `git status`. You should commit this change as part of your branch so that your PR can generate a preview using the expected commit from the upstream repo. The website will only ever show the content from the committed submodule, so if your upstream changes aren't being deployed, it's likely that you need to bump the submodule to the latest commit.
-
-Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
 
 ## Editing Markdown Content
 
@@ -246,7 +251,7 @@ $ terraform apply
 
 ## Editing Navigation Sidebars
 
-The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section. Several files within the `/data` directory are symlinked to their respective navigation file within a submodule. These files are indicated in some text editors by a small arrow to the right of the filename. You can also see which files are symlinked by running `ls -l` in the `data` directory on Linux/macOS, or `dir` on Windows. Edits to these files should be make directly to the file within the submodule, although on most systems editing the symlink file should achieve the same result. Any updates to these files will need to be pushed to their respective `stable-website` branch before they appear on [terraform.io](https://terraform.io). 
+The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section. Several files within the `/data` directory are symlinked to their respective navigation file within a submodule. These files are indicated in some text editors by a small arrow to the right of the filename. You can also see which files are symlinked by running `ls -l` in the `data` directory on Linux/macOS, or `dir` on Windows. Edits to these files should be make directly to the file within the submodule, although on most systems editing the symlink file should achieve the same result. Any updates to these files will need to be pushed to their respective `stable-website` branch before they appear on [terraform.io](https://terraform.io).
 
 The sidebar uses a simple recursive data structure to represent _files_ and _directories_. The sidebar is meant to reflect the structure of the docs within the filesystem while also allowing custom ordering. Let's look at an example. First, here's our example folder structure:
 

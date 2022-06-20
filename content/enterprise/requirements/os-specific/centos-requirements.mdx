@@ -1,0 +1,31 @@
+---
+page_title: CentOS Linux Requirements - Installation - Terraform Enterprise
+---
+
+# CentOS Requirements for Terraform Enterprise
+
+When installing Terraform Enterprise on CentOS Linux, ensure you meet the following requirements:
+
+## Install Requirements
+
+* A [supported version](/enterprise/requirements/os-specific/supported-os) of CentOS.
+* A [supported Docker Engine](/enterprise/requirements/docker) configuration.
+
+## FAQ
+
+### Can I use the Docker version in the Extra Packages for Enterprise Linux repository?
+
+Sure! Just be sure to [modify the default `libeseccomp`
+profile](/docs/enterprise/before-installing/index.html#option-3-docker-engine-using-a-modified-libseccomp-profile).
+
+### Which storage driver should I use?
+
+The `overlay2` storage driver.
+
+### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
+
+No. This is an installation that Docker provides as sample and is not supported by Terraform Enterprise due to the significant instability in it. Docker themselves [do not suggest using this mode](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing).
+
+### How do I know if an installation is in devicemapper loopback mode?
+
+Run the command `docker info | grep dev/loop`. If there is any output, you’re in devicemapper loopback mode. Docker may also print warning about loopback mode when you run the above command, which is another indicator.
