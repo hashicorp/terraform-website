@@ -1,7 +1,6 @@
 [
   { "heading": "Terraform Enterprise Admin" },
   { "title": "Overview", "path": "" },
-  { "title": "Operational Modes", "path": "operational-modes" },
   {
     "title": "Requirements",
     "routes": [
@@ -61,6 +60,7 @@
       }
     ]
   },
+  { "title": "Operational Modes", "path": "operational-modes" },
   {
     "title": "Reference Architectures",
     "routes": [

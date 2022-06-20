@@ -12,15 +12,12 @@ Complete all of the following tasks before installing Terraform Enterprise.
 
 ## Choose an Operational Mode
 
-Choose how Terraform Enterprise should store its data. Each option has a
-different approach to
-[reliability and availability](/enterprise/system-overview/reliability-availability). You must make this decision before you begin installation because some modes have additional requirements. You cannot change the operational mode once Terraform Enterprise is running.
-
-| Mode | Description|
-|------|------------|
-| External Services |External Services mode stores the majority of the stateful data used by the instance in an external PostgreSQL database and an external S3-compatible endpoint, GCP Cloud Storage bucket or Azure blob storage. There is still critical data stored on the instance that must be managed with snapshots. Check the [PostgreSQL Requirements](/enterprise/before-installing/data-storage-requirements/postgres-requirements) for information that needs to be present for Terraform Enterprise to work. This option is best for users with expertise managing PostgreSQL or users that have access to managed PostgreSQL offerings like the offers from [Amazon](https://aws.amazon.com/rds/), [Azure](https://azure.microsoft.com/en-us/services/postgresql/), or [Google Cloud](https://cloud.google.com/sql/docs/postgres/).|
-| Active/Active | Active/Active mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Refer to the [Active/Active](/enterprise/install/automated/active-active) page for details. |
-|Mounted Disk | Mounted Disk mode stores data in a separate directory on the host, with the intention that the directory is configured to store its data on an external disk, such as EBS, iSCSI, etc. This option is best for users with experience mounting performant block storage. |
+Choose an [operational mode](/enterprise/operational-modes) for Terraform
+Enterprise. Each operational mode has a different approach to data
+[reliability and availability](/enterprise/system-overview/reliability-availability).
+You must make this decision before you begin installation because some modes
+have additional requirements. You cannot change the operational mode once
+Terraform Enterprise is running.
 
 ## Obtain Credentials
 
