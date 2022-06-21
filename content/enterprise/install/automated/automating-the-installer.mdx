@@ -91,8 +91,10 @@ $ replicatedctl app-config export
   "aws_secret_access_key": {},
   "azure_account_key": {},
   "azure_account_name": {},
+  "azure_client_id": {},
   "azure_container": {},
   "azure_endpoint": {},
+  "azure_use_msi": {},
   "backup_token": {},
   "ca_certs": {},
   "capacity_concurrency": {
@@ -277,10 +279,12 @@ As of the `v202103-1` release, Terraform Enterprise supports using AWS IMDSv2 wh
 
 For Azure:
 
-- `azure_account_name` — (Required) The account name for the Azure account to access the container.
-- `azure_account_key` — (Required) The account key to access the account specified in `azure_account_name`.
-- `azure_container` — (Required) The identifer for the Azure blob storage container.
-- `azure_endpoint` — (Optional) The URL for the Azure cluster to use. By default this is the global cluster.
+- `azure_account_name` — (Required) The Azure storage account name.
+- `azure_container` — (Required) The Azure storage container name.
+- `azure_endpoint` — (Optional) The Azure storage account endpoint. Leave blank to use the default Blob Storage endpoint.
+- `azure_account_key` — (Optional) The storage account key used to authenticate to the storage account specified in `azure_account_name`. Ignored when `azure_use_msi` is `1`.
+- `azure_client_id` — (Optional) The client ID of the user-assigned managed identity to authenticate with. Leave blank to use the system-assigned managed identity. Only used when `azure_use_msi` is `1`.
+- `azure_use_msi` — (Optional) Whether or not to use a managed identity for authentication instead of a storage account key.
 
 For GCS:
 
