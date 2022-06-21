@@ -45,7 +45,7 @@
             "path": "requirements/data-storage/minio-setup-guide"
           },
           {
-            "title": "Externally Managed Vault",
+            "title": "External Vault",
             "path": "requirements/data-storage/vault"
           }
         ]

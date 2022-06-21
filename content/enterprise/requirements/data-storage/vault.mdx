@@ -11,13 +11,15 @@ organizations have specific requirements around data encryption and auditing.
 Those organizations can configure Terraform Enterprise to use an external Vault
 server rather than the internally-managed Vault server.
 
-!> **Warning:** When using external Vault, you assume full responsibility for the Vault server. That includes sealing, unsealing, replication, etc. Do not use external Vault unless you have experience managing Vault in production.
+We only recommend using external Vault when you have experience managing Vault
+in production. This approach requires that you assume full responsibility for
+the Vault server, including sealing, unsealing, replication, etc.
 
-!> **Warning:** Multiple Terraform Enterprise instances cannot use the same external Vault server unless they are a part of an Active/Active installation. Doing so will result in data loss.
-
-~> **Important:** External Vault must be configured during initial installation and can only be changed using the [backup and restore API](/enterprise/admin/infrastructure/backup-restore).
+!> **Warning:** Do not configure multiple Terraform Enterprise instances to use the same external Vault server unless they are part of an [Active/Active](/enterprise/install/automated/active-active) installation. Doing so will result in data loss.
 
 ### External Vault Configuration
+
+~> **Important:** You must configure External Vault during initial installation. After installation, you can only change the configuration using the [backup and restore API](/enterprise/admin/infrastructure/backup-restore).
 
 Run the following commands to configure your external Vault server for use with
 Terraform Enterprise.
