@@ -41,15 +41,15 @@ Terraform Enterprise.
   ```hcl
   # To renew leases.
   path "sys/leases/renew/*" {
-    policy = "write"
+    capabilities = ["create", "read", "update"]
   }
   path "sys/renew/*" {
-    policy = "write"
+    capabilities = ["create", "read", "update"]
   }
 
   # To renew tokens.
   path "auth/token/renew/*" {
-    policy = "write"
+    capabilities = ["create", "read", "update"]
   }
 
   # To perform a login.
@@ -59,10 +59,10 @@ Terraform Enterprise.
 
   # To upsert transit keys used for key generation.
   path "transit/keys/atlas_*" {
-   capabilities = ["create", "update"]
+   capabilities = ["create", "read", "update"]
   }
   path "transit/keys/archivist_*" {
-    capabilities = ["create", "update"]
+    capabilities = ["create", "read", "update"]
   }
 
   # Encryption and decryption of data.
@@ -92,7 +92,7 @@ Terraform Enterprise.
     capabilities = ["read"]
   }
   path "transit/restore/atlas_*" {
-    capabilities = ["create", "update"]
+    capabilities = ["create", "read", "update"]
   }
   path "transit/keys/archivist_*/config" {
     capabilities = ["read", "update"]
@@ -101,7 +101,7 @@ Terraform Enterprise.
     capabilities = ["read"]
   }
   path "transit/restore/archivist_*" {
-    capabilities = ["create", "update"]
+    capabilities = ["create", "read", "update"]
   }
 
   # For health checks to read the mount table.
