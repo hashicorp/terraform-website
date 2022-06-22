@@ -40,15 +40,18 @@ Terraform Enterprise.
 
   ```hcl
   # To renew leases.
-  path "sys/leases/renew/*" {
+  path "sys/leases/renew" {
     capabilities = ["create", "read", "update"]
   }
-  path "sys/renew/*" {
+  path "sys/renew" {
     capabilities = ["create", "read", "update"]
   }
 
   # To renew tokens.
-  path "auth/token/renew/*" {
+  path "auth/token/renew" {
+    capabilities = ["create", "read", "update"]
+  }
+  path "auth/token/renew-self" {
     capabilities = ["create", "read", "update"]
   }
 
