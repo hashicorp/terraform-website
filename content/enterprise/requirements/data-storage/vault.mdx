@@ -40,29 +40,32 @@ Terraform Enterprise.
 
   ```hcl
   # To renew leases.
-  path "sys/leases/renew/*" {
-    capabilities = ["create", "read", "update"]
+  path "sys/leases/renew" {
+    capabilities = ["create", "update"]
   }
-  path "sys/renew/*" {
-    capabilities = ["create", "read", "update"]
+  path "sys/renew" {
+    capabilities = ["create", "update"]
   }
 
   # To renew tokens.
-  path "auth/token/renew/*" {
-    capabilities = ["create", "read", "update"]
+  path "auth/token/renew" {
+    capabilities = ["create", "update"]
+  }
+  path "auth/token/renew-self" {
+    capabilities = ["create", "update"]
   }
 
   # To perform a login.
   path "auth/approle/login" {
-    capabilities = ["create", "read"]
+    capabilities = ["create", "update"]
   }
 
   # To upsert transit keys used for key generation.
   path "transit/keys/atlas_*" {
-   capabilities = ["create", "read", "update"]
+   capabilities = ["read", "create", "update"]
   }
   path "transit/keys/archivist_*" {
-    capabilities = ["create", "read", "update"]
+    capabilities = ["read", "create", "update"]
   }
 
   # Encryption and decryption of data.
@@ -70,38 +73,38 @@ Terraform Enterprise.
     capabilities = ["create", "update"]
   }
   path "transit/decrypt/atlas_*" {
-    capabilities = ["update"]
+    capabilities = ["create", "update"]
   }
   path "transit/encrypt/archivist_*" {
     capabilities = ["create", "update"]
   }
   path "transit/decrypt/archivist_*" {
-    capabilities = ["update"]
+    capabilities = ["create", "update"]
   }
 
   # For performing key derivation.
   path "transit/datakey/plaintext/archivist_*" {
-    capabilities = ["update"]
+    capabilities = ["create", "update"]
   }
 
   # For backup/restore operations.
   path "transit/keys/atlas_*/config" {
-    capabilities = ["read", "update"]
+    capabilities = ["read", "create", "update"]
   }
   path "transit/backup/atlas_*" {
     capabilities = ["read"]
   }
   path "transit/restore/atlas_*" {
-    capabilities = ["create", "read", "update"]
+    capabilities = ["read", "create", "update"]
   }
   path "transit/keys/archivist_*/config" {
-    capabilities = ["read", "update"]
+    capabilities = ["read", "create", "update"]
   }
   path "transit/backup/archivist_*" {
     capabilities = ["read"]
   }
   path "transit/restore/archivist_*" {
-    capabilities = ["create", "read", "update"]
+    capabilities = ["read", "create", "update"]
   }
 
   # For health checks to read the mount table.
