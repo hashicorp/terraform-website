@@ -7,6 +7,7 @@ page_title: Releases - Terraform Enterprise
 ## Known Issues
 
 1. [May 3, 2022] `tfe-admin health-check` fails with `sh: /root/ptfe-health-check: not found` after a change to the `ptfe_health_check` container Entrypoint to run the process as an unprivileged user under `/run/ptfe-health-check` but the `alias` was still referencing `/root/ptfe-health-check`. This issue will be fixed in `v202205-1`.
+1. [May 10, 2022] This release includes an issue with Audit Log tagging, causing audit logs to no longer be tagged with the [Audit Log] prefix. This issue will be fixed in 'v202205-1'.
 
 ## CHANGES SINCE v202204-1
 
