@@ -7,18 +7,20 @@ description: >-
 
 # Terraform Enterprise Releases
 
-~> The next release `v202205-1` is scheduled for May 17, 2022.
+~> The next release `v202207-1` is scheduled for July 12, 2022.
 
 We release a new Terraform Enterprise version each month. The table below lists releases from the current calendar year as well as the last required release. You can find previous releases in the sidebar.
 
-| Version                                              | Release Sequence | Recommended<br /> Replicated CLI                                     | Bundled <br />Terraform CLI**                                            | Sentinel                                                                       |
-| ---------------------------------------------------- | ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [v202204-2](/enterprise/releases/2022/v202204-2)\*   | 610              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.7](https://github.com/hashicorp/terraform/releases/tag/v1.1.7) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
-| [v202204-1](/enterprise/releases/2022/v202204-1)     | 609              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.7](https://github.com/hashicorp/terraform/releases/tag/v1.1.7) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
-| [v202203-1](/enterprise/releases/2022/v202203-1)     | 607              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.6](https://github.com/hashicorp/terraform/releases/tag/v1.1.6) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
-| [v202202-1](/enterprise/releases/2022/v202202-1)     | 599              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.1.5](https://github.com/hashicorp/terraform/releases/tag/v1.1.5) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
-| [v202201-2](/enterprise/releases/2022/v202201-2)     | 595              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.1.3](https://github.com/hashicorp/terraform/releases/tag/v1.1.3)   | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
-| [v202201-1](/enterprise/releases/2022/v202201-1)     | 594              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.1.3](https://github.com/hashicorp/terraform/releases/tag/v1.1.3)   | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
+| Version                                            | Release Sequence | Recommended<br /> Replicated CLI                                     | Bundled <br />Terraform CLI**                                       | Sentinel                                                                       |
+| -------------------------------------------------- | ---------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [v202206-1](/enterprise/releases/2022/v202206-1)   | 636              | [2.53.6](https://release-notes.replicated.com/release-notes/2.53.6/) | [1.2.1](https://github.com/hashicorp/terraform/releases/tag/v1.2.1) | [0.18.10](https://docs.hashicorp.com/sentinel/changelog#0-18-10-may-20-2022)   |
+| [v202205-1](/enterprise/releases/2022/v202205-1)   | 619              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.9](https://github.com/hashicorp/terraform/releases/tag/v1.1.9) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
+| [v202204-2](/enterprise/releases/2022/v202204-2)\* | 610              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.7](https://github.com/hashicorp/terraform/releases/tag/v1.1.7) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
+| [v202204-1](/enterprise/releases/2022/v202204-1)   | 609              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.7](https://github.com/hashicorp/terraform/releases/tag/v1.1.7) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
+| [v202203-1](/enterprise/releases/2022/v202203-1)   | 607              | [2.53.4](https://release-notes.replicated.com/release-notes/2.53.4/) | [1.1.6](https://github.com/hashicorp/terraform/releases/tag/v1.1.6) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
+| [v202202-1](/enterprise/releases/2022/v202202-1)   | 599              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.1.5](https://github.com/hashicorp/terraform/releases/tag/v1.1.5) | [0.18.6](https://docs.hashicorp.com/sentinel/changelog#0-18-6-february-2-2022) |
+| [v202201-2](/enterprise/releases/2022/v202201-2)   | 595              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.1.3](https://github.com/hashicorp/terraform/releases/tag/v1.1.3) | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
+| [v202201-1](/enterprise/releases/2022/v202201-1)   | 594              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.1.3](https://github.com/hashicorp/terraform/releases/tag/v1.1.3) | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
 
 \* Denotes a <strong>required release</strong>. All online upgrades will automatically install this version, but airgap customers must upgrade to this version before proceeding to later releases.
 

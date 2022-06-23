@@ -6,8 +6,6 @@ page_title: Automated Installation - Active/Active - Terraform Enterprise
 
 When your organization requires increased reliability or performance from Terraform Enterprise that your current single application instance cannot provide, it is time to scale to the Active/Active architecture.
 
-!> **Warning:** The discontinued clustered version of Terraform Enterprise is no longer supported, and we strongly advise all customers to move to an Active/Active installation. Please contact your support representative if you need assistance.
-
 Before scaling to Active/Active, you should weigh its benefits against increasing operational complexity. Specifically, consider the following aspects of the Active/Active architecture:
 
 * Hard requirement of a completely automated installation
@@ -264,6 +262,14 @@ As you scale Terraform Enterprise beyond 2 nodes, you may be adding additional s
 - [Azure - Resource Manager Throttling](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/request-limits-and-throttling)
 - [Google Cloud - Network Quotas and Limits](https://cloud.google.com/vpc/docs/quota)
 - [Google Cloud - API rate limits](https://cloud.google.com/compute/docs/api-rate-limits)
+
+Depending on your infrastructure and Terraform Enterprise configuration, you may need to configure your application gateway or load balancer for sticky sessions. Sticky session refers to the practice of using a load balancer or gateway device with a specific setting enabled that ensures traffic is routed back to the original system that initiated a request. For example, an Active/Active deployment on Azure with SAML authentication requires sticky sessions to ensure the authentication with the SAML server is successful. The terminology for this varies across clouds. Refer to the documentation for your infrastructure.
+
+- [AWS - Sticky Sessions for your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html)
+- [AWS - Configure sticky sessions for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html)
+- [Azure - Application Gateway Cookie-based affinity](https://docs.microsoft.com/en-us/azure/application-gateway/configuration-http-settings#cookie-based-affinity)
+- [Azure - Load Balancer distribution modes: Session Persistence](https://docs.microsoft.com/en-us/azure/load-balancer/distribution-mode-concepts#session-persistence)
+- [Google Cloud - Session affinity](https://cloud.google.com/load-balancing/docs/https#session_affinity)
 
 #### Terraform Cloud Agents - Alternative Solution
 

@@ -1,24 +1,6 @@
 version: 2
 
 jobs:
-  algolia-index:
-    docker:
-      - image: node:14
-    steps:
-      - checkout
-      - run:
-          name: Pull submodules
-          command: git submodule update --init
-      - run:
-          name: Push content to Algolia Index
-          command: |
-            if  [ "$CIRCLE_REPOSITORY_URL" != "git@github.com:hashicorp/terraform-website.git" ]; then
-              echo "Not Terraform Website Repo, not indexing Algolia"
-              exit 0
-            fi
-            npm i -g npm@latest
-            npm ci
-            node scripts/index_search_content.js
   website-docker-image:
     docker:
       - image: circleci/buildpack-deps
@@ -55,11 +37,6 @@ workflows:
   version: 2
   website:
     jobs:
-      - algolia-index:
-          filters:
-            branches:
-              only:
-                - master
       - website-docker-image:
           filters:
             branches:
