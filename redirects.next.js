@@ -210,7 +210,8 @@ module.exports = (async () => {
     '/cloud-docs/guides/recommended-practices': '/cloud-docs/recommended-practices',
     '/cloud-docs/guides/recommended-practices/:path*': '/cloud-docs/recommended-practices/:path*',
     '/cloud-docs/paid': '/cloud-docs/overview',
-    '/cloud-docs/run': '/cloud-docs/run/remote-operations'
+    '/cloud-docs/run': '/cloud-docs/run/remote-operations',
+    '/language/settings/backends': '/language/settings/backends/configuration'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
