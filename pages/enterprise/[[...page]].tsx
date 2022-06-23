@@ -6,7 +6,7 @@ import otherDocsData from 'data/other-docs-nav-data.json'
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import path from 'path'
 
-// import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
+import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
 const BASE_ROUTE = 'enterprise'
@@ -17,7 +17,7 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-const SOURCE_REPO = 'release-automation'
+const SOURCE_REPO = 'ptfe-releases'
 // const DEFAULT_BRANCH = 'main'
 
 export default function EnterpriseLayout(props) {
@@ -54,6 +54,13 @@ const { getStaticPaths, getStaticProps: _getStaticProps } =
             // todo: maybe link to a GitHub issue?
             return null
           },
+          remarkPlugins: (params) => [
+            remarkRewriteAssets({
+              product: SOURCE_REPO,
+              version: process.env.CURRENT_GIT_BRANCH,
+              getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
+            }),
+          ],
         }
       : {
           fallback: 'blocking',
