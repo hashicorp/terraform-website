@@ -282,9 +282,9 @@ For Azure:
 - `azure_account_name` — (Required) The Azure storage account name.
 - `azure_container` — (Required) The Azure storage container name.
 - `azure_endpoint` — (Optional) The Azure storage account endpoint. Leave blank to use the default Blob Storage endpoint.
-- `azure_account_key` — (Optional) The storage account key used to authenticate to the storage account specified in `azure_account_name`. Ignored when `azure_use_msi` is `1`.
-- `azure_client_id` — (Optional) The client ID of the user-assigned managed identity to authenticate with. Leave blank to use the system-assigned managed identity. Only used when `azure_use_msi` is `1`.
-- `azure_use_msi` — (Optional) Whether or not to use a managed identity for authentication instead of a storage account key.
+- `azure_account_key` — (Optional) The storage account key used for authentication. Ignored when `azure_use_msi` is `1`.
+- `azure_client_id` — (Optional) The client ID of the user-assigned managed identity used for authentication. Leave blank to use the system-assigned managed identity. Only used when `azure_use_msi` is `1`.
+- `azure_use_msi` — (Optional) Use a managed identity for authentication instead of a storage account key. Set to `1` to enable and `0` to disable. Defaults to `0`.
 
 For GCS:
 
