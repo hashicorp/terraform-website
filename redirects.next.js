@@ -211,7 +211,9 @@ module.exports = (async () => {
     '/cloud-docs/guides/recommended-practices/:path*': '/cloud-docs/recommended-practices/:path*',
     '/cloud-docs/paid': '/cloud-docs/overview',
     '/cloud-docs/run': '/cloud-docs/run/remote-operations',
-    '/language/settings/backends': '/language/settings/backends/configuration'
+    '/language/settings/backends': '/language/settings/backends/configuration',
+    '/cloud-docs/api-docs/run-tasks': '/cloud-docs/api-docs/run-tasks/run-tasks',
+    '/cloud-docs/api-docs/run-tasks-integration': '/cloud-docs/api-docs/run-tasks/run-tasks-integration'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
