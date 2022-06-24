@@ -1,0 +1,27 @@
+.root {
+  margin: 72px auto;
+
+  & ol {
+    list-style-type: none;
+    counter-reset: item;
+    list-style-position: outside;
+    padding-inline-start: 0;
+    margin-top: 1em;
+    margin-left: 2em;
+
+    & li em {
+      text-decoration: underline;
+      font-style: normal;
+    }
+
+    & li + li {
+      margin-top: 1rem;
+    }
+
+    & li::before {
+      content: counters(item, '.') '. ';
+      counter-increment: item;
+      font-weight: bold;
+    }
+  }
+}
