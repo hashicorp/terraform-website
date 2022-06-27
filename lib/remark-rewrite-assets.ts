@@ -21,7 +21,7 @@ export function remarkRewriteAssets(args: {
         const originalUrl = node.url
         const asset = path.posix.join(...getAssetPathParts(originalUrl))
 
-        const url = new URL('https://mktg-content-api.vercel.app/api/assets')
+        const url = new URL(`${process.env.MKTG_CONTENT_API}/api/assets`)
         url.searchParams.append('asset', asset)
         url.searchParams.append('version', version)
         url.searchParams.append('product', product)
