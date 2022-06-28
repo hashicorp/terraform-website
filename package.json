@@ -24,7 +24,7 @@
     "@hashicorp/react-code-block": "^4.4.0",
     "@hashicorp/react-command-line-terminal": "^2.0.4",
     "@hashicorp/react-consent-manager": "^7.1.0",
-    "@hashicorp/react-docs-page": "^16.1.0",
+    "@hashicorp/react-docs-page": "^17.0.1",
     "@hashicorp/react-hashi-stack-menu": "^2.1.2",
     "@hashicorp/react-head": "^3.1.2",
     "@hashicorp/react-hero": "8.0.3",
