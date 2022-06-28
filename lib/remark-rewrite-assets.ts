@@ -43,6 +43,7 @@ If this is a net-new asset, you'll need to commit and push it to GitHub.\n`
 // A simple cache & util to prevent logging the same message multiple times
 const cache = new Map<string, boolean>()
 const logOnce = (id: string, message: string) => {
+  if (process.env.CI) return
   if (cache.get(id)) return
   cache.set(id, true)
   console.log(message)
