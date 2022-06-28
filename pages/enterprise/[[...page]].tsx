@@ -35,6 +35,7 @@ export default function EnterpriseLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      showEditPage={false}
     />
   )
 }
