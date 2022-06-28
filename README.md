@@ -36,9 +36,7 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 ## Where the Docs Live
 
-This repository contains docs for Terraform Enterprise, located in [`/content/enterprise`](https://github.com/hashicorp/terraform-website/tree/master/content/enterprise).
-
-The rest of the content is located in the following repositories:
+This repository is home to the website code for [terraform.io](https://terraform.io). The docs are distributed across various repositories so that they can be co-located with application code.
 
 | Subpath | Repository |
 | :--- | :--- |
@@ -48,7 +46,7 @@ The rest of the content is located in the following repositories:
 | [`/cloud-docs/agents`][cloud-docs/agents] | [terraform-docs-agents] |
 | [`/configuration`][configuration]         | [terraform] |
 | [`/docs`][docs]                           | [terraform] |
-| [`/enterprise`][enterprise]               | [terraform-website] |
+| [`/enterprise`][enterprise]               | [ptfe-releases] |
 | [`/guides`][guides]                       | [terraform] |
 | [`/internals`][internals]                 | [terraform] |
 | [`/intro`][intro]                         | [terraform] |
@@ -81,7 +79,8 @@ The rest of the content is located in the following repositories:
 
 [terraform-cdk]: https://github.com/hashicorp/terraform-cdk
 [terraform]: https://github.com/hashicorp/terraform
-[terraform-website]: https://github.com/hashicorp/terraform-cdk
+[terraform-website]: https://github.com/hashicorp/terraform-website
+[ptfe-releases]: https://github.com/hashicorp/ptfe-releases
 [terraform-docs-common]: https://github.com/hashicorp/terraform-docs-common
 [terraform-docs-agents]: https://github.com/hashicorp/terraform-docs-agents
 [terraform-plugin-sdk]: https://github.com/hashicorp/terraform-plugin-sdk
