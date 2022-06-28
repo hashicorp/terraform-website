@@ -17,8 +17,7 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-// TODO(kevinwang): update to 'ptfe-releases'
-const SOURCE_REPO = 'release-automation'
+const SOURCE_REPO = 'ptfe-releases'
 // const DEFAULT_BRANCH = 'main'
 
 export default function EnterpriseLayout(props) {
