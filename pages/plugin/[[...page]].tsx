@@ -6,7 +6,7 @@ import otherDocsData from 'data/other-docs-nav-data.json'
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import type { NextParsedUrlQuery } from 'next/dist/server/request-meta'
 import path from 'path'
-
+import { rehypePlugins, remarkPlugins } from 'lib/remark-rehype-plugins'
 import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
@@ -51,12 +51,14 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${filepath}`
         },
         remarkPlugins: (params) => [
+          ...remarkPlugins,
           remarkRewriteAssets({
             product: SOURCE_REPO,
             version: process.env.CURRENT_GIT_BRANCH,
             getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
           }),
         ],
+        rehypePlugins,
       }
     : {
         fallback: 'blocking',
@@ -64,6 +66,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         strategy: 'remote',
         basePath: BASE_ROUTE,
         product: SOURCE_REPO,
+        remarkPlugins,
+        rehypePlugins,
       }
 )
 

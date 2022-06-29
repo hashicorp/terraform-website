@@ -4,7 +4,7 @@ import ProviderTable from 'components/provider-table'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import path from 'path'
-
+import { rehypePlugins, remarkPlugins } from 'lib/remark-rehype-plugins'
 import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 
 //  Configure the docs path
@@ -44,12 +44,14 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
         },
         remarkPlugins: (params) => [
+          ...remarkPlugins,
           remarkRewriteAssets({
             product: PRODUCT.slug,
             version: process.env.CURRENT_GIT_BRANCH,
             getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
           }),
         ],
+        rehypePlugins,
       }
     : {
         fallback: 'blocking',
