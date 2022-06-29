@@ -44,7 +44,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
         },
         remarkPlugins: (params) => [
-          ...remarkPlugins
+          ...remarkPlugins,
           remarkRewriteAssets({
             product: PRODUCT.slug,
             version: process.env.CURRENT_GIT_BRANCH,
