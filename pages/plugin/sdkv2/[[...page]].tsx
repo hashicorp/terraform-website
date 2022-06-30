@@ -6,6 +6,7 @@ import otherPluginsData from 'data/other-plugins-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import path from 'path'
+import { rehypePlugins, remarkPlugins } from 'lib/remark-rehype-plugins'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin/sdkv2'
@@ -54,6 +55,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         githubFileUrl(path) {
           return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/${path}`
         },
+        remarkPlugins,
+        rehypePlugins,
       }
     : {
         fallback: 'blocking',
@@ -62,6 +65,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         basePath: BASE_ROUTE,
         navDataPrefix: NAV_DATA_PREFIX,
         product: SOURCE_REPO,
+        remarkPlugins,
+        rehypePlugins,
       }
 )
 
