@@ -27,7 +27,7 @@ export default function EnterpriseLayout(props) {
   // To do this, we pull the cloud docs data directly and massage it a little so that it
   // works out of context on this page.
   modifiedProps.navData = modifiedProps.navData
-    .concat(transformCloudDocsData(props.cloudDocsNavData))
+    // .concat(transformCloudDocsData(props.cloudDocsNavData))
     .concat(otherDocsData)
 
   return (
@@ -108,34 +108,34 @@ export const getStaticProps = async (context) => {
   return { props: res.props }
 }
 
-// This function is used specifically to modify the data from the cloud docs
-// navigation so that it works on the enterprise page.
-function transformCloudDocsData(_data) {
-  let data = JSON.parse(JSON.stringify(_data))
-  // remove the top headline, it is worded differently on this page
-  data.splice(0, 1)
-  // remove the final two items which link to the enterprise docs, not needed since
-  // we are already on that page
-  data.splice(data.length - 2, 2)
-  // change over every "path" prop to be an "href" instead
-  // path props are used to link directly to a category's own nav items, where
-  // href can be used to arbitrarily link outside a category, which is what we're doing
-  // here, since we're listing out cloud docs from the enterprise page
-  data = pathToHref(data)
-  return data
-}
+// // This function is used specifically to modify the data from the cloud docs
+// // navigation so that it works on the enterprise page.
+// function transformCloudDocsData(_data) {
+//   let data = JSON.parse(JSON.stringify(_data))
+//   // remove the top headline, it is worded differently on this page
+//   data.splice(0, 1)
+//   // remove the final two items which link to the enterprise docs, not needed since
+//   // we are already on that page
+//   data.splice(data.length - 2, 2)
+//   // change over every "path" prop to be an "href" instead
+//   // path props are used to link directly to a category's own nav items, where
+//   // href can be used to arbitrarily link outside a category, which is what we're doing
+//   // here, since we're listing out cloud docs from the enterprise page
+//   data = pathToHref(data)
+//   return data
+// }
 
-// we have to recurse here in order to get all the nested nodes
-function pathToHref(data) {
-  data.map((item) => {
-    if (item.path) {
-      item.href = `/cloud-docs/${item.path}`
-      delete item.path
-    }
+// // we have to recurse here in order to get all the nested nodes
+// function pathToHref(data) {
+//   data.map((item) => {
+//     if (item.path) {
+//       item.href = `/cloud-docs/${item.path}`
+//       delete item.path
+//     }
 
-    if (item.routes) item.routes = pathToHref(item.routes)
+//     if (item.routes) item.routes = pathToHref(item.routes)
 
-    return item
-  })
-  return data
-}
+//     return item
+//   })
+//   return data
+// }
