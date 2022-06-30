@@ -59,6 +59,8 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         strategy: 'remote',
         basePath: BASE_ROUTE,
         product: PRODUCT.slug,
+        remarkPlugins,
+        rehypePlugins,
       }
 )
 
