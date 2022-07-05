@@ -39,6 +39,7 @@
     "@hashicorp/react-text-split-with-code": "^3.4.0",
     "@hashicorp/react-text-split-with-image": "^4.3.0",
     "@hashicorp/react-vertical-text-block-list": "^7.0.0",
+    "@hashicorp/remark-plugins": "^4.0.0",
     "@reach/dialog": "^0.16.2",
     "babel-plugin-import-glob-array": "0.2.0",
     "framer-motion": "^5.5.5",
