@@ -29,6 +29,7 @@ export default function CloudDocsLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      showVersionSelect={false}
     />
   )
 }

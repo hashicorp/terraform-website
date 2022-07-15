@@ -35,6 +35,7 @@ function PluginLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      showVersionSelect={false}
     />
   )
 }
