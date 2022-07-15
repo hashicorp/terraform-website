@@ -29,6 +29,7 @@ export default function CloudDocsLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      showVersionSelect={false}
     />
   )
 }
@@ -58,7 +59,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
       }
     : {
         fallback: 'blocking',
-        revalidate: 360, // 1 hour
+        revalidate: 3600, // 1 hour
         strategy: 'remote',
         basePath: BASE_ROUTE,
         product: SOURCE_REPO,
