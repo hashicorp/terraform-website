@@ -213,7 +213,8 @@ module.exports = (async () => {
     '/cloud-docs/run': '/cloud-docs/run/remote-operations',
     '/language/settings/backends': '/language/settings/backends/configuration',
     '/cloud-docs/api-docs/run-tasks': '/cloud-docs/api-docs/run-tasks/run-tasks',
-    '/cloud-docs/api-docs/run-tasks-integration': '/cloud-docs/api-docs/run-tasks/run-tasks-integration'
+    '/cloud-docs/api-docs/run-tasks-integration': '/cloud-docs/api-docs/run-tasks/run-tasks-integration',
+    '/language/provider-checksum-verification': '/language/files/dependency-lock#checksum-verification' // Used by the Terraform CLI to short-link to documentation.
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
