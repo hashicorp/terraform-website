@@ -17,6 +17,7 @@ const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
 const SOURCE_REPO = 'terraform-cdk'
+const PROJECT_NAME = 'CDK For Terraform'
 
 export default function CDKLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -27,6 +28,7 @@ export default function CDKLayout(props) {
     <DocsPage
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
+      projectName={PROJECT_NAME}
       staticProps={modifiedProps}
     />
   )

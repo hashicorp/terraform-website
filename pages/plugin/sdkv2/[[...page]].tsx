@@ -16,12 +16,11 @@ const NAV_DATA = path.join(
   NAV_DATA_PREFIX + '-nav-data.json'
 )
 
-// const CONTENT_DIR = 'content/plugin/sdkv2'
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-// TODO: update to terraform-plugin-sdk
 const SOURCE_REPO = 'terraform-plugin-sdk'
+const PROJECT_NAME = 'Plugin SDK'
 const DEFAULT_BRANCH = 'main'
 
 export default function PluginSdkv2Layout(props) {
@@ -38,6 +37,7 @@ export default function PluginSdkv2Layout(props) {
         additionalComponents={{ ProviderTable }}
         baseRoute={BASE_ROUTE}
         product={PRODUCT}
+        projectName={PROJECT_NAME}
         staticProps={modifiedProps}
       />
     </>
