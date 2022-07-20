@@ -39,6 +39,7 @@ export default function PluginLogLayout(props) {
         product={PRODUCT}
         projectName={PROJECT_NAME}
         staticProps={modifiedProps}
+        showVersionSelect
       />
     </>
   )
@@ -74,6 +75,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: SOURCE_REPO,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 
