@@ -7,7 +7,8 @@ jobs:
     shell: /usr/bin/env bash -euo pipefail -c
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.14
       - run:
           name: Pull submodules
           command: git submodule update --init
@@ -19,19 +20,27 @@ jobs:
               exit 0
             else
               echo "Building full image..."
-              docker build -t hashicorp/terraform-website:$CIRCLE_SHA1 .
-              docker tag hashicorp/terraform-website:$CIRCLE_SHA1 hashicorp/terraform-website:full
+              docker login -u $WEBSITE_DOCKER_USER -p $WEBSITE_DOCKER_PASS
+              docker buildx build \
+                --platform linux/amd64,linux/arm64 \
+                --push \
+                -t hashicorp/terraform-website:$CIRCLE_SHA1 \
+                -t hashicorp/terraform-website:full \
+                .
               IMAGE_TAG="$(git rev-list -n1 HEAD -- Dockerfile package-lock.json)"
               echo "Using $IMAGE_TAG for latest image"
               if curl https://hub.docker.com/v2/repositories/hashicorp/terraform-website/tags/$IMAGE_TAG -fsL > /dev/null; then
-                echo "Dependencies have not changed, not building a new website docker image."
+                echo "Dependencies have not changed, not building a new website base docker image."
               else
                 echo "Building base image..."
-                docker build --target base -t hashicorp/terraform-website:$IMAGE_TAG .
-                docker tag hashicorp/terraform-website:$IMAGE_TAG hashicorp/terraform-website:latest
+                docker buildx build \
+                  --platform linux/amd64,linux/arm64 \
+                  --push \
+                  -t hashicorp/terraform-website:$IMAGE_TAG \
+                  -t hashicorp/terraform-website:latest \
+                  --target base \
+                  .
               fi
-              docker login -u $WEBSITE_DOCKER_USER -p $WEBSITE_DOCKER_PASS
-              docker push hashicorp/terraform-website
             fi
 workflows:
   version: 2
