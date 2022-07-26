@@ -69,7 +69,7 @@ const { getStaticPaths, getStaticProps: _getStaticProps } =
         }
       : {
           fallback: 'blocking',
-          revalidate: 3600, // 1 hour
+          revalidate: 60, // 1 hour
           strategy: 'remote',
           basePath: BASE_ROUTE,
           product: SOURCE_REPO,
