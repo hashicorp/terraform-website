@@ -19,7 +19,7 @@ const PRODUCT = { name: productName, slug: 'terraform' } as const
 
 const SOURCE_REPO = 'terraform-docs-agents'
 const DEFAULT_BRANCH = 'main'
-const PROJECT_NAME = 'Terraform Cloud Agent'
+const PROJECT_NAME = 'Terraform Cloud Agents'
 
 export default function CloudDocsAgentsLayout(props) {
   // append additional nav data
