@@ -17,6 +17,7 @@ const NAV_DATA = path.join(
 )
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
+const PROJECT_NAME = 'Terraform Enterprise'
 
 const SOURCE_REPO = 'ptfe-releases'
 // const DEFAULT_BRANCH = 'main'
@@ -31,6 +32,7 @@ export default function EnterpriseLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      projectName={PROJECT_NAME}
       showEditPage={false}
     />
   )
