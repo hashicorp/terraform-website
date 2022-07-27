@@ -24,12 +24,7 @@ const SOURCE_REPO = 'ptfe-releases'
 export default function EnterpriseLayout(props) {
   // add the "other docs" section to the bottom of the nav data
   const modifiedProps = Object.assign({}, props)
-  // This specific page is a special case as it refelcts an exact copy of the cloud docs.
-  // To do this, we pull the cloud docs data directly and massage it a little so that it
-  // works out of context on this page.
-  modifiedProps.navData = modifiedProps.navData
-    .concat(transformCloudDocsData(props.cloudDocsNavData))
-    .concat(otherDocsData)
+  modifiedProps.navData = modifiedProps.navData.concat(otherDocsData)
 
   return (
     <DocsPage
