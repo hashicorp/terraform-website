@@ -61,7 +61,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
     : {
         strategy: 'remote',
         fallback: 'blocking',
-        revalidate: 360, // 1 hour
+        revalidate: 3600, // 1 hour
         basePath: BASE_ROUTE,
         product: SOURCE_REPO,
         remarkPlugins,

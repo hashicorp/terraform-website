@@ -16,12 +16,11 @@ const NAV_DATA = path.join(
   NAV_DATA_PREFIX + '-nav-data.json'
 )
 
-// const CONTENT_DIR = 'content/plugin/framework'
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-// TODO: update to terraform-plugin-framework
 const SOURCE_REPO = 'terraform-plugin-framework'
+const PROJECT_NAME = 'Plugin Framework'
 const DEFAULT_BRANCH = 'main'
 
 export default function PluginFrameworkLayout(props) {
@@ -37,7 +36,9 @@ export default function PluginFrameworkLayout(props) {
         additionalComponents={{ ProviderTable }}
         baseRoute={BASE_ROUTE}
         product={PRODUCT}
+        projectName={PROJECT_NAME}
         staticProps={modifiedProps}
+        showVersionSelect
       />
     </>
   )
@@ -59,13 +60,14 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
       }
     : {
         fallback: 'blocking',
-        revalidate: 360, // 1 hour
+        revalidate: 3600, // 1 hour
         strategy: 'remote',
         basePath: BASE_ROUTE,
         navDataPrefix: NAV_DATA_PREFIX,
         product: SOURCE_REPO,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 
