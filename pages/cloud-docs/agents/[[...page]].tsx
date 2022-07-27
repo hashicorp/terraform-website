@@ -19,6 +19,7 @@ const PRODUCT = { name: productName, slug: 'terraform' } as const
 
 const SOURCE_REPO = 'terraform-docs-agents'
 const DEFAULT_BRANCH = 'main'
+const PROJECT_NAME = 'Terraform Cloud Agent'
 
 export default function CloudDocsAgentsLayout(props) {
   // append additional nav data
@@ -33,6 +34,8 @@ export default function CloudDocsAgentsLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      projectName={PROJECT_NAME}
+      showVersionSelect
     />
   )
 }
@@ -69,6 +72,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: SOURCE_REPO,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 export { getStaticPaths, getStaticProps }
