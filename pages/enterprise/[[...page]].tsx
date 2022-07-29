@@ -27,9 +27,7 @@ export default function EnterpriseLayout(props) {
   // This specific page is a special case as it refelcts an exact copy of the cloud docs.
   // To do this, we pull the cloud docs data directly and massage it a little so that it
   // works out of context on this page.
-  modifiedProps.navData = modifiedProps.navData
-    .concat(transformCloudDocsData(props.cloudDocsNavData))
-    .concat(otherDocsData)
+  modifiedProps.navData = modifiedProps.navData.concat(otherDocsData)
 
   return (
     <DocsPage
@@ -43,10 +41,9 @@ export default function EnterpriseLayout(props) {
   )
 }
 
-
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW &&
-  process.env.PREVIEW_FROM_REPO === SOURCE_REPO
+    process.env.PREVIEW_FROM_REPO === SOURCE_REPO
     ? {
         strategy: 'fs',
         localContentDir: CONTENT_DIR,
@@ -82,9 +79,4 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         rehypePlugins,
       }
 )
-
-  // @ts-ignore
-  res.props.cloudDocsNavData = cloudDocsNavData
-  // @ts-ignore
-  return { props: res.props }
-}
+export { getStaticPaths, getStaticProps }
