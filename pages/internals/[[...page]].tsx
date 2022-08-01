@@ -15,15 +15,23 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug } as const
 
+const SOURCE_REPO = 'terraform'
+const DEFAULT_BRANCH = 'main'
+
 export default function InternalsLayout(props) {
   return (
-    <DocsPage baseRoute={BASE_ROUTE} product={PRODUCT} staticProps={props} />
+    <DocsPage
+      baseRoute={BASE_ROUTE}
+      product={PRODUCT}
+      staticProps={props}
+      showVersionSelect
+    />
   )
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW &&
-    process.env.PREVIEW_FROM_REPO === 'terraform'
+    process.env.PREVIEW_FROM_REPO === SOURCE_REPO
     ? {
         strategy: 'fs',
         localContentDir: CONTENT_DIR,
@@ -52,6 +60,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: PRODUCT.slug,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 

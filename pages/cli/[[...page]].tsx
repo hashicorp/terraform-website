@@ -29,6 +29,7 @@ export default function CLILayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      showVersionSelect
     />
   )
 }
@@ -64,6 +65,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: PRODUCT.slug,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 

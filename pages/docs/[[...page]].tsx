@@ -62,6 +62,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: SOURCE_REPO,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 
