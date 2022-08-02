@@ -218,8 +218,8 @@ module.exports = (async () => {
     '/cdktf/concepts/providers-and-resources' : '/cdktf/concepts/providers',
     // The /configuration pages have been deleted.
     '/configuration/expressions': '/language/expressions',
-    '/configuration/modules': '/language/modules/syntax',
-    '/configuration/resources': '/language/resources/syntax',
+    '/configuration/modules': '/language/modules',
+    '/configuration/resources': '/language/resources',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
