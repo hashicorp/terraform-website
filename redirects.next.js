@@ -220,6 +220,9 @@ module.exports = (async () => {
     '/configuration/expressions': '/language/expressions',
     '/configuration/modules': '/language/modules',
     '/configuration/resources': '/language/resources',
+    // The /guides pages have been deleted.
+    '/guides': '/intro',
+    '/guides/terraform-provider-development-program': '/docs/partnerships',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
