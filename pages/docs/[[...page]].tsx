@@ -16,7 +16,7 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-const SOURCE_REPO = 'terraform'
+const SOURCE_REPO = 'terraform-docs-common'
 const DEFAULT_BRANCH = 'main'
 
 export default function DocsLayout(props) {
@@ -26,6 +26,7 @@ export default function DocsLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={props}
+      showVersionSelect={false}
     />
   )
 }
@@ -41,12 +42,12 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         githubFileUrl(filepath) {
           // This path rewriting is meant for local preview from `terraform`.
           filepath = filepath.replace('preview/', '')
-          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/${filepath}`
+          return `https://github.com/hashicorp/${SOURCE_REPO}/blob/main/website/${filepath}`
         },
         remarkPlugins: (params) => [
           ...remarkPlugins,
           remarkRewriteAssets({
-            product: PRODUCT.slug,
+            product: SOURCE_REPO,
             version: process.env.CURRENT_GIT_BRANCH,
             getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
           }),
@@ -58,7 +59,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         revalidate: 3600, // 1 hour
         strategy: 'remote',
         basePath: BASE_ROUTE,
-        product: PRODUCT.slug,
+        product: SOURCE_REPO,
         remarkPlugins,
         rehypePlugins,
       }
