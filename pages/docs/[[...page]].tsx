@@ -18,12 +18,10 @@ const PRODUCT = { name: productName, slug: 'terraform' } as const
 
 const SOURCE_REPO = 'terraform-docs-common'
 const DEFAULT_BRANCH = 'main'
-const PROJECT_NAME = 'Terraform'
 
 export default function DocsLayout(props) {
   return (
     <DocsPage
-      projectName={PROJECT_NAME}
       additionalComponents={{ ProviderTable }}
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
