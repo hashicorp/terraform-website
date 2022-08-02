@@ -217,7 +217,7 @@ module.exports = (async () => {
     '/language/provider-checksum-verification': '/language/files/dependency-lock#checksum-verification', // Used by the Terraform CLI to short-link to documentation.
     '/cdktf/concepts/providers-and-resources' : '/cdktf/concepts/providers',
     // The /configuration pages have been deleted.
-    '/configuration/expressions': '/language/expressions/types',
+    '/configuration/expressions': '/language/expressions',
     '/configuration/modules': '/language/modules/syntax',
     '/configuration/resources': '/language/resources/syntax',
   }
