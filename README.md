@@ -47,7 +47,7 @@ The rest of the content is located in the following repositories:
 | [`/cloud-docs`][cloud-docs]               | [terraform-docs-common] |
 | [`/cloud-docs/agents`][cloud-docs/agents] | [terraform-docs-agents] |
 | [`/configuration`][configuration]         | [terraform] |
-| [`/docs`][docs]                           | [terraform] |
+| [`/docs`][docs]                           | [terraform-docs-common] |
 | [`/enterprise`][enterprise]               | [terraform-website] |
 | [`/guides`][guides]                       | [terraform] |
 | [`/internals`][internals]                 | [terraform] |
