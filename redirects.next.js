@@ -215,7 +215,11 @@ module.exports = (async () => {
     '/cloud-docs/api-docs/run-tasks': '/cloud-docs/api-docs/run-tasks/run-tasks',
     '/cloud-docs/api-docs/run-tasks-integration': '/cloud-docs/api-docs/run-tasks/run-tasks-integration',
     '/language/provider-checksum-verification': '/language/files/dependency-lock#checksum-verification', // Used by the Terraform CLI to short-link to documentation.
-    '/cdktf/concepts/providers-and-resources' : '/cdktf/concepts/providers'
+    '/cdktf/concepts/providers-and-resources' : '/cdktf/concepts/providers',
+    // The /configuration pages have been deleted.
+    '/configuration/expressions': '/language/expressions',
+    '/configuration/modules': '/language/modules',
+    '/configuration/resources': '/language/resources',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
