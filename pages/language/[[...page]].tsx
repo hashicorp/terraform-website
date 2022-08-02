@@ -17,6 +17,10 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: productSlug } as const
 
+const SOURCE_REPO = 'terraform'
+const DEFAULT_BRANCH = 'main'
+const PROJECT_NAME = 'Terraform'
+
 export default function LanguageLayout(props) {
   // add the "other docs" section to the bottom of the nav data
   const modifiedProps = Object.assign({}, props)
@@ -24,17 +28,19 @@ export default function LanguageLayout(props) {
 
   return (
     <DocsPage
+      projectName={PROJECT_NAME}
       additionalComponents={{ ProviderTable }}
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={modifiedProps}
+      showVersionSelect
     />
   )
 }
 
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW &&
-    process.env.PREVIEW_FROM_REPO === 'terraform'
+    process.env.PREVIEW_FROM_REPO === SOURCE_REPO
     ? {
         strategy: 'fs',
         localContentDir: CONTENT_DIR,
@@ -63,6 +69,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: PRODUCT.slug,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 
