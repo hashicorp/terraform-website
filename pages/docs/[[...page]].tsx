@@ -16,7 +16,7 @@ const NAV_DATA = path.join(
 const CONTENT_DIR = path.join(process.env.CONTENT_DIRNAME, BASE_ROUTE)
 const PRODUCT = { name: productName, slug: 'terraform' } as const
 
-const SOURCE_REPO = 'terraform'
+const SOURCE_REPO = 'terraform-docs-common'
 const DEFAULT_BRANCH = 'main'
 
 export default function DocsLayout(props) {
@@ -26,6 +26,7 @@ export default function DocsLayout(props) {
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
       staticProps={props}
+      showVersionSelect={false}
     />
   )
 }
