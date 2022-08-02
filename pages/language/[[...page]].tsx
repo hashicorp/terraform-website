@@ -19,6 +19,7 @@ const PRODUCT = { name: productName, slug: productSlug } as const
 
 const SOURCE_REPO = 'terraform'
 const DEFAULT_BRANCH = 'main'
+const PROJECT_NAME = 'Terraform'
 
 export default function LanguageLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -27,6 +28,7 @@ export default function LanguageLayout(props) {
 
   return (
     <DocsPage
+      projectName={PROJECT_NAME}
       additionalComponents={{ ProviderTable }}
       baseRoute={BASE_ROUTE}
       product={PRODUCT}
