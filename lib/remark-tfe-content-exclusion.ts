@@ -13,10 +13,22 @@ class ContentExclusionError extends Error {
   }
 }
 
+export interface TfeContentExclusionOptions {
+  version: string
+}
+/**
+ * @usage
+ * ```typescript
+ * remarkPlugins: (params, version) => [
+ *   //...
+ *   [remarkTfeContentExclusion, { version }]
+ *   //...
+ * ],
+ * ```
+ */
 export const remarkTfeContentExclusion: unified.Pluggable<
-  [{ version: string }]
+  [TfeContentExclusionOptions]
 > = (params) => {
-  // console.log('remarkTfeContentExclusion', params)
   const { version } = params
   return function visitor(root: Parent) {
     let begin: string | null = null
@@ -44,7 +56,7 @@ export const remarkTfeContentExclusion: unified.Pluggable<
         if (value.match(END_REGEX)) {
           end = value.replace(END_REGEX, '')
 
-          // expects BEGIN to match ENG
+          // expects BEGIN to match END
           if (begin !== end) {
             throw new ContentExclusionError(
               `Expected a matching 'END: ...' comment, found '${value}'`,
@@ -73,18 +85,19 @@ export const remarkTfeContentExclusion: unified.Pluggable<
     let shouldRemove = false
     const indexesToRemove: number[] = []
 
-    // don't strip nodes when on "latest"
+    // Accumulate indexes to remove
+    // ...ignore when on "latest"
     if (version !== 'latest') {
       visit(
         root,
         // visit all nodes
         (() => true) as unknown as TestFunction<any>,
-        (node: Literal<string>, index) => {
+        (node: Literal<string>) => {
           // only deal with immediate children of the root node
           const indexOf = root.children.indexOf(node)
           if (indexOf < 0) return
 
-          // if comment, check things
+          // if comment, check for conditions
           if (node.type === 'comment') {
             const { value } = node
             // expects END
@@ -124,19 +137,15 @@ export const remarkTfeContentExclusion: unified.Pluggable<
       )
     }
 
-    // REMOVE NODES
-    // sort DESC
+    // REMOVE NODES in reverse order
     indexesToRemove
       .sort((a, b) => b - a)
       .forEach((i) => {
-        console.log('remove', i)
         root.children.splice(i, 1)
       })
 
-    // 3. inject DOM elements
+    // 3. Convert comments into JSX elements
     visit(root, 'comment', (node: Literal<string>) => {
-      // return
-      // console.log(value)
       node.type = 'jsx'
 
       const type = node.value.match(/begin/i)
