@@ -40,19 +40,30 @@ export const remarkTfeContentExclusion: unified.Pluggable<
     visit(root, 'comment', ({ value, position }: Literal<string>) => {
       // expects BEGIN
       if (begin === null && end === null) {
-        if (value.match(BEGIN_REGEX)) {
-          begin = value.replace(BEGIN_REGEX, '')
-          return
-        } else {
+        // throw if END is detected first
+        if (value.match(END_REGEX)) {
           throw new ContentExclusionError(
-            `Expected 'BEGIN: ...' comment, found '${value}'`,
+            'Found an "END:" comment before a "BEGIN:" comment. Please ensure all content exclusion comments are paired correctly.',
             position
           )
         }
+        if (value.match(BEGIN_REGEX)) {
+          begin = value.replace(BEGIN_REGEX, '')
+          return
+        }
+        // else noop — allow plain comments to exist as usual
       }
 
       // expects END
       if (begin !== null && end === null) {
+        // throw if BEGIN is used after BEGIN
+        if (value.match(BEGIN_REGEX)) {
+          throw new ContentExclusionError(
+            'Found a "BEGIN:" but expected an "END:" comment. Nesting is not supported. Please ensure all content exclusion comments are paired correctly.',
+            position
+          )
+        }
+
         if (value.match(END_REGEX)) {
           end = value.replace(END_REGEX, '')
 
@@ -68,12 +79,9 @@ export const remarkTfeContentExclusion: unified.Pluggable<
             end = null
             return
           }
-        } else {
-          throw new ContentExclusionError(
-            `Expected 'END: ...' comment, found '${value}'`,
-            position
-          )
         }
+
+        // else noop — allow plain comments to exist as usual
       }
     })
 
@@ -148,9 +156,9 @@ export const remarkTfeContentExclusion: unified.Pluggable<
     visit(root, 'comment', (node: Literal<string>) => {
       node.type = 'jsx'
 
-      const type = node.value.match(/begin/i)
+      const type = node.value.match(BEGIN_REGEX)
         ? 'begin'
-        : node.value.match(/end/i)
+        : node.value.match(END_REGEX)
         ? 'end'
         : ''
 
