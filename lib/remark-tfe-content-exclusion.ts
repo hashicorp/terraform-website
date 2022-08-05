@@ -156,9 +156,9 @@ export const remarkTfeContentExclusion: unified.Pluggable<
     visit(root, 'comment', (node: Literal<string>) => {
       node.type = 'jsx'
 
-      const type = node.value.match(/begin/i)
+      const type = node.value.match(BEGIN_REGEX)
         ? 'begin'
-        : node.value.match(/end/i)
+        : node.value.match(END_REGEX)
         ? 'end'
         : ''
 
