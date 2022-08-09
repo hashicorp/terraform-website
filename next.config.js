@@ -25,7 +25,6 @@ module.exports = withHashicorp({
     NAV_DATA_DIRNAME: process.env.NAV_DATA_DIRNAME || '',
     CONTENT_DIRNAME: process.env.CONTENT_DIRNAME || '',
     CURRENT_GIT_BRANCH: process.env.CURRENT_GIT_BRANCH || 'main',
-    ENABLE_VERSIONED_DOCS: process.env.ENABLE_VERSIONED_DOCS || 'true',
   },
   images: {
     domains: ['www.datocms-assets.com'],

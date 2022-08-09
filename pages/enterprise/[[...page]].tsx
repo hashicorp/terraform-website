@@ -34,6 +34,7 @@ export default function EnterpriseLayout(props) {
       staticProps={modifiedProps}
       projectName={PROJECT_NAME}
       showEditPage={false}
+      showVersionSelect
     />
   )
 }
@@ -71,6 +72,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         product: SOURCE_REPO,
         remarkPlugins,
         rehypePlugins,
+        enabledVersionedDocs: true,
       }
 )
 
