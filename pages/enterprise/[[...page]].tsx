@@ -68,8 +68,9 @@ const { getStaticPaths, getStaticProps: _getStaticProps } =
           rehypePlugins,
         }
       : {
-          fallback: 'blocking',
-          revalidate: 3600, // 1 hour
+          // Disabling ISR for Enterprise Versioned Docs transition
+          fallback: false,
+          // revalidate: 3600, // 1 hour
           strategy: 'remote',
           basePath: BASE_ROUTE,
           product: SOURCE_REPO,
