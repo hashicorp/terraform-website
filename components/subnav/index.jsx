@@ -9,12 +9,12 @@ export default function DefaultSubnav({ menuItems }) {
       ctaLinks={[
         { text: 'GitHub', url: 'https://github.com/hashicorp/terraform' },
         {
-          text: 'Terraform Cloud',
-          url: 'https://cloud.hashicorp.com/products/terraform',
-        },
-        {
           text: 'Download',
           url: '/downloads',
+        },
+        {
+          text: 'Try Terraform Cloud',
+          url: 'https://app.terraform.io/public/signup/account?utm_content=offers_tfc&utm_source=terraform_io',
           theme: {
             brand: 'terraform',
           },
