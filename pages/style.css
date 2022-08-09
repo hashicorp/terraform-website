@@ -1,5 +1,6 @@
 /* Global Styles */
 @import '~@hashicorp/mktg-global-styles/style.css';
+@import '~@hashicorp/design-system-tokens/dist/devdot/css/tokens.css';
 
 /* Print Styles */
 @import './print.css';

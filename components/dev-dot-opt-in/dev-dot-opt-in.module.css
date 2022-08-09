@@ -1,0 +1,38 @@
+.container {
+  composes: g-type-body-small from global;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.icon {
+  color: #911ced;
+  margin-right: 8px;
+  align-self: baseline;
+  margin-top: 6px;
+  min-width: 16px;
+
+  @media (--medium-up) {
+    align-self: unset;
+    margin-top: 0;
+  }
+}
+
+.alert {
+  margin: 0 !important;
+}
+
+.optInLink {
+  composes: g-type-body-small from global;
+  color: var(--token-color-palette-blue-200);
+  text-decoration: underline;
+  border: unset;
+  background: unset;
+  margin: 0 0 0 4px;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}

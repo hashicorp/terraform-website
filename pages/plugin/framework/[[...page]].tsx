@@ -1,5 +1,5 @@
 import { productName, productSlug } from 'data/metadata'
-import DocsPage from '@hashicorp/react-docs-page'
+import DocsPage from 'components/docs-page'
 import ProviderTable from 'components/provider-table'
 import otherPluginsData from 'data/other-plugins-nav-data.json'
 
