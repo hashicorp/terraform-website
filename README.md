@@ -36,7 +36,7 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 ## Where the Docs Live
 
-This repository is a webshite shell that sources docs from disparate GitHub repositories.
+This repository is a website shell that sources docs from disparate GitHub repositories.
 
 The content source files are located in the following repositories:
 
