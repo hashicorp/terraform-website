@@ -39,6 +39,7 @@ export default function EnterpriseLayout(props) {
   )
 }
 
+
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW &&
     process.env.PREVIEW_FROM_REPO === SOURCE_REPO
@@ -66,7 +67,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
       }
     : {
         fallback: 'blocking',
-        revalidate: 60, // 1 hour
+        revalidate: 3600, // 1 hour
         strategy: 'remote',
         basePath: BASE_ROUTE,
         product: SOURCE_REPO,
