@@ -223,6 +223,14 @@ module.exports = (async () => {
     // The /guides pages have been deleted.
     '/guides': '/intro',
     '/guides/terraform-provider-development-program': '/docs/partnerships',
+    '/cloud-docs/api-docs/admin': '/enterprise/api-docs/admin',
+    '/cloud-docs/api-docs/admin/module-sharing': '/enterprise/api-docs/admin/module-sharing',
+    '/cloud-docs/api-docs/admin/organizations': '/enterprise/api-docs/admin/organizations',
+    '/cloud-docs/api-docs/admin/runs': '/enterprise/api-docs/admin/runs',
+    '/cloud-docs/api-docs/admin/settings': '/enterprise/api-docs/admin/settings',
+    '/cloud-docs/api-docs/admin/terraform-versions': '/enterprise/api-docs/admin/terraform-versions',
+    '/cloud-docs/api-docs/admin/users': '/enterprise/api-docs/admin/users',
+    '/cloud-docs/api-docs/admin/workspaces': '/enterprise/api-docs/admin/workspaces'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
