@@ -36,9 +36,9 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 ## Where the Docs Live
 
-This repository contains docs for Terraform Enterprise, located in [`/content/enterprise`](https://github.com/hashicorp/terraform-website/tree/master/content/enterprise).
+This repository is a webshite shell that sources docs from disparate GitHub repositories.
 
-The rest of the content is located in the following repositories:
+The content source files are located in the following repositories:
 
 | Subpath | Repository |
 | :--- | :--- |
@@ -48,7 +48,7 @@ The rest of the content is located in the following repositories:
 | [`/cloud-docs/agents`][cloud-docs/agents] | [terraform-docs-agents] |
 | [`/configuration`][configuration]         | [terraform] |
 | [`/docs`][docs]                           | [terraform-docs-common] |
-| [`/enterprise`][enterprise]               | [terraform-website] |
+| [`/enterprise`][enterprise]               | Internal repository |
 | [`/guides`][guides]                       | [terraform] |
 | [`/internals`][internals]                 | [terraform] |
 | [`/intro`][intro]                         | [terraform] |
