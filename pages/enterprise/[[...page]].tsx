@@ -8,6 +8,7 @@ import path from 'path'
 import { rehypePlugins, remarkPlugins } from 'lib/remark-rehype-plugins'
 import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
 import { remarkTfeContentExclusion } from 'lib/remark-tfe-content-exclusion'
+import { tfeContentExclusionHook } from 'lib/tfe-content-exclusion-hook'
 
 //  Configure the docs path
 const BASE_ROUTE = 'enterprise'
@@ -39,11 +40,14 @@ export default function EnterpriseLayout(props) {
   )
 }
 
-
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW &&
     process.env.PREVIEW_FROM_REPO === SOURCE_REPO
     ? {
+        mdxContentHook: (mdxContent, scope) => {
+          // @ts-expect-error scope.version should be a string
+          return tfeContentExclusionHook(mdxContent, scope.version)
+        },
         strategy: 'fs',
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
