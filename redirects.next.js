@@ -230,7 +230,9 @@ module.exports = (async () => {
     '/cloud-docs/api-docs/admin/settings': '/enterprise/api-docs/admin/settings',
     '/cloud-docs/api-docs/admin/terraform-versions': '/enterprise/api-docs/admin/terraform-versions',
     '/cloud-docs/api-docs/admin/users': '/enterprise/api-docs/admin/users',
-    '/cloud-docs/api-docs/admin/workspaces': '/enterprise/api-docs/admin/workspaces'
+    '/cloud-docs/api-docs/admin/workspaces': '/enterprise/api-docs/admin/workspaces',
+    '/language/configuration-0-11': '/language/v1.1.x/configuration-0-11',
+    '/language/configuration-0-11/:slug*': '/language/v1.1.x/configuration-0-11/:slug*'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
