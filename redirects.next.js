@@ -232,7 +232,8 @@ module.exports = (async () => {
     '/cloud-docs/api-docs/admin/users': '/enterprise/api-docs/admin/users',
     '/cloud-docs/api-docs/admin/workspaces': '/enterprise/api-docs/admin/workspaces',
     '/language/configuration-0-11': '/language/v1.1.x/configuration-0-11',
-    '/language/configuration-0-11/:slug*': '/language/v1.1.x/configuration-0-11/:slug*'
+    '/language/configuration-0-11/:slug*': '/language/v1.1.x/configuration-0-11/:slug*',
+    '/cloud-docs/workspaces/settings/drift-detection': '/cloud-docs/workspaces/settings/health-assessments'
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
