@@ -34,15 +34,14 @@ export default function ProviderTable() {
         </tr>
         <tr>
           <td>
-            <img src="/img/docs/verified-tier.png" alt="" />
+            <img src="/img/docs/partner-tier.png" alt="" />
           </td>
           <td>
             <i>
               <span>
-                Verified providers are owned and maintained by third-party
-                technology partners. Providers in this tier indicate HashiCorp
-                has verified the authenticity of the Provider&rsquo;s publisher,
-                and that the partner is a member of the{' '}
+                Partner providers are written, maintained, validated and 
+                published by third-party companies against their own APIs. 
+                To earn a partner provider badge the partner must participate in the{' '}
               </span>
             </i>
             <a href="https://www.hashicorp.com/ecosystem/become-a-partner/">
