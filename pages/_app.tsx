@@ -4,7 +4,10 @@ import '@hashicorp/platform-util/nprogress/style.css'
 import NProgress from '@hashicorp/platform-util/nprogress'
 import createConsentManager from '@hashicorp/react-consent-manager/loader'
 import localConsentManagerServices from 'lib/consent-manager-services'
-import usePageviewAnalytics from '@hashicorp/platform-analytics'
+import usePageviewAnalytics, {
+  initializeUTMParamsCapture,
+  addCloudLinkHandler,
+} from '@hashicorp/platform-analytics'
 import useAnchorLinkAnalytics from '@hashicorp/platform-util/anchor-link-analytics'
 import rivetQuery from '@hashicorp/nextjs-scripts/dato/client'
 import Router from 'next/router'
@@ -21,6 +24,9 @@ const { ConsentManager } = createConsentManager({
   preset: 'oss',
   otherServices: [...localConsentManagerServices],
 })
+
+initializeUTMParamsCapture()
+addCloudLinkHandler()
 
 function App({ Component, pageProps, layoutData }) {
   usePageviewAnalytics()
