@@ -14,7 +14,7 @@ export default function DefaultSubnav({ menuItems }) {
         },
         {
           text: 'Try Terraform Cloud',
-          url: 'https://app.terraform.io/public/signup/account?utm_content=offers_tfc&utm_source=terraform_io',
+          url: 'https://app.terraform.io/public/signup/account',
           theme: {
             brand: 'terraform',
           },
