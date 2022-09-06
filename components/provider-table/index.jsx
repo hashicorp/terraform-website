@@ -20,11 +20,9 @@ export default function ProviderTable() {
             <img src="/img/docs/official-tier.png" alt="" />
           </td>
           <td>
-            <i>
               <span>
                 Official providers are owned and maintained by HashiCorp{' '}
               </span>
-            </i>
           </td>
           <td>
             <code>
@@ -37,21 +35,15 @@ export default function ProviderTable() {
             <img src="/img/docs/partner-tier.png" alt="" />
           </td>
           <td>
-            <i>
               <span>
                 Partner providers are written, maintained, validated and 
                 published by third-party companies against their own APIs. 
                 To earn a partner provider badge the partner must participate in the{' '}
               </span>
-            </i>
             <a href="https://www.hashicorp.com/ecosystem/become-a-partner/">
-              <i>
                 <span>HashiCorp Technology Partner Program</span>
-              </i>
             </a>
-            <i>
               <span>.</span>
-            </i>
           </td>
           <td>
             <span>Third-party organization, e.g. </span>
