@@ -21,7 +21,7 @@ export default function ProviderTable() {
           </td>
           <td>
               <span>
-                Official providers are owned and maintained by HashiCorp{' '}
+                Official providers are owned and maintained by HashiCorp.{' '}
               </span>
           </td>
           <td>
@@ -71,7 +71,7 @@ export default function ProviderTable() {
             <img src="/img/docs/archived-tier.png" alt="" />
           </td>
           <td>
-            Archived Providers are Official or Verified Providers that are no
+            Archived providers are official or partner providers that are no
             longer maintained by HashiCorp or the community. This may occur if
             an API is deprecated or interest was low.
           </td>
