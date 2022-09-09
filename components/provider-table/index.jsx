@@ -32,12 +32,12 @@ export default function ProviderTable() {
         </tr>
         <tr>
           <td>
-            <img src="/img/docs/partner-tier.png" alt="" />
+            <img src="/img/docs/partner-tier-new.png" alt="" />
           </td>
           <td>
               <span>
-                Partner providers are written, maintained, validated and 
-                published by third-party companies against their own APIs. 
+                Partner providers are written, maintained, validated and
+                published by third-party companies against their own APIs.
                 To earn a partner provider badge the partner must participate in the{' '}
               </span>
             <a href="https://www.hashicorp.com/ecosystem/become-a-partner/">
