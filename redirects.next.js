@@ -241,9 +241,50 @@ module.exports = (async () => {
     }
   )
 
+  // Sub-pages of "upgrade-guides" are a legacy situation from before we had
+  // versioned docs. Now the v1.1 and earlier upgrade guides live under the
+  // v1.1.x version while subsequent versions each contain only a single
+  // upgrade guide, which is always at /language/upgrade-guides with no
+  // suffix.
+  const legacyUpgradeGuides = [
+    '1-1', '1-0', '0-15', '0-14', '0-13', '0-12', '0-11', '0-10', '0-9', '0-8', '0-7',
+  ];
+  const upgradeGuideRedirects = [
+    ...legacyUpgradeGuides.map(
+      (slug) => ({
+        source: '/language/upgrade-guides/' + slug,
+        destination: '/language/v1.1.x/upgrade-guides/' + slug,
+        permanent: true,
+      })
+    ),
+    ...legacyUpgradeGuides.map(
+      (slug) => ({
+        source: '/language/v1.2.x/upgrade-guides/' + slug,
+        destination: '/language/v1.1.x/upgrade-guides/' + slug,
+        permanent: true,
+      })
+    ),
+    // The v1.2.x version was live before we made this change, so it previously
+    // had its own upgrade guide at a sub-path and we now need to hoist it
+    // up to the main upgrade-guides URL as a special case. Everything else
+    // on that branch should now redirect to the v1.1.x branch just as we
+    // do for the latest version URL.
+    {
+      source: '/language/upgrade-guides/1-2',
+      destination: '/language/v1.2.x/upgrade-guides',
+      permanent: true,
+    },
+    {
+      source: '/language/v1.2.x/upgrade-guides/1-2',
+      destination: '/language/v1.2.x/upgrade-guides',
+      permanent: true,
+    },
+  ];
+
   return [
     ...registryTopLevelRedirects,
     ...registryDocsRedirects,
+    ...upgradeGuideRedirects,
     ...miscRedirects,
   ]
 })()
