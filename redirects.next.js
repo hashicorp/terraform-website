@@ -286,10 +286,21 @@ module.exports = (async () => {
     },
   ];
 
+  // Some backends were removed in Terraform v1.3 so their old URLs will
+  // redirect into the v1.2.x docs.
+  const legacyBackendRedirects = ['artifactory', 'etcd', 'etcdv3', 'manta', 'swift'].map(
+    (slug) => ({
+      source: '/language/settings/backends/' + slug,
+      destination: '/language/v1.2.x/settings/backends/' + slug,
+      permanent: true,
+    })
+  );
+
   return [
     ...registryTopLevelRedirects,
     ...registryDocsRedirects,
     ...upgradeGuideRedirects,
+    ...legacyBackendRedirects,
     ...miscRedirects,
   ]
 })()
