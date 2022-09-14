@@ -233,7 +233,7 @@ module.exports = (async () => {
     '/cloud-docs/api-docs/admin/workspaces': '/enterprise/api-docs/admin/workspaces',
     '/language/configuration-0-11': '/language/v1.1.x/configuration-0-11',
     '/language/configuration-0-11/:slug*': '/language/v1.1.x/configuration-0-11/:slug*',
-    '/cloud-docs/workspaces/settings/drift-detection': '/cloud-docs/workspaces/settings/health-assessments'
+    '/cloud-docs/workspaces/settings/drift-detection': '/cloud-docs/workspaces/settings/health-assessments',
     '/language/resources/provisioners/chef': '/language/v1.1.x/resources/provisioners/chef',
     '/language/resources/provisioners/habitat': '/language/v1.1.x/resources/provisioners/habitat',
     '/language/resources/provisioners/puppet': '/language/v1.1.x/resources/provisioners/puppet',
