@@ -26,7 +26,8 @@ export default function CloudDocsAgentsLayout(props) {
   const modifiedProps = Object.assign({}, props)
   modifiedProps.navData = modifiedProps.navData.concat([
     { divider: true },
-    { title: 'Back to Cloud and Enterprise', href: '/cloud-docs' },
+    { title: 'Terraform Cloud', href: '/cloud-docs' },
+    { title: 'Terraform Enterprise', href: '/enterprise' },
   ])
 
   return (
