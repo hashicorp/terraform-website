@@ -8,6 +8,7 @@
     "npm": ">= 7.0.0"
   },
   "dependencies": {
+    "@hashicorp/design-system-tokens": "^1.0.0",
     "@hashicorp/flight-icons": "^2.0.1",
     "@hashicorp/mktg-assets": "^2.0.0-alpha.0",
     "@hashicorp/mktg-global-styles": "4.0.0",

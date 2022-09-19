@@ -1,5 +1,5 @@
 import { productName, productSlug } from 'data/metadata'
-import DocsPage from '@hashicorp/react-docs-page'
+import DocsPage from 'components/docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'

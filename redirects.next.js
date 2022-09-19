@@ -1,3 +1,5 @@
+const buildBetaProductOptInRedirect = require('./lib/build-beta-opt-in-redirect')
+
 module.exports = (async () => {
   const tfProviderNamespaces = {
     aci: 'CiscoDevNet/aci',
@@ -181,41 +183,66 @@ module.exports = (async () => {
     '/upgrade-guides/0-9.html': '/language/upgrade-guides/0-9',
     '/upgrade-guides/1-0.html': '/language/upgrade-guides/1-0',
     '/upgrade-guides/index.html': '/language/upgrade-guides',
-    '/language/resources/provisioners': '/language/resources/provisioners/syntax',
-    '/enterprise/before-installing/cluster-architecture': '/enterprise/install/automated/active-active',
-    '/enterprise/install/cluster-aws': '/enterprise/install/automated/active-active',
-    '/enterprise/install/cluster-azure': '/enterprise/install/automated/active-active',
-    '/enterprise/install/cluster-custom': '/enterprise/install/automated/active-active',
-    '/enterprise/install/cluster-gcp': '/enterprise/install/automated/active-active',
-    '/enterprise/admin/infrastructure/active-active': '/enterprise/admin/infrastructure/admin-cli',
+    '/language/resources/provisioners':
+      '/language/resources/provisioners/syntax',
+    '/enterprise/before-installing/cluster-architecture':
+      '/enterprise/install/automated/active-active',
+    '/enterprise/install/cluster-aws':
+      '/enterprise/install/automated/active-active',
+    '/enterprise/install/cluster-azure':
+      '/enterprise/install/automated/active-active',
+    '/enterprise/install/cluster-custom':
+      '/enterprise/install/automated/active-active',
+    '/enterprise/install/cluster-gcp':
+      '/enterprise/install/automated/active-active',
+    '/enterprise/admin/infrastructure/active-active':
+      '/enterprise/admin/infrastructure/admin-cli',
     '/enterprise/release': '/enterprise/releases',
     '/cloud-docs/registry/publish': '/cloud-docs/registry/publish-modules',
-    '/cloud-docs/api-docs/providers': '/cloud-docs/api-docs/private-registry/providers',
-    '/cloud-docs/api-docs/modules': '/cloud-docs/api-docs/private-registry/modules',
+    '/cloud-docs/api-docs/providers':
+      '/cloud-docs/api-docs/private-registry/providers',
+    '/cloud-docs/api-docs/modules':
+      '/cloud-docs/api-docs/private-registry/modules',
     '/enterprise/install': '/enterprise/install/pre-install-checklist',
-    '/enterprise/before-installing': '/enterprise/install/pre-install-checklist',
-    '/enterprise/before-installing/reference-architecture': '/enterprise/reference-architecture',
-    '/enterprise/before-installing/reference-architecture/:part': '/enterprise/reference-architecture/:part',
+    '/enterprise/before-installing':
+      '/enterprise/install/pre-install-checklist',
+    '/enterprise/before-installing/reference-architecture':
+      '/enterprise/reference-architecture',
+    '/enterprise/before-installing/reference-architecture/:part':
+      '/enterprise/reference-architecture/:part',
 
-    '/enterprise/before-installing/os-specific/rhel-requirements': '/enterprise/requirements/os-specific/rhel-requirements',
-    '/enterprise/before-installing/os-specific/centos-requirements': '/enterprise/requirements/os-specific/centos-requirements',
-    '/enterprise/before-installing/network-requirements': '/enterprise/requirements/network',
+    '/enterprise/before-installing/os-specific/rhel-requirements':
+      '/enterprise/requirements/os-specific/rhel-requirements',
+    '/enterprise/before-installing/os-specific/centos-requirements':
+      '/enterprise/requirements/os-specific/centos-requirements',
+    '/enterprise/before-installing/network-requirements':
+      '/enterprise/requirements/network',
     '/enterprise/user-management/saml': '/enterprise/saml/configuration',
     '/enterprise/user-management/saml/:path*': '/enterprise/saml/:path*',
-    '/enterprise/before-installing/data-storage-requirements/postgres-requirements': '/enterprise/requirements/data-storage/postgres-requirements',
-    '/enterprise/before-installing/data-storage-requirements/disk-requirements': '/enterprise/requirements/data-storage/operational-mode-requirements',
-    '/enterprise/before-installing/data-storage-requirements/minio-setup-guide': '/enterprise/requirements/data-storage/mineo-setup-guide',
-    '/enterprise/before-installing/data-storage-requirements/vault': '/enterprise/requirements/data-storage/vault',
-    '/cloud-docs/users-teams-organizations/index': '/cloud-docs/users-teams-organizations/users',
-    '/cloud-docs/guides/recommended-practices': '/cloud-docs/recommended-practices',
-    '/cloud-docs/guides/recommended-practices/:path*': '/cloud-docs/recommended-practices/:path*',
+    '/enterprise/before-installing/data-storage-requirements/postgres-requirements':
+      '/enterprise/requirements/data-storage/postgres-requirements',
+    '/enterprise/before-installing/data-storage-requirements/disk-requirements':
+      '/enterprise/requirements/data-storage/operational-mode-requirements',
+    '/enterprise/before-installing/data-storage-requirements/minio-setup-guide':
+      '/enterprise/requirements/data-storage/mineo-setup-guide',
+    '/enterprise/before-installing/data-storage-requirements/vault':
+      '/enterprise/requirements/data-storage/vault',
+    '/cloud-docs/users-teams-organizations/index':
+      '/cloud-docs/users-teams-organizations/users',
+    '/cloud-docs/guides/recommended-practices':
+      '/cloud-docs/recommended-practices',
+    '/cloud-docs/guides/recommended-practices/:path*':
+      '/cloud-docs/recommended-practices/:path*',
     '/cloud-docs/paid': '/cloud-docs/overview',
     '/cloud-docs/run': '/cloud-docs/run/remote-operations',
     '/language/settings/backends': '/language/settings/backends/configuration',
-    '/cloud-docs/api-docs/run-tasks': '/cloud-docs/api-docs/run-tasks/run-tasks',
-    '/cloud-docs/api-docs/run-tasks-integration': '/cloud-docs/api-docs/run-tasks/run-tasks-integration',
-    '/language/provider-checksum-verification': '/language/files/dependency-lock#checksum-verification', // Used by the Terraform CLI to short-link to documentation.
-    '/cdktf/concepts/providers-and-resources' : '/cdktf/concepts/providers',
+    '/cloud-docs/api-docs/run-tasks':
+      '/cloud-docs/api-docs/run-tasks/run-tasks',
+    '/cloud-docs/api-docs/run-tasks-integration':
+      '/cloud-docs/api-docs/run-tasks/run-tasks-integration',
+    '/language/provider-checksum-verification':
+      '/language/files/dependency-lock#checksum-verification', // Used by the Terraform CLI to short-link to documentation.
+    '/cdktf/concepts/providers-and-resources': '/cdktf/concepts/providers',
     // The /configuration pages have been deleted.
     '/configuration/expressions': '/language/expressions',
     '/configuration/modules': '/language/modules',
@@ -245,6 +272,19 @@ module.exports = (async () => {
     }
   )
 
+  const devDotBetaOptInRedirect = buildBetaProductOptInRedirect('terraform', [
+    'cdktf',
+    'cli',
+    'cloud-docs',
+    'docs',
+    'enterprise',
+    'internals',
+    'intro',
+    'language',
+    'plugin',
+    'registry',
+  ])
+  
   // Sub-pages of "upgrade-guides" are a legacy situation from before we had
   // versioned docs. Now the v1.1 and earlier upgrade guides live under the
   // v1.1.x version while subsequent versions each contain only a single
@@ -290,5 +330,6 @@ module.exports = (async () => {
     ...registryDocsRedirects,
     ...upgradeGuideRedirects,
     ...miscRedirects,
+    devDotBetaOptInRedirect,
   ]
 })()
