@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { IconAlertCircleFill16 } from '@hashicorp/flight-icons/svg-react/alert-circle-fill-16'
+import { IconAlertCircle16 } from '@hashicorp/flight-icons/svg-react/alert-circle-16'
 import s from './dev-dot-opt-in.module.css'
+import ButtonLink from './button-link'
 
 const DAYS_UNTIL_EXPIRE = 180
 
@@ -16,33 +17,53 @@ const getDevDotLink = (product, path) => {
   return url.toString()
 }
 
+function handleOptIn() {
+  // Set a cookie to ensure any future navigation will send them to dev dot
+  Cookies.set(`terraform-io-beta-opt-in`, true, {
+    expires: DAYS_UNTIL_EXPIRE,
+  })
+}
+
 /**
  * Largely copied from: https://github.com/hashicorp/learn/pull/4480
  */
 export default function DevDotOptIn() {
   const { asPath } = useRouter()
 
-  function handleOptIn() {
-    // Set a cookie to ensure any future navigation will send them to dev dot
-    Cookies.set(`terraform-io-beta-opt-in`, true, {
-      expires: DAYS_UNTIL_EXPIRE,
-    })
-  }
-
   return (
-    <div className={s.container}>
-      <IconAlertCircleFill16 className={s.icon} />
-      <p className={s.alert}>
-        The Terraform website is being redesigned to help you find what you are
-        looking for more effectively.
-        <a
-          className={s.optInLink}
-          href={getDevDotLink('terraform', asPath)}
-          onClick={handleOptIn}
-        >
-          Join the Beta
-        </a>
-      </p>
+    <div className={s.root}>
+      <div className={s.alertContainer}>
+        <div className={s.icon}>
+          <IconAlertCircle16 />
+        </div>
+        <div className={s.contentContainer}>
+          <p className={s.title}>
+            A new platform for documentation and tutorials is launching soon.
+          </p>
+          <p className={s.description}>
+            We are migrating Terraform documentation into HashiCorp Developer,
+            our new developer experience.
+          </p>
+          <div className={s.actions}>
+            <ButtonLink
+              href={getDevDotLink('terraform', asPath)}
+              text="Join Now"
+              onClick={handleOptIn}
+              color="secondary"
+              size="small"
+            />
+            {/* commenting until blog post is published */}
+            {/* <StandaloneLink
+              icon={<IconArrowRight16 />}
+              iconPosition="trailing"
+              text="Learn More"
+              href=""
+              color="secondary"
+              size="small"
+            /> */}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
