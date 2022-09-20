@@ -4,8 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export default function middleware(request: NextRequest) {
   /**
-   * If we're serving a beta product's io site and the betaOptOut query param exists,
-   * clear it and redirect back to the current URL without the betaOptOut query param
+   * If the betaOptOut query param exists, clear it, delete the opt-in cookie, and redirect back to the current URL without the betaOptOut query param
    */
   if (request.nextUrl.searchParams.get('betaOptOut') === 'true') {
     const url = request.nextUrl.clone()
