@@ -264,7 +264,8 @@ module.exports = (async () => {
     '/language/resources/provisioners/chef': '/language/v1.1.x/resources/provisioners/chef',
     '/language/resources/provisioners/habitat': '/language/v1.1.x/resources/provisioners/habitat',
     '/language/resources/provisioners/puppet': '/language/v1.1.x/resources/provisioners/puppet',
-    '/language/resources/provisioners/salt-masterless': '/language/v1.1.x/resources/provisioners/salt-masterless'
+    '/language/resources/provisioners/salt-masterless': '/language/v1.1.x/resources/provisioners/salt-masterless',
+    '/docs/language/functions/defaults': '/docs/language/expressions/type-constraints#optional-object-type-attributes',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
@@ -325,10 +326,21 @@ module.exports = (async () => {
     },
   ];
 
+  // Some backends were removed in Terraform v1.3 so their old URLs will
+  // redirect into the v1.2.x docs.
+  const legacyBackendRedirects = ['artifactory', 'etcd', 'etcdv3', 'manta', 'swift'].map(
+    (slug) => ({
+      source: '/language/settings/backends/' + slug,
+      destination: '/language/v1.2.x/settings/backends/' + slug,
+      permanent: true,
+    })
+  );
+
   return [
     ...registryTopLevelRedirects,
     ...registryDocsRedirects,
     ...upgradeGuideRedirects,
+    ...legacyBackendRedirects,
     ...miscRedirects,
     devDotBetaOptInRedirect,
   ]
