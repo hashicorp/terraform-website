@@ -266,6 +266,24 @@ module.exports = (async () => {
     '/language/resources/provisioners/puppet': '/language/v1.1.x/resources/provisioners/puppet',
     '/language/resources/provisioners/salt-masterless': '/language/v1.1.x/resources/provisioners/salt-masterless',
     '/docs/language/functions/defaults': '/docs/language/expressions/type-constraints#optional-object-type-attributes',
+    // Policy Enforcement refactor
+    '/cloud-docs/sentinel': '/cloud-docs/policy-enforcement',
+    '/cloud-docs/sentinel/sentinel-tf-012': '/cloud-docs/policy-enforcement/sentinel/sentinel-tf-012',
+    '/cloud-docs/sentinel/manage-policies': '/cloud-docs/policy-enforcement/manage-policy-sets',
+    '/cloud-docs/sentinel/enforce': '/cloud-docs/policy-enforcement/policy-results',
+    '/cloud-docs/sentinel/mock': '/cloud-docs/policy-enforcement/sentinel/mock',
+    '/cloud-docs/sentinel/json': '/cloud-docs/policy-enforcement/sentinel/json',
+    '/cloud-docs/sentinel/examples': '/cloud-docs/policy-enforcement/sentinel',
+    '/cloud-docs/sentinel/import': '/cloud-docs/policy-enforcement/sentinel#sentinel-imports',
+    '/cloud-docs/sentinel/import/tfconfig': '/cloud-docs/policy-enforcement/sentinel/import/tfconfig',
+    '/cloud-docs/sentinel/import/tfconfig-v2': '/cloud-docs/policy-enforcement/sentinel/import/tfconfig-v2',
+    '/cloud-docs/sentinel/import/tfplan': '/cloud-docs/policy-enforcement/sentinel/import/tfplan',
+    '/cloud-docs/sentinel/import/tfplan-v2': '/cloud-docs/policy-enforcement/sentinel/import/tfplan-v2',
+    '/cloud-docs/sentinel/import/tfstate': '/cloud-docs/policy-enforcement/sentinel/import/tfstate',
+    '/cloud-docs/sentinel/import/tfstate-v2': '/cloud-docs/policy-enforcement/sentinel/import/tfstate-v2',
+    '/cloud-docs/sentinel/import/tfrun': '/cloud-docs/policy-enforcement/sentinel/import/tfrun',
+    // Health
+    '/cloud-docs/workspaces/settings/health-assessments': '/cloud-docs/workspaces/health',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
@@ -285,7 +303,7 @@ module.exports = (async () => {
     'plugin',
     'registry',
   ])
-  
+
   // Sub-pages of "upgrade-guides" are a legacy situation from before we had
   // versioned docs. Now the v1.1 and earlier upgrade guides live under the
   // v1.1.x version while subsequent versions each contain only a single
