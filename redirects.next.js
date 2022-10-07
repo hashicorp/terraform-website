@@ -1,5 +1,3 @@
-const buildBetaProductOptInRedirect = require('./lib/build-beta-opt-in-redirect')
-
 module.exports = (async () => {
   const tfProviderNamespaces = {
     aci: 'CiscoDevNet/aci',
@@ -251,39 +249,63 @@ module.exports = (async () => {
     '/guides': '/intro',
     '/guides/terraform-provider-development-program': '/docs/partnerships',
     '/cloud-docs/api-docs/admin': '/enterprise/api-docs/admin',
-    '/cloud-docs/api-docs/admin/module-sharing': '/enterprise/api-docs/admin/module-sharing',
-    '/cloud-docs/api-docs/admin/organizations': '/enterprise/api-docs/admin/organizations',
+    '/cloud-docs/api-docs/admin/module-sharing':
+      '/enterprise/api-docs/admin/module-sharing',
+    '/cloud-docs/api-docs/admin/organizations':
+      '/enterprise/api-docs/admin/organizations',
     '/cloud-docs/api-docs/admin/runs': '/enterprise/api-docs/admin/runs',
-    '/cloud-docs/api-docs/admin/settings': '/enterprise/api-docs/admin/settings',
-    '/cloud-docs/api-docs/admin/terraform-versions': '/enterprise/api-docs/admin/terraform-versions',
+    '/cloud-docs/api-docs/admin/settings':
+      '/enterprise/api-docs/admin/settings',
+    '/cloud-docs/api-docs/admin/terraform-versions':
+      '/enterprise/api-docs/admin/terraform-versions',
     '/cloud-docs/api-docs/admin/users': '/enterprise/api-docs/admin/users',
-    '/cloud-docs/api-docs/admin/workspaces': '/enterprise/api-docs/admin/workspaces',
+    '/cloud-docs/api-docs/admin/workspaces':
+      '/enterprise/api-docs/admin/workspaces',
     '/language/configuration-0-11': '/language/v1.1.x/configuration-0-11',
-    '/language/configuration-0-11/:slug*': '/language/v1.1.x/configuration-0-11/:slug*',
-    '/cloud-docs/workspaces/settings/drift-detection': '/cloud-docs/workspaces/settings/health-assessments',
-    '/language/resources/provisioners/chef': '/language/v1.1.x/resources/provisioners/chef',
-    '/language/resources/provisioners/habitat': '/language/v1.1.x/resources/provisioners/habitat',
-    '/language/resources/provisioners/puppet': '/language/v1.1.x/resources/provisioners/puppet',
-    '/language/resources/provisioners/salt-masterless': '/language/v1.1.x/resources/provisioners/salt-masterless',
-    '/docs/language/functions/defaults': '/docs/language/expressions/type-constraints#optional-object-type-attributes',
+    '/language/configuration-0-11/:slug*':
+      '/language/v1.1.x/configuration-0-11/:slug*',
+    '/cloud-docs/workspaces/settings/drift-detection':
+      '/cloud-docs/workspaces/settings/health-assessments',
+    '/language/resources/provisioners/chef':
+      '/language/v1.1.x/resources/provisioners/chef',
+    '/language/resources/provisioners/habitat':
+      '/language/v1.1.x/resources/provisioners/habitat',
+    '/language/resources/provisioners/puppet':
+      '/language/v1.1.x/resources/provisioners/puppet',
+    '/language/resources/provisioners/salt-masterless':
+      '/language/v1.1.x/resources/provisioners/salt-masterless',
+    '/docs/language/functions/defaults':
+      '/docs/language/expressions/type-constraints#optional-object-type-attributes',
     // Policy Enforcement refactor
     '/cloud-docs/sentinel': '/cloud-docs/policy-enforcement',
-    '/cloud-docs/sentinel/sentinel-tf-012': '/cloud-docs/policy-enforcement/sentinel/sentinel-tf-012',
-    '/cloud-docs/sentinel/manage-policies': '/cloud-docs/policy-enforcement/manage-policy-sets',
-    '/cloud-docs/sentinel/enforce': '/cloud-docs/policy-enforcement/policy-results',
+    '/cloud-docs/sentinel/sentinel-tf-012':
+      '/cloud-docs/policy-enforcement/sentinel/sentinel-tf-012',
+    '/cloud-docs/sentinel/manage-policies':
+      '/cloud-docs/policy-enforcement/manage-policy-sets',
+    '/cloud-docs/sentinel/enforce':
+      '/cloud-docs/policy-enforcement/policy-results',
     '/cloud-docs/sentinel/mock': '/cloud-docs/policy-enforcement/sentinel/mock',
     '/cloud-docs/sentinel/json': '/cloud-docs/policy-enforcement/sentinel/json',
     '/cloud-docs/sentinel/examples': '/cloud-docs/policy-enforcement/sentinel',
-    '/cloud-docs/sentinel/import': '/cloud-docs/policy-enforcement/sentinel#sentinel-imports',
-    '/cloud-docs/sentinel/import/tfconfig': '/cloud-docs/policy-enforcement/sentinel/import/tfconfig',
-    '/cloud-docs/sentinel/import/tfconfig-v2': '/cloud-docs/policy-enforcement/sentinel/import/tfconfig-v2',
-    '/cloud-docs/sentinel/import/tfplan': '/cloud-docs/policy-enforcement/sentinel/import/tfplan',
-    '/cloud-docs/sentinel/import/tfplan-v2': '/cloud-docs/policy-enforcement/sentinel/import/tfplan-v2',
-    '/cloud-docs/sentinel/import/tfstate': '/cloud-docs/policy-enforcement/sentinel/import/tfstate',
-    '/cloud-docs/sentinel/import/tfstate-v2': '/cloud-docs/policy-enforcement/sentinel/import/tfstate-v2',
-    '/cloud-docs/sentinel/import/tfrun': '/cloud-docs/policy-enforcement/sentinel/import/tfrun',
+    '/cloud-docs/sentinel/import':
+      '/cloud-docs/policy-enforcement/sentinel#sentinel-imports',
+    '/cloud-docs/sentinel/import/tfconfig':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfconfig',
+    '/cloud-docs/sentinel/import/tfconfig-v2':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfconfig-v2',
+    '/cloud-docs/sentinel/import/tfplan':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfplan',
+    '/cloud-docs/sentinel/import/tfplan-v2':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfplan-v2',
+    '/cloud-docs/sentinel/import/tfstate':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfstate',
+    '/cloud-docs/sentinel/import/tfstate-v2':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfstate-v2',
+    '/cloud-docs/sentinel/import/tfrun':
+      '/cloud-docs/policy-enforcement/sentinel/import/tfrun',
     // Health
-    '/cloud-docs/workspaces/settings/health-assessments': '/cloud-docs/workspaces/health',
+    '/cloud-docs/workspaces/settings/health-assessments':
+      '/cloud-docs/workspaces/health',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
@@ -291,42 +313,35 @@ module.exports = (async () => {
     }
   )
 
-  const devDotBetaOptInRedirect = buildBetaProductOptInRedirect('terraform', [
-    'cdktf',
-    'cli',
-    'cloud-docs',
-    'docs',
-    'enterprise',
-    'internals',
-    'intro',
-    'language',
-    'plugin',
-    'registry',
-  ])
-
   // Sub-pages of "upgrade-guides" are a legacy situation from before we had
   // versioned docs. Now the v1.1 and earlier upgrade guides live under the
   // v1.1.x version while subsequent versions each contain only a single
   // upgrade guide, which is always at /language/upgrade-guides with no
   // suffix.
   const legacyUpgradeGuides = [
-    '1-1', '1-0', '0-15', '0-14', '0-13', '0-12', '0-11', '0-10', '0-9', '0-8', '0-7',
-  ];
+    '1-1',
+    '1-0',
+    '0-15',
+    '0-14',
+    '0-13',
+    '0-12',
+    '0-11',
+    '0-10',
+    '0-9',
+    '0-8',
+    '0-7',
+  ]
   const upgradeGuideRedirects = [
-    ...legacyUpgradeGuides.map(
-      (slug) => ({
-        source: '/language/upgrade-guides/' + slug,
-        destination: '/language/v1.1.x/upgrade-guides/' + slug,
-        permanent: true,
-      })
-    ),
-    ...legacyUpgradeGuides.map(
-      (slug) => ({
-        source: '/language/v1.2.x/upgrade-guides/' + slug,
-        destination: '/language/v1.1.x/upgrade-guides/' + slug,
-        permanent: true,
-      })
-    ),
+    ...legacyUpgradeGuides.map((slug) => ({
+      source: '/language/upgrade-guides/' + slug,
+      destination: '/language/v1.1.x/upgrade-guides/' + slug,
+      permanent: true,
+    })),
+    ...legacyUpgradeGuides.map((slug) => ({
+      source: '/language/v1.2.x/upgrade-guides/' + slug,
+      destination: '/language/v1.1.x/upgrade-guides/' + slug,
+      permanent: true,
+    })),
     // The v1.2.x version was live before we made this change, so it previously
     // had its own upgrade guide at a sub-path and we now need to hoist it
     // up to the main upgrade-guides URL as a special case. Everything else
@@ -342,17 +357,21 @@ module.exports = (async () => {
       destination: '/language/v1.2.x/upgrade-guides',
       permanent: true,
     },
-  ];
+  ]
 
   // Some backends were removed in Terraform v1.3 so their old URLs will
   // redirect into the v1.2.x docs.
-  const legacyBackendRedirects = ['artifactory', 'etcd', 'etcdv3', 'manta', 'swift'].map(
-    (slug) => ({
-      source: '/language/settings/backends/' + slug,
-      destination: '/language/v1.2.x/settings/backends/' + slug,
-      permanent: true,
-    })
-  );
+  const legacyBackendRedirects = [
+    'artifactory',
+    'etcd',
+    'etcdv3',
+    'manta',
+    'swift',
+  ].map((slug) => ({
+    source: '/language/settings/backends/' + slug,
+    destination: '/language/v1.2.x/settings/backends/' + slug,
+    permanent: true,
+  }))
 
   return [
     ...registryTopLevelRedirects,
@@ -360,6 +379,5 @@ module.exports = (async () => {
     ...upgradeGuideRedirects,
     ...legacyBackendRedirects,
     ...miscRedirects,
-    devDotBetaOptInRedirect,
   ]
 })()
