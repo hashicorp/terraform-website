@@ -12,10 +12,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <HashiHead />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap"
-          />
         </Head>
         <body>
           <script
