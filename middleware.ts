@@ -44,7 +44,7 @@ export default function middleware(request: NextRequest) {
   }
 
   /**
-   *
+   * Apply redirects to nested docs pages from a static list in data/docs-redirects.
    */
   if (
     request.nextUrl.pathname &&
