@@ -8,6 +8,7 @@
     "npm": ">= 7.0.0"
   },
   "dependencies": {
+    "@happykit/flags": "^3.0.0",
     "@hashicorp/design-system-tokens": "^1.0.0",
     "@hashicorp/flight-icons": "^2.0.1",
     "@hashicorp/mktg-assets": "^2.0.0-alpha.0",

@@ -2,6 +2,11 @@ const withHashicorp = require('@hashicorp/platform-nextjs-plugin')
 const path = require('path')
 const redirects = require('./redirects.next.js')
 
+// Set api key for Happy Kit feature flags
+const happyKitKey = process.env.NEXT_PUBLIC_FLAGS_ENV_KEY
+  ? process.env.NEXT_PUBLIC_FLAGS_ENV_KEY
+  : 'flags_pub_development_343442393171755603'
+
 module.exports = withHashicorp({
   dato: {
     // This token is safe to be in this public repository, it only has access to content that is publicly viewable on the website
@@ -25,6 +30,7 @@ module.exports = withHashicorp({
     NAV_DATA_DIRNAME: process.env.NAV_DATA_DIRNAME || '',
     CONTENT_DIRNAME: process.env.CONTENT_DIRNAME || '',
     CURRENT_GIT_BRANCH: process.env.CURRENT_GIT_BRANCH || 'main',
+    HAPPY_KIT_KEY: happyKitKey,
   },
   images: {
     domains: ['www.datocms-assets.com'],
