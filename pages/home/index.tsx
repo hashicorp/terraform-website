@@ -1,5 +1,5 @@
 import * as React from 'react'
-import rivetQuery from '@hashicorp/nextjs-scripts/dato/client'
+import rivetQuery from '@hashicorp/platform-cms'
 import homepageQuery from './query.graphql'
 import { isInternalLink } from 'lib/utils'
 import ReactHead from '@hashicorp/react-head'

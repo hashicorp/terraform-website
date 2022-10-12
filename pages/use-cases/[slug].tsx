@@ -1,5 +1,5 @@
 import * as React from 'react'
-import rivetQuery from '@hashicorp/nextjs-scripts/dato/client'
+import rivetQuery from '@hashicorp/platform-cms'
 import useCasesQuery from './query.graphql'
 import ReactHead from '@hashicorp/react-head'
 import IoUsecaseHero from 'components/io-usecase-hero'

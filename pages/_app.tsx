@@ -9,7 +9,7 @@ import usePageviewAnalytics, {
   addCloudLinkHandler,
 } from '@hashicorp/platform-analytics'
 import useAnchorLinkAnalytics from '@hashicorp/platform-util/anchor-link-analytics'
-import rivetQuery from '@hashicorp/nextjs-scripts/dato/client'
+import rivetQuery from '@hashicorp/platform-cms'
 import Router from 'next/router'
 import HashiHead from '@hashicorp/react-head'
 import AlertBanner from '@hashicorp/react-alert-banner'
@@ -41,11 +41,6 @@ function App({ Component, pageProps, layoutData }) {
         siteName={`${productName} by HashiCorp`}
         description="Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure."
         image="/img/og-image.png"
-        stylesheet={[
-          {
-            href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap',
-          },
-        ]}
         icon={[{ href: '/favicon.ico' }]}
       />
       {ALERT_BANNER_ACTIVE && (
