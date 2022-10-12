@@ -109,6 +109,6 @@ export const config = {
      * - /favicon.svg (favicon)
      * - /img/ (images in the public dir)
      */
-    '/((?!api\\/|_next\\/|favicon\\.svg|img\\/).*)',
+    '/((?!api\\/|_next\\/|favicon\\.ico|img\\/).*)',
   ],
 }
