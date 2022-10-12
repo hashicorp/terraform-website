@@ -99,3 +99,16 @@ export default function middleware(request: NextRequest) {
 
   return response
 }
+
+export const config = {
+  matcher: [
+    /**
+     * Match all request paths except for those starting with:
+     * - /api/ (API routes)
+     * - /_next/ (Static assets and images)
+     * - /favicon.svg (favicon)
+     * - /img/ (images in the public dir)
+     */
+    '/((?!api\\/|_next\\/|favicon\\.ico|img\\/).*)',
+  ],
+}
