@@ -87,24 +87,6 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  const hasOptInCookie = Boolean(
-    request.cookies.get(`terraform-io-beta-opt-in`)
-  )
-  const url = request.nextUrl.clone()
-
-  /**
-   * Redirect opted-in users to Developer based on the existence of the terraform-io-beta-opt-in cookie.
-   */
-  if (hasOptInCookie && devDotRedirectCheck.test(url.pathname)) {
-    const redirectUrl = new URL('https://developer.hashicorp.com')
-    redirectUrl.pathname = `terraform${url.pathname}`
-    redirectUrl.search = url.search
-
-    const response = NextResponse.redirect(redirectUrl)
-
-    return response
-  }
-
   /**
    * We are running A/B tests on a subset of routes, so we are limiting the call to resolve flags from HappyKit to only those routes. This limits the impact of any additional latency to the routes which need the data.
    */
@@ -121,6 +103,24 @@ export default async function middleware(request: NextRequest) {
     } catch {
       // Fallback to default URLs
     }
+  }
+
+  const hasOptInCookie = Boolean(
+    request.cookies.get(`terraform-io-beta-opt-in`)
+  )
+  const url = request.nextUrl.clone()
+
+  /**
+   * Redirect opted-in users to Developer based on the existence of the terraform-io-beta-opt-in cookie.
+   */
+  if (hasOptInCookie && devDotRedirectCheck.test(url.pathname)) {
+    const redirectUrl = new URL('https://developer.hashicorp.com')
+    redirectUrl.pathname = `terraform${url.pathname}`
+    redirectUrl.search = url.search
+
+    const response = NextResponse.redirect(redirectUrl)
+
+    return response
   }
 
   // Sets a cookie named hc_geo on the response
