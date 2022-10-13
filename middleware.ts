@@ -3,6 +3,7 @@ import setGeoCookie from '@hashicorp/platform-edge-utils/lib/set-geo-cookie'
 import { NextRequest, NextResponse } from 'next/server'
 import { docsRedirects } from 'data/docs-redirects'
 import { deleteCookie } from 'lib/middleware-delete-cookie'
+import { getEdgeFlags } from 'flags/edge'
 
 // To prevent an infinite redirect loop, we only look for a defined redirect
 // for pages that aren't explicitly defined here.
@@ -28,7 +29,17 @@ const BASE_PATHS = [
 
 const devDotRedirectCheck = new RegExp(`^/(${BASE_PATHS.join('|')})/?`)
 
-export default function middleware(request: NextRequest) {
+function setHappyKitCookie(
+  cookie: Parameters<NextResponse['cookies']['set']>,
+  response: NextResponse
+): NextResponse {
+  response.cookies.set(...cookie)
+  return response
+}
+
+export default async function middleware(request: NextRequest) {
+  let response: NextResponse
+
   /**
    * If the betaOptOut query param exists, clear it, delete the opt-in cookie, and redirect back to the current URL without the betaOptOut query param
    */
@@ -94,10 +105,26 @@ export default function middleware(request: NextRequest) {
     return response
   }
 
-  // Sets a cookie named hc_geo on the response
-  const response = setGeoCookie(request)
+  /**
+   * We are running A/B tests on a subset of routes, so we are limiting the call to resolve flags from HappyKit to only those routes. This limits the impact of any additional latency to the routes which need the data.
+   */
+  if (['/'].includes(request.nextUrl.pathname)) {
+    try {
+      const edgeFlags = await getEdgeFlags({ request })
+      const { flags, cookie } = edgeFlags
 
-  return response
+      if (flags?.ioHomeHeroCtas) {
+        const url = request.nextUrl.clone()
+        url.pathname = '/home/without-cta-links'
+        response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
+      }
+    } catch {
+      // Fallback to default URLs
+    }
+  }
+
+  // Sets a cookie named hc_geo on the response
+  return setGeoCookie(request, response)
 }
 
 export const config = {
