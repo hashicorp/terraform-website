@@ -100,7 +100,7 @@ export default async function middleware(request: NextRequest) {
         url.pathname = '/home/without-cta-links'
         response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
       } else {
-        response = setHappyKitCookie(cookie.args, response)
+        response = setHappyKitCookie(cookie.args, NextResponse.next())
       }
     } catch {
       // Fallback to default URLs
