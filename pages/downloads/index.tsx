@@ -16,15 +16,15 @@ export default function DownloadsPage(staticProps) {
       getStartedLinks={[
         {
           label: 'Get started with Terraform and AWS',
-          href: 'https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=terraform_io_download',
+          href: 'https://learn.hashicorp.com/collections/terraform/aws-get-started',
         },
         {
           label: 'Get started with Terraform and Microsoft Azure',
-          href: 'https://learn.hashicorp.com/collections/terraform/azure-get-started?utm_source=terraform_io_download',
+          href: 'https://learn.hashicorp.com/collections/terraform/azure-get-started',
         },
         {
           label: 'Get started with Terraform and Google Cloud',
-          href: 'https://learn.hashicorp.com/collections/terraform/gcp-get-started?utm_source=terraform_io_download',
+          href: 'https://learn.hashicorp.com/collections/terraform/gcp-get-started',
         },
       ]}
       logo={<Logo width={126} height={36} className={s.logo} />}
@@ -39,7 +39,7 @@ export default function DownloadsPage(staticProps) {
             title="Sign up for Terraform Cloud"
             linkType="inbound"
             className={s.signUpButton}
-            url="https://app.terraform.io/signup/account?utm_source=terraform_io_download&utm_content=download_cta"
+            url="https://app.terraform.io/signup/account"
             theme={{ variant: 'tertiary', brand: 'terraform' }}
           />
         </div>

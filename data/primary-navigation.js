@@ -24,7 +24,7 @@ export default [
   },
   {
     text: 'Tutorials',
-    url: 'https://learn.hashicorp.com/terraform/?utm_source=terraform_io',
+    url: 'https://learn.hashicorp.com/terraform',
   },
   {
     text: 'Docs',
