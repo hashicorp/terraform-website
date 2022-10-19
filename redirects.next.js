@@ -1,3 +1,6 @@
+/**
+ * These redirects apply to the terraform.io domain.
+ */
 module.exports = (async () => {
   const tfProviderNamespaces = {
     aci: 'CiscoDevNet/aci',
