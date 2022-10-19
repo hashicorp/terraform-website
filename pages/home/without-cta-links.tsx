@@ -18,7 +18,6 @@ export default function Homepage({ data }): React.ReactElement {
     seo,
     heroHeading,
     heroDescription,
-    heroCtas,
     heroCards,
     introHeading,
     introDescription,
@@ -54,7 +53,7 @@ export default function Homepage({ data }): React.ReactElement {
     abTestTrack({
       type: 'Served',
       test_name: 'CRO home hero CTA links 2022-10',
-      variant: 'false',
+      variant: 'true',
     })
   }, [])
 
@@ -70,13 +69,12 @@ export default function Homepage({ data }): React.ReactElement {
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
       </ReactHead>
-
       <IoHomeHero
         pattern="/img/home-hero-pattern.svg"
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}
-        ctas={heroCtas}
+        ctas={[]}
         cards={heroCards.map((card) => {
           return {
             ...card,
@@ -112,7 +110,6 @@ export default function Homepage({ data }): React.ReactElement {
           },
         }}
       />
-
       <section className={s.useCases}>
         <div className={s.container}>
           <IoCardContainer
@@ -134,7 +131,6 @@ export default function Homepage({ data }): React.ReactElement {
           />
         </div>
       </section>
-
       <IoHomeInPractice
         brand="terraform"
         pattern="/img/practice-pattern.svg"
@@ -159,7 +155,6 @@ export default function Homepage({ data }): React.ReactElement {
           image: inPracticeCtaImage,
         }}
       />
-
       <IoHomeCaseStudies
         isInternalLink={isInternalLink}
         heading={caseStudiesHeading}
@@ -167,14 +162,12 @@ export default function Homepage({ data }): React.ReactElement {
         primary={caseStudiesFeatured}
         secondary={caseStudiesLinks}
       />
-
       <IoHomeCallToAction
         brand="terraform"
         heading={callToActionHeading}
         content={callToActionDescription}
         links={callToActionCtas}
       />
-
       <IoHomePreFooter
         brand="terraform"
         heading={preFooterHeading}
