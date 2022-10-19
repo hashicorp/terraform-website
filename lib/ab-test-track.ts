@@ -7,11 +7,15 @@ export const abTestTrack = ({
   test_name: string
   variant: string
 }) => {
-  if (typeof window === 'undefined') {
-    return
+  if (
+    typeof window !== undefined &&
+    window.analytics &&
+    window.analytics.track &&
+    typeof window.analytics.track === 'function'
+  ) {
+    window.analytics.track(`AB Test ${type}`, {
+      test_name,
+      variant,
+    })
   }
-  window.analytics.track(`AB Test ${type}`, {
-    test_name,
-    variant,
-  })
 }
