@@ -127,7 +127,7 @@ export default function UseCasePage({ data }) {
           cta={{
             url: tutorialsLink
               ? tutorialsLink
-              : 'https://learn.hashicorp.com/consul',
+              : 'https://learn.hashicorp.com/terraform',
             text: 'Explore all',
           }}
           cardsPerRow={3}
