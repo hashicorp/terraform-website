@@ -30,43 +30,58 @@ export default [
     text: 'Docs',
     type: 'anchor',
     submenu: [
-      { url: '/docs', text: 'About the Docs' },
       {
-        url: '/intro',
+        url: 'https://developer.hashicorp.com/terraform/docs',
+        text: 'About the Docs',
+      },
+      {
+        url: 'https://developer.hashicorp.com/terraform/intro',
         text: 'Intro to Terraform',
       },
       {
-        url: '/language',
+        url: 'https://developer.hashicorp.com/terraform/language',
         text: 'Configuration Language',
       },
-      { url: '/cli', text: 'Terraform CLI' },
-      { url: '/cloud-docs/', text: 'Terraform Cloud' },
       {
-        url: '/enterprise',
+        url: 'https://developer.hashicorp.com/terraform/cli',
+        text: 'Terraform CLI',
+      },
+      {
+        url: 'https://developer.hashicorp.com/terraform/cloud-docs/',
+        text: 'Terraform Cloud',
+      },
+      {
+        url: 'https://developer.hashicorp.com/terraform/enterprise',
         text: 'Terraform Enterprise',
       },
-      { url: '/language/providers', text: 'Provider Use' },
       {
-        url: '/plugin',
+        url: 'https://developer.hashicorp.com/terraform/language/providers',
+        text: 'Provider Use',
+      },
+      {
+        url: 'https://developer.hashicorp.com/terraform/plugin',
         text: 'Plugin Development',
       },
       {
-        url: '/registry',
+        url: 'https://developer.hashicorp.com/terraform/registry',
         text: 'Registry Publishing',
       },
       {
-        url: '/docs/partnerships',
+        url: 'https://developer.hashicorp.com/terraform/docs/partnerships',
         text: 'Integration Program',
       },
       {
-        url: '/docs/terraform-tools',
+        url: 'https://developer.hashicorp.com/terraform/docs/terraform-tools',
         text: 'Terraform Tools',
       },
       {
-        url: '/cdktf',
+        url: 'https://developer.hashicorp.com/terraform/cdktf',
         text: 'CDK for Terraform',
       },
-      { url: '/docs/glossary', text: 'Glossary' },
+      {
+        url: 'https://developer.hashicorp.com/terraform/docs/glossary',
+        text: 'Glossary',
+      },
     ],
   },
   {

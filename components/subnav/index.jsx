@@ -10,7 +10,7 @@ export default function DefaultSubnav({ menuItems }) {
         { text: 'GitHub', url: 'https://github.com/hashicorp/terraform' },
         {
           text: 'Download',
-          url: '/downloads',
+          url: 'https://developer.hashicorp.com/terraform/downloads',
         },
         {
           text: 'Try Terraform Cloud',

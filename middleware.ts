@@ -41,20 +41,6 @@ export default async function middleware(request: NextRequest) {
   let response: NextResponse
 
   /**
-   * If the betaOptOut query param exists, clear it, delete the opt-in cookie, and redirect back to the current URL without the betaOptOut query param
-   */
-  if (request.nextUrl.searchParams.get('betaOptOut') === 'true') {
-    const url = request.nextUrl.clone()
-    url.searchParams.delete('betaOptOut')
-
-    const response = NextResponse.redirect(url)
-
-    deleteCookie(request, response, `terraform-io-beta-opt-in`)
-
-    return response
-  }
-
-  /**
    * Apply redirects to nested docs pages from a static list in data/docs-redirects.
    */
   if (
@@ -107,15 +93,12 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  const hasOptInCookie = Boolean(
-    request.cookies.get(`terraform-io-beta-opt-in`)
-  )
   const url = request.nextUrl.clone()
 
   /**
    * Redirect opted-in users to Developer based on the existence of the terraform-io-beta-opt-in cookie.
    */
-  if (hasOptInCookie && devDotRedirectCheck.test(url.pathname)) {
+  if (devDotRedirectCheck.test(url.pathname)) {
     const redirectUrl = new URL('https://developer.hashicorp.com')
     redirectUrl.pathname = `terraform${url.pathname}`
     redirectUrl.search = url.search
