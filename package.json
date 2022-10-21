@@ -12,7 +12,7 @@
     "@hashicorp/design-system-tokens": "^1.0.0",
     "@hashicorp/flight-icons": "^2.0.1",
     "@hashicorp/mktg-assets": "^2.0.0-alpha.0",
-    "@hashicorp/mktg-global-styles": "4.0.0",
+    "@hashicorp/mktg-global-styles": "^4.3.0",
     "@hashicorp/mktg-logos": "^1.2.0",
     "@hashicorp/platform-analytics": "^0.8.0",
     "@hashicorp/platform-cms": "^0.3.0",
