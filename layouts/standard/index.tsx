@@ -45,7 +45,7 @@ export default function StandardLayout(props: Props): React.ReactElement {
           },
           {
             text: 'Tutorials',
-            url: 'https://learn.hashicorp.com/terraform',
+            url: 'https://developer.hashicorp.com/terraform/tutorials',
           },
           {
             text: 'Docs',

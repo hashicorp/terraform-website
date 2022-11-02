@@ -16,21 +16,21 @@ export default function DownloadsPage(staticProps) {
       getStartedLinks={[
         {
           label: 'Get started with Terraform and AWS',
-          href: 'https://learn.hashicorp.com/collections/terraform/aws-get-started',
+          href: 'https://developer.hashicorp.com/terraform/tutorials/aws-get-started',
         },
         {
           label: 'Get started with Terraform and Microsoft Azure',
-          href: 'https://learn.hashicorp.com/collections/terraform/azure-get-started',
+          href: 'https://developer.hashicorp.com/terraform/tutorials/azure-get-started',
         },
         {
           label: 'Get started with Terraform and Google Cloud',
-          href: 'https://learn.hashicorp.com/collections/terraform/gcp-get-started',
+          href: 'https://developer.hashicorp.com/terraform/tutorials/gcp-get-started',
         },
       ]}
       logo={<Logo width={126} height={36} className={s.logo} />}
       tutorialLink={{
-        href: 'https://learn.hashicorp.com/terraform',
-        label: 'View Tutorials at HashiCorp Learn',
+        href: 'https://developer.hashicorp.com/terraform/tutorials',
+        label: 'View Tutorials',
       }}
       merchandisingSlot={
         <div className={s.hosting}>
