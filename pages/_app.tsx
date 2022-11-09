@@ -7,6 +7,7 @@ import localConsentManagerServices from 'lib/consent-manager-services'
 import usePageviewAnalytics, {
   initializeUTMParamsCapture,
   addCloudLinkHandler,
+  track,
 } from '@hashicorp/platform-analytics'
 import useAnchorLinkAnalytics from '@hashicorp/platform-util/anchor-link-analytics'
 import rivetQuery from '@hashicorp/platform-cms'
@@ -26,7 +27,11 @@ const { ConsentManager } = createConsentManager({
 })
 
 initializeUTMParamsCapture()
-addCloudLinkHandler()
+addCloudLinkHandler((destinationUrl: string) => {
+  track('Outbound link', {
+    destination_url: destinationUrl,
+  })
+})
 
 function App({ Component, pageProps, layoutData }) {
   usePageviewAnalytics()
