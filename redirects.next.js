@@ -73,7 +73,7 @@ module.exports = (async () => {
     nsxt: 'vmware/nsxt',
     null: 'hashicorp/null',
     nutanix: 'nutanix/nutanix',
-    oci: 'hashicorp/oci',
+    oci: 'oracle/oci',
     okta: 'oktadeveloper/okta',
     oktaasa: 'oktadeveloper/oktaasa',
     opc: 'hashicorp/opc',
