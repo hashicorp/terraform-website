@@ -27,7 +27,8 @@ const BASE_PATHS = [
   'registry',
 ]
 
-const devDotRedirectCheck = new RegExp(`^/(${BASE_PATHS.join('|')})/?`)
+const devDotRoutes = [ ...BASE_PATHS, 'downloads']
+const devDotRedirectCheck = new RegExp(`^/(${devDotRoutes.join('|')})/?`)
 
 function setHappyKitCookie(
   cookie: Parameters<NextResponse['cookies']['set']>,
