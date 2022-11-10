@@ -24,7 +24,7 @@ const BASE_PATHS = [
   'intro',
   'language',
   'plugin',
-  'registry'
+  'registry',
 ]
 
 const devDotRoutes = [ ...BASE_PATHS, 'downloads']
