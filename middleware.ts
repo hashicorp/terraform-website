@@ -27,7 +27,7 @@ const BASE_PATHS = [
   'registry',
 ]
 
-const devDotRoutes = [ ...BASE_PATHS, 'downloads']
+const devDotRoutes = [...BASE_PATHS, 'downloads']
 const devDotRedirectCheck = new RegExp(`^/(${devDotRoutes.join('|')})/?`)
 
 function setHappyKitCookie(
@@ -78,7 +78,7 @@ export default async function middleware(request: NextRequest) {
   /**
    * We are running A/B tests on a subset of routes, so we are limiting the call to resolve flags from HappyKit to only those routes. This limits the impact of any additional latency to the routes which need the data.
    */
-  if (geo?.country === 'us' && ['/'].includes(request.nextUrl.pathname)) {
+  if (geo?.country === 'US' && ['/'].includes(request.nextUrl.pathname)) {
     try {
       const edgeFlags = await getEdgeFlags({ request })
       const { flags, cookie } = edgeFlags
