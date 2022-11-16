@@ -6,7 +6,7 @@ import createConsentManager from '@hashicorp/react-consent-manager/loader'
 import localConsentManagerServices from 'lib/consent-manager-services'
 import usePageviewAnalytics, {
   initializeUTMParamsCapture,
-  addCloudLinkHandler,
+  addGlobalLinkHandler,
   track,
 } from '@hashicorp/platform-analytics'
 import useAnchorLinkAnalytics from '@hashicorp/platform-util/anchor-link-analytics'
@@ -27,7 +27,7 @@ const { ConsentManager } = createConsentManager({
 })
 
 initializeUTMParamsCapture()
-addCloudLinkHandler((destinationUrl: string) => {
+addGlobalLinkHandler((destinationUrl: string) => {
   track('Outbound link', {
     destination_url: destinationUrl,
   })
