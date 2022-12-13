@@ -25,4 +25,46 @@ module.exports = [
     destination: '/terraform/enterprise/sentinel/:path*',
     permanent: false,
   },
+  // Redirects for restructured Terraform Plugin Framework docs for GA release of the Framework
+  // - https://github.com/hashicorp/terraform-plugin-framework/pull/554
+  {
+    source: '/terraform/plugin/framework/schemas',
+    destination: '/terraform/plugin/framework/handling-data/schemas',
+    permanent: false,
+  },
+  {
+    source: '/terraform/plugin/framework/types',
+    destination: '/terraform/plugin/framework/handling-data/attributes',
+    permanent: false,
+  },
+  {
+    source: '/terraform/plugin/framework/paths',
+    destination: '/terraform/plugin/framework/handling-data/paths',
+    permanent: false,
+  },
+  {
+    source: '/terraform/plugin/framework/path-expressions',
+    destination: '/terraform/plugin/framework/handling-data/path-expressions',
+    permanent: false,
+  },
+  {
+    source: '/terraform/plugin/framework/accessing-values',
+    destination: '/terraform/plugin/framework/handling-data/accessing-values',
+    permanent: false,
+  },
+  {
+    source: '/terraform/plugin/framework/accessing-values#conversion-rules',
+    destination: '/terraform/plugin/framework/handling-data/conversion-rules#converting-from-framework-types-to-go-types',
+    permanent: false,
+  },
+  {
+    source: '/terraform/plugin/framework/writing-state',
+    destination: '/terraform/plugin/framework/handling-data/writing-state',
+    permanent: false,
+  },
+  {
+    source: '/plugin/framework/writing-state#conversion-rules',
+    destination: '/terraform/plugin/framework/handling-data/conversion-rules#converting-from-go-types-to-framework-types',
+    permanent: false,
+  },
 ]
