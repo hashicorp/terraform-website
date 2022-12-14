@@ -30,41 +30,31 @@ module.exports = [
   {
     source: '/terraform/plugin/framework/schemas',
     destination: '/terraform/plugin/framework/handling-data/schemas',
-    permanent: false,
+    permanent: true,
   },
   {
     source: '/terraform/plugin/framework/types',
     destination: '/terraform/plugin/framework/handling-data/attributes',
-    permanent: false,
+    permanent: true,
   },
   {
     source: '/terraform/plugin/framework/paths',
     destination: '/terraform/plugin/framework/handling-data/paths',
-    permanent: false,
+    permanent: true,
   },
   {
     source: '/terraform/plugin/framework/path-expressions',
     destination: '/terraform/plugin/framework/handling-data/path-expressions',
-    permanent: false,
+    permanent: true,
   },
   {
     source: '/terraform/plugin/framework/accessing-values',
     destination: '/terraform/plugin/framework/handling-data/accessing-values',
-    permanent: false,
-  },
-  {
-    source: '/terraform/plugin/framework/accessing-values#conversion-rules',
-    destination: '/terraform/plugin/framework/handling-data/conversion-rules#converting-from-framework-types-to-go-types',
-    permanent: false,
+    permanent: true,
   },
   {
     source: '/terraform/plugin/framework/writing-state',
     destination: '/terraform/plugin/framework/handling-data/writing-state',
-    permanent: false,
-  },
-  {
-    source: '/plugin/framework/writing-state#conversion-rules',
-    destination: '/terraform/plugin/framework/handling-data/conversion-rules#converting-from-go-types-to-framework-types',
-    permanent: false,
+    permanent: true,
   },
 ]
