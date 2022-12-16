@@ -6,18 +6,18 @@ module.exports = [
   // - https://github.com/hashicorp/terraform-docs-common-internal/pull/6
   // - https://github.com/hashicorp/terraform-docs-common/pull/141
   {
-    source: '/enterprise/policy-enforcement/sentinel/:path*',
-    destination: '/enterprise/sentinel/:path*',
+    source: '/terraform/enterprise/policy-enforcement/sentinel/:path*',
+    destination: '/terraform/enterprise/sentinel/:path*',
     permanent: false,
     },
   {
-    source: '/enterprise/policy-enforcement',
-    destination: '/enterprise/sentinel',
+    source: '/terraform/enterprise/policy-enforcement',
+    destination: '/terraform/enterprise/sentinel',
     permanent: false,
   },
   {
-    source: '/enterprise/policy-enforcement/sentinel',
-    destination: '/enterprise/sentinel',
+    source: '/terraform/enterprise/policy-enforcement/sentinel',
+    destination: '/terraform/enterprise/sentinel',
     permanent: false,
   },
   // Redirects for restructured Terraform Plugin Framework docs for GA release of the Framework
