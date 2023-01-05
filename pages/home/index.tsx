@@ -18,7 +18,6 @@ export default function Homepage({ data }): React.ReactElement {
     seo,
     heroHeading,
     heroDescription,
-    heroCtas,
     heroCards,
     introHeading,
     introDescription,
@@ -68,7 +67,6 @@ export default function Homepage({ data }): React.ReactElement {
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}
-        // ctas={heroCtas}
         cards={heroCards.map((card) => {
           return {
             ...card,
