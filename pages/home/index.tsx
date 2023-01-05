@@ -50,14 +50,6 @@ export default function Homepage({ data }): React.ReactElement {
   const _introVideo = introVideo[0]
   const _introOfferingsCta = introOfferingsCta[0]
 
-  React.useEffect(() => {
-    abTestTrack({
-      type: 'Served',
-      test_name: 'CRO home hero CTA links 2022-10',
-      variant: 'false',
-    })
-  }, [])
-
   return (
     <>
       <ReactHead
@@ -76,7 +68,7 @@ export default function Homepage({ data }): React.ReactElement {
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}
-        ctas={heroCtas}
+        // ctas={heroCtas}
         cards={heroCards.map((card) => {
           return {
             ...card,

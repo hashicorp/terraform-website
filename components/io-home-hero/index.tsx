@@ -46,7 +46,7 @@ export default function IoHomeHero({
         <div className={s.content}>
           <h1 className={s.heading}>{heading}</h1>
           <p className={s.description}>{description}</p>
-          {ctas && (
+          {ctas.length > 0 && (
             <div className={s.ctas}>
               {ctas.map((cta, index) => {
                 return (
