@@ -64,8 +64,8 @@ export default function Homepage({ data }): React.ReactElement {
 
       <IoHomeHeroAlt
         brand="terraform"
-        heading={heroHeading}
-        description={heroDescription}
+        heading="Automate your infrastructure"
+        description="Eliminate unnecessary tooling and documentation for teams using Terraform in production Or, install and self-manage Terraform locally or within environments"
         ctas={[
           {
             title: 'Try Terraform Cloud',
