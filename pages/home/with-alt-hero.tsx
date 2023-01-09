@@ -69,11 +69,11 @@ export default function Homepage({ data }): React.ReactElement {
         ctas={[
           {
             title: 'Try Terraform Cloud',
-            href: '/',
+            href: 'https://app.terraform.io/signup/account',
           },
           {
             title: 'Install Terraform',
-            href: '/',
+            href: '/downloads',
           },
         ]}
       />
