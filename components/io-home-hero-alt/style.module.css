@@ -4,9 +4,12 @@
 
   @media (--medium-up) {
     --padding-y: 80px;
+    min-height: 543px;
   }
 
   position: relative;
+  display: grid;
+  place-items: center;
   padding-top: var(--padding-y);
   padding-bottom: var(--padding-y);
   background-image: linear-gradient(180deg, #f1f2f3 0%, #fff 35%);
