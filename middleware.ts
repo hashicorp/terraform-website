@@ -85,7 +85,7 @@ export default async function middleware(request: NextRequest) {
 
       if (flags?.ioHomeHeroAlt) {
         const url = request.nextUrl.clone()
-        url.pathname = '/home/with-hero-alt'
+        url.pathname = '/home/with-alt-hero'
         response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
       } else {
         response = setHappyKitCookie(cookie.args, NextResponse.next())
