@@ -21,24 +21,28 @@ export default function IoHomeHeroAlt({
   return (
     <header className={s.hero}>
       <div className={s.patterns}>
-        <Image
-          className={s.patternsStart}
-          src={require('./pattern-start.svg')}
-          width={418}
-          height={543}
-          layout="fixed"
-          alt=""
-          priority
-        />
-        <Image
-          className={s.patternsEnd}
-          src={require('./pattern-end.svg')}
-          width={418}
-          height={543}
-          layout="fixed"
-          alt=""
-          priority
-        />
+        <div className={s.patternsStart}>
+          <Image
+            src={require('./pattern-start.svg')}
+            width={418}
+            height={543}
+            layout="fill"
+            objectFit="cover"
+            alt=""
+            priority
+          />
+        </div>
+        <div className={s.patternsEnd}>
+          <Image
+            src={require('./pattern-end.svg')}
+            width={418}
+            height={543}
+            layout="fill"
+            objectFit="cover"
+            alt=""
+            priority
+          />
+        </div>
       </div>
       <div className={s.container}>
         <div className={s.inner}>
