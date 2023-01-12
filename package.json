@@ -33,6 +33,7 @@
     "@hashicorp/react-hero": "8.0.3",
     "@hashicorp/react-image": "^4.0.2",
     "@hashicorp/react-inline-svg": "^6.0.3",
+    "@hashicorp/react-intro": "^0.7.1",
     "@hashicorp/react-link-wrap": "^3.0.3",
     "@hashicorp/react-product-downloads-page": "^2.9.0",
     "@hashicorp/react-section-header": "^5.0.4",

@@ -18,12 +18,6 @@
       var(--gray-6) 0%,
       rgba(242, 242, 243, 0) 100%
     );
-
-    @media (--large) {
-      border-radius: 6px;
-      left: 24px;
-      right: 24px;
-    }
   }
 }
 

@@ -4,7 +4,7 @@ import homepageQuery from './query.graphql'
 import { isInternalLink } from 'lib/utils'
 import { abTestTrack } from 'lib/ab-test-track'
 import ReactHead from '@hashicorp/react-head'
-import IoHomeHero from 'components/io-home-hero'
+import IoHomeHeroAlt from 'components/io-home-hero-alt'
 import IoHomeIntro from 'components/io-home-intro'
 import IoHomeInPractice from 'components/io-home-in-practice'
 import IoCardContainer from 'components/io-card-container'
@@ -53,7 +53,7 @@ export default function Homepage({ data }): React.ReactElement {
     abTestTrack({
       type: 'Served',
       test_name: 'CRO home hero alt 2023-01',
-      variant: 'false',
+      variant: 'true',
     })
   }, [])
 
@@ -70,17 +70,20 @@ export default function Homepage({ data }): React.ReactElement {
         <meta name="twitter:description" content={seo.description} />
       </ReactHead>
 
-      <IoHomeHero
-        pattern="/img/home-hero-pattern.svg"
+      <IoHomeHeroAlt
         brand="terraform"
-        heading={heroHeading}
-        description={heroDescription}
-        cards={heroCards.map((card) => {
-          return {
-            ...card,
-            cta: card.cta[0],
-          }
-        })}
+        heading="Automate Infrastructure on Any Cloud with Terraform"
+        description="Terraform Cloud enables infrastructure automation for provisioning, compliance, and management of any cloud, datacenter, and service."
+        ctas={[
+          {
+            title: 'Try Terraform Cloud',
+            href: 'https://app.terraform.io/signup/account',
+          },
+          {
+            title: 'Download open source',
+            href: '/downloads',
+          },
+        ]}
       />
 
       <IoHomeIntro
