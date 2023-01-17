@@ -47,4 +47,9 @@ module.exports = [
     destination: '/terraform/plugin/framework/handling-data/writing-state',
     permanent: true,
   },
+  {
+    source: '/terraform/cloud-docs/workspaces/naming',
+    destination: '/terraform/cloud-docs/workspaces/creating',
+    permanent: true,
+  },
 ]
