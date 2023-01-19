@@ -17,6 +17,12 @@ module.exports = [
 	},
   // Redirects for restructured Terraform Plugin Framework docs for GA release of the Framework
   // - https://github.com/hashicorp/terraform-plugin-framework/pull/554
+  // - https://github.com/hashicorp/terraform-docs-common/pull/252
+  {
+    source: '/terraform/plugin/which-sdk',
+    destination: '/terraform/plugin/framework-benefits',
+    permanent: true,
+  },
   {
     source: '/terraform/plugin/framework/schemas',
     destination: '/terraform/plugin/framework/handling-data/schemas',
