@@ -170,6 +170,7 @@ module.exports = (async () => {
     '/intro/vs/cloudformation.html': '/intro/vs/cloudformation',
     '/intro/vs/custom.html': '/intro/vs/custom',
     '/intro/vs/index.html': '/intro/vs',
+    '/plugin/which-sdk': '/plugin/framework-benefits',
     '/plugin/sdkv2/sdkv2-intro': '/plugin/sdkv2',
     '/security.html': '/security',
     '/upgrade-guides': '/language/upgrade-guides',
