@@ -14,7 +14,7 @@
     "@hashicorp/mktg-assets": "^2.0.0-alpha.0",
     "@hashicorp/mktg-global-styles": "^4.3.0",
     "@hashicorp/mktg-logos": "^1.2.0",
-    "@hashicorp/platform-analytics": "^0.11.0-canary-20221092280",
+    "@hashicorp/platform-analytics": "^0.11.0",
     "@hashicorp/platform-cms": "^0.3.0",
     "@hashicorp/platform-code-highlighting": "^0.1.2",
     "@hashicorp/platform-edge-utils": "^0.1.1",
