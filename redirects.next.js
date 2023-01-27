@@ -309,6 +309,9 @@ module.exports = (async () => {
     // Health
     '/cloud-docs/workspaces/settings/health-assessments':
       '/cloud-docs/workspaces/health',
+    // Registry Sharing
+    '/enterprise/admin/application/module-sharing':
+      '/enterprise/admin/application/registry-sharing',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
