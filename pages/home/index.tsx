@@ -2,9 +2,8 @@ import * as React from 'react'
 import rivetQuery from '@hashicorp/platform-cms'
 import homepageQuery from './query.graphql'
 import { isInternalLink } from 'lib/utils'
-import { abTestTrack } from 'lib/ab-test-track'
 import ReactHead from '@hashicorp/react-head'
-import IoHomeHero from 'components/io-home-hero'
+import IoHomeHeroAlt from 'components/io-home-hero-alt'
 import IoHomeIntro from 'components/io-home-intro'
 import IoHomeInPractice from 'components/io-home-in-practice'
 import IoCardContainer from 'components/io-card-container'
@@ -18,7 +17,7 @@ export default function Homepage({ data }): React.ReactElement {
     seo,
     heroHeading,
     heroDescription,
-    heroCards,
+    heroCtas,
     introHeading,
     introDescription,
     introOfferingsImage,
@@ -49,14 +48,6 @@ export default function Homepage({ data }): React.ReactElement {
   const _introVideo = introVideo[0]
   const _introOfferingsCta = introOfferingsCta[0]
 
-  React.useEffect(() => {
-    abTestTrack({
-      type: 'Served',
-      test_name: 'CRO home hero alt 2023-01',
-      variant: 'false',
-    })
-  }, [])
-
   return (
     <>
       <ReactHead
@@ -70,15 +61,14 @@ export default function Homepage({ data }): React.ReactElement {
         <meta name="twitter:description" content={seo.description} />
       </ReactHead>
 
-      <IoHomeHero
-        pattern="/img/home-hero-pattern.svg"
+      <IoHomeHeroAlt
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}
-        cards={heroCards.map((card) => {
+        ctas={heroCtas.map((cta) => {
           return {
-            ...card,
-            cta: card.cta[0],
+            title: cta.title,
+            href: cta.link,
           }
         })}
       />
