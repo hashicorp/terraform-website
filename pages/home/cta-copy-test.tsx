@@ -3,7 +3,7 @@ import rivetQuery from '@hashicorp/platform-cms'
 import homepageQuery from './query.graphql'
 import { isInternalLink } from 'lib/utils'
 import ReactHead from '@hashicorp/react-head'
-import IoHomeHeroAlt from 'components/io-home-hero-alt'
+import IoHomeHeroAltCtaTest from 'components/io-home-hero-alt-cta-test'
 import IoHomeIntro from 'components/io-home-intro'
 import IoHomeInPractice from 'components/io-home-in-practice'
 import IoCardContainer from 'components/io-card-container'
@@ -53,7 +53,7 @@ export default function Homepage({ data }): React.ReactElement {
     abTestTrack({
       type: 'Served',
       test_name: 'CRO home hero CTA copy "Try for Free" test 2023-02',
-      variant: 'false',
+      variant: 'true',
     })
   })
 
@@ -70,7 +70,7 @@ export default function Homepage({ data }): React.ReactElement {
         <meta name="twitter:description" content={seo.description} />
       </ReactHead>
 
-      <IoHomeHeroAlt
+      <IoHomeHeroAltCtaTest
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}

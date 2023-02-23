@@ -76,14 +76,19 @@ export default async function middleware(request: NextRequest) {
   /**
    * We are running A/B tests on a subset of routes, so we are limiting the call to resolve flags from HappyKit to only those routes. This limits the impact of any additional latency to the routes which need the data.
    */
-  // if (geo?.country === 'US' && ['/'].includes(request.nextUrl.pathname)) {
-  //   try {
-  //     const edgeFlags = await getEdgeFlags({ request })
-  //     const { flags, cookie } = edgeFlags
-  //   } catch {
-  //     // Fallback to default URLs
-  //   }
-  // }
+  if (geo?.country === 'US' && ['/'].includes(request.nextUrl.pathname)) {
+    try {
+      const edgeFlags = await getEdgeFlags({ request })
+      const { flags, cookie } = edgeFlags
+      if (flags?.tryForFree) {
+        const url = request.nextUrl.clone()
+        url.pathname = '/home/cta-copy-test'
+        response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
+      }
+    } catch {
+      // Fallback to default URLs
+    }
+  }
 
   const url = request.nextUrl.clone()
 
