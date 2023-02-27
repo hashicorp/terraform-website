@@ -80,9 +80,6 @@ export default async function middleware(request: NextRequest) {
   //   try {
   //     const edgeFlags = await getEdgeFlags({ request })
   //     const { flags, cookie } = edgeFlags
-  //     if (flags?.tryForFree) {
-  //       const url = request.nextUrl.clone()
-  //       url.pathname = '/home/cta-copy-test'
   //       response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
   //     }
   //   } catch {
