@@ -10,7 +10,7 @@ import IoCardContainer from 'components/io-card-container'
 import IoHomeCaseStudies from 'components/io-home-case-studies'
 import IoHomeCallToAction from 'components/io-home-call-to-action'
 import IoHomePreFooter from 'components/io-home-pre-footer'
-import { abTestTrack } from 'lib/ab-test-track'
+import { useFlagBag } from 'flags/client'
 import s from './style.module.css'
 
 export default function Homepage({ data }): React.ReactElement {
@@ -48,14 +48,7 @@ export default function Homepage({ data }): React.ReactElement {
   } = data
   const _introVideo = introVideo[0]
   const _introOfferingsCta = introOfferingsCta[0]
-
-  React.useEffect(() => {
-    abTestTrack({
-      type: 'Served',
-      test_name: 'CRO home hero CTA copy "Try for Free" test 2023-02',
-      variant: 'false',
-    })
-  })
+  const flagBag = useFlagBag()
 
   return (
     <>
@@ -74,7 +67,13 @@ export default function Homepage({ data }): React.ReactElement {
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}
-        ctas={heroCtas.map((cta) => {
+        ctas={heroCtas.map((cta, i) => {
+          if (i === 0 && flagBag.settled && flagBag.flags.tryForFree) {
+            return {
+              title: 'Try for Free',
+              href: cta.link,
+            }
+          }
           return {
             title: cta.title,
             href: cta.link,

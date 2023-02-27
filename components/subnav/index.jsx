@@ -1,7 +1,10 @@
 import Subnav from '@hashicorp/react-subnav'
 import Link from 'next/link'
+import { useFlagBag } from 'flags/client'
 
 export default function DefaultSubnav({ menuItems }) {
+  const flagBag = useFlagBag()
+  
   return (
     <Subnav
       hideGithubStars={true}
@@ -13,7 +16,7 @@ export default function DefaultSubnav({ menuItems }) {
           url: 'https://developer.hashicorp.com/terraform/downloads',
         },
         {
-          text: 'Try Terraform Cloud',
+          text: flagBag.settled && flagBag.flags.tryForFree ? 'Try for Free' : 'Try Terraform Cloud',
           url: 'https://app.terraform.io/public/signup/account',
           theme: {
             brand: 'terraform',
