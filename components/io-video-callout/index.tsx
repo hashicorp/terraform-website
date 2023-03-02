@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import ReactPlayer from 'react-player'
 import VisuallyHidden from '@reach/visually-hidden'
 import IoDialog from 'components/io-dialog'
