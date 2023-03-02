@@ -42,7 +42,13 @@ const ButtonLink = ({
   }
 
   return (
-    <Link href={href}>
+    (<Link
+      href={href}
+      aria-label={ariaLabel}
+      className={classNames(s.root, s[size], s[color], className)}
+      rel={openInNewTab ? 'noreferrer noopener' : undefined}
+      target={openInNewTab ? '_blank' : '_self'}
+      onClick={onClick}>
       {/**
        * copied from components/standalone-link
        * NOTE: this markup is valid. It's OK to have an `onClick` when there is
@@ -51,19 +57,13 @@ const ButtonLink = ({
        * rather than the `<a>`.
        */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a
-        aria-label={ariaLabel}
-        className={classNames(s.root, s[size], s[color], className)}
-        rel={openInNewTab ? 'noreferrer noopener' : undefined}
-        target={openInNewTab ? '_blank' : '_self'}
-        onClick={onClick}
-      >
-        {hasLeadingIcon && icon}
-        {hasText ? text : null}
-        {hasTrailingIcon && icon}
-      </a>
-    </Link>
-  )
+
+      {hasLeadingIcon && icon}
+      {hasText ? text : null}
+      {hasTrailingIcon && icon}
+
+    </Link>)
+  );
 }
 
 export default ButtonLink

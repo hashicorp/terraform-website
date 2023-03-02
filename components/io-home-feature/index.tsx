@@ -66,10 +66,10 @@ function IoHomeFeatureWrap({
 
   if (isInternalLink(href)) {
     return (
-      <Link href={href}>
-        <a className={s.feature}>{children}</a>
+      <Link href={href} className={s.feature}>
+        {children}
       </Link>
-    )
+    );
   }
 
   return (
