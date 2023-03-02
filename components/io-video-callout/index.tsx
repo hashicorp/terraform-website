@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import ReactPlayer from 'react-player'
-import VisuallyHidden from '@reach/visually-hidden'
+import { VisuallyHidden } from '@reach/visually-hidden'
 import IoDialog from 'components/io-dialog'
 import PlayIcon from './play-icon'
 import s from './style.module.css'
