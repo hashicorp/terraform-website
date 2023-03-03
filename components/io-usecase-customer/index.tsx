@@ -1,19 +1,19 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Button from '@hashicorp/react-button'
 import s from './style.module.css'
 
 interface IoUsecaseCustomerProps {
   media: {
     src: string
-    width: string
-    height: string
+    width: `${number}`
+    height: `${number}`
     alt: string
   }
   logo: {
     src: string
-    width: string
-    height: string
+    width: `${number}`
+    height: `${number}`
     alt: string
   }
   heading: string

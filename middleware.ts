@@ -2,8 +2,6 @@ import setGeoCookie from '@hashicorp/platform-edge-utils/lib/set-geo-cookie'
 // eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
 import { docsRedirects } from 'data/docs-redirects'
-import { deleteCookie } from 'lib/middleware-delete-cookie'
-import { getEdgeFlags } from 'flags/edge'
 
 // To prevent an infinite redirect loop, we only look for a defined redirect
 // for pages that aren't explicitly defined here.

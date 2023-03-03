@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import classNames from 'classnames'
 import { Products } from '@hashicorp/platform-product-meta'
 import Button from '@hashicorp/react-button'
