@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import type { Products } from '@hashicorp/platform-product-meta'
 import type { IntroProps } from '@hashicorp/react-intro/types'
 import Intro from '@hashicorp/react-intro'

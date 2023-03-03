@@ -8,18 +8,18 @@ export default function Footer({ openConsentManager }) {
         <ul className={`${s.footerLinks} ${s.nav}`}>
           <li>
             <Link href="/">
-              <a>Overview</a>
+              Overview
             </Link>
           </li>
           <li>
             {' '}
             <Link href="/docs">
-              <a>Docs</a>
+              Docs
             </Link>
           </li>
           <li>
             <Link href="/plugin">
-              <a>Extend</a>
+              Extend
             </Link>
           </li>
           <li>
@@ -27,12 +27,12 @@ export default function Footer({ openConsentManager }) {
           </li>
           <li>
             <Link href="/security">
-              <a>Security</a>
+              Security
             </Link>
           </li>
           <li>
             <Link href="/assets/files/press-kit.zip">
-              <a>Press Kit</a>
+              Press Kit
             </Link>
           </li>
           <li>
@@ -41,5 +41,5 @@ export default function Footer({ openConsentManager }) {
         </ul>
       </div>
     </footer>
-  )
+  );
 }

@@ -45,7 +45,7 @@ function App({ Component, pageProps, layoutData }) {
         title={`${productName} by HashiCorp`}
         siteName={`${productName} by HashiCorp`}
         description="Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure."
-        image="/img/og-image.png"
+        image="https://terraform.io/img/og-image.png"
         icon={[{ href: '/favicon.ico' }]}
       />
       {ALERT_BANNER_ACTIVE && (
