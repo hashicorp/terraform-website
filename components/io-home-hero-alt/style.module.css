@@ -46,4 +46,27 @@
 .inner {
   margin: 0 auto;
   max-width: var(--content-max-width);
+  text-align: center;
+}
+
+.actions {
+  margin-top: var(--wpl-spacing-06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 32px;
+}
+
+.actionsPrimary {
+  display: grid;
+
+  & > * {
+    grid-area: 1 / 1;
+    color: transparent;
+  }
+
+  &.settled > *:not([aria-hidden='true']) {
+    color: white;
+    z-index: 1;
+  }
 }

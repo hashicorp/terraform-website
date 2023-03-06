@@ -10,7 +10,6 @@ import IoCardContainer from 'components/io-card-container'
 import IoHomeCaseStudies from 'components/io-home-case-studies'
 import IoHomeCallToAction from 'components/io-home-call-to-action'
 import IoHomePreFooter from 'components/io-home-pre-footer'
-import { useFlagBag } from 'flags/client'
 import s from './style.module.css'
 
 export default function Homepage({ data }): React.ReactElement {
@@ -48,7 +47,6 @@ export default function Homepage({ data }): React.ReactElement {
   } = data
   const _introVideo = introVideo[0]
   const _introOfferingsCta = introOfferingsCta[0]
-  const flagBag = useFlagBag()
 
   return (
     <>
@@ -68,12 +66,6 @@ export default function Homepage({ data }): React.ReactElement {
         heading={heroHeading}
         description={heroDescription}
         ctas={heroCtas.map((cta, i) => {
-          if (i === 0 && flagBag.settled && flagBag.flags.tryForFree) {
-            return {
-              title: 'Try for Free',
-              href: cta.link,
-            }
-          }
           return {
             title: cta.title,
             href: cta.link,

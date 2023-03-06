@@ -1,8 +1,12 @@
 import * as React from 'react'
-import Image from "next/legacy/image"
+import classNames from 'classnames'
+import { useFlagBag } from 'flags/client'
+import Image from 'next/image'
 import type { Products } from '@hashicorp/platform-product-meta'
 import type { IntroProps } from '@hashicorp/react-intro/types'
 import Intro from '@hashicorp/react-intro'
+import Button from '@hashicorp/react-button'
+import StandaloneLink from '@hashicorp/react-standalone-link'
 import s from './style.module.css'
 
 interface IoHomeHeroAltProps {
@@ -18,6 +22,11 @@ export default function IoHomeHeroAlt({
   description,
   ctas,
 }: IoHomeHeroAltProps) {
+  const flagBag = useFlagBag()
+  const hiddenProps = {
+    'aria-hidden': true,
+    tabindex: '-1',
+  }
   return (
     <header className={s.hero}>
       <div className={s.patterns}>
@@ -51,19 +60,62 @@ export default function IoHomeHeroAlt({
             heading={heading}
             headingSize={1}
             description={description}
-            actions={{
-              layout: 'stacked',
-              theme: brand,
-              ctas: ctas.map(
-                (cta: { title: string; href: string }, index: number) => {
-                  return {
-                    ...cta,
-                    type: index === 0 ? 'button' : 'standalone-link',
-                  }
-                }
-              ) as IntroProps['actions']['ctas'],
-            }}
+            // Temporary use custom actions implementation for experiement.
+            //
+            // actions={{
+            //   layout: 'stacked',
+            //   theme: brand,
+            //   ctas: ctas.map(
+            //     (cta: { title: string; href: string }, index: number) => {
+            //       return {
+            //         ...cta,
+            //         type: index === 0 ? 'button' : 'standalone-link',
+            //       }
+            //     }
+            //   ) as IntroProps['actions']['ctas'],
+            // }}
           />
+          <div className={s.actions}>
+            {ctas.map((cta, index) => {
+              if (index === 0) {
+                return (
+                  <div
+                    className={classNames(
+                      s.actionsPrimary,
+                      flagBag.settled && s.settled,
+                      flagBag.flags?.tryForFree ? s.control : s.variant
+                    )}
+                  >
+                    <Button
+                      title="Try Terraform Cloud"
+                      url={cta.href}
+                      theme={{ brand }}
+                      {...(flagBag.settled &&
+                        flagBag.flags?.tryForFree === true && {
+                          ...hiddenProps,
+                        })}
+                    />
+
+                    <Button
+                      title="Try for free"
+                      url={cta.href}
+                      theme={{ brand }}
+                      {...(flagBag.settled &&
+                        flagBag.flags?.tryForFree === false && {
+                          ...hiddenProps,
+                        })}
+                    />
+                  </div>
+                )
+              }
+
+              return (
+                <StandaloneLink href={cta.href} theme="secondary">
+                  {cta.title}
+                </StandaloneLink>
+              )
+            })}
+          </div>
         </div>
       </div>
     </header>
