@@ -27,6 +27,11 @@
   display: grid;
   grid-template-columns: 418px var(--content-max-width) 418px;
   justify-content: space-between;
+
+  & img {
+    display: grid;
+    object-fit: cover;
+  }
 }
 
 .patternsStart {

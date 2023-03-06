@@ -35,8 +35,6 @@ export default function IoHomeHeroAlt({
             src={require('./pattern-start.svg')}
             width={418}
             height={543}
-            layout="fill"
-            objectFit="cover"
             alt=""
             priority
           />
@@ -46,8 +44,6 @@ export default function IoHomeHeroAlt({
             src={require('./pattern-end.svg')}
             width={418}
             height={543}
-            layout="fill"
-            objectFit="cover"
             alt=""
             priority
           />
