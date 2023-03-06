@@ -1,26 +1,8 @@
 .subnav {
   & [data-ga-button='try-for-free'],
   & [data-ga-button='try-terraform-cloud'] {
-    display: grid;
-    place-items: center;
     color: transparent;
-
-    & > * {
-      grid-area: 1 / 1;
-    }
-
-    &::after {
-      grid-area: 1 / 1;
-      color: transparent;
-    }
-  }
-
-  & [data-ga-button='try-for-free']::after {
-    content: 'Try Terraform Cloud';
-  }
-
-  & [data-ga-button='try-terraform-cloud']::after {
-    content: 'Try for free';
+    min-width: 184px;
   }
 }
 
