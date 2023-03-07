@@ -26,7 +26,7 @@
     "@hashicorp/react-call-to-action": "^5.2.0",
     "@hashicorp/react-code-block": "^6.2.2",
     "@hashicorp/react-command-line-terminal": "^3.0.0",
-    "@hashicorp/react-consent-manager": "^8.2.2",
+    "@hashicorp/react-consent-manager": "^9.0.0",
     "@hashicorp/react-docs-page": "^17.7.1",
     "@hashicorp/react-hashi-stack-menu": "^3.0.0",
     "@hashicorp/react-head": "^3.3.2",
