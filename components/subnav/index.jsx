@@ -25,7 +25,7 @@ export default function DefaultSubnav({ menuItems }) {
           url: 'https://developer.hashicorp.com/terraform/downloads',
         },
         {
-          text: renderVariant ? 'Try for Free' : 'Try Terraform Cloud',
+          text: renderVariant ? 'Try for free' : 'Try Terraform Cloud',
           url: 'https://app.terraform.io/public/signup/account',
           theme: {
             brand: 'terraform',
