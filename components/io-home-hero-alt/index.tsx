@@ -2,8 +2,10 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { useFlagBag } from 'flags/client'
 import Image from 'next/image'
+import { abTestTrack } from 'lib/ab-test-track'
 import type { Products } from '@hashicorp/platform-product-meta'
 import type { IntroProps } from '@hashicorp/react-intro/types'
+import { isInUS } from '@hashicorp/platform-util/geo'
 import Intro from '@hashicorp/react-intro'
 import Button from '@hashicorp/react-button'
 import StandaloneLink from '@hashicorp/react-standalone-link'
@@ -23,10 +25,9 @@ export default function IoHomeHeroAlt({
   ctas,
 }: IoHomeHeroAltProps) {
   const flagBag = useFlagBag()
-  const hiddenProps = {
-    'aria-hidden': true,
-    tabindex: '-1',
-  }
+  const renderVariant = React.useMemo(() => {
+    return isInUS() && flagBag.settled && flagBag.flags?.tryForFree
+  }, [flagBag])
   return (
     <header className={s.hero}>
       <div className={s.patterns}>
@@ -78,28 +79,36 @@ export default function IoHomeHeroAlt({
                   <div
                     className={classNames(
                       s.actionsPrimary,
-                      flagBag.settled && s.settled,
-                      flagBag.flags?.tryForFree ? s.control : s.variant
+                      flagBag.settled && s.settled
                     )}
                   >
                     <Button
                       title="Try Terraform Cloud"
                       url={cta.href}
-                      theme={{ brand }}
-                      {...(flagBag.settled &&
-                        flagBag.flags?.tryForFree === true && {
-                          ...hiddenProps,
-                        })}
+                      aria-hidden={renderVariant ? 'true' : undefined}
+                      tabindex={renderVariant ? '-1' : undefined}
+                      onClick={() => {
+                        abTestTrack({
+                          type: 'Result',
+                          test_name: 'io-site primary CTA copy test 03-23',
+                          variant: 'false',
+                        })
+                      }}
                     />
 
                     <Button
                       title="Try for free"
                       url={cta.href}
                       theme={{ brand }}
-                      {...(flagBag.settled &&
-                        flagBag.flags?.tryForFree === false && {
-                          ...hiddenProps,
-                        })}
+                      aria-hidden={renderVariant ? undefined : 'true'}
+                      tabindex={renderVariant ? undefined : '-1'}
+                      onClick={() => {
+                        abTestTrack({
+                          type: 'Result',
+                          test_name: 'io-site primary CTA copy test 03-23',
+                          variant: 'true',
+                        })
+                      }}
                     />
                   </div>
                 )
