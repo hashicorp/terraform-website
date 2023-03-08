@@ -85,6 +85,7 @@ export default function IoHomeHeroAlt({
                     <Button
                       title="Try Terraform Cloud"
                       url={cta.href}
+                      theme={{ brand }}
                       aria-hidden={renderVariant ? 'true' : undefined}
                       tabindex={renderVariant ? '-1' : undefined}
                       onClick={() => {
