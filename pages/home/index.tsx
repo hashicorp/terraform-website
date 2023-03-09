@@ -65,7 +65,7 @@ export default function Homepage({ data }): React.ReactElement {
         brand="terraform"
         heading={heroHeading}
         description={heroDescription}
-        ctas={heroCtas.map((cta, i) => {
+        ctas={heroCtas.map((cta) => {
           return {
             title: cta.title,
             href: cta.link,
