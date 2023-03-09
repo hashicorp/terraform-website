@@ -76,27 +76,25 @@ export default function IoHomeHeroAlt({
             {ctas.map((cta, index) => {
               if (index === 0) {
                 return (
-                  <div
+                  <Button
+                    key={cta.href}
+                    title={
+                      renderVariant ? 'Try for free' : 'Try Terraform Cloud'
+                    }
+                    url={cta.href}
+                    theme={{ brand }}
+                    onClick={() => {
+                      abTestTrack({
+                        type: 'Result',
+                        test_name: 'io-site primary CTA copy test 03-23',
+                        variant: flagBag.flags?.tryForFree.toString(),
+                      })
+                    }}
                     className={classNames(
                       s.actionsPrimary,
                       flagBag.settled && s.settled
                     )}
-                  >
-                    <Button
-                      title={
-                        renderVariant ? 'Try for free' : 'Try Terraform Cloud'
-                      }
-                      url={cta.href}
-                      theme={{ brand }}
-                      onClick={() => {
-                        abTestTrack({
-                          type: 'Result',
-                          test_name: 'io-site primary CTA copy test 03-23',
-                          variant: flagBag.flags?.tryForFree.toString(),
-                        })
-                      }}
-                    />
-                  </div>
+                  />
                 )
               }
 

@@ -63,14 +63,10 @@
 }
 
 .actionsPrimary {
-  display: grid;
+  min-width: 184px;
+  color: transparent;
 
-  & > * {
-    min-width: 184px;
-    color: transparent;
-  }
-
-  &.settled > *:not([aria-hidden='true']) {
-    color: white;
+  &.settled {
+    color: var(--brand-text-on-primary);
   }
 }
