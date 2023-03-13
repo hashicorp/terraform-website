@@ -1,0 +1,14 @@
+.subnav {
+  & [data-ga-button='try-for-free'],
+  & [data-ga-button='try-terraform-cloud'] {
+    color: transparent;
+    min-width: 184px;
+  }
+}
+
+.settled {
+  & [data-ga-button='try-for-free'],
+  & [data-ga-button='try-terraform-cloud'] {
+    color: white;
+  }
+}
