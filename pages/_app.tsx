@@ -1,6 +1,7 @@
 import './style.css'
 import '@hashicorp/platform-util/nprogress/style.css'
 
+import { useEffect } from 'react'
 import NProgress from '@hashicorp/platform-util/nprogress'
 import createConsentManager from '@hashicorp/react-consent-manager/loader'
 import localConsentManagerServices from 'lib/consent-manager-services'
@@ -19,6 +20,9 @@ import Error from './_error'
 import { productName } from '../data/metadata'
 import alertBannerData, { ALERT_BANNER_ACTIVE } from 'data/alert-banner'
 import StandardLayout from 'layouts/standard'
+import { useFlags } from 'flags/client'
+import { FlagBagProvider } from 'flags/client'
+import { abTestTrack } from 'lib/ab-test-track'
 
 NProgress({ Router })
 const { ConsentManager } = createConsentManager({
@@ -34,29 +38,42 @@ addGlobalLinkHandler((destinationUrl: string) => {
 })
 
 function App({ Component, pageProps, layoutData }) {
+  const flagBag = useFlags()
   usePageviewAnalytics()
   useAnchorLinkAnalytics()
 
   const Layout = Component.layout ?? StandardLayout
 
+  useEffect(() => {
+    if (flagBag.settled) {
+      abTestTrack({
+        type: 'Served',
+        test_name: 'io-site primary CTA copy test 03-23',
+        variant: flagBag.flags.tryForFree.toString(),
+      })
+    }
+  }, [flagBag])
+
   return (
     <ErrorBoundary FallbackComponent={Error}>
-      <HashiHead
-        title={`${productName} by HashiCorp`}
-        siteName={`${productName} by HashiCorp`}
-        description="Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure."
-        image="https://terraform.io/img/og-image.png"
-        icon={[{ href: '/favicon.ico' }]}
-      />
-      {ALERT_BANNER_ACTIVE && (
-        <AlertBanner {...alertBannerData} product="terraform" hideOnMobile />
-      )}
-      <Layout {...(layoutData && { data: layoutData })}>
-        <div className="page-content">
-          <Component {...pageProps} />
-        </div>
-      </Layout>
-      <ConsentManager />
+      <FlagBagProvider value={flagBag}>
+        <HashiHead
+          title={`${productName} by HashiCorp`}
+          siteName={`${productName} by HashiCorp`}
+          description="Terraform is an open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure."
+          image="https://terraform.io/img/og-image.png"
+          icon={[{ href: '/favicon.ico' }]}
+        />
+        {ALERT_BANNER_ACTIVE && (
+          <AlertBanner {...alertBannerData} product="terraform" hideOnMobile />
+        )}
+        <Layout {...(layoutData && { data: layoutData })}>
+          <div className="page-content">
+            <Component {...pageProps} />
+          </div>
+        </Layout>
+        <ConsentManager />
+      </FlagBagProvider>
     </ErrorBoundary>
   )
 }

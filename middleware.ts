@@ -80,6 +80,8 @@ export default async function middleware(request: NextRequest) {
   //   try {
   //     const edgeFlags = await getEdgeFlags({ request })
   //     const { flags, cookie } = edgeFlags
+  //       response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
+  //     }
   //   } catch {
   //     // Fallback to default URLs
   //   }
