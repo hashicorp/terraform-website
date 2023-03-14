@@ -313,12 +313,13 @@ module.exports = (async () => {
     '/enterprise/admin/application/module-sharing':
       '/enterprise/admin/application/registry-sharing',
     // Moving TF Plugin Development best practice info
-    '/plugin/sdkv2/best-practices/other-languages': '/plugin/best-practices/other-languages',
+    '/plugin/sdkv2/best-practices/other-languages': '/plugin/best-practices/provider-code',
     '/plugin/sdkv2/best-practices/testing': '/plugin/testing/testing-patterns',
     '/plugin/sdkv2/best-practices/versioning': '/plugin/best-practices/versioning',
     '/plugin/sdkv2/best-practices/sensitive-state': '/plugin/best-practices/sensitive-state',
     '/plugin/sdkv2/best-practices/depending-on-providers': '/plugin/best-practices/interacting-with-providers',
     '/plugin/sdkv2/best-practices/naming': '/plugin/best-practices/naming',
+    '/plugin/hashicorp-provider-design-principles': '/plugin/best-practices/hashicorp-provider-design-principles',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
