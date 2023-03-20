@@ -58,4 +58,41 @@ module.exports = [
     destination: '/terraform/cloud-docs/workspaces/creating',
     permanent: true,
   },
+  // Moving TF Plugin Development best practice info
+  // - https://github.com/hashicorp/terraform-plugin-sdk/issues/1151
+  {
+    source: '/terraform/plugin/sdkv2/best-practices/other-languages',
+    destination: '/terraform/plugin/best-practices/provider-code',
+    permanent: true,
+  },
+  {
+    source: '/terraform/plugin/sdkv2/best-practices/testing',
+    destination: '/terraform/plugin/testing/testing-patterns',
+    permanent: true,
+  },
+  {
+    source: '/terraform/plugin/sdkv2/best-practices/versioning',
+    destination: '/terraform/plugin/best-practices/versioning',
+    permanent: true,
+  },
+  {
+    source: '/terraform/plugin/sdkv2/best-practices/sensitive-state',
+    destination: '/terraform/plugin/best-practices/sensitive-state',
+    permanent: true,
+  },
+  {
+    source: '/terraform/plugin/sdkv2/best-practices/depending-on-providers',
+    destination: '/terraform/plugin/best-practices/interacting-with-providers',
+    permanent: true,
+  },
+  {
+    source: '/terraform/plugin/sdkv2/best-practices/naming',
+    destination: '/terraform/plugin/best-practices/naming',
+    permanent: true,
+  },
+  {
+    source: '/terraform/plugin/hashicorp-provider-design-principles',
+    destination: '/terraform/plugin/best-practices/hashicorp-provider-design-principles',
+    permanent: true,
+  },
 ]
