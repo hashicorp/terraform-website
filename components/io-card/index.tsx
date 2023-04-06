@@ -35,8 +35,8 @@ function IoCard({
 }: IoCardProps): React.ReactElement {
   const LinkWrapper = ({ className, children }) =>
     link.type === 'inbound' ? (
-      <Link href={link.url}>
-        <a className={className}>{children}</a>
+      <Link href={link.url} className={className}>
+        {children}
       </Link>
     ) : (
       <a

@@ -1,0 +1,26 @@
+name: 'Sync `staging` Branch'
+
+# This workflow attempts to merge updates from `master` into the long-standing staging branch.
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+concurrency: merge_master
+
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      - name: Merge `master` branch
+        uses: everlytic/branch-merge@1.1.2
+        id: branch-merge
+        with:
+          github_token: ${{  secrets.GITHUB_TOKEN }}
+          source_ref: 'master'
+          target_branch: 'staging'
+          commit_message_template: '[Automated] Merged {source_ref} into target: {target_branch}'

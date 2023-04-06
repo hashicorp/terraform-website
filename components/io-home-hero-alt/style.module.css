@@ -27,6 +27,11 @@
   display: grid;
   grid-template-columns: 418px var(--content-max-width) 418px;
   justify-content: space-between;
+
+  & img {
+    display: grid;
+    object-fit: cover;
+  }
 }
 
 .patternsStart {
@@ -46,4 +51,22 @@
 .inner {
   margin: 0 auto;
   max-width: var(--content-max-width);
+  text-align: center;
+}
+
+.actions {
+  margin-top: var(--wpl-spacing-06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 32px;
+}
+
+.actionsPrimary {
+  min-width: 184px;
+  color: transparent;
+
+  &.settled {
+    color: var(--brand-text-on-primary);
+  }
 }
