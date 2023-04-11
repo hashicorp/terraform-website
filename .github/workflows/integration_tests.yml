@@ -13,16 +13,16 @@ jobs:
         containers: [1, 2, 3]
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v1
+        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: '16'
         # Get the branch name from the commit SHA
       - name: Set branch name
         run: echo "BRANCH=$(git name-rev --name-only $GITHUB_SHA | awk -F / '{print $3}')" >> $GITHUB_ENV
       - name: Run Cypress 🌲
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2 # TSCCR: no entry for repository "cypress-io/github-action"
         with:
           browser: chrome
           headless: true
