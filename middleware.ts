@@ -2,8 +2,6 @@ import setGeoCookie from '@hashicorp/platform-edge-utils/lib/set-geo-cookie'
 // eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
 import { docsRedirects } from 'data/docs-redirects'
-import { deleteCookie } from 'lib/middleware-delete-cookie'
-import { getEdgeFlags } from 'flags/edge'
 
 // To prevent an infinite redirect loop, we only look for a defined redirect
 // for pages that aren't explicitly defined here.
@@ -27,7 +25,8 @@ const BASE_PATHS = [
   'registry',
 ]
 
-const devDotRedirectCheck = new RegExp(`^/(${BASE_PATHS.join('|')})/?`)
+const devDotRoutes = [...BASE_PATHS, 'downloads']
+const devDotRedirectCheck = new RegExp(`^/(${devDotRoutes.join('|')})/?`)
 
 function setHappyKitCookie(
   cookie: Parameters<NextResponse['cookies']['set']>,
@@ -39,6 +38,7 @@ function setHappyKitCookie(
 
 export default async function middleware(request: NextRequest) {
   let response: NextResponse
+  const { geo } = request
 
   /**
    * Apply redirects to nested docs pages from a static list in data/docs-redirects.
@@ -76,22 +76,16 @@ export default async function middleware(request: NextRequest) {
   /**
    * We are running A/B tests on a subset of routes, so we are limiting the call to resolve flags from HappyKit to only those routes. This limits the impact of any additional latency to the routes which need the data.
    */
-  if (['/'].includes(request.nextUrl.pathname)) {
-    try {
-      const edgeFlags = await getEdgeFlags({ request })
-      const { flags, cookie } = edgeFlags
-
-      if (flags?.ioHomeHeroCtas) {
-        const url = request.nextUrl.clone()
-        url.pathname = '/home/without-cta-links'
-        response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
-      } else {
-        response = setHappyKitCookie(cookie.args, NextResponse.next())
-      }
-    } catch {
-      // Fallback to default URLs
-    }
-  }
+  // if (geo?.country === 'US' && ['/'].includes(request.nextUrl.pathname)) {
+  //   try {
+  //     const edgeFlags = await getEdgeFlags({ request })
+  //     const { flags, cookie } = edgeFlags
+  //       response = setHappyKitCookie(cookie.args, NextResponse.rewrite(url))
+  //     }
+  //   } catch {
+  //     // Fallback to default URLs
+  //   }
+  // }
 
   const url = request.nextUrl.clone()
 

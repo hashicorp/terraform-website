@@ -10,7 +10,7 @@ import { rehypePlugins, remarkPlugins } from 'lib/remark-rehype-plugins'
 
 //  Configure the docs path
 const BASE_ROUTE = 'plugin/sdkv2'
-const NAV_DATA_PREFIX = 'plugin-sdk'
+const NAV_DATA_PREFIX = 'plugin-sdkv2'
 const NAV_DATA = path.join(
   process.env.NAV_DATA_DIRNAME,
   NAV_DATA_PREFIX + '-nav-data.json'

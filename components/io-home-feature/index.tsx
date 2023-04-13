@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import { IconArrowRight16 } from '@hashicorp/flight-icons/svg-react/arrow-right-16'
 import s from './style.module.css'
@@ -66,10 +66,10 @@ function IoHomeFeatureWrap({
 
   if (isInternalLink(href)) {
     return (
-      <Link href={href}>
-        <a className={s.feature}>{children}</a>
+      <Link href={href} className={s.feature}>
+        {children}
       </Link>
-    )
+    );
   }
 
   return (

@@ -40,26 +40,25 @@ This repository is a website shell that sources docs from disparate GitHub repos
 
 The content source files are located in the following repositories:
 
-| Subpath | Repository |
-| :--- | :--- |
-| [`/cdktf`][cdktf]                         | [terraform-cdk] |
-| [`/cli`][cli]                             | [terraform] |
-| [`/cloud-docs`][cloud-docs]               | [terraform-docs-common] |
-| [`/cloud-docs/agents`][cloud-docs/agents] | [terraform-docs-agents] |
-| [`/configuration`][configuration]         | [terraform] |
-| [`/docs`][docs]                           | [terraform-docs-common] |
-| [`/enterprise`][enterprise]               | Internal repository |
-| [`/guides`][guides]                       | [terraform] |
-| [`/internals`][internals]                 | [terraform] |
-| [`/intro`][intro]                         | [terraform] |
-| [`/language`][language]                   | [terraform] |
-| [`/plugin`][plugin]                       | [terraform-docs-common] |
+| Subpath                                   | Repository                   |
+| :---------------------------------------- | :--------------------------- |
+| [`/cdktf`][cdktf]                         | [terraform-cdk]              |
+| [`/cli`][cli]                             | [terraform]                  |
+| [`/cloud-docs`][cloud-docs]               | [terraform-docs-common]      |
+| [`/cloud-docs/agents`][cloud-docs/agents] | [terraform-docs-agents]      |
+| [`/configuration`][configuration]         | [terraform]                  |
+| [`/docs`][docs]                           | [terraform-docs-common]      |
+| [`/enterprise`][enterprise]               | Internal repository          |
+| [`/guides`][guides]                       | [terraform]                  |
+| [`/internals`][internals]                 | [terraform]                  |
+| [`/intro`][intro]                         | [terraform]                  |
+| [`/language`][language]                   | [terraform]                  |
+| [`/plugin`][plugin]                       | [terraform-docs-common]      |
 | [`/plugin/framework`][plugin/framework]   | [terraform-plugin-framework] |
-| [`/plugin/log`][plugin/log]               | [terraform-plugin-log] |
-| [`/plugin/mux`][plugin/mux]               | [terraform-plugin-mux] |
-| [`/plugin/sdkv2`][plugin/sdkv2]           | [terraform-plugin-sdk] |
-| [`/registry`][registry]                   | [terraform-docs-common] |
-
+| [`/plugin/log`][plugin/log]               | [terraform-plugin-log]       |
+| [`/plugin/mux`][plugin/mux]               | [terraform-plugin-mux]       |
+| [`/plugin/sdkv2`][plugin/sdkv2]           | [terraform-plugin-sdk]       |
+| [`/registry`][registry]                   | [terraform-docs-common]      |
 
 [cdktf]: https://www.terraform.io/cdktf
 [cli]: https://www.terraform.io/cli
@@ -78,7 +77,6 @@ The content source files are located in the following repositories:
 [plugin/mux]: https://www.terraform.io/plugin/mux
 [plugin/sdkv2]: https://www.terraform.io/plugin/sdkv2
 [registry]: https://www.terraform.io/registry
-
 [terraform-cdk]: https://github.com/hashicorp/terraform-cdk
 [terraform]: https://github.com/hashicorp/terraform
 [terraform-website]: https://github.com/hashicorp/terraform-cdk
@@ -89,9 +87,7 @@ The content source files are located in the following repositories:
 [terraform-plugin-mux]: https://github.com/hashicorp/terraform-plugin-mux
 [terraform-plugin-framework]: https://github.com/hashicorp/terraform-plugin-framework
 
-
-  **Notable branches:** `master` is the "live" content that gets deployed to [terraform.io](https://terraform.io). The site gets redeployed for new commits to master.
-
+**Notable branches:** `master` is the "live" content that gets deployed to [terraform.io](https://terraform.io). The site gets redeployed for new commits to master.
 
 ## Deploying Changes to [terraform.io](https://terraform.io)
 
@@ -109,7 +105,6 @@ Changes will be deployed to terraform.io roughly every hour.
 
 If you need your docs deployed sooner, this can be done by redeploying all of terraform.io,
 via the [Vercel project](https://vercel.com/hashicorp/terraform-website/).
-
 
 <!-- BEGIN: local-development -->
 <!-- Generated text, do not edit directly -->
@@ -138,6 +133,9 @@ If your local development environment has a supported version (v10.0.0+) of [nod
 If you pull down new code from github, you should run `npm install` again. Otherwise, there's no need to re-run `npm install` each time the site is run, you can just run `npm start` to get it going.
 
 <!-- END: local-development -->
+
+<!-- BEGIN: editing-markdown -->
+<!-- Generated text, do not edit directly -->
 
 ## Editing Markdown Content
 
@@ -187,7 +185,7 @@ The only directory you need to do this for is `content/docs`; all other director
 
 There are several custom markdown plugins that are available by default that enhance [standard markdown](https://commonmark.org/) to fit our use cases. This set of plugins introduces a couple instances of custom syntax, and a couple specific pitfalls that are not present by default with markdown, detailed below:
 
-- If you see the symbols `~>`, `->`, `=>`, or `!>`, these represent [custom alerts](https://github.com/hashicorp/remark-plugins/tree/master/plugins/paragraph-custom-alerts#paragraph-custom-alerts). These render as colored boxes to draw the user's attention to some type of aside.
+- > **Warning**: We are deprecating the current [paragraph alerts](https://github.com/hashicorp/remark-plugins/tree/master/plugins/paragraph-custom-alerts#paragraph-custom-alerts), in favor of the newer [MDX Inline Alert](#inline-alerts) components. The legacy paragraph alerts are represented by the symbols `~>`, `->`, `=>`, or `!>`.
 - If you see `@include '/some/path.mdx'`, this is a [markdown include](https://github.com/hashicorp/remark-plugins/tree/master/plugins/include-markdown#include-markdown-plugin). It's worth noting as well that all includes resolve from `website/content/partials` by default, and that changes to partials will not live-reload the website.
 - If you see `# Headline ((#slug))`, this is an example of an [anchor link alias](https://github.com/hashicorp/remark-plugins/tree/je.anchor-link-adjustments/plugins/anchor-links#anchor-link-aliases). It adds an extra permalink to a headline for compatibility and is removed from the output.
 - Due to [automatically generated permalinks](https://github.com/hashicorp/remark-plugins/tree/je.anchor-link-adjustments/plugins/anchor-links#anchor-links), any text changes to _headlines_ or _list items that begin with inline code_ can and will break existing permalinks. Be very cautious when changing either of these two text items.
@@ -210,7 +208,128 @@ There are several custom markdown plugins that are available by default that enh
 
 ### Custom Components
 
-A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. If you have questions about custom components, or have a request for a new custom component, please reach out to @hashicorp/digital-marketing.
+A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. Each one is documented below:
+
+#### Inline Alerts
+
+There are custom MDX components available to author alert data. [See the full documentation here](https://developer.hashicorp.com/swingset/components/mdxinlinealert). They render as colored boxes to draw the user's attention to some type of aside.
+
+```mdx
+## Alert types
+
+### Tip
+
+<Tip>
+  To provide general information to the user regarding the current context or
+  relevant actions.
+</Tip>
+
+### Highlight
+
+<Highlight>
+  To provide general or promotional information to the user prominently.
+</Highlight>
+
+### Note
+
+<Note>
+  To help users avoid an issue. Provide guidance and actions if possible.
+</Note>
+
+### Warning
+
+<Warning>
+  To indicate critical issues that need immediate action or help users
+  understand something critical.
+</Warning>
+
+## Title override prop
+
+<Note title="Hashiconf 2027">To provide general information.</Note>
+```
+
+#### Tabs
+
+The `Tabs` component creates tabbed content of any type, but is often used for code examples given in different languages. Here's an example of how it looks from the Vagrant documentation website:
+
+![Tabs Component](https://p176.p0.n0.cdn.getcloudapp.com/items/WnubALZ4/Screen%20Recording%202020-06-11%20at%2006.03%20PM.gif?v=1de81ea720a8cc8ade83ca64fb0b9edd)
+
+> Please refer to the [Swingset](https://react-components.vercel.app/?component=Tabs) documentation for the latest examples and API reference.
+
+It can be used as such within a markdown file:
+
+````mdx
+Normal **markdown** content.
+
+<Tabs>
+<Tab heading="CLI command">
+            <!-- Intentionally skipped line.. -->
+```shell-session
+$ command ...
+```
+            <!-- Intentionally skipped line.. -->
+</Tab>
+<Tab heading="API call using cURL">
+
+```shell-session
+$ curl ...
+```
+
+</Tab>
+</Tabs>
+
+Continued normal markdown content
+````
+
+The intentionally skipped line is a limitation of the mdx parser which is being actively worked on. All tabs must have a heading, and there is no limit to the number of tabs, though it is recommended to go for a maximum of three or four.
+
+#### Enterprise Alert
+
+This component provides a standard way to call out functionality as being present only in the enterprise version of the software. It can be presented in two contexts, inline or standalone. Here's an example of standalone usage from the Consul docs website:
+
+![Enterprise Alert Component - Standalone](https://p176.p0.n0.cdn.getcloudapp.com/items/WnubALp8/Screen%20Shot%202020-06-11%20at%206.06.03%20PM.png?v=d1505b90bdcbde6ed664831a885ea5fb)
+
+The standalone component can be used as such in markdown files:
+
+```mdx
+# Page Headline
+
+<EnterpriseAlert />
+
+Continued markdown content...
+```
+
+It can also receive custom text contents if you need to change the messaging but wish to retain the style. This will replace the text `This feature is available in all versions of Consul Enterprise.` with whatever you add. For example:
+
+```mdx
+# Page Headline
+
+<EnterpriseAlert>
+  My custom text here, and <a href="#">a link</a>!
+</EnterpriseAlert>
+
+Continued markdown content...
+```
+
+It's important to note that once you are adding custom content, it must be html and can not be markdown, as demonstrated above with the link.
+
+Now let's look at inline usage, here's an example:
+
+![Enterprise Alert Component - Inline](https://p176.p0.n0.cdn.getcloudapp.com/items/L1upYLEJ/Screen%20Shot%202020-06-11%20at%206.07.50%20PM.png?v=013ba439263de8292befbc851d31dd78)
+
+And here's how it could be used in your markdown document:
+
+```mdx
+### Some Enterprise Feature <EnterpriseAlert inline />
+
+Continued markdown content...
+```
+
+It's also worth noting that this component will automatically adjust to the correct product colors depending on the context.
+
+#### Other Components
+
+Other custom components can be made available on a per-site basis, the above are the standards. If you have questions about custom components that are not documented here, or have a request for a new custom component, please reach out to @hashicorp/digital-marketing.
 
 ### Syntax Highlighting
 
@@ -246,12 +365,14 @@ $ terraform apply
 ```
 ````
 
+<!-- END: editing-markdown -->
+
 <!-- BEGIN: editing-docs-sidebars -->
 <!-- Generated text, do not edit directly -->
 
 ## Editing Navigation Sidebars
 
-The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section. Several files within the `/data` directory are symlinked to their respective navigation file within a submodule. These files are indicated in some text editors by a small arrow to the right of the filename. You can also see which files are symlinked by running `ls -l` in the `data` directory on Linux/macOS, or `dir` on Windows. Edits to these files should be make directly to the file within the submodule, although on most systems editing the symlink file should achieve the same result. Any updates to these files will need to be pushed to their respective `stable-website` branch before they appear on [terraform.io](https://terraform.io).
+The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section.
 
 The sidebar uses a simple recursive data structure to represent _files_ and _directories_. The sidebar is meant to reflect the structure of the docs within the filesystem while also allowing custom ordering. Let's look at an example. First, here's our example folder structure:
 
@@ -430,7 +551,7 @@ This redirect rule will send all incoming links to `/cloud` to `https://cloud.ha
 
 There is still one caveat though: redirects do not apply to client-side navigation. By default, all links in the navigation and docs sidebar will navigate purely on the client side, which makes navigation through the docs significantly faster, especially for those with low-end devices and/or weak internet connections. In the future, we plan to convert all internal links within docs pages to behave this way as well. This means that if there is a link on this website to a given piece of content that has changed locations in some way, we need to also _directly change existing links to the content_. This way, if a user clicks a link that navigates on the client side, or if they hit the url directly and the page renders from the server side, either one will work perfectly.
 
-Let's look at an example. Say you have a page called `/language/foo` which needs to be moved to `/language/nested/foo`. Additionally, this is a page that has been around for a while and we know there are links into `/language/foo.html` left over from our previous website structure. First, you would move the page to the correct directory and then adjust the docs sidenav in `data/language-navigation.js` to reflect the new structure.  Next, you would add to `miscRedirectsMap` (example below).
+Let's look at an example. Say you have a page called `/language/foo` which needs to be moved to `/language/nested/foo`. Additionally, this is a page that has been around for a while and we know there are links into `/language/foo.html` left over from our previous website structure. First, you would move the page to the correct directory and then adjust the docs sidenav in `data/language-navigation.js` to reflect the new structure. Next, you would add to `miscRedirectsMap` (example below).
 
 ```js
 const miscRedirectsMap = {
@@ -445,9 +566,7 @@ One more example - let's say that content is being moved to an external website.
 ```json
 {
   "title": "Language",
-  "routes": [
-    { "title": "Foo", "path": "foo" }
-  ]
+  "routes": [{ "title": "Foo", "path": "foo" }]
 }
 ```
 
@@ -473,9 +592,9 @@ It's also worth noting that it is possible to do glob-based redirects (e.g., mat
 
 We support the following browsers targeting roughly the versions specified.
 
-| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png) | ![Internet Explorer](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_24x24.png) |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Latest**                                                                                          | **Latest**                                                                                             | **Latest**                                                                                       | **Latest**                                                                                          | **11+**                                                                                                    |
+| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome.svg) | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge.svg) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera.svg) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox.svg) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari.svg) |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Latest**                                                                                  | **Latest**                                                                            | **Latest**                                                                               | **Latest**                                                                                     | **Latest**                                                                                  |
 
 <!-- END: browser-support -->
 

@@ -73,7 +73,7 @@ module.exports = (async () => {
     nsxt: 'vmware/nsxt',
     null: 'hashicorp/null',
     nutanix: 'nutanix/nutanix',
-    oci: 'hashicorp/oci',
+    oci: 'oracle/oci',
     okta: 'oktadeveloper/okta',
     oktaasa: 'oktadeveloper/oktaasa',
     opc: 'hashicorp/opc',
@@ -309,6 +309,9 @@ module.exports = (async () => {
     // Health
     '/cloud-docs/workspaces/settings/health-assessments':
       '/cloud-docs/workspaces/health',
+    // Registry Sharing
+    '/enterprise/admin/application/module-sharing':
+      '/enterprise/admin/application/registry-sharing',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
