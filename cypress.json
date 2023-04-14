@@ -1,8 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "projectId": "mkfiq7",
-  "retries": {
-    "runMode": 1,
-    "openMode": 0
-  }
-}
