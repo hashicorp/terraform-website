@@ -1,7 +1,6 @@
 import './style.css'
 import '@hashicorp/platform-util/nprogress/style.css'
 
-import { useEffect } from 'react'
 import NProgress from '@hashicorp/platform-util/nprogress'
 import createConsentManager from '@hashicorp/react-consent-manager/loader'
 import localConsentManagerServices from 'lib/consent-manager-services'
@@ -22,7 +21,6 @@ import alertBannerData, { ALERT_BANNER_ACTIVE } from 'data/alert-banner'
 import StandardLayout from 'layouts/standard'
 import { useFlags } from 'flags/client'
 import { FlagBagProvider } from 'flags/client'
-import { abTestTrack } from 'lib/ab-test-track'
 
 NProgress({ Router })
 const { ConsentManager } = createConsentManager({
@@ -43,16 +41,6 @@ function App({ Component, pageProps, layoutData }) {
   useAnchorLinkAnalytics()
 
   const Layout = Component.layout ?? StandardLayout
-
-  useEffect(() => {
-    if (flagBag.settled) {
-      abTestTrack({
-        type: 'Served',
-        test_name: 'io-site primary CTA copy test 03-23',
-        variant: flagBag.flags.tryForFree.toString(),
-      })
-    }
-  }, [flagBag])
 
   return (
     <ErrorBoundary FallbackComponent={Error}>
