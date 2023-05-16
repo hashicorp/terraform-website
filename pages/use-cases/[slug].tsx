@@ -2,6 +2,7 @@ import * as React from 'react'
 import rivetQuery from '@hashicorp/platform-cms'
 import useCasesQuery from './query.graphql'
 import ReactHead from '@hashicorp/react-head'
+import { getRevalidateTime } from 'lib/get-revalidate-time'
 import IoUsecaseHero from 'components/io-usecase-hero'
 import IoUsecaseSection from 'components/io-usecase-section'
 import IoUsecaseCustomer from 'components/io-usecase-customer'
@@ -236,9 +237,6 @@ export async function getStaticProps({ params }) {
     props: {
       data: page,
     },
-    revalidate:
-      process.env.HASHI_ENV === 'production'
-        ? process.env.GLOBAL_REVALIDATE
-        : 10,
+    revalidate: getRevalidateTime(),
   }
 }

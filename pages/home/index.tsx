@@ -3,6 +3,7 @@ import rivetQuery from '@hashicorp/platform-cms'
 import homepageQuery from './query.graphql'
 import { isInternalLink } from 'lib/utils'
 import ReactHead from '@hashicorp/react-head'
+import { getRevalidateTime } from 'lib/get-revalidate-time'
 import IoHomeHeroAlt from 'components/io-home-hero-alt'
 import IoHomeIntro from 'components/io-home-intro'
 import IoHomeInPractice from 'components/io-home-in-practice'
@@ -180,9 +181,6 @@ export async function getStaticProps() {
 
   return {
     props: { data: terraformHomepage },
-    revalidate:
-      process.env.HASHI_ENV === 'production'
-        ? process.env.GLOBAL_REVALIDATE
-        : 10,
+    revalidate: getRevalidateTime(),
   }
 }
