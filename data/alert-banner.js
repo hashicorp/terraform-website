@@ -1,10 +1,10 @@
-export const ALERT_BANNER_ACTIVE = false
+export const ALERT_BANNER_ACTIVE = true
 
 // https://github.com/hashicorp/web-components/tree/master/packages/alert-banner
 export default {
-  tag: 'HashiTalks 2023',
-  url: 'https://hashi.co/hashitalks-2023',
-  text: 'Join us for the fifth annual HashiTalks, a 24-hour virtual knowledge sharing event on February 16',
-  linkText: 'Register now',
+  tag: 'HashiDays',
+  url: 'https://hashidays.com/online/',
+  text: 'All in-person HashiDays events are sold out. Register to attend online!',
+  linkText: 'Register here',
   expirationDate: '',
 }
