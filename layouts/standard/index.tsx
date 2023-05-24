@@ -25,21 +25,6 @@ export default function StandardLayout(props: Props): React.ReactElement {
             ].sort((a, b) => a.text.localeCompare(b.text)),
           },
           {
-            text: 'Editions',
-            type: 'anchor',
-            submenu: [
-              { url: '/', text: 'Terraform CLI' },
-              {
-                url: 'https://cloud.hashicorp.com/products/terraform',
-                text: 'Terraform Cloud',
-              },
-              {
-                url: 'https://www.hashicorp.com/products/terraform',
-                text: 'Terraform Enterprise',
-              },
-            ],
-          },
-          {
             text: 'Registry',
             url: 'https://registry.terraform.io/',
           },
