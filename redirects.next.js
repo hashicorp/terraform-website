@@ -312,6 +312,20 @@ module.exports = (async () => {
     // Registry Sharing
     '/enterprise/admin/application/module-sharing':
       '/enterprise/admin/application/registry-sharing',
+    // ServiceNow Service Catalog
+    '/cloud-docs/integrations/service-now':
+      '/cloud-docs/integrations/service-now/service-catalog',
+    '/cloud-docs/integrations/service-now/service-catalog':
+      '/cloud-docs/integrations/service-now/service-catalog/service-catalog-config',
+    '/cloud-docs/integrations/service-now/admin-guide':
+      '/cloud-docs/integrations/service-now/service-catalog/admin-guide',
+    '/cloud-docs/integrations/service-now/developer-reference':
+      '/cloud-docs/integrations/service-now/service-catalog/developer-reference',
+    '/cloud-docs/integrations/service-now/example-customizations':
+      '/cloud-docs/integrations/service-now/service-catalog/example-customizations',
+    '/cloud-docs/integrations/service-now/service-now-v1':
+      '/cloud-docs/integrations/service-now/service-catalog/service-now-v1',
+  }
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
