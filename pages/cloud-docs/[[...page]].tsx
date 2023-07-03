@@ -6,6 +6,7 @@ import { getStaticGenerationFunctions } from '@hashicorp/react-docs-page/server'
 import path from 'path'
 import { rehypePlugins, remarkPlugins } from 'lib/remark-rehype-plugins'
 import { remarkRewriteAssets } from 'lib/remark-rewrite-assets'
+import { remarkTfeContentExclusion } from 'lib/remark-tfe-content-exclusion'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cloud-docs'
@@ -47,13 +48,14 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           filepath = filepath.replace('preview/', '')
           return `https://github.com/hashicorp/${SOURCE_REPO}/blob/${DEFAULT_BRANCH}/website/${filepath}`
         },
-        remarkPlugins: (params) => [
+        remarkPlugins: (params, version) => [
           ...remarkPlugins,
           remarkRewriteAssets({
             product: SOURCE_REPO,
             version: process.env.CURRENT_GIT_BRANCH,
             getAssetPathParts: (nodeUrl) => ['website', nodeUrl],
           }),
+          [remarkTfeContentExclusion, { version }],
         ],
         rehypePlugins,
       }
